@@ -1,6 +1,7 @@
 var compression = require('compression')
 var express  = require('express');
 var app      = express();
+var fs      = require('fs');
 var port     = process.env.PORT || 9000;
 var mongoose = require('mongoose');
 var passport = require('passport');
