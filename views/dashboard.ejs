@@ -1,0 +1,1021 @@
+           <%- include partials/innerheader %>
+
+      <div class="app_main">
+                  
+            <%- include partials/innersidebar %>
+
+        <div class="app_content">
+          <div class="dsbrd_container">
+            <div class="dashboard_wrapper row">
+              <div class="dashboard_wrapper_left col">
+                <div class="tip_list_head">
+                  <h2>Tips</h2>
+                 <!--  <div class="switch-field">
+                    <input type="radio" id="tips_all" name="Tips" checked/>
+                    <label for="tips_all">All</label>
+                    <input type="radio" id="tips_ai" name="Tips" />
+                    <label for="tips_ai">AI Tips</label>
+                    <input type="radio" id="tips_mentor" name="Tips" />
+                    <label for="tips_mentor">Mentors</label>
+                  </div> -->
+                </div>
+               <!--  <div class="user_progress_area">
+                  <ul class="user_prgrs_items">
+                    <li class="user_prgrs_item">
+                      <span class="user_prgrs_item_tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22.401" height="18.671" viewBox="0 0 22.401 18.671">
+                          <g id="diamond" transform="translate(0.001 -34.137)">
+                            <g id="Group_14140" data-name="Group 14140" transform="translate(-0.001 34.137)">
+                              <g id="Group_14139" data-name="Group 14139" transform="translate(0 0)">
+                                <path id="Path_217" data-name="Path 217" class="cls-1" d="M22.314,38.584,18.58,34.275a.38.38,0,0,0-.287-.129H4.106a.379.379,0,0,0-.287.129L.086,38.584a.347.347,0,0,0-.052.382.375.375,0,0,0,.338.207H22.027a.375.375,0,0,0,.338-.207A.348.348,0,0,0,22.314,38.584ZM1.17,38.454l3.111-3.591H18.119l3.111,3.591Z" transform="translate(0.001 -34.146)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14142" data-name="Group 14142" transform="translate(3.81 34.137)">
+                              <g id="Group_14141" data-name="Group 14141" transform="translate(0 0)">
+                                <path id="Path_218" data-name="Path 218" class="cls-1" d="M92.856,34.359a.359.359,0,0,0-.332-.222H85.7a.359.359,0,0,0-.31.54l2.513,4.309a.359.359,0,0,0,.264.175l.046,0a.359.359,0,0,0,.254-.105l4.309-4.309A.359.359,0,0,0,92.856,34.359Zm-4.565,3.863-1.964-3.367h5.33Z" transform="translate(-85.343 -34.137)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14144" data-name="Group 14144" transform="translate(-0.001 38.445)">
+                              <g id="Group_14143" data-name="Group 14143">
+                                <path id="Path_219" data-name="Path 219" class="cls-1" d="M22.364,136.728a.375.375,0,0,0-.335-.2H.375a.375.375,0,0,0-.335.2.348.348,0,0,0,.038.377l10.827,13.644a.381.381,0,0,0,.593,0L22.326,137.1A.348.348,0,0,0,22.364,136.728ZM11.2,149.94,1.13,137.247H21.276Z" transform="translate(-0.002 -136.528)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14146" data-name="Group 14146" transform="translate(0 38.445)">
+                              <g id="Group_14145" data-name="Group 14145" transform="translate(0 0)">
+                                <path id="Path_220" data-name="Path 220" class="cls-1" d="M11.125,150.423,6.816,136.779a.359.359,0,0,0-.343-.251H.369a.359.359,0,0,0-.285.577L10.5,150.749a.358.358,0,0,0,.285.141.349.349,0,0,0,.165-.041A.359.359,0,0,0,11.125,150.423ZM1.095,137.247H6.21L9.821,148.68Z" transform="translate(-0.01 -136.528)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14148" data-name="Group 14148" transform="translate(11.05 34.137)">
+                              <g id="Group_14147" data-name="Group 14147" transform="translate(0 0)">
+                                <path id="Path_221" data-name="Path 221" class="cls-1" d="M254.962,34.317a.358.358,0,0,0-.311-.18h-6.822a.359.359,0,0,0-.254.613l4.309,4.309a.358.358,0,0,0,.254.105l.046,0a.359.359,0,0,0,.264-.175l2.513-4.309A.36.36,0,0,0,254.962,34.317Zm-2.9,3.9L248.7,34.855h5.33Z" transform="translate(-247.47 -34.137)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14150" data-name="Group 14150" transform="translate(11.27 38.446)">
+                              <g id="Group_14149" data-name="Group 14149">
+                                <path id="Path_222" data-name="Path 222" class="cls-1" d="M258.57,136.746a.359.359,0,0,0-.322-.2h-6.1a.359.359,0,0,0-.343.251l-4.309,13.644a.359.359,0,0,0,.628.326l10.413-13.644A.359.359,0,0,0,258.57,136.746ZM248.8,148.7l3.611-11.434h5.115Z" transform="translate(-247.476 -136.546)"/>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </span>
+                      <div class="progress progress_circle" data-value='75'>
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <img src="images/people1.png" alt="images">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="user_prgrs_item">
+                      <span class="user_prgrs_item_tag">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22.401" height="18.671" viewBox="0 0 22.401 18.671">
+                          <g id="diamond" transform="translate(0.001 -34.137)">
+                            <g id="Group_14140" data-name="Group 14140" transform="translate(-0.001 34.137)">
+                              <g id="Group_14139" data-name="Group 14139" transform="translate(0 0)">
+                                <path id="Path_217" data-name="Path 217" class="cls-1" d="M22.314,38.584,18.58,34.275a.38.38,0,0,0-.287-.129H4.106a.379.379,0,0,0-.287.129L.086,38.584a.347.347,0,0,0-.052.382.375.375,0,0,0,.338.207H22.027a.375.375,0,0,0,.338-.207A.348.348,0,0,0,22.314,38.584ZM1.17,38.454l3.111-3.591H18.119l3.111,3.591Z" transform="translate(0.001 -34.146)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14142" data-name="Group 14142" transform="translate(3.81 34.137)">
+                              <g id="Group_14141" data-name="Group 14141" transform="translate(0 0)">
+                                <path id="Path_218" data-name="Path 218" class="cls-1" d="M92.856,34.359a.359.359,0,0,0-.332-.222H85.7a.359.359,0,0,0-.31.54l2.513,4.309a.359.359,0,0,0,.264.175l.046,0a.359.359,0,0,0,.254-.105l4.309-4.309A.359.359,0,0,0,92.856,34.359Zm-4.565,3.863-1.964-3.367h5.33Z" transform="translate(-85.343 -34.137)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14144" data-name="Group 14144" transform="translate(-0.001 38.445)">
+                              <g id="Group_14143" data-name="Group 14143">
+                                <path id="Path_219" data-name="Path 219" class="cls-1" d="M22.364,136.728a.375.375,0,0,0-.335-.2H.375a.375.375,0,0,0-.335.2.348.348,0,0,0,.038.377l10.827,13.644a.381.381,0,0,0,.593,0L22.326,137.1A.348.348,0,0,0,22.364,136.728ZM11.2,149.94,1.13,137.247H21.276Z" transform="translate(-0.002 -136.528)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14146" data-name="Group 14146" transform="translate(0 38.445)">
+                              <g id="Group_14145" data-name="Group 14145" transform="translate(0 0)">
+                                <path id="Path_220" data-name="Path 220" class="cls-1" d="M11.125,150.423,6.816,136.779a.359.359,0,0,0-.343-.251H.369a.359.359,0,0,0-.285.577L10.5,150.749a.358.358,0,0,0,.285.141.349.349,0,0,0,.165-.041A.359.359,0,0,0,11.125,150.423ZM1.095,137.247H6.21L9.821,148.68Z" transform="translate(-0.01 -136.528)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14148" data-name="Group 14148" transform="translate(11.05 34.137)">
+                              <g id="Group_14147" data-name="Group 14147" transform="translate(0 0)">
+                                <path id="Path_221" data-name="Path 221" class="cls-1" d="M254.962,34.317a.358.358,0,0,0-.311-.18h-6.822a.359.359,0,0,0-.254.613l4.309,4.309a.358.358,0,0,0,.254.105l.046,0a.359.359,0,0,0,.264-.175l2.513-4.309A.36.36,0,0,0,254.962,34.317Zm-2.9,3.9L248.7,34.855h5.33Z" transform="translate(-247.47 -34.137)"/>
+                              </g>
+                            </g>
+                            <g id="Group_14150" data-name="Group 14150" transform="translate(11.27 38.446)">
+                              <g id="Group_14149" data-name="Group 14149">
+                                <path id="Path_222" data-name="Path 222" class="cls-1" d="M258.57,136.746a.359.359,0,0,0-.322-.2h-6.1a.359.359,0,0,0-.343.251l-4.309,13.644a.359.359,0,0,0,.628.326l10.413-13.644A.359.359,0,0,0,258.57,136.746ZM248.8,148.7l3.611-11.434h5.115Z" transform="translate(-247.476 -136.546)"/>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </span>
+                      <div class="progress progress_circle" data-value='75'>
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <img src="images/people2.png" alt="images">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="user_prgrs_item">
+                      <span class="user_prgrs_item_tag">2<small>nd</small></span>
+                      <div class="progress progress_circle" data-value='75'>
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <img src="images/people3.png" alt="images">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="user_prgrs_item">
+                      <div class="progress progress_circle" data-value='75'>
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <img src="images/people4.png" alt="images">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="user_prgrs_item">
+                      <div class="progress progress_circle" data-value='75'>
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <img src="images/people5.png" alt="images">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="user_prgrs_item">
+                      <div class="progress progress_circle" data-value='75'>
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <img src="images/people6.png" alt="images">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="user_prgrs_item">
+                      <div class="progress progress_circle" data-value='75'>
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <img src="images/people7.png" alt="images">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="user_prgrs_item">
+                      <div class="progress progress_circle" data-value='75'>
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <img src="images/people8.png" alt="images">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div> -->
+                <div id="demo"> </div>
+                <div class="tips_boxes">
+                  <!-- <div class="tips_bx buy_bg">
+                    <div class="tips_bx_head">
+                      <div class="tips_bx_author author_bx">
+                        <img src="images/user.png" alt="images">
+                        <h2>Williams Park <span>2 mins ago</span></h2>
+                      </div>
+                      <div class="tips_bx_amount">
+                        <h2>$782.65</h2>
+                        <p>AT TIME OF TIP : $781.50 | Change $1.01, <span class="color_buy">1.13%</span></p>
+                      </div>
+                    </div>
+                    <div class="tips_bx_cmpny">
+                      <div class="tips_bx_cmpny_name">
+                        <span class="bs_btn buy_btn">Buy</span>
+                        <h2>NKE <span>NIKE, Inc.</span></h2>
+                      </div>
+                      <div class="tips_bx_cmpny_states">
+                        <ul>
+                          <li><h3>Entry</h3><h4>$789</h4></li>
+                          <li><h3>Stop</h3><h4>$888</h4></li>
+                          <li><h3>Exit</h3><h4><span class="color_buy">$888</span></h4></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="tips_bx_txt">
+                      <p>Zwei flinke Boxer jagen die quirlige Eva und ihren Mops durch Sylt. Franz jagt im komplett verwahrlosten Taxi quer durch Bayern. Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich.</p>
+                    </div>
+                    <div class="tips_bx_social">
+                      <ul>
+                        <li>
+                          <img src="images/tips-comment-icon.png" alt="images">
+                          <a href="#">21 Comments</a>
+                        </li>
+                        <li>
+                          <img src="images/tips-save-icon.png" alt="images">
+                          <a href="#">Save</a>
+                        </li>
+                        <li>
+                          <img src="images/tips-like-icon.png" alt="images">
+                          <a href="#">6 Likes</a>
+                        </li>
+                        <li>
+                          <div class="dropdown msg_option_dropdown">
+                            <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <img src="images/tips-more-icon.png" alt="images"> More
+                            </a>
+                            <div class="dropdown-menu">
+                              <ul>
+                                <li><span><i class="fas fa-folder-open"></i></span> Archive all</li>
+                                <li><span><i class="fas fa-check-double"></i></span> Mark all as read</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="tips_bx sell_bg">
+                    <div class="tips_bx_head">
+                      <div class="tips_bx_author author_bx">
+                        <img src="images/user.png" alt="images">
+                        <h2>Williams Park <span>2 mins ago</span></h2>
+                      </div>
+                      <div class="tips_bx_amount">
+                        <h2>$782.65</h2>
+                        <p>AT TIME OF TIP : $781.50 | Change $1.01, <span class="color_sell">1.13%</span></p>
+                      </div>
+                    </div>
+                    <div class="tips_bx_cmpny">
+                      <div class="tips_bx_cmpny_name">
+                        <span class="bs_btn sell_btn">Sell</span>
+                        <h2>NKE <span>NIKE, Inc.</span></h2>
+                      </div>
+                      <div class="tips_bx_cmpny_states">
+                        <ul>
+                          <li><h3>Entry</h3><h4>$789</h4></li>
+                          <li><h3>Stop</h3><h4>$888</h4></li>
+                          <li><h3>Exit</h3><h4><span class="color_sell">$888</span></h4></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="tips_bx_txt">
+                      <p>Zwei flinke Boxer jagen die quirlige Eva und ihren Mops durch Sylt. Franz jagt im komplett verwahrlosten Taxi quer durch Bayern. Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich.</p>
+                    </div>
+                    <div class="tips_bx_social">
+                      <ul>
+                        <li>
+                          <img src="images/tips-comment-icon.png" alt="images">
+                          <a href="#">21 Comments</a>
+                        </li>
+                        <li>
+                          <img src="images/tips-save-icon.png" alt="images">
+                          <a href="#">Save</a>
+                        </li>
+                        <li>
+                          <img src="images/tips-like-icon.png" alt="images">
+                          <a href="#">6 Likes</a>
+                        </li>
+                        <li>
+                          <div class="dropdown msg_option_dropdown">
+                            <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <img src="images/tips-more-icon.png" alt="images"> More
+                            </a>
+                            <div class="dropdown-menu">
+                              <ul>
+                                <li><span><i class="fas fa-folder-open"></i></span> Archive all</li>
+                                <li><span><i class="fas fa-check-double"></i></span> Mark all as read</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <div class="dashboard_wrapper_right col">
+                <div class="tips_wtlist_head">
+                  <div class="btn-group select_dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">My Watchlist <span class="caret"></span></a>
+                    <ul class="dropdown-menu select_dropdown_menu" id="menu">
+                      <li class="dropdown-item px-2"><a href="#">My Watchlist</a></li>
+                      <li class="dropdown-item px-2"><a href="#">Free AI tips</a></li>
+                    </ul>
+                  </div>
+                  <span><a href="#">Manage</a></span>
+                </div>
+                <div class="tips_wtlist_items" id="demos">
+                  <!-- <div class="tips_wtlist_item">
+                    <div class="tips_wtlist_item_left">
+                      <h2>NIKE <span>NIKE INC</span></h2>
+                    </div>
+                    <div class="tips_wtlist_item_center">
+                      <h3>$28.05</h3>
+                      <h4><span class="round_tag buy_tag"><img src="images/t-logo.png" alt="images"></span> TradeTips AI Trend</h4>
+                    </div>
+                    <div class="tips_wtlist_item_right">
+                      <h3><span class="color_buy">3.3%</span></h3>
+                      <h4><span class="color_buy">Buy</span></h4>
+                    </div>
+                  </div> -->
+                  
+                
+                </div>
+              </div>
+
+                         <!-- Welcome modal Start -->
+                <div class="modal welcome_modal" tabindex="-1" id="welcomeModal">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="welcome_modal_top">
+                          <h2>Free trial</h2>
+                          <img src="images/welcome-bird.png" alt="images">
+                        </div>
+                        <div class="welcome_modal_btm">
+                          <h3>Your 7-day trial starts today</h3>
+                          <p>You're in! Your trial gives you access to popular paid features like Mentor Tips, AI Tips, and Broadcast messages. Feel free to explore our platform and reach out us at support@tradetips.com if you need any help</p>
+                          <p>Once your trial ends, you can continue with our paid Investor Pro Subscription plan</p>
+                          <button class="btn cmn_btn btn_primary" data-dismiss="modal">Lets get Started</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Welcome modal End -->
+             </div>
+          </div>
+        </div>
+                 <%- include partials/innerfooter %>
+
+
+<script type="text/javascript">
+  var sData = localStorage.getItem('allTokenData');
+  var storageData= JSON.parse(sData);
+ 
+  var tokens = storageData.tokendata;
+  //alert(tokens);
+
+  $("form#data").submit(function(e) {
+    e.preventDefault();    
+    // alert(JSON.stringify(e));
+     var multi = $("#stockName").val();
+     
+    });
+
+  var userName = storageData.uname;
+
+  var formdata = {  offset: 0, limit: 1000000};
+
+  $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/tip/getAllTipFeaturePaginationForUser',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: formdata,
+      success: function(data) {
+       var datak = JSON.stringify(data);
+       var dataResult = JSON.parse(datak); 
+       // console.log(dataResult);
+       var text = "" ;
+       var len = dataResult.length;
+       // console.log(len);
+       var stockVal = [];
+       var tipId = [];
+       var tipPrice = [];
+
+       for (i= 0; i< len; i ++) {
+
+                stockVal.push(dataResult[i].tip.stockName);  
+                tipId.push(dataResult[i].tip.id);   
+                tipPrice.push(dataResult[i].tip.createTipPrice);
+
+
+
+             var date = new Date(dataResult[i].tip.modifiedOn);
+             var options = {year: "numeric", month: "long", day: "numeric"};
+
+             var newdate = date.toGMTString('en-US', options);  
+
+
+             const stripped = newdate.replace(/GMT/g, 'NYT');
+            // console.log(stripped);
+
+             // var userdataPin = dataResult[i].userPinStatus;
+
+  
+
+             if(dataResult[i].tip.stockSuggestion == "Buy"){
+
+
+              // $.get("https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+ dataResult[i].tip.appUser.id).then((response) => {
+              //         // alert(response);
+              //        document.getElementById("imgcall'+ dataResult[i].tip.id'").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+dataResult[i].tip.appUser.id;
+
+              //     }).catch((error) => {
+              //         // alert(error);
+              //         document.getElementById("imgcall'+ dataResult[i].tip.id").src = "images/people.png";
+              //     })
+
+               text += '<div class="tips_bx buy_bg"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img id="imgcall' + dataResult[i].tip.id + '" src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId='+ dataResult[i].tip.appUser.id+'" alt="images"><h2>' + dataResult[i].tip.appUser.userName + '</h2></div><div class="tips_bx_amount"> <h2 class="hclass" id="flatestPrice' + dataResult[i].tip.id + '"><span>$</span></h2><p>AT TIME OF TIP : <h6 class="hclass" id="stockkTipPrice' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.createTipPrice).toFixed(2) +'</h6><p id="changeVals' + dataResult[i].tip.id + '"></p></p></div></div><div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn buy_btn">' + dataResult[i].tip.stockSuggestion + '</span><h2>' + dataResult[i].tip.stockName + ' <span id="skComnyNames'+ dataResult[i].tip.id +'"></span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>Entry</h3><h4 id="entrydatas' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.entryPoint).toFixed(2) +'</h4></li><li><h3>Stop</h3><h4 id="stopdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.stopPoint).toFixed(2) +'</h4></li><li><h3>Exit</h3><h4><span class="color_buy" id="exitdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.exitPoint).toFixed(2) +'</span></h4></li></ul></div></div><div class="tips_bx_txt"> <p>'+ dataResult[i].tip.comment +'</p></div><div class="tips_bx_social"><ul> <li><img src="images/tips-comment-icon.png" alt="images"><a href="#">' + dataResult[i].commentCount + ' Comments</a></li> <li> <img src="images/tips-save-icon.png" alt="images"><a href="#">Save</a> </li><li><img src="images/tips-like-icon.png" alt="images"><a href="#">' + dataResult[i].likeCount + ' Likes</a></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/tips-more-icon.png" alt="images"> More</a><div class="dropdown-menu"> <ul><li><span><i class="fas fa-folder-open"></i></span> Archive all</li><li><span><i class="fas fa-check-double"></i></span> Mark all as read</li></ul></div></div></li></ul></div></div>';
+
+             } else {
+
+                text += '<div class="tips_bx sell_bg"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId=' + dataResult[i].tip.appUser.id + '" alt="images"><h2>' + dataResult[i].tip.appUser.userName + '</h2></div><div class="tips_bx_amount"> <h2 class="hclass" id="flatestPrices' + dataResult[i].tip.id + '"><span>$</span></h2><p>AT TIME OF TIP : <h6 class="hclass" id="stockkTipPrice' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.createTipPrice).toFixed(2) +'</h6><p id="changeValsfront' + dataResult[i].tip.id + '"></p></p></div></div><div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn sell_btn">' + dataResult[i].tip.stockSuggestion + '</span><h2>' + dataResult[i].tip.stockName + ' <span id="skComnyNames'+ dataResult[i].tip.id +'"></span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>Entry</h3><h4 id="entrydatas' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.entryPoint).toFixed(2) +'</h4></li><li><h3>Stop</h3><h4 id="stopdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.stopPoint).toFixed(2) +'</h4></li><li><h3>Exit</h3><h4><span class="color_sell" id="exitdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.exitPoint).toFixed(2) +'</span></h4></li></ul></div></div><div class="tips_bx_txt"> <p>'+ dataResult[i].tip.comment +'</p></div><div class="tips_bx_social"><ul> <li><img src="images/tips-comment-icon.png" alt="images"><a href="#">' + dataResult[i].commentCount + ' Comments</a></li> <li> <img src="images/tips-save-icon.png" alt="images"><a href="#">Save</a> </li><li><img src="images/tips-like-icon.png" alt="images"><a href="#">' + dataResult[i].likeCount + ' Likes</a></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/tips-more-icon.png" alt="images"> More</a><div class="dropdown-menu"> <ul><li><span><i class="fas fa-folder-open"></i></span> Archive all</li><li><span><i class="fas fa-check-double"></i></span> Mark all as read</li></ul></div></div></li></ul></div></div>';
+
+             }
+           
+                myTacos(dataResult[i].tip.id);
+
+
+               function myTacos(primaryKey){
+
+
+                $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ dataResult[i].tip.stockName , function(d) {
+
+                          var count = Object.keys(d).length;
+
+                          Object.keys(d).map((keyName, key) => {
+
+                          
+                              $("#skComnyName"+primaryKey).text(d[keyName].quote.companyName);
+                              $("#skComnyNames"+primaryKey).text(d[keyName].quote.companyName);
+                              $("#flatestPrice"+primaryKey).text("$"+d[keyName].quote.latestPrice);
+
+                              $("#flatestPrices"+primaryKey).text("$"+d[keyName].quote.latestPrice);
+                              
+
+
+
+                            var stockkkentry = $("#entrydata"+ primaryKey).text();
+                            // alert(stockkkentry);
+                            var stockkkexit = $("#exitdata"+ primaryKey).text();
+                            //alert(stockkkexit);
+                            var stockkkstop = $("#stopdata"+ primaryKey).text();
+                            //alert(stockkkstop);
+                            var stockkkPricess= $("#stockkTipPrice"+ primaryKey).text();
+                            // alert(stockkkPricess);
+                            // alert(stockkkPricess.replace("$",""));
+                           
+                            var newwdata = $("#flatestPrice"+ primaryKey).text();
+
+                            var newwdatas = $("#flatestPrices"+ primaryKey).text();
+                            // alert(newwdata);
+                            // alert(newwdata.replace("$",""));
+
+                            var suggestionslist = $(".suggestion"+ primaryKey).text();
+                            // alert(suggestionslist);
+
+                            /////////////////////////////////////////////////////////////////
+
+                            var userdataPin = $("#StatusPin"+ primaryKey).text();
+
+                            
+                              if(userdataPin == "true"){
+                                   // alert("true");
+
+                                    $("#imgstatus"+ primaryKey).attr("src","savetip.png");
+
+
+                               }else{
+                                  // alert("false");
+
+                                    $("#imgstatus"+ primaryKey).attr("src","show.jpeg");
+
+
+                               }
+
+                               ////////////////////////////////////////////////////////////////////
+
+                               var userdataLike = $("#StatusLike"+ primaryKey).text();
+
+                            
+                              if(userdataLike == "true"){
+                                   // alert("true");
+
+                                    $("#imgLikestatus"+ primaryKey).attr("src","unnamed.png");
+
+
+                               }else{
+                                  // alert("false");
+
+                                    $("#imgLikestatus"+ primaryKey).attr("src","like.jpeg");
+
+
+                               }
+
+
+
+                            //////////////////////////change value////////////////////////////
+                             // var newwdatak = $("#flatestPrice"+ primaryKey).text();
+
+                             const minusValues = newwdata.replace("$","") - stockkkPricess.replace("$","");
+                             const values = Number(minusValues).toFixed(2);
+                             // alert(values);
+
+                             if(values > 0){
+
+                              // alert("home");
+
+                              $("#changeVals"+ primaryKey).html('Change : <h6 class="hclass green"><span>$</span>' +values + '</h6>');
+
+                             }else{
+
+                              // alert("calling home");
+
+                              $("#changeVals"+ primaryKey).html('Change : <h6 class="hclass red"><span>$</span>' +values + '</h6>');
+
+                             }
+
+
+                             //////////////////////////////////////////////////////
+
+                             const minusValuesNew = newwdatas.replace("$","") - stockkkPricess.replace("$","");
+                             const valuesk = Number(minusValuesNew).toFixed(2);
+                             // alert(values);
+
+                             if(valuesk > 0){
+
+                              // alert("home");
+
+                              $("#changeValsfront"+ primaryKey).html('Change : <h6 class="hclass green"><span>$</span>' +valuesk + '</h6>');
+
+                             }else{
+
+                              // alert("calling home");
+
+                              $("#changeValsfront"+ primaryKey).html('Change : <h6 class="hclass red"><span>$</span>' +valuesk + '</h6>');
+
+                             }
+
+                             /////////////////////////entry data/////////////////////////
+
+                            if(stockkkentry.replace("$","") <= newwdata.replace("$","") &&  suggestionslist == "BUY"){
+
+
+                              $("#entrydata"+ primaryKey).css("color" , "green");
+                              $("#entrydatas"+ primaryKey).css("color" , "green");
+
+                            
+                            } else if(stockkkentry.replace("$","") >= newwdata.replace("$","") && suggestionslist == "SELL"){
+
+
+                                $("#entrydata"+ primaryKey).css("color" , "green");
+                                $("#entrydatas"+ primaryKey).css("color" , "green");
+
+                            }else{
+
+
+                                 $("#entrydata"+ primaryKey).css("color" , "white");
+                                 $("#entrydatas"+ primaryKey).css("color" , "white");
+
+                            }
+
+
+                            //////////////////exit data/////////////////////////////////////////
+
+
+                             
+                              if(stockkkentry.replace("$","") <= newwdata.replace("$","") &&  suggestionslist == "BUY"){
+
+
+                              $("#exitdata"+ primaryKey).css("color" , "green");
+                              $("#exitdatas"+ primaryKey).css("color" , "green");
+
+                            
+                            } else if(stockkkentry.replace("$","") >= newwdata.replace("$","") && suggestionslist == "SELL"){
+
+
+                                $("#exitdata"+ primaryKey).css("color" , "green");
+                                $("#exitdatas"+ primaryKey).css("color" , "green");
+
+                            }else{
+
+
+                                 $("#exitdata"+ primaryKey).css("color" , "black");
+                                 $("#exitdatas"+ primaryKey).css("color" , "black");
+
+                            }
+
+
+
+                            /////////////////////stop data//////////////////////////////  
+
+                             if(suggestionslist == "BUY" && newwdata.replace("$","") < stockkkPricess.replace("$","") && newwdata.replace("$","") <=  stockkkstop.replace("$","")){
+
+
+                              $("#stopdata"+ primaryKey).css("color" , "red");
+                              $("#stopdatas"+ primaryKey).css("color" , "red");
+
+                            
+                            } else if(suggestionslist == "SELL" && stockkkPricess.replace("$","") < newwdata.replace("$","") && newwdata.replace("$","") >=  stockkkstop.replace("$","")){
+
+
+                                $("#stopdata"+ primaryKey).css("color" , "white");
+                                $("#stopdatas"+ primaryKey).css("color" , "white");
+
+                            }else{
+
+
+                                 $("#stopdata"+ primaryKey).css("color" , "white");
+                                 $("#stopdatas"+ primaryKey).css("color" , "white");
+
+                            }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+                       $.ajax({
+                              type: 'POST',
+                              url: 'https://apis.tradetipsapp.com/api/comment/getCommentsByTipIdPagination',
+                              headers: {
+                                Authorization: 'Bearer '+ tokens,
+                                 },
+                              data: {
+                                  tipId: primaryKey,
+                                  limit: 100,
+                                  offset: 0,
+                                },
+                            success: function(data) {
+
+                               const dataResult = data;
+                                  let newtip = [];
+                                  for(var i=0; i< dataResult.length; i++){
+                                   
+                                  newtip += '<li class="list-group-item"><div class="row"><div class="col-xs-2 col-md-2"><img src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId=' + dataResult[i].appUser.id + '" alt="pic" width="50" height="50" class="rounded-circle"></div><div class="col-xs-9 col-md-9"><div style="color: blue;">' + dataResult[i].appUser.userName + '</div><div class="comment-text" style="color: black;">' + dataResult[i].commentDetails + '</div></div><div class="col-xs-1 col-md-1"><input type="hidden" name="secondId" id="secondId" value="3fe22d6e-6fbf-4e18-8e99-2866d2814925"><input type="hidden" name="fristid" id="fristid" value="1d277791-653c-4886-8e45-7a6870127ca2"><a><img src="flag.png" width="20" height="20"></a></div></div></li>';
+
+                                   // newtip.push(dataResult[i]);
+                                  }
+                                   $("#tiploaded"+primaryKey).append(newtip);
+                                 
+
+                              }
+
+                            });
+
+
+
+                          });
+
+                            
+                          
+
+                  
+
+                   });
+         
+
+                
+
+                }
+
+
+             
+
+          
+        }
+
+              
+               $("#demo").append(text);
+               
+
+
+                 // console.log(stockVal);
+               //console.log(tipId);
+
+               
+
+       }
+       
+  });
+
+//   }
+
+// }); 
+
+
+ $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/stockDetail/getAllStockOfUserByUserName?userName='+ userName,
+        headers: {
+          Authorization: 'Bearer '+ tokens ,
+        },
+        data: formdata,
+      success: function(datas) {
+       var dataks = JSON.stringify(datas);
+       var dataResults = JSON.parse(dataks); 
+       // console.log(dataResults);
+       var texts = "" ;
+       
+       var lens = dataResults.length;
+
+          if(dataResults.length > 0){
+
+
+               let deletdata = [];
+
+                let users = [];
+                for(var i= dataResults.length - 1; i >= 0 ; i--){
+
+                    users.push(dataResults[i].stockSymbol); 
+                    deletdata.push(dataResults[i].id);                   
+
+                }
+
+                $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ users , function(r) {
+                
+                   for (k= 0; k< users.length; k ++) {
+
+                    texts += '<div class="tips_wtlist_item"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' <h4><span class="round_tag buy_tag"><img src="images/t-logo.png" alt="images"></span> TradeTips AI Trend</h4></div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3><h4><span class="color_buy">Buy</span></h4>':'<h4><span class="round_tag sell_tag"><img src="images/t-logo.png" alt="images"></span> TradeTips AI Trend</h4></div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3><h4><span class="color_sell">Sell</span></h4>')+'</div></div>';
+
+
+                   }
+
+    
+                   $("#demos").append(texts);  
+
+                }); 
+
+                  
+
+              } 
+
+            
+            
+          
+      
+       }
+       
+  });
+
+function deleteStock(e) {
+  alert("hii");
+  alert(e);
+}
+
+
+
+function addComment(){
+
+     
+     
+     var tipId = $("#loadedId").val();
+     // alert(tipId);
+     var commentDetails = $("#commentDetails").val();
+     // alert(commentDetails);
+     var userId = $("#currntIdUser").val();
+     // alert(userId);
+     var status = "Pending";
+     // alert(status);
+
+     var datass = {tipId: tipId,
+        commentDetails: commentDetails,
+        status: status,
+        userid: userId};
+
+
+    $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/comment/addCommentOnTip',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: datass,
+      success: function(datass) {
+
+        alert(JSON.stringify(datass));
+
+        alert(datass.tipId);
+
+        $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/comment/getCommentsByTipIdPagination',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: {
+            tipId: datass.tipId,
+            limit: 100,
+            offset: 0,
+          },
+      success: function(data) {
+
+         const dataResult = data;
+            // alert(dataResult.length);
+            var lens = dataResult.length;
+            alert(lens);
+            var finalVal = parseInt(lens) - 1 ;
+            alert(finalVal);
+            alert(dataResult[finalVal].commentDetails);
+             
+            newtip += '<li class="list-group-item"><div class="row"><div class="col-xs-2 col-md-2"><img src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId=' + dataResult[finalVal].appUser.id + '" alt="pic" width="50" height="50" class="rounded-circle"></div><div class="col-xs-9 col-md-9"><div style="color: blue;">' + dataResult[finalVal].appUser.userName + '</div><div class="comment-text" style="color: black;">' + dataResult[finalVal].commentDetails + '</div></div><div class="col-xs-1 col-md-1"><input type="hidden" name="secondId" id="secondId" value="3fe22d6e-6fbf-4e18-8e99-2866d2814925"><input type="hidden" name="fristid" id="fristid" value="1d277791-653c-4886-8e45-7a6870127ca2"><a><img src="flag.png" width="20" height="20"></a></div></div></li>';
+
+             // newtip.push(dataResult[i]);
+            
+             $("#tiploaded" +datass.tipId).append(newtip);
+           
+
+        }
+
+      });
+     
+
+        }
+
+      });
+
+}
+
+function pinFunction(e) {
+ 
+  var formdata = {tipId : e};
+
+  var imgCount = $("#textval"+ e).text();
+
+  var userdataPin = $("#StatusPin"+ e).text();
+
+  if(userdataPin == "true"){
+
+    $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/tipFeature/tipUnPinForUser',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: formdata,
+      success: function(data) {
+     
+        var valss = parseInt(imgCount) - 1;
+
+        $("#textval"+e).text(valss);
+
+        $("#StatusPin"+ e).text("false");
+
+        $("#imgstatus"+e).attr("src","show.jpeg");
+
+
+        }
+
+      });
+
+  }else{
+    $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/tipFeature/tipPinForUser',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: formdata,
+      success: function(data) {
+      
+        var valss = parseInt(imgCount) + 1;
+
+        $("#textval"+e).text(valss);
+
+        $("#StatusPin"+ e).text("true");
+
+
+        $("#imgstatus"+e).attr("src","savetip.png");
+
+
+        }
+
+      });
+  }
+
+
+
+}
+
+function likeFunction(e) {
+ 
+  var formdata = {tipId : e};
+
+  var imgCount = $("#textvalLike"+ e).text();
+
+  var userdataPin = $("#StatusLike"+ e).text();
+
+  if(userdataPin == "true"){
+
+    $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/tipFeature/tipUnLikeForUser',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: formdata,
+      success: function(data) {
+     
+        var valss = parseInt(imgCount) - 1;
+
+        $("#textvalLike"+e).text(valss);
+
+        $("#StatusLike"+ e).text("false");
+
+        $("#imgLikestatus"+e).attr("src","like.jpeg");
+
+
+        }
+
+      });
+
+  }else{
+    $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/tipFeature/tipLikeForUser',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: formdata,
+      success: function(data) {
+      
+        var valss = parseInt(imgCount) + 1;
+
+        $("#textvalLike"+e).text(valss);
+
+        $("#StatusLike"+ e).text("true");
+
+
+        $("#imgLikestatus"+e).attr("src","unnamed.png");
+
+
+        }
+
+      });
+  }
+
+
+}
+
+
+
+function copyClipboard(e){
+
+  var copyText = document.getElementById("divClipboard"+ e);
+  // alert(copyText);
+ 
+  copyText.select();
+  // copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  // document.body.removeChild(copyText);
+
+  alert("Copied the text: " + copyText.value);
+                                 
+                                  
+}
+
+function deleteTip(e) {
+
+  // alert(e);
+ 
+  var formdata = {tipId : e};
+  $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/tipFeature/tipHideForUser',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: formdata,
+      success: function(data) {
+
+           $("#tipDetailDivPart"+e).css("display" , "none");
+
+           $("#tipDetailDate"+ e).css("display" , "none");
+
+
+        }
+
+      });
+
+
+}
+
+
+</script>
