@@ -10,7 +10,11 @@ var responseTime = require('response-time');
 var redis = require('redis');
 var cors = require('cors');
 var request = require('request');
-var http = require('http');
+// var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
+var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
 var Base64 = require('Base64');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
@@ -49,5 +53,11 @@ const db = admin.firestore();
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
-app.listen(port);
+// app.listen(port);
+
+// var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+// httpServer.listen(5555);
+httpsServer.listen(port);
 console.log('The magic happens on port ' + port);
