@@ -1,39 +1,39 @@
 var config = {
-    // apiKey: "AIzaSyA0o46jRmw6OghL2fcpdIcNWDeG1EQ5upQ",
-    // authDomain: "tradetips-9baa3.firebaseapp.com",
-    // databaseURL: "https://tradetips-9baa3.firebaseio.com",
-    // projectId: "tradetips-9baa3",
-    // type: "service_account",
-    // project_id: "tradetips-9baa3",
-    // storageBucket: "tradetips-9baa3.appspot.com",
-    // messagingSenderId: "592114858590",
-    // appId: "1:592114858590:web:2e2f77237953b570fb52cf",
-    // measurementId: "G-B3RPK4JXG3",
-    // private_key_id: "9efaa0e3e7bf1fac231c69b552514e210442b223",
-    // private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDoxICupYmqJ8yY\nmWkKk8lWp3dKzdAfOkAuyb8yrD9WWYOSUsAMIBY+irMBy74uFeJry8hfHicsBWSW\nuzL04S2S6dlJfeuBFI7GmgNIUG3GDfBROKeUS/XUzY2qg0+dNvgYgFbzoBNc0sMH\nxf4Ezarp/3CDqroWQRD0hvn2zUjNOnWqMP4NcZZfhyNJJcrFyvEWcMs8gWR0r+fQ\nijbGVgqf1n9T+HpGBXkXi9X3tZHe3HW4P6n0gjLU1eU8kOr6V6LDDAngp6ESsuQJ\nAyN81Sz9Axi4hygyWl7Oq7zpitVQxjHwzdMuWMGb/GbnHsleJRYHErk85qaHAvp1\nuS416baJAgMBAAECggEACe+VZJ8ZVMOVJrBpvPNZBVNpsq49Y4/bfIPNHw8eNwPk\nK2NP4lSeTnYiNQHq8NGrVBmjSHgjiOwEArEj+DMCfIJx7YKsAlsLyyt412XjgbBH\noVfvQ1PIvxg1I2GujNHzXixgSc779Jrki1jmwnK7CHkIZv5rKhcF78IxOllB8cyn\nsDdEOkYPAvYeVpIG1j3JQD4Yeo5xyT/MEhzZKqvNeg+uKkDS9R3P5jz94gRTbAtv\n3sKuS6Hrx2tn+BmqhpG1YFlKGMeTpAN42Jf96HJZQQvzho1AmTJh1Ep3fCgMOYhW\n0IJa1JnfVlHlZrL2NmLJ7ac+7yCIBPCXGtkihaHmzwKBgQD4g3si7vB2PBFTXxX5\nTJ0LubY/zyMp0sja/Rp2JYVVHh2WNHa6/TKyxksCG2OlMHbHV99QTrBuIyVYPWbN\njGPeQQAwd+y31RhHyePG99gwxvY8rRSzrEoPev6/6LHM5MdPqNzyujY0w0kUp5UR\nUyANKnCVeOll4IEmApBNfT3UhwKBgQDvx5buPbqdGA4mPKmEq/TLUy4OXVCnd1e3\nOe95qQIcbChCCAkSVeJ3nSvE5d0eBGJNlhaWeTA3DP/963o4frkRmaQJK9BsXdnb\nVj5iG3QRRKCYpamH1kY1AHc/G7P7a4hBPJ+4yblpGBiC7EayG9uBhgDA2sdLOPWW\nF1pZ20TwbwKBgAjz66a5hu4rgdBIF6mQigPXH+qykqi6EERbY+2nsmL7n8M+hpx7\n7KymGiOsSu2zjkPmNYRWIWMGXx0LsT1sdliWbORSHbQNuD811b/gQ+iV8l8DOUCz\nz0M5gh31yxn/j/KducAA110VP/e/hc5G+VugEMhBv97MtLpi00IHZgfXAoGBAIBq\nmWfQwY/+4R0TYgp++aSnUMQ6r8ZwwRaNPbcfj9TfDBSJLyqVuqsrDtTt8qVv3aIF\n3uUJ1Iu3N6arJZL6M228pkCPKZnQDaxNnS133IqfAY+fMZNha8pZDIRM9vCRH7Eo\nobYau2UQlZgQqLAdAUt2FBM1WITt5YFT0nzLVTmbAoGBAO/p5zqkeQ3Yjt7qIs8g\nbQTByK/9TsDRdiK9RfsEKuq70BHLuyYoW6jt9yR4AlbQHEFjGek9mWw4k45aZB5P\n2vjISHPiQoAAGVE9eowmvcckYn+IFFkNIs9s3UBX1d2RBzOgy3XMYE897DWGmKc+\n7F3mTXJtUyyjUqERXKBTYxN0\n-----END PRIVATE KEY-----\n",
-    // client_email: "firebase-adminsdk-olv1b@tradetips-9baa3.iam.gserviceaccount.com",
-    // client_id: "112955508654296836542",
-    // auth_uri: "https://accounts.google.com/o/oauth2/auth",
-    // token_uri: "https://oauth2.googleapis.com/token",
-    // auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-    // client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zgd2j%40chatdemo-96e4f.iam.gserviceaccount.com"
-    apiKey: "AIzaSyA89MvmT1QzbvnCGfZ8B7yaJRuE3DwaOPE",
-    authDomain: "chatdemo-96e4f.firebaseapp.com",
-    databaseURL: "https://chatdemo-96e4f.firebaseio.com",
-    projectId: "chatdemo-96e4f",
+    apiKey: "AIzaSyA0o46jRmw6OghL2fcpdIcNWDeG1EQ5upQ",
+    authDomain: "tradetips-9baa3.firebaseapp.com",
+    databaseURL: "https://tradetips-9baa3.firebaseio.com",
+    projectId: "tradetips-9baa3",
     type: "service_account",
-    project_id: "chatdemo-96e4f",
-    storageBucket: "chatdemo-96e4f.appspot.com",
-    messagingSenderId: "993956240122",
-    appId: "1:993956240122:web:cb9941a3090a8d029cc743",
+    project_id: "tradetips-9baa3",
+    storageBucket: "tradetips-9baa3.appspot.com",
+    messagingSenderId: "592114858590",
+    appId: "1:592114858590:web:2e2f77237953b570fb52cf",
+    measurementId: "G-B3RPK4JXG3",
     private_key_id: "9efaa0e3e7bf1fac231c69b552514e210442b223",
     private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDoxICupYmqJ8yY\nmWkKk8lWp3dKzdAfOkAuyb8yrD9WWYOSUsAMIBY+irMBy74uFeJry8hfHicsBWSW\nuzL04S2S6dlJfeuBFI7GmgNIUG3GDfBROKeUS/XUzY2qg0+dNvgYgFbzoBNc0sMH\nxf4Ezarp/3CDqroWQRD0hvn2zUjNOnWqMP4NcZZfhyNJJcrFyvEWcMs8gWR0r+fQ\nijbGVgqf1n9T+HpGBXkXi9X3tZHe3HW4P6n0gjLU1eU8kOr6V6LDDAngp6ESsuQJ\nAyN81Sz9Axi4hygyWl7Oq7zpitVQxjHwzdMuWMGb/GbnHsleJRYHErk85qaHAvp1\nuS416baJAgMBAAECggEACe+VZJ8ZVMOVJrBpvPNZBVNpsq49Y4/bfIPNHw8eNwPk\nK2NP4lSeTnYiNQHq8NGrVBmjSHgjiOwEArEj+DMCfIJx7YKsAlsLyyt412XjgbBH\noVfvQ1PIvxg1I2GujNHzXixgSc779Jrki1jmwnK7CHkIZv5rKhcF78IxOllB8cyn\nsDdEOkYPAvYeVpIG1j3JQD4Yeo5xyT/MEhzZKqvNeg+uKkDS9R3P5jz94gRTbAtv\n3sKuS6Hrx2tn+BmqhpG1YFlKGMeTpAN42Jf96HJZQQvzho1AmTJh1Ep3fCgMOYhW\n0IJa1JnfVlHlZrL2NmLJ7ac+7yCIBPCXGtkihaHmzwKBgQD4g3si7vB2PBFTXxX5\nTJ0LubY/zyMp0sja/Rp2JYVVHh2WNHa6/TKyxksCG2OlMHbHV99QTrBuIyVYPWbN\njGPeQQAwd+y31RhHyePG99gwxvY8rRSzrEoPev6/6LHM5MdPqNzyujY0w0kUp5UR\nUyANKnCVeOll4IEmApBNfT3UhwKBgQDvx5buPbqdGA4mPKmEq/TLUy4OXVCnd1e3\nOe95qQIcbChCCAkSVeJ3nSvE5d0eBGJNlhaWeTA3DP/963o4frkRmaQJK9BsXdnb\nVj5iG3QRRKCYpamH1kY1AHc/G7P7a4hBPJ+4yblpGBiC7EayG9uBhgDA2sdLOPWW\nF1pZ20TwbwKBgAjz66a5hu4rgdBIF6mQigPXH+qykqi6EERbY+2nsmL7n8M+hpx7\n7KymGiOsSu2zjkPmNYRWIWMGXx0LsT1sdliWbORSHbQNuD811b/gQ+iV8l8DOUCz\nz0M5gh31yxn/j/KducAA110VP/e/hc5G+VugEMhBv97MtLpi00IHZgfXAoGBAIBq\nmWfQwY/+4R0TYgp++aSnUMQ6r8ZwwRaNPbcfj9TfDBSJLyqVuqsrDtTt8qVv3aIF\n3uUJ1Iu3N6arJZL6M228pkCPKZnQDaxNnS133IqfAY+fMZNha8pZDIRM9vCRH7Eo\nobYau2UQlZgQqLAdAUt2FBM1WITt5YFT0nzLVTmbAoGBAO/p5zqkeQ3Yjt7qIs8g\nbQTByK/9TsDRdiK9RfsEKuq70BHLuyYoW6jt9yR4AlbQHEFjGek9mWw4k45aZB5P\n2vjISHPiQoAAGVE9eowmvcckYn+IFFkNIs9s3UBX1d2RBzOgy3XMYE897DWGmKc+\n7F3mTXJtUyyjUqERXKBTYxN0\n-----END PRIVATE KEY-----\n",
-    client_email: "firebase-adminsdk-zgd2j@chatdemo-96e4f.iam.gserviceaccount.com",
+    client_email: "firebase-adminsdk-olv1b@tradetips-9baa3.iam.gserviceaccount.com",
     client_id: "112955508654296836542",
     auth_uri: "https://accounts.google.com/o/oauth2/auth",
     token_uri: "https://oauth2.googleapis.com/token",
     auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
     client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zgd2j%40chatdemo-96e4f.iam.gserviceaccount.com"
+    // apiKey: "AIzaSyA89MvmT1QzbvnCGfZ8B7yaJRuE3DwaOPE",
+    // authDomain: "chatdemo-96e4f.firebaseapp.com",
+    // databaseURL: "https://chatdemo-96e4f.firebaseio.com",
+    // projectId: "chatdemo-96e4f",
+    // type: "service_account",
+    // project_id: "chatdemo-96e4f",
+    // storageBucket: "chatdemo-96e4f.appspot.com",
+    // messagingSenderId: "993956240122",
+    // appId: "1:993956240122:web:cb9941a3090a8d029cc743",
+    // private_key_id: "9efaa0e3e7bf1fac231c69b552514e210442b223",
+    // private_key: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDoxICupYmqJ8yY\nmWkKk8lWp3dKzdAfOkAuyb8yrD9WWYOSUsAMIBY+irMBy74uFeJry8hfHicsBWSW\nuzL04S2S6dlJfeuBFI7GmgNIUG3GDfBROKeUS/XUzY2qg0+dNvgYgFbzoBNc0sMH\nxf4Ezarp/3CDqroWQRD0hvn2zUjNOnWqMP4NcZZfhyNJJcrFyvEWcMs8gWR0r+fQ\nijbGVgqf1n9T+HpGBXkXi9X3tZHe3HW4P6n0gjLU1eU8kOr6V6LDDAngp6ESsuQJ\nAyN81Sz9Axi4hygyWl7Oq7zpitVQxjHwzdMuWMGb/GbnHsleJRYHErk85qaHAvp1\nuS416baJAgMBAAECggEACe+VZJ8ZVMOVJrBpvPNZBVNpsq49Y4/bfIPNHw8eNwPk\nK2NP4lSeTnYiNQHq8NGrVBmjSHgjiOwEArEj+DMCfIJx7YKsAlsLyyt412XjgbBH\noVfvQ1PIvxg1I2GujNHzXixgSc779Jrki1jmwnK7CHkIZv5rKhcF78IxOllB8cyn\nsDdEOkYPAvYeVpIG1j3JQD4Yeo5xyT/MEhzZKqvNeg+uKkDS9R3P5jz94gRTbAtv\n3sKuS6Hrx2tn+BmqhpG1YFlKGMeTpAN42Jf96HJZQQvzho1AmTJh1Ep3fCgMOYhW\n0IJa1JnfVlHlZrL2NmLJ7ac+7yCIBPCXGtkihaHmzwKBgQD4g3si7vB2PBFTXxX5\nTJ0LubY/zyMp0sja/Rp2JYVVHh2WNHa6/TKyxksCG2OlMHbHV99QTrBuIyVYPWbN\njGPeQQAwd+y31RhHyePG99gwxvY8rRSzrEoPev6/6LHM5MdPqNzyujY0w0kUp5UR\nUyANKnCVeOll4IEmApBNfT3UhwKBgQDvx5buPbqdGA4mPKmEq/TLUy4OXVCnd1e3\nOe95qQIcbChCCAkSVeJ3nSvE5d0eBGJNlhaWeTA3DP/963o4frkRmaQJK9BsXdnb\nVj5iG3QRRKCYpamH1kY1AHc/G7P7a4hBPJ+4yblpGBiC7EayG9uBhgDA2sdLOPWW\nF1pZ20TwbwKBgAjz66a5hu4rgdBIF6mQigPXH+qykqi6EERbY+2nsmL7n8M+hpx7\n7KymGiOsSu2zjkPmNYRWIWMGXx0LsT1sdliWbORSHbQNuD811b/gQ+iV8l8DOUCz\nz0M5gh31yxn/j/KducAA110VP/e/hc5G+VugEMhBv97MtLpi00IHZgfXAoGBAIBq\nmWfQwY/+4R0TYgp++aSnUMQ6r8ZwwRaNPbcfj9TfDBSJLyqVuqsrDtTt8qVv3aIF\n3uUJ1Iu3N6arJZL6M228pkCPKZnQDaxNnS133IqfAY+fMZNha8pZDIRM9vCRH7Eo\nobYau2UQlZgQqLAdAUt2FBM1WITt5YFT0nzLVTmbAoGBAO/p5zqkeQ3Yjt7qIs8g\nbQTByK/9TsDRdiK9RfsEKuq70BHLuyYoW6jt9yR4AlbQHEFjGek9mWw4k45aZB5P\n2vjISHPiQoAAGVE9eowmvcckYn+IFFkNIs9s3UBX1d2RBzOgy3XMYE897DWGmKc+\n7F3mTXJtUyyjUqERXKBTYxN0\n-----END PRIVATE KEY-----\n",
+    // client_email: "firebase-adminsdk-zgd2j@chatdemo-96e4f.iam.gserviceaccount.com",
+    // client_id: "112955508654296836542",
+    // auth_uri: "https://accounts.google.com/o/oauth2/auth",
+    // token_uri: "https://oauth2.googleapis.com/token",
+    // auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+    // client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zgd2j%40chatdemo-96e4f.iam.gserviceaccount.com"
 
 };
 
@@ -74,8 +74,8 @@ function handleCreate(event) {
   // alert(loggedInVal);
   var loggedInName = storageData.uname;
   // alert(loggedInName);
-  var today = new Date();
-  var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
+  // var today = Date.now();
+  // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
        
    if(message.value != ""){
 
@@ -83,10 +83,11 @@ function handleCreate(event) {
     userName: loggedInName,
     userId : loggedInVal,
     message: message.value,
-    messageId : loggedInVal + "_"+ str,
+    messageId : loggedInVal + "_"+  Date.now(),
     messageType : "text",
-    createdDate : str,
+    createdDate :  Date.now(),
     profileImageUrl : "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+loggedInVal,
+    messageSource : "Web"
     // status: "incomplete"
   };
   return docRef
@@ -95,7 +96,7 @@ function handleCreate(event) {
       task.id = ref.id;
       fullName.value = '';
       message.value  = '';
-      date.value = '';
+      // date.value = '';
       // return createTask(task);
     });
 
@@ -134,12 +135,12 @@ $("input[type='file']").on('change', function(e) {
   // alert(loggedInVal);
   var loggedInName = storageData.uname;
   // alert(loggedInName);
-  var today = new Date();
-  var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
+  // var today = Date.now();
+  // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
 
   if(file.type == "video/mp4"){
 
-    firebase.storage().ref('message_videos/').child("photo_message_"+loggedInVal+"_"+"_"+str).put(file).then(function(snapshot) {
+    firebase.storage().ref('message_videos/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
       return snapshot.ref.getDownloadURL()
    }).then(url => {
      console.log("Firebase storage image uploaded : ", url); 
@@ -149,11 +150,12 @@ $("input[type='file']").on('change', function(e) {
     userName: loggedInName,
     userId : loggedInVal,
     message: url,
-    messageId : loggedInVal + "_"+ str,
+    messageId : loggedInVal + "_"+ Date.now(),
     messageType : "video",
-    createdDate : str,
+    createdDate : Date.now(),
     profileImageUrl : "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+loggedInVal,
     // status: "incomplete"
+    messageSource : "Web"
   };
   return docRef
     .add(task)
@@ -162,7 +164,7 @@ $("input[type='file']").on('change', function(e) {
       task.id = ref.id;
       fullName.value = '';
       message.value  = '';
-      date.value = '';
+      // date.value = '';
       // return createTask(task);
     });
 
@@ -171,7 +173,7 @@ $("input[type='file']").on('change', function(e) {
 
   }else if(file.type == "audio/mpeg"){
 
-    firebase.storage().ref('message_audios/').child("photo_message_"+loggedInVal+"_"+"_"+str).put(file).then(function(snapshot) {
+    firebase.storage().ref('message_audios/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
       return snapshot.ref.getDownloadURL()
    }).then(url => {
      console.log("Firebase storage image uploaded : ", url); 
@@ -181,11 +183,12 @@ $("input[type='file']").on('change', function(e) {
     userName: loggedInName,
     userId : loggedInVal,
     message: url,
-    messageId : loggedInVal + "_"+ str,
+    messageId : loggedInVal + "_"+ Date.now(),
     messageType : "audio",
-    createdDate : str,
+    createdDate : Date.now(),
     profileImageUrl : "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+loggedInVal,
     // status: "incomplete"
+    messageSource : "Web"
   };
   return docRef
     .add(task)
@@ -194,7 +197,7 @@ $("input[type='file']").on('change', function(e) {
       task.id = ref.id;
       fullName.value = '';
       message.value  = '';
-      date.value = '';
+      // date.value = '';
       // return createTask(task);
     });
 
@@ -204,7 +207,7 @@ $("input[type='file']").on('change', function(e) {
   } else {
 
 
-    firebase.storage().ref('message_images/').child("photo_message_"+loggedInVal+"_"+"_"+str).put(file).then(function(snapshot) {
+    firebase.storage().ref('message_images/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
       return snapshot.ref.getDownloadURL()
    }).then(url => {
      console.log("Firebase storage image uploaded : ", url); 
@@ -214,11 +217,12 @@ $("input[type='file']").on('change', function(e) {
     userName: loggedInName,
     userId : loggedInVal,
     message: url,
-    messageId : loggedInVal + "_"+ str,
+    messageId : loggedInVal + "_"+ Date.now(),
     messageType : "photo",
-    createdDate : str,
+    createdDate : Date.now(),
     profileImageUrl : "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+loggedInVal,
     // status: "incomplete"
+    messageSource : "Web"
   };
   return docRef
     .add(task)
@@ -227,7 +231,7 @@ $("input[type='file']").on('change', function(e) {
       task.id = ref.id;
       fullName.value = '';
       message.value  = '';
-      date.value = '';
+      // date.value = '';
       // return createTask(task);
     });
 
@@ -291,6 +295,8 @@ function createTask(task) {
   elem.setAttribute("id", task.id);
   // elem.setAttribute("class", "admin clearfix");
   let taskElem;
+
+  // alert(task.createdDate);
 
   if (task.userId === loggedInVal) {
 
@@ -620,6 +626,14 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
   var loggedInVal = storageData.uid;
   // alert(loggedInVal);
   // alert(userId);
+  // var todate=new Date(createdDate).getDate();
+  // var tomonth=new Date(createdDate).getMonth()+1;
+  // var toyear=new Date(createdDate).getFullYear();
+  // var original_date=tomonth+'/'+todate+'/'+toyear;
+  // alert(original_date);
+
+  const date = new Date(createdDate).toDateString();
+  // alert(date);
    
    if(loggedInVal == userId){
 
@@ -633,7 +647,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${createdDate}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                   <p class='message'>
@@ -653,7 +667,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${createdDate}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                     <p class='message'><img src="${message}" class="img-responsive" style="width:100%;"/></p>
@@ -671,7 +685,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${createdDate}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                  <p class='message'><video controls style="width:100%;"><source src="${message}" type="video/mp4"></video></p>
@@ -688,7 +702,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${createdDate}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                 <p class='message'><audio controls><source src="${message}" type="audio/mpeg"></audio></p>              </div>
@@ -710,7 +724,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
-                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${createdDate}</small>
+                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
                   <strong class="primary-font" class='fullName'>${userName}</strong>
               </div>
               <p class='message'>
@@ -729,7 +743,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
-                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${createdDate}</small>
+                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
                   <strong class="primary-font" class='fullName'>${userName}</strong>
               </div>
             
@@ -748,7 +762,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
-                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${createdDate}</small>
+                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
                   <strong class="primary-font" class='fullName'>${userName}</strong>
               </div>
               <p class='message'><img src="${message}" class="img-responsive" style="width:100%;"/></p>
@@ -766,11 +780,11 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
-                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${createdDate}</small>
+                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
                   <strong class="primary-font" class='fullName'>${userName}</strong>
               </div>
               
-              <p class='message'><audio controls><source src="${message}" type="audio/mpeg"></audio></p>              </div>
+              <p class='message'><audio controls><source src="${message}" type="audio/mpeg"></audio></p>             
 
           </div>
       </li>
