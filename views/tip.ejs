@@ -212,7 +212,7 @@
 
 
 
-                    tipslist += '<div class="col"><div class="post_tip_recent_bx sell_bg"><div class="tips_bx_cmpny_name"><span class="bs_btn sell_btn">Sell</span><h2>'+ dataResultTips[i].stockName +' <span>'+ (dataResultTips[i].createdOn).toDateString() +'</span></h2></div><ul><li>Entry <span>'+ parseFloat(dataResultTips[i].entryPoint).toFixed(2) +'</span></li><li>Exit <span class="color_sell">'+ parseFloat(dataResultTips[i].exitPoint).toFixed(2) +'</span></li><li>Stop <span>'+ parseFloat(dataResultTips[i].stopPoint).toFixed(2) +'</span></li></ul></div></div>';
+                    tipslist += '<div class="col"><div class="post_tip_recent_bx sell_bg"><div class="tips_bx_cmpny_name"><span class="bs_btn sell_btn">Sell</span><h2>'+ dataResultTips[i].stockName +' <span>'+ new Date(dataResultTips[i].createdOn).toDateString() +'</span></h2></div><ul><li>Entry <span>'+ parseFloat(dataResultTips[i].entryPoint).toFixed(2) +'</span></li><li>Exit <span class="color_sell">'+ parseFloat(dataResultTips[i].exitPoint).toFixed(2) +'</span></li><li>Stop <span>'+ parseFloat(dataResultTips[i].stopPoint).toFixed(2) +'</span></li></ul></div></div>';
 
 
                    }
