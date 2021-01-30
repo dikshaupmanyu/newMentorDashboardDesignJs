@@ -14,6 +14,11 @@ module.exports = function(app) {
     res.render('dashboard.ejs');
   });
 
+  app.get('/chatCodee', function(req, res) {
+
+    res.render('chatCodee.ejs');
+  });
+
   app.get('/firebase', function(req, res) {
 
     const admin = require('firebase-admin');
