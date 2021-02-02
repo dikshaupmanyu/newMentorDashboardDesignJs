@@ -47,7 +47,7 @@ var db = firebase.firestore();
 // var loggedInVal = storageData.uid;
 // alert(loggedInVal);
        
-const docRef = db.collection("/openGroups/demoOpenGroup1/messages/");
+const docRef = db.collection("/openGroups/roomOne/messages/");
 const tasksDOM = document.getElementById("tasks");
 var fullName   = document.getElementById('user_nickname');
 var message    = document.getElementById('btn-input');
@@ -643,7 +643,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
             <li class="admin clearfix">
               <span class="chat-img right clearfix mx-2">
-                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 100%;"/>
+                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
@@ -663,7 +663,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
             <li class="admin clearfix">
               <span class="chat-img right clearfix mx-2">
-                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 100%;"/>
+                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
@@ -681,7 +681,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
             <li class="admin clearfix">
               <span class="chat-img right clearfix mx-2">
-                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 100%;"/>
+                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
@@ -698,7 +698,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
             <li class="admin clearfix">
               <span class="chat-img right clearfix mx-2">
-                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 100%;"/>
+                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
@@ -720,7 +720,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
         <li class="agent clearfix">
           <span class="chat-img left clearfix mx-2">
-              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 100%;"/>
+              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
@@ -739,7 +739,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
         <li class="agent clearfix">
           <span class="chat-img left clearfix mx-2">
-              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 100%;"/>
+              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
@@ -758,7 +758,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
         <li class="agent clearfix">
           <span class="chat-img left clearfix mx-2">
-              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 100%;"/>
+              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
@@ -776,7 +776,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
         <li class="agent clearfix">
           <span class="chat-img left clearfix mx-2">
-              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 100%;"/>
+              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
