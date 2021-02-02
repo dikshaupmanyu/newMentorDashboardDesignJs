@@ -651,7 +651,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
             <li class="admin clearfix">
               <span class="chat-img right clearfix mx-2">
-                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
+                  <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
@@ -671,7 +671,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
             <li class="admin clearfix">
               <span class="chat-img right clearfix mx-2">
-                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
+                  <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
@@ -689,7 +689,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
             <li class="admin clearfix">
               <span class="chat-img right clearfix mx-2">
-                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
+                  <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
@@ -706,7 +706,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
             <li class="admin clearfix">
               <span class="chat-img right clearfix mx-2">
-                  <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
+                  <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
@@ -728,7 +728,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
         <li class="agent clearfix">
           <span class="chat-img left clearfix mx-2">
-              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
+              <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
@@ -747,7 +747,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
         <li class="agent clearfix">
           <span class="chat-img left clearfix mx-2">
-              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
+              <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
@@ -766,7 +766,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
         <li class="agent clearfix">
           <span class="chat-img left clearfix mx-2">
-              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
+              <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
@@ -784,7 +784,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
         <li class="agent clearfix">
           <span class="chat-img left clearfix mx-2">
-              <img src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
+              <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
           <div class="chat-body clearfix">
               <div class="header clearfix">
@@ -803,3 +803,9 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
 
  
 };
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "images/userIcon.png";
+    return true;
+}
