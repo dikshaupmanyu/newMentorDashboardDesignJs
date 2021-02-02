@@ -621,7 +621,7 @@ function fetchTasks() {
 
 function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,messageType}) {
 
-  alert(profileImageUrl);
+  // alert(profileImageUrl);
   // fetch(profileImageUrl, { method: 'HEAD' })
   //   .then(res => {
   //       if (res.ok) {
