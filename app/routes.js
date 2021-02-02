@@ -9,7 +9,7 @@ module.exports = function(app) {
     res.render('chat.ejs');
   });
 
-     app.get('/dashboard', function(req, res) {
+  app.get('/dashboard', function(req, res) {
 
     res.render('dashboard.ejs');
   });
@@ -18,6 +18,27 @@ module.exports = function(app) {
 
     res.render('chatCodee.ejs');
   });
+
+  app.get('/newsletterServices', function(req, res) {
+
+    res.render('newsletterServices.ejs');
+  });
+
+  app.get('/chatRoomServices', function(req, res) {
+
+    res.render('chatRoomServices.ejs');
+  });
+
+  app.get('/videoServices', function(req, res) {
+
+    res.render('videoServices.ejs');
+  });
+
+  app.get('/services', function(req, res) {
+
+    res.render('services.ejs');
+  });
+
 
   app.get('/firebase', function(req, res) {
 
