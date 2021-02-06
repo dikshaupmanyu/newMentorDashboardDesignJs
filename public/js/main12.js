@@ -624,28 +624,24 @@ function fetchTasks() {
 // // });
 
 function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,messageType}) {
-  // alert(userName);
-  // var sData = localStorage.getItem('allTokenData');
-  // var storageData= JSON.parse(sData);
-  // var loggedInVal = storageData.uid;
-  var url_string = window.location.href;
-  var urls = new URL(url_string);
-  var loggedInName = urls.searchParams.get("uname");
-  var loggedInVal = urls.searchParams.get("uid");
-  // alert(loggedInVal);
+
+  var sData = localStorage.getItem('allTokenData');
+  var storageData= JSON.parse(sData);
+  var loggedInVal = storageData.uid;
   // alert(userId);
-  // var todate=new Date(createdDate).getDate();
-  // var tomonth=new Date(createdDate).getMonth()+1;
-  // var toyear=new Date(createdDate).getFullYear();
-  // var original_date=tomonth+'/'+todate+'/'+toyear;
-  // alert(original_date);
+  // alert(loggedInVal);
 
   const date = new Date(createdDate).toDateString();
   // alert(date);
+
+  
    
    if(loggedInVal == userId){
 
+
         if(messageType == "text"){
+
+
 
            return `
 
@@ -722,7 +718,10 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
    }else{
 
 
+
+
      if(messageType == "text"){
+
 
          return `
 
@@ -730,12 +729,12 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           <span class="chat-img left clearfix mx-2">
               <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
-          <div class="chat-body clearfix">
+          <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName'>${userName}</strong>
+                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
               </div>
-              <p class='message'>
+              <p class='message' style="color: #000 !important">
                   ${message}
               </p>
           </div>
@@ -749,13 +748,13 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           <span class="chat-img left clearfix mx-2">
               <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
-          <div class="chat-body clearfix">
+          <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName'>${userName}</strong>
+                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
               </div>
             
-             <p class='message'><video controls style="width:100%;"><source src="${message}" type="video/mp4"></video></p>
+             <p class='message' style="color: #000 !important"><video controls style="width:100%;"><source src="${message}" type="video/mp4"></video></p>
 
           </div>
       </li>
@@ -768,12 +767,12 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           <span class="chat-img left clearfix mx-2">
               <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
-          <div class="chat-body clearfix">
+          <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName'>${userName}</strong>
+                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
               </div>
-              <p class='message'><img src="${message}" class="img-responsive" style="width:100%;"/></p>
+              <p class='message' style="color: #000 !important"><img src="${message}" class="img-responsive" style="width:100%;"/></p>
 
           </div>
       </li>
@@ -786,13 +785,13 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           <span class="chat-img left clearfix mx-2">
               <img onerror="imgError(this);" src="${profileImageUrl}" alt="Admin" class="img-circle" style="width: 50px;height: 50px;"/>
           </span>
-          <div class="chat-body clearfix">
+          <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName'>${userName}</strong>
+                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
               </div>
               
-              <p class='message'><audio controls><source src="${message}" type="audio/mpeg"></audio></p>             
+              <p class='message' style="color: #000 !important"><audio controls><source src="${message}" type="audio/mpeg"></audio></p>             
 
           </div>
       </li>

@@ -1285,8 +1285,8 @@
     margin: 3px 0px 0px;
 }
 .tips_bx_cmpny_states ul li {
-    padding-left: 40px;
-    margin-left: 40px;
+    padding-left: 20px;
+    margin-left: 20px;
 }
 .tips_bx_cmpny_states ul li h3 {
     font-size: 17px;
@@ -1346,11 +1346,11 @@
     margin-right: 10px;
 }
 .tips_wtlist_item_center h3 {
-    font-size: 17px;
+    font-size: 14px;
     margin: 0px 0px 5px;
 }
 .tips_wtlist_item_center h4 {
-    font-size: 14px;
+    font-size: 12px;
 }
 .tips_wtlist_item_center h4 .round_tag {
     margin-right: 5px;
@@ -2684,8 +2684,8 @@
     margin: 0px 0px 20px;
 }
 .tips_bx_cmpny_states ul li {
-    padding-left: 30px;
-    margin-left: 30px;
+    padding-left: 15px;
+    margin-left: 15px;
 }
 .tips_bx_social ul li {
     margin-right: 5%;
@@ -2967,10 +2967,7 @@
 .tips_bx_cmpny_name h2:nth-last-child(1) {
     margin-left: 0;
 }
-.tips_bx_cmpny_states ul li {
-    padding-left: 25px;
-    margin-left: 25px;
-}
+
 .tips_bx_social ul {
     display: block;
 }

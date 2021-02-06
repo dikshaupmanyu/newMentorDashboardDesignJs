@@ -1656,6 +1656,8 @@ button:focus {
     border-style: solid;
     border-radius: 5px;
     margin-right: 20px;
+    text-shadow: 0 0 3px rgb(0 0 0 / 75%);
+    font-weight: bold;
 }
 .buy_btn{
     background: #115164;
@@ -1673,8 +1675,8 @@ button:focus {
 }
 .tips_bx_cmpny_states ul li {
     border-left: 1px solid rgb(255 255 255 / 10%);
-    padding-left: 60px;
-    margin-left: 60px;
+    padding-left: 30px;
+    margin-left: 30px;
 }
 .tips_bx_cmpny_states ul li:nth-child(1) {
     border: none;
@@ -1801,6 +1803,35 @@ button:focus {
     margin: 5px 0px 0px;
     font-family: 'SF UI Display Light';
 }
+.head_of_tips_wtlist_items{
+    color: #fff;
+    display: flex;
+    background: transparent;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    font-size: 14px;
+}
+.head_of_tips_wtlist_items>div{
+    display: inline-block;
+    font-size: 14px;
+}
+.head_of_tips_wtlist_items .left_wti {
+    width: 50%;
+}
+
+.head_of_tips_wtlist_items .right_wti {
+    width: 50px;
+}
+.head_of_tips_wtlist_items .center_wti {
+    margin-left: auto; 
+    padding-right: 9px;
+}
+.tips_wtlist_item_right{
+    width: 46px;
+}
+.tips_wtlist_item_left {
+    width: 50%;
+}
 .tips_wtlist_item_center {
     text-align: right;
     margin-right: 15px;
@@ -1815,9 +1846,11 @@ button:focus {
     font-size: 14px;
     display: flex;
     align-items: center;
+    display: block;
 }
 .tips_wtlist_item_center h4 .round_tag{
     margin-right: 10px;
+    display: inline-block;
 }
 .round_tag{
     display: block;
