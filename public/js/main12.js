@@ -625,11 +625,10 @@ function fetchTasks() {
 
 function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,messageType}) {
 
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
-  var loggedInVal = storageData.uid;
-  // alert(userId);
-  // alert(loggedInVal);
+  var url_string = window.location.href;
+  var urls = new URL(url_string);
+  var loggedInName = urls.searchParams.get("uname");
+  var loggedInVal = urls.searchParams.get("uid");
 
   const date = new Date(createdDate).toDateString();
   // alert(date);
