@@ -82,7 +82,7 @@
               <div id="file-upload-form" class="uploader">
                 <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
                 <label class="file_upload_label" for="file-upload" id="file-drag">
-                  <img id="file-image" src="#" alt="Preview" class="hidden">
+                  <img id="file-image" src="#" alt="Preview" class="">
                   <div id="start">
                     <h4 id="file-upload-btn"> + Click or drag cover image</h4>
                     <div id="notimage" class="hidden color_sell">Please select an image</div>
@@ -97,7 +97,7 @@
               </div>
               <div class="cover_img_optn">
                 <ul>
-                 <li><a href="#"><span><i class="far fa-trash-alt"></i></span> Remove Picture</a></li>
+                 <li><a onclick="ImgDelete();" style="cursor: pointer;"><span><i class="far fa-trash-alt"></i></span> Remove Picture</a></li>
                 </ul>
               </div>
             </div>
@@ -132,6 +132,28 @@
 
   var userName = storageData.uname;
 
+    function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#file-image').attr('src', e.target.result);
+      document.getElementById('file-image').style.display= "block";
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+$("#file-upload").change(function() {
+  readURL(this);
+});
+
+function ImgDelete(){
+  document.getElementById('file-image').style.display= "none";
+}
+
+
 
   $(function(){
   // $("input[name='onlynumbers']").on('input', function (e) {
@@ -161,7 +183,7 @@
                   // document.getElementById("description2").value = null;
                   document.getElementById("frequency").value = dataResult.frequency;
                   document.getElementById("price").value = dataResult.price;
-                  document.getElementById("file-image").value = dataResult.imageDetails;
+                  document.getElementById("file-image").src = "https://apistest.tradetipsapp.com"+dataResult.imageDetails;
                    
                  
 
