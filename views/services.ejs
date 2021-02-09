@@ -310,7 +310,7 @@
 
             });
 
-    
+
    /////////////////////////////////////////////////////////////////////////////////////////////
 
     $.ajax({
@@ -330,11 +330,11 @@
 
                   // alert(dataResult[i].serviceTypeId);
                    
-                  newtip += '<div class="pckg_item"><div class="pckg_item_left"><div class="pckg_item_img"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div><div class="pckg_item_txt"><p>'+ dataResult[i].title +'</p></div></div><div class="pckg_item_right"><ul><li><h3><small><img src="images/pckg-doller-icon.png" alt="images">Price</small> <span>$'+ dataResult[i].price +'</span></h3></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><span><i class="fas fa-pencil-alt"></i></span><a href="/editService?id='+ dataResult[i].id +'&ids2='+ dataResult[i].serviceTypeId +'&sname=Books">Edit Services</a></li><li><span><i class="far fa-trash-alt"></i></span> <a onclick="DeleteService(this.id)" id="'+ dataResult[i].id +'"> Delete Services</a></li></ul></div></div></li></ul></div></div>';
+                  newtip += '<div class="pckg_item"><div class="pckg_item_left"><div class="pckg_item_img"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div><div class="pckg_item_txt"><p>'+ dataResult[i].title +'</p></div></div><div class="pckg_item_right"><ul><li><h3><small><img src="images/pckg-doller-icon.png" alt="images">Price</small> <span>$'+ dataResult[i].price +'</span></h3></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><span><i class="fas fa-pencil-alt"></i></span><a href="/editService?id='+ dataResult[i].id +'&ids2='+ dataResult[i].serviceTypeId +'&sname=Class">Edit Services</a></li><li><span><i class="far fa-trash-alt"></i></span> <a onclick="DeleteService(this.id)" id="'+ dataResult[i].id +'"> Delete Services</a></li></ul></div></div></li></ul></div></div>';
 
                    // newtip.push(dataResult[i]);
                   }
-                   $("#bookServices").append(newtip);
+                   $("#classServices").append(newtip);
                  
 
               }
