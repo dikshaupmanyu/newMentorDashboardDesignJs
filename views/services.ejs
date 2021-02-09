@@ -56,6 +56,9 @@
         <div class="package_items_in" id="bookServices">
           <h2>Books</h2>
         </div>
+        <div class="package_items_in" id="classServices">
+          <h2>Class</h2>
+        </div>
       </div>
     </div>
   </div>
@@ -293,6 +296,37 @@
                const dataResult = data;
                   let newtip = [];
                   for(var i=0; i< dataResult.length; i++) if(dataResult[i].serviceTypeId == "b098c61a-e451-4df7-a5d5-6ad88e096c3b"){
+
+                  // alert(dataResult[i].serviceTypeId);
+                   
+                  newtip += '<div class="pckg_item"><div class="pckg_item_left"><div class="pckg_item_img"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div><div class="pckg_item_txt"><p>'+ dataResult[i].title +'</p></div></div><div class="pckg_item_right"><ul><li><h3><small><img src="images/pckg-doller-icon.png" alt="images">Price</small> <span>$'+ dataResult[i].price +'</span></h3></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><span><i class="fas fa-pencil-alt"></i></span><a href="/editService?id='+ dataResult[i].id +'&ids2='+ dataResult[i].serviceTypeId +'&sname=Books">Edit Services</a></li><li><span><i class="far fa-trash-alt"></i></span> <a onclick="DeleteService(this.id)" id="'+ dataResult[i].id +'"> Delete Services</a></li></ul></div></div></li></ul></div></div>';
+
+                   // newtip.push(dataResult[i]);
+                  }
+                   $("#bookServices").append(newtip);
+                 
+
+              }
+
+            });
+
+    
+   /////////////////////////////////////////////////////////////////////////////////////////////
+
+    $.ajax({
+              type: 'POST',
+              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllServiceSubscriptionPlanForMentor',
+              headers: {
+                Authorization: 'Bearer '+ tokens,
+                 },
+              data: {
+                  mentorId: userids,
+                },
+            success: function(data) {
+
+               const dataResult = data;
+                  let newtip = [];
+                  for(var i=0; i< dataResult.length; i++) if(dataResult[i].serviceTypeId == "479a3b69-ed95-43c9-984a-593f1e519dc0"){
 
                   // alert(dataResult[i].serviceTypeId);
                    
