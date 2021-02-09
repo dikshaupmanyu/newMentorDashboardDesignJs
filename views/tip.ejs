@@ -86,7 +86,7 @@
                 <h5>Max 200 Characters</h5>
               </div>
               <div class="post_new_tip_bx post_new_tip_bx5">
-                <label>Image</label>
+                <label>Attach Image in Tip</label>
                  <input id="file" type="file" accepts="image/*" /><br />
                     <label for="file"></label><br />
                     <img id="preview" />
@@ -102,13 +102,13 @@
       <div class="dashboard_wrapper_right col">
         <div class="tips_wtlist_head">
           <div class="btn-group select_dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown">My Watchlist <span class="caret"></span></a>
-            <ul class="dropdown-menu select_dropdown_menu" id="menu">
+            <a class="dropdown-toggle" data-toggle="dropdown">My StockList <span class="caret"></span></a>
+            <!-- <ul class="dropdown-menu select_dropdown_menu" id="menu">
               <li class="dropdown-item px-2"><a href="#">My Watchlist</a></li>
               <li class="dropdown-item px-2"><a href="#">Free AI tips</a></li>
-            </ul>
+            </ul> -->
           </div>
-          <span><a href="#">Manage</a></span>
+         <!--  <span><a href="#">Manage</a></span> -->
         </div>
         <div class="tips_wtlist_items" id="demos">
           
@@ -167,7 +167,7 @@
                 
                    for (k= 0; k< users.length; k ++) {
 
-                    texts += '<div class="tips_wtlist_item"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' <h4><span class="round_tag buy_tag"><img src="images/t-logo.png" alt="images"></span> TradeTips AI Trend</h4></div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3><h4><span class="color_buy">Buy</span></h4>':'<h4><span class="round_tag sell_tag"><img src="images/t-logo.png" alt="images"></span> TradeTips AI Trend</h4></div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3><h4><span class="color_sell">Sell</span></h4>')+'</div></div>';
+                    texts += '<div class="tips_wtlist_item"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>')+'</div></div>';
 
 
                    }

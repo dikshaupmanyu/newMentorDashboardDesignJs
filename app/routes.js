@@ -19,17 +19,44 @@ module.exports = function(app) {
     res.render('chatCodee.ejs');
   });
 
-  app.get('/newsletterServices', function(req, res) {
+  app.get('/Newsletter', function(req, res) {
 
     res.render('newsletterServices.ejs');
   });
 
-  app.get('/chatRoomServices', function(req, res) {
+  app.get('/LiveChat', function(req, res) {
 
     res.render('chatRoomServices.ejs');
   });
 
-  app.get('/videoServices', function(req, res) {
+  app.get('/1-1Chat', function(req, res) {
+
+    res.render('chatVideoServices.ejs');
+  });
+  
+
+  app.get('/Webinar', function(req, res) {
+
+    res.render('webinarServices.ejs');
+  });
+
+   app.get('/MentorPhoneGroup', function(req, res) {
+
+    res.render('mentorPhoneServices.ejs');
+  });
+
+    app.get('/Books', function(req, res) {
+
+    res.render('bookServices.ejs');
+  });
+
+    app.get('/Class', function(req, res) {
+
+    res.render('classServices.ejs');
+  });
+
+
+  app.get('/VideoSubscription', function(req, res) {
 
     res.render('videoServices.ejs');
   });
@@ -37,6 +64,31 @@ module.exports = function(app) {
   app.get('/services', function(req, res) {
 
     res.render('services.ejs');
+  });
+
+   app.get('/editService', function(req, res) {
+
+    var serviceIddd = req.query.id;
+
+    var servicePlanIddd = req.query.ids2;
+
+    var servicesubscriptionname = req.query.sname;
+
+
+    res.render('editService.ejs' , {subscriptionServiceId : serviceIddd , servicesMainId : servicePlanIddd , serviceName : servicesubscriptionname});
+
+
+
+  });
+
+
+    app.get('/forgetPassword', function(req, res) {
+
+    
+    res.render('forgetPassword.ejs');
+
+
+
   });
 
 
