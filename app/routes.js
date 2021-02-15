@@ -11,12 +11,86 @@ module.exports = function(app) {
 
   app.get('/dashboard', function(req, res) {
 
-    res.render('dashboard.ejs');
+    // var request = require("request");
+
+    // let users = [];
+
+
+    // var options = { method: 'POST',
+    //   url: 'https://apis.tradetipsapp.com/api/stockDetail/getAllStockOfUserByUserName',
+    //   headers: 
+    //    { 'postman-token': '1ac0c8ab-24ca-0fe0-5e43-9a97bb2f184c',
+    //      'cache-control': 'no-cache',
+    //      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6InBhbmthanRlamF3YXRAZ21haWwuY29tIiwic3ViIjoiZDlhY2VkMjMtN2I4OS00YWJjLWJkNzEtNTUyM2FiODNhOThhIiwiaWF0IjoxNjEyNzg3MTgzLCJleHAiOjE2MTMzOTE5ODN9.RMvzoOwyfRcV5hQ60ImZ_H55-aY0Wc_RVPHgYbO1jJ9rdBoSrn69R7LUbWtjOymklcizjeKCJMye4rG3p_gWrQ',
+    //      'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+    //   formData: { userName: 'pankaj' } };
+
+    // request(options, function (error, response, body) {
+    //   if (error) throw new Error(error);
+
+            // console.log(response);
+
+             // console.log(body);
+
+              // for(var i= response.length - 1; i >= 0 ; i--){
+
+              //       users.push(response[i].stockSymbol);
+              //   }
+
+              //   let resultSet = [];
+              //   for (i=0; i < users.length; i++){
+              //     var symbol = users[i];
+                  // console.log(symbol);
+
+                  // var options1 = { method: 'POST',
+                  //   url: 'https://apis.tradetipsapp.com/api/sectorNewsSentiment/getSentimentandSMAByStockSymbolResultSet',
+                  //   headers: 
+                  //    { 'postman-token': 'c5300459-c48a-4a3e-04c0-2cffbd2bbb05',
+                  //      'cache-control': 'no-cache',
+                  //      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6InBhbmthanRlamF3YXRAZ21haWwuY29tIiwic3ViIjoiZDlhY2VkMjMtN2I4OS00YWJjLWJkNzEtNTUyM2FiODNhOThhIiwiaWF0IjoxNjEyNzg3MTgzLCJleHAiOjE2MTMzOTE5ODN9.RMvzoOwyfRcV5hQ60ImZ_H55-aY0Wc_RVPHgYbO1jJ9rdBoSrn69R7LUbWtjOymklcizjeKCJMye4rG3p_gWrQ',
+                  //      'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+                  //   formData: { stockSymbol: symbol } };
+
+                  // request(options1, function (error, response, body1) {
+                  //   if (error) throw new Error(error);
+
+                  //   console.log(body1);
+                  // });
+
+
+                // }
+      // var options1 = { method: 'POST',
+      //   url: 'https://apis.tradetipsapp.com/api/sectorNewsSentiment/getSentimentandSMAByStockSymbolResultSet',
+      //   headers: 
+      //    { 'postman-token': 'c5300459-c48a-4a3e-04c0-2cffbd2bbb05',
+      //      'cache-control': 'no-cache',
+      //      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6InBhbmthanRlamF3YXRAZ21haWwuY29tIiwic3ViIjoiZDlhY2VkMjMtN2I4OS00YWJjLWJkNzEtNTUyM2FiODNhOThhIiwiaWF0IjoxNjEyNzg3MTgzLCJleHAiOjE2MTMzOTE5ODN9.RMvzoOwyfRcV5hQ60ImZ_H55-aY0Wc_RVPHgYbO1jJ9rdBoSrn69R7LUbWtjOymklcizjeKCJMye4rG3p_gWrQ',
+      //      'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+      //   formData: { stockSymbol: 'FB' } };
+
+      // request(options1, function (error, response, body1) {
+      //   if (error) throw new Error(error);
+
+      //   console.log(body1);
+
+        res.render('dashboard.ejs');
+
+      // });
+
+    // });
+
   });
 
   app.get('/chatCodee', function(req, res) {
 
     res.render('chatCodee.ejs');
+  });
+
+   app.get('/mentorDetails', function(req, res) {
+
+    var mentorids = req.query.id;
+
+    res.render('mentorDetails.ejs' , {tipsIds : mentorids});
   });
 
   app.get('/Newsletter', function(req, res) {

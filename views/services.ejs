@@ -35,6 +35,7 @@
         </div>
       </div> -->
       <div class="package_items_area">
+        <p id="serviceMeans"></p><br>
         <div class="package_items_in" id="newsletterServices">
           <h2>Newsletter</h2>
         </div>
@@ -60,6 +61,26 @@
           <h2>Class</h2>
         </div>
       </div>
+
+               <div class="modal welcome_modal" tabindex="-1" id="welcomeModal">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="welcome_modal_top">
+                          <h2>This is How You Make Money With TradeTips!</h2>
+                         <!--  <img src="images/welcome-bird.png" alt="images"> -->
+                        </div>
+                        <div class="welcome_modal_btm">
+                          <h3>Below is your "list of services" screen. Services are any methods that you use to sell your investing advice to others, (such as running a newsletter, posting subscriber only videos, holding virtual classes, etc.). Any investing advice service you have can be posted to the app here, which will then appear on TradeTips as your own storefront.You set your own prices, and you are in control of what your customers see and when.</h3>
+                          <p>1. Click on "Create New Service" & choose your service(s). 2 Enter details, subscription schedule, and price. 3. Choose an image for your service and publish</p>
+                          <p>Your published services storefront will appear on your TradeTips app profile for sharing and promoting what you do. </p>
+                          <p>We handle all the customer billing and make sure you get paid directly for your signups.</p>
+                          <button class="btn cmn_btn btn_primary" data-dismiss="modal">Lets get Started</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
     </div>
   </div>
 </div>
@@ -84,6 +105,32 @@
   var tokens = storageData.tokendata;
   
   var userids = storageData.uid;
+
+   $.ajax({
+              type: 'POST',
+              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllServiceSubscriptionPlanForMentor',
+              headers: {
+                Authorization: 'Bearer '+ tokens,
+                 },
+               data: {
+                  mentorId: userids,
+                },   
+            success: function(data) {
+
+               const dataResult = data;
+                 // alert(dataResult);
+                 if(dataResult.length == 0){
+                  $('#welcomeModal').modal('show');
+                  document.getElementById('serviceMeans').innerHTML="You currently have no services created. <a data-toggle='modal' data-target='#welcomeModal' style='color:blue;'>What is a service?</a>";
+                 } else {
+                   // alert(dataResult.length);
+                    document.getElementById('serviceMeans').innerHTML='You have ' + dataResult.length +  ' service created. <a data-toggle="modal" data-target="#welcomeModal" style="color:blue;">What is a service?</a>';
+                 }
+
+              }
+
+            });
+    
 
             $.ajax({
               type: 'POST',

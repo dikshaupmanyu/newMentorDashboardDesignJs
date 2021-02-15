@@ -1,26 +1,26 @@
 @font-face {
     font-family: 'SF UI Display Bold';
-    src: url(../fonts/sf-ui-display-bold.woff);
+    src: url(../webfonts/sf-ui-display-bold.woff);
 }
 
 @font-face {
     font-family: 'SF UI Display Semibold';
-    src: url(../fonts/sf-ui-display-semibold.woff);
+    src: url(../webfonts/sf-ui-display-semibold.woff);
 }
 
 @font-face {
     font-family: 'SF UI Display Medium';
-    src: url(../fonts/sf-ui-display-medium.woff);
+    src: url(../webfonts/sf-ui-display-medium.woff);
 }
 
 @font-face {
     font-family: 'SF UI Display Light';
-    src: url(../fonts/sf-ui-display-light.woff);
+    src: url(../webfonts/sf-ui-display-light.woff);
 }
 
 @font-face {
     font-family: 'SF UI Display Thin';
-    src: url(../fonts/sf-ui-display-thin.woff);
+    src: url(../webfonts/sf-ui-display-thin.woff);
 }
 
 body {
