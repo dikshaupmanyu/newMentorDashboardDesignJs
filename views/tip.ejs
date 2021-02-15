@@ -10,7 +10,7 @@
 
    <div class="dashboard_wrapper mentordashboard1_wrapper row">
       <div class="dashboard_wrapper_left col">
-        <div class="post_recent_tips_area">
+       <!--  <div class="post_recent_tips_area">
           <div class="post_tip_head">
             <h2>Recent Tips</h2>
           </div>
@@ -18,7 +18,7 @@
             <div class="row" id="demoTipLists">
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="post_new_tips_area">
           <div class="post_tip_head">
             <h2>Post New Tips</h2>
@@ -190,43 +190,43 @@
   });
 
 
-  $.ajax({
-        type: 'POST',
-        url: 'https://apis.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination',
-        headers: {
-          Authorization: 'Bearer '+ tokens ,
-        },
-        data: formdata,
-      success: function(datastip) {
-       var datatips = JSON.stringify(datastip);
-       var dataResultTips = JSON.parse(datatips); 
-       // alert(dataResultTips.length);
-      // alert(dataResultTips.length-5);
-       var tipslist = "" ;
+  // $.ajax({
+  //       type: 'POST',
+  //       url: 'https://apis.tradetipsapp.com/api/tip/getAllTipsWithoutCommentsPagination',
+  //       headers: {
+  //         Authorization: 'Bearer '+ tokens ,
+  //       },
+  //       data: formdata,
+  //     success: function(datastip) {
+  //      var datatips = JSON.stringify(datastip);
+  //      var dataResultTips = JSON.parse(datatips); 
+  //      // alert(dataResultTips.length);
+  //     // alert(dataResultTips.length-5);
+  //      var tipslist = "" ;
 
 
-          if(dataResultTips.length > 0){
+  //         if(dataResultTips.length > 0){
 
 
-                   for(var i= dataResultTips.length - 4; i < dataResultTips.length ; i++) {
+  //                  for(var i= dataResultTips.length - 4; i < dataResultTips.length ; i++) {
 
 
 
-                    tipslist += '<div class="col"><div class="post_tip_recent_bx sell_bg"><div class="tips_bx_cmpny_name"><span class="bs_btn sell_btn">Sell</span><h2>'+ dataResultTips[i].stockName +' <span>'+ new Date(dataResultTips[i].createdOn).toDateString() +'</span></h2></div><ul><li>Entry <span>'+ parseFloat(dataResultTips[i].entryPoint).toFixed(2) +'</span></li><li>Exit <span class="color_sell">'+ parseFloat(dataResultTips[i].exitPoint).toFixed(2) +'</span></li><li>Stop <span>'+ parseFloat(dataResultTips[i].stopPoint).toFixed(2) +'</span></li></ul></div></div>';
+  //                   tipslist += '<div class="col"><div class="post_tip_recent_bx sell_bg"><div class="tips_bx_cmpny_name"><span class="bs_btn sell_btn">Sell</span><h2>'+ dataResultTips[i].stockName +' <span>'+ new Date(dataResultTips[i].createdOn).toDateString() +'</span></h2></div><ul><li>Entry <span>'+ parseFloat(dataResultTips[i].entryPoint).toFixed(2) +'</span></li><li>Exit <span class="color_sell">'+ parseFloat(dataResultTips[i].exitPoint).toFixed(2) +'</span></li><li>Stop <span>'+ parseFloat(dataResultTips[i].stopPoint).toFixed(2) +'</span></li></ul></div></div>';
 
 
-                   }
+  //                  }
 
     
-                   $("#demoTipLists").append(tipslist);  
+  //                  $("#demoTipLists").append(tipslist);  
                   
 
-              }     
+  //             }     
           
       
-       }
+  //      }
        
-  });
+  // });
 
 
   $("#formoid").submit(function(event){
