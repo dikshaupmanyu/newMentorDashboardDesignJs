@@ -304,11 +304,12 @@
 
                           var count = Object.keys(d).length;
                           Object.keys(d).map((keyName, key) => {
-                            console.log(d);
-                            console.log(d[keyName].quote.companyName);
-                            $("#currentprice").text("$"+d[keyName].quote.latestPrice);
+                             $("#currentprice").text("$"+d[keyName].quote.latestPrice);
                             $("#skComnyNames").text(d[keyName].quote.companyName);
-                            $("#changepoint").text("$"+d[keyName].quote.change);
+                            var latestPrice = d[keyName].quote.latestPrice;
+                            var createTipPrice = Number(dataResult.tip.createTipPrice);
+                            var changeprice = latestPrice - createTipPrice
+                            $("#changepoint").text("$"+parseFloat(changeprice).toFixed(2));
 
                           });
                         });
