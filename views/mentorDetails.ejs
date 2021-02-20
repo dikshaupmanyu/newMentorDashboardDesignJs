@@ -13,7 +13,7 @@
       <div class="trade_dtl_box tips_bx buy_bg">
         <div class="tips_bx_head">
           <div class="tips_bx_author author_bx">
-            <img id="MentorUserImage" src="#" alt="images">
+            <img onerror="handleError(this);" id="MentorUserImage" src="#" alt="images">
             <div class="author_bx_txt">
               <h2 id="MentorUser"></h2>
               <!-- <h3>2 mins ago</h3> -->
@@ -54,7 +54,7 @@
         <div class="tips_bx_txt">
           <p id="commentDetail"></p>
         </div>
-      <!--   <div class="tips_bx_social">
+        <div class="tips_bx_social">
           <ul>
             <li>
               <a href="#">
@@ -63,17 +63,15 @@
             </li>
             <li onclick="pinFunction('<%=tipsIds%>')" style="color: #000;">
               <a href="#">
-                <img src="images/tips-save-icon.png" alt="images" id="imgstatus"><p id="StatusPin" style="display:none;"></p>
-                <img src="images/tips-save-icon.png" alt="images">
-                Save
+                <img alt="images" id="imgstatus"><p id="StatusPin" style="display:none;"></p>  Save
               </a>
             </li>
-            <li>
+            <li onclick="likeFunction('<%=tipsIds%>')" style="color: #000;">
               <a href="#">
-                <img src="images/tips-like-icon.png" alt="images"><span id="likecount"></span>
+                <img alt="images" id="likeimgstatus"><p id="StatusLike" style="display:none;"></p><span id="likecount"></span><p id="textvalLike" style="display:none;"></p>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <div class="dropdown msg_option_dropdown">
                 <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="images/tips-more-icon.png" alt="images"> More
@@ -85,9 +83,9 @@
                   </ul>
                 </div>
               </div>
-            </li> 
+            </li>  -->
           </ul>
-        </div> -->
+        </div>
         <div class="review_area">
           <div class="post_review_bx">
             <h2>Leave a Comment</h2>
@@ -247,7 +245,12 @@
 <%- include partials/innerfooter %>
 
 <script type="text/javascript">
-
+var default_avatar = 'images/userIcon.png';
+ 
+function handleError(image) {
+    image.src = default_avatar;
+    return true;
+}
 
   var sData = localStorage.getItem('allTokenData');
   var storageData= JSON.parse(sData);
@@ -269,9 +272,34 @@
         data: formdata,
       success: function(data) {
      
-          console.log(data);    
+          // console.log(data);    
 
             const dataResult = data;
+
+                // alert(dataResult.userPinStatus);
+
+                 if(dataResult.userPinStatus == true){
+
+                    // alert("true");
+
+                    document.getElementById("imgstatus").src = "/savetip.png";
+
+                  }else{
+
+                    // alert("false");
+                     
+                     document.getElementById("imgstatus").src = "images/tips-save-icon.png";
+                  }
+
+                  if(dataResult.userLikeStatus == true){
+
+                     document.getElementById("likeimgstatus").src = "/unnamed.png";
+
+                  }else{
+
+                    document.getElementById("likeimgstatus").src = "images/tips-like-icon.png";
+
+                  }
 
                   document.getElementById("MentorUser").textContent = dataResult.tip.appUser.userName;
                   document.getElementById("MentorUserImage").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+dataResult.tip.appUser.id;
@@ -282,22 +310,21 @@
                   document.getElementById("exitpoint").textContent = "$"+parseFloat(dataResult.tip.exitPoint).toFixed(2);
                   document.getElementById("suggestion").textContent = dataResult.tip.stockSuggestion;
                   // console.log(dataResult.commentCount);
-                  // document.getElementById("commentcount").textContent = dataResult.commentCount +" Comments";
-                  // document.getElementById("likecount").textContent = dataResult.likeCount +" Likes";
+                  document.getElementById("commentcount").textContent = dataResult.commentCount +" Comments";
+                  document.getElementById("likecount").textContent = dataResult.likeCount +" Likes";
+
+                   document.getElementById("textvalLike").textContent = dataResult.likeCount;
+
+                  
                   document.getElementById("commentDetail").textContent = dataResult.tip.comment;
 
                    document.getElementById("myImguser").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
 
-                  // document.getElementById("StatusPin").textContent = dataResult.userPinStatus;
+                  document.getElementById("StatusPin").textContent = dataResult.userPinStatus;
 
-                  // if(dataResult.userPinStatus == "true"){
+                  document.getElementById("StatusLike").textContent = dataResult.userLikeStatus;
 
-                  //   document.getElementById("imgstatus").src = "savetip.png";
-
-                  // }else{
-                     
-                  //    document.getElementById("imgstatus").src = "images/tips-save-icon.png";
-                  // }
+                 
 
 
                   $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ dataResult.tip.stockName , function(d) {
@@ -357,16 +384,25 @@
        
   });
 
+//  function imgError(image) {
+//     image.onerror = "";
+//     image.src = "images/userIcon.png";
+//     return true;
+// }
+
+
 
 function pinFunction(e) {
 
-  alert(e);
+  //alert(e);
  
   var formdata = {tipId : e};
 
   // var imgCount = $("#textval"+ e).text();
 
   var userdataPin = $("#StatusPin").text();
+
+ // alert(userdataPin);
 
   if(userdataPin == "true"){
 
@@ -414,7 +450,7 @@ function pinFunction(e) {
         // $("#imgstatus").attr("src","savetip.png");
 
 
-        document.getElementById("imgstatus").src="/savetip.png";
+        document.getElementById("imgstatus").src="savetip.png";
 
 
 
@@ -426,5 +462,153 @@ function pinFunction(e) {
 
 
 }
+
+function likeFunction(e) {
+
+  // alert(e);
+ 
+  var formdata = {tipId : e};
+
+  var imgCount = $("#textvalLike").text();
+
+  // alert(imgCount);
+
+  var userdataPin = $("#StatusLike").text();
+
+  if(userdataPin == "true"){
+    // alert("equal true");
+
+    $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/tipFeature/tipUnLikeForUser',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: formdata,
+      success: function(data) {
+     
+        // var valss = parseInt(imgCount) - 1;
+
+        // $("textvalLike").text(valss);
+
+        // $("#likecount").text(valss + " Likes");
+
+        $("#StatusLike").text("false");
+
+        $("#likeimgstatus").attr("src","images/tips-like-icon.png");
+
+        window.location.reload("/");
+
+
+        }
+
+      });
+
+  }else{
+    // alert("equal false");
+    $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/tipFeature/tipLikeForUser',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        data: formdata,
+      success: function(data) {
+      
+        // var valss = parseInt(imgCount) + 1;
+
+        // $("textvalLike").text(valss);
+
+        // $("#likecount").text(valss + " Likes");
+
+        $("#StatusLike").text("true");
+
+
+        $("#likeimgstatus").attr("src","unnamed.png");
+
+         window.location.reload("/");
+
+
+        }
+
+      });
+  }
+
+
+}
+
+// function likeFunction(e) {
+
+//   //alert(e);
+ 
+//   var formdata = {tipId : e};
+
+//   // var imgCount = $("#textval"+ e).text();
+
+//   var userdataLike = $("#StatusLike").text();
+
+//  // alert(userdataPin);
+
+//   if(userdataLike == "true"){
+
+//     $.ajax({
+//         type: 'POST',
+//         url: 'https://apis.tradetipsapp.com/api/tipFeature/tipUnLikeForUser',
+//         headers: {
+//           Authorization: 'Bearer '+ tokens,
+//            },
+//         data: formdata,
+//       success: function(data) {
+     
+//         // var valss = parseInt(imgCount) - 1;
+
+//         // $("#textval").text(valss);
+
+//         $("#StatusLike").text("false");
+
+//         // $("#imgstatus").attr("src","show.jpeg");
+
+//         document.getElementById("likeimgstatus").src="images/tips-like-icon.png";
+
+
+//         }
+
+//       });
+
+//   }else{
+//     $.ajax({
+//         type: 'POST',
+//         url: 'https://apis.tradetipsapp.com/api/tipFeature/tipLikeForUser',
+//         headers: {
+//           Authorization: 'Bearer '+ tokens,
+//            },
+//         data: formdata,
+//       success: function(data) {
+      
+//         // var valss = parseInt(imgCount) + 1;
+
+//         // $("#textval"+e).text(valss);
+
+//         $("#StatusLike").text("true");
+
+
+//         // $("#imgstatus").attr("src","savetip.png");
+
+
+//         document.getElementById("likeimgstatus").src="unnamed.png";
+
+
+
+//         }
+
+//       });
+//   }
+
+
+
+// }
+
+
+
   </script>
 

@@ -192,13 +192,14 @@
        var tipId = [];
        var tipPrice = [];
        var stockdataa = [];
-
+       var usernames = [];
        for (i= 0; i< len; i ++) {
 
                 stockVal.push(dataResult[i].tip.stockName);  
                 stockdataa.push(dataResult[i].tip.stockName);
                 tipId.push(dataResult[i].tip.id);   
                 tipPrice.push(dataResult[i].tip.createTipPrice);
+                usernames.push(dataResult[i].tip.appUser.userName);
 
 
 
@@ -209,14 +210,15 @@
 
 
              const stripped = newdate.replace(/GMT/g, 'NYT');
+
           
              if(dataResult[i].tip.stockSuggestion == "Buy"){
 
-               text += '<div class="tips_bx buy_bg"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img onerror="imgError(this);" id="imgcall' + dataResult[i].tip.id + '" src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId='+ dataResult[i].tip.appUser.id+'" alt="images"><div class="author_bx_txt"><h2>' + dataResult[i].tip.appUser.userName + '</h2></div></div><div class="tips_bx_amount"> <h2 class="hclass" id="flatestPrice' + dataResult[i].tip.id + '"><span>$</span></h2><p>AT TIME OF TIP : <span class="hclass" id="stockkTipPrice' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.createTipPrice).toFixed(2) +'</span><span id="changeVals' + dataResult[i].tip.id + '"></span></span></div></div><div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn buy_btn">' + dataResult[i].tip.stockSuggestion + '</span><h2>' + dataResult[i].tip.stockName + ' <span id="skComnyNames'+ dataResult[i].tip.id +'"></span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>Entry</h3><h4 id="entrydatas' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.entryPoint).toFixed(2) +'</h4></li><li><h3>Exit</h3><h4><span class="color_buy" id="exitdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.exitPoint).toFixed(2) +'</span></h4></li><li><h3>Stop</h3><h4 id="stopdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.stopPoint).toFixed(2) +'</h4></li></ul></div></div><div class="tips_bx_txt"> <p>'+ dataResult[i].tip.comment +'</p></div><div class="tips_bx_social"><ul> <li><img src="images/tips-comment-icon.png" alt="images"><a href="#">' + dataResult[i].commentCount + ' Comments</a></li><li><a onclick="pinFunction(this.id)" id="' + dataResult[i].tip.id + '" style="color: #000;"><p id="StatusPin' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userPinStatus + '</p><img src="images/tips-save-icon.png" alt="images"><a href="#">Save</a> </li><li><img src="images/tips-like-icon.png" alt="images"><a href="#" onclick="likeFunction(this.id)" id="' + dataResult[i].tip.id + '"><span id="textvalLike' + dataResult[i].tip.id + '">' + dataResult[i].likeCount + '</span> Likes</a><p id="StatusLike' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userLikeStatus + '</p></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/tips-more-icon.png" alt="images"> More</a><div class="dropdown-menu"> <ul><li><a href="mentorDetails?id=' + dataResult[i].tip.id + '"><span><i class="fas fa-folder-open"></i></span> View Detail</a></li><li onClick="copyClipboard(this.id)" id="'+dataResult[i].tip.id +'"><input type = "text" aria-hidden="true" style="position: absolute;left: -999em;" value="'+dataResult[i].tip.stockName+' Current price:$'+dataResult[i].tip.createTipPrice+' Suggested entry: $'+dataResult[i].tip.entryPoint+' exit: $'+dataResult[i].tip.exitPoint+' stop: $'+dataResult[i].tip.stopPoint+' Stock tip by '+dataResult[i].tip.appUser.userName+'on TradeTips. Download at TradeTipsApp.com" id="divClipboard' +dataResult[i].tip.id+'"><span><i class="fas fa-folder-open"></i></span>Copy to Clipboard</li></ul></div></div></li></ul></div></div>';
+               text += '<div class="tips_bx buy_bg"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img onerror="imgError(this);" id="imgcall' + dataResult[i].tip.id + '" src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId='+ dataResult[i].tip.appUser.id+'" alt="images"><div class="author_bx_txt" id=""><h2>' + dataResult[i].tip.appUser.userName + '</h2></div></div><div class="tips_bx_amount"> <h2 class="hclass" id="flatestPrice' + dataResult[i].tip.id + '"><span>$</span></h2><p>AT TIME OF TIP : <span class="hclass" id="stockkTipPrice' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.createTipPrice).toFixed(2) +'</span><span id="changeVals' + dataResult[i].tip.id + '"></span></span></div></div><div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn buy_btn">' + dataResult[i].tip.stockSuggestion + '</span><h2>' + dataResult[i].tip.stockName + ' <span id="skComnyNames'+ dataResult[i].tip.id +'"></span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>Entry</h3><h4 id="entrydatas' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.entryPoint).toFixed(2) +'</h4></li><li><h3>Exit</h3><h4><span class="color_buy" id="exitdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.exitPoint).toFixed(2) +'</span></h4></li><li><h3>Stop</h3><h4 id="stopdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.stopPoint).toFixed(2) +'</h4></li></ul></div></div><div class="tips_bx_txt"> <p>'+ dataResult[i].tip.comment +'</p></div><div class="tips_bx_social"><ul> <li><img src="images/tips-comment-icon.png" alt="images"><a href="mentorDetails?id=' + dataResult[i].tip.id + '">' + dataResult[i].commentCount + ' Comments</a></li><li><a onclick="pinFunction(this.id)" id="' + dataResult[i].tip.id + '" style="color: #000;"><p id="StatusPin' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userPinStatus + '</p><img id="imgstatus' + dataResult[i].tip.id + '" alt="images"><a href="#">Save</a> </li><li><img id="imgLikestatus' + dataResult[i].tip.id + '" alt="images"><a href="#" onclick="likeFunction(this.id)" id="' + dataResult[i].tip.id + '"><span id="textvalLike' + dataResult[i].tip.id + '">' + dataResult[i].likeCount + '</span> Likes</a><p id="StatusLike' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userLikeStatus + '</p></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/tips-more-icon.png" alt="images"> More</a><div class="dropdown-menu"> <ul><li><a href="mentorDetails?id=' + dataResult[i].tip.id + '"><span><i class="fas fa-folder-open"></i></span> View Detail</a></li><li><a onclick="newhandleRemoveTipResultData(this.id)" id="' + dataResult[i].tip.id + '"><span><i class="fas fa-trash"></i></span> Remove Tip</a></li><li onClick="copyClipboard(this.id)" id="'+dataResult[i].tip.id +'"><input type = "text" aria-hidden="true" style="position: absolute;left: -999em;" id="divClipboard' +dataResult[i].tip.id+'"><span><i class="fas fa-folder-open"></i></span>Copy to Clipboard</li></ul></div></div></li></ul></div></div>';
 
              } else {
 
-                text += '<div class="tips_bx sell_bg"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img onerror="imgError(this);" src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId=' + dataResult[i].tip.appUser.id + '" alt="images"><div class="author_bx_txt"><h2>' + dataResult[i].tip.appUser.userName + '</h2></div></div><div class="tips_bx_amount"> <h2 class="hclass" id="flatestPrices' + dataResult[i].tip.id + '"><span>$</span></h2><p>AT TIME OF TIP : <span class="hclass" id="stockkTipPrice' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.createTipPrice).toFixed(2) +'</span><span id="changeValsfront' + dataResult[i].tip.id + '"></span></span></div></div><div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn sell_btn">' + dataResult[i].tip.stockSuggestion + '</span><h2>' + dataResult[i].tip.stockName + ' <span id="skComnyNames'+ dataResult[i].tip.id +'"></span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>Entry</h3><h4 id="entrydatas' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.entryPoint).toFixed(2) +'</h4></li><li><h3>Exit</h3><h4><span class="color_sell" id="exitdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.exitPoint).toFixed(2) +'</span></h4></li><li><h3>Stop</h3><h4 id="stopdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.stopPoint).toFixed(2) +'</h4></li></ul></div></div><div class="tips_bx_txt"> <p>'+ dataResult[i].tip.comment +'</p></div><div class="tips_bx_social"><ul> <li><img src="images/tips-comment-icon.png" alt="images"><a href="#">' + dataResult[i].commentCount + ' Comments</a></li> <li> <img src="images/tips-save-icon.png" alt="images"><a onclick="pinFunction(this.id)" id="' + dataResult[i].tip.id + '" style="color: #fff;"><p id="StatusPin' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userPinStatus + '</p>Save</a> </li><li><img src="images/tips-like-icon.png" alt="images"><a href="#" onclick="likeFunction(this.id)" id="' + dataResult[i].tip.id + '"><span id="textvalLike' + dataResult[i].tip.id + '">' + dataResult[i].likeCount + '</span> Likes</a><p id="StatusLike' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userLikeStatus + '</p></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/tips-more-icon.png" alt="images"> More</a><div class="dropdown-menu"> <ul><li><a href="mentorDetails?id=' + dataResult[i].tip.id + '"><span><i class="fas fa-folder-open"></i></span> View Detail</a></li><li onClick="copyClipboard(this.id)" id="'+dataResult[i].tip.id +'"><input type = "text" aria-hidden="true" style="position: absolute;left: -999em;" value="'+dataResult[i].tip.stockName+' Current price:$'+dataResult[i].tip.createTipPrice+' Suggested entry: $'+dataResult[i].tip.entryPoint+' exit: $'+dataResult[i].tip.exitPoint+' stop: $'+dataResult[i].tip.stopPoint+' Stock tip by '+dataResult[i].tip.appUser.userName+' on TradeTips. Download at TradeTipsApp.com" id="divClipboard' +dataResult[i].tip.id+'"><span><i class="fas fa-folder-open"></i></span>Copy to Clipboard</li></ul></div></div></li></ul></div></div>';
+                text += '<div class="tips_bx sell_bg"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img onerror="imgError(this);" src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId=' + dataResult[i].tip.appUser.id + '" alt="images"><div class="author_bx_txt"><h2>' + dataResult[i].tip.appUser.userName + '</h2></div></div><div class="tips_bx_amount"> <h2 class="hclass" id="flatestPrices' + dataResult[i].tip.id + '"><span>$</span></h2><p>AT TIME OF TIP : <span class="hclass" id="stockkTipPrice' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.createTipPrice).toFixed(2) +'</span><span id="changeValsfront' + dataResult[i].tip.id + '"></span></span></div></div><div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn sell_btn">' + dataResult[i].tip.stockSuggestion + '</span><h2>' + dataResult[i].tip.stockName + ' <span id="skComnyNames'+ dataResult[i].tip.id +'"></span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>Entry</h3><h4 id="entrydatas' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.entryPoint).toFixed(2) +'</h4></li><li><h3>Exit</h3><h4><span class="color_sell" id="exitdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.exitPoint).toFixed(2) +'</span></h4></li><li><h3>Stop</h3><h4 id="stopdata' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.stopPoint).toFixed(2) +'</h4></li></ul></div></div><div class="tips_bx_txt"> <p>'+ dataResult[i].tip.comment +'</p></div><div class="tips_bx_social"><ul> <li><img src="images/tips-comment-icon.png" alt="images"><a href="mentorDetails?id=' + dataResult[i].tip.id + '">' + dataResult[i].commentCount + ' Comments</a></li> <li><img id="imgstatus' + dataResult[i].tip.id + '" alt="images"><a onclick="pinFunction(this.id)" id="' + dataResult[i].tip.id + '" style="color: #fff;"><p id="StatusPin' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userPinStatus + '</p>Save</a> </li><li><img id="imgLikestatus' + dataResult[i].tip.id + '" alt="images"><a href="#" onclick="likeFunction(this.id)" id="' + dataResult[i].tip.id + '"><span id="textvalLike' + dataResult[i].tip.id + '">' + dataResult[i].likeCount + '</span> Likes</a><p id="StatusLike' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userLikeStatus + '</p></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/tips-more-icon.png" alt="images"> More</a><div class="dropdown-menu"> <ul><li><a href="mentorDetails?id=' + dataResult[i].tip.id + '"><span><i class="fas fa-folder-open"></i></span> View Detail</a></li><li><a onclick="newhandleRemoveTipResultData(this.id)" id="' + dataResult[i].tip.id + '"><span><i class="fas fa-trash"></i></span> Remove Tip</a></li><li onClick="copyClipboard(this.id)" id="'+dataResult[i].tip.id +'"><input type = "text" aria-hidden="true" style="position: absolute;left: -999em;" id="divClipboard' +dataResult[i].tip.id+'"><span><i class="fas fa-folder-open"></i></span>Copy to Clipboard</li></ul></div></div></li></ul></div></div>';
 
              }
                   
@@ -239,8 +241,11 @@
 
                               $("#flatestPrices"+tipId[k]).text("$"+d[stockdataa[k]].quote.latestPrice);
 
+                               
+
                                 var stockkkentry = $("#entrydata"+ tipId[k]).text();
                                 // alert(stockkkentry);
+                                var stockkkentrys = $("#entrydatas"+ tipId[k]).text();
                                 var stockkkexit = $("#exitdata"+ tipId[k]).text();
                                 //alert(stockkkexit);
                                 var stockkkstop = $("#stopdata"+ tipId[k]).text();
@@ -260,11 +265,14 @@
 
                                 /////////////////////////////////////////////////////////////////
 
+                                $("#divClipboard"+tipId[k]).val(d[stockdataa[k]].quote.companyName+' Current price:$'+d[stockdataa[k]].quote.latestPrice+' Suggested entry: '+stockkkentrys+' exit: '+stockkkexit+' stop: '+stockkkstop+' Stock tip by '+usernames[k]+' on TradeTips. Download at TradeTipsApp.com');
+
                                 var userdataPin = $("#StatusPin"+ tipId[k]).text();
 
+                                // alert(userdataPin);
                                 
                                   if(userdataPin == "true"){
-                                       // alert("true");
+                                        // alert("true");
 
                                         $("#imgstatus"+ tipId[k]).attr("src","savetip.png");
 
@@ -272,7 +280,7 @@
                                    }else{
                                       // alert("false");
 
-                                        $("#imgstatus"+ tipId[k]).attr("src","show.jpeg");
+                                        $("#imgstatus"+ tipId[k]).attr("src","images/tips-save-icon.png");
 
 
                                    }
@@ -291,7 +299,7 @@
                                    }else{
                                       // alert("false");
 
-                                        $("#imgLikestatus"+ tipId[k]).attr("src","like.jpeg");
+                                        $("#imgLikestatus"+ tipId[k]).attr("src","images/tips-like-icon.png");
 
 
                                    }
@@ -838,7 +846,7 @@ function likeFunction(e) {
 
         $("#StatusLike"+ e).text("false");
 
-        $("#imgLikestatus"+e).attr("src","like.jpeg");
+        $("#imgLikestatus"+e).attr("src","images/tips-like-icon.png");
 
 
         }
@@ -1318,6 +1326,32 @@ function likeFunction(e) {
   //      }
        
   // });
+
+  function newhandleRemoveTipResultData(e){
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${tokens}`);
+
+        var formdata = new FormData();
+        formdata.append("tipId", e);
+
+        var requestOptionsf = {
+          method: 'POST',
+          headers: myHeaders,
+          body: formdata,
+          redirect: 'follow'
+        };
+
+      fetch("https://apis.tradetipsapp.com/api/tipFeature/tipHideForUser", requestOptionsf)
+        .then(response => response.json())
+          .then(result => {
+
+          window.location.reload();
+
+      });
+
+
+  }
 
 </script>
 
