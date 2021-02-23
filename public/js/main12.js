@@ -411,6 +411,9 @@ function fetchTasks() {
                 elem.innerHTML = reviewTemplate(task);
                 tasksDOM.append(elem);
 
+               $('.card-body').scrollTop($('.card-body')[0].scrollHeight);
+
+
                 // $('#tasks').scrollTop($('#tasks')[0].scrollHeight);
               //   elem.setAttribute("id", task.messageId);
               //   // elem.setAttribute("class", "admin clearfix");

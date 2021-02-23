@@ -1,18 +1,41 @@
 $(document).ready(function(){
+
+  function sidebarSlimScroll(){
+  // var _height = $('.app_sidebar_menu').innerHeight();
+  _height = (($(window).height())-170)+'px'
+  // $('.app_sidebar_menu').slimScroll({
+  //   allowPageScroll: false,
+  //   alwaysVisible: false,
+  //   height: _height
+  // });
+}
   sidebarSlimScroll();
+
+  //or switch-fieldas the selector
+  var $radios = $('input.switch-field-radio').change(function () {
+     // alert("hi");
+      var value = $radios.filter(':checked').val();
+      $('[data-switch-field]').hide();
+      $('[data-switch-field = '+value+']').show();
+      if(value==0){
+        $('[data-switch-field]').show();
+      }
+  });
+
+  $('.recent_post_tips_arrow').on("click", function(e){
+    $(this).toggleClass('fa-rotate-180');
+    $("#recent_post_tips").slideToggle();
+  });
+  $('.new_post_tips_arrow').on("click", function(e){
+    $(this).toggleClass('fa-rotate-180');
+    $("#new_post_tips").slideToggle();
+  });
+
 });
 $( window ).resize(function() {
   sidebarSlimScroll();
 });
-function sidebarSlimScroll(){
-  // var _height = $('.app_sidebar_menu').innerHeight();
-  _height = (($(window).height())-170)+'px'
-  $('.app_sidebar_menu').slimScroll({
-    allowPageScroll: false,
-    alwaysVisible: false,
-    height: _height
-  });
-}
+
 
 // Header sticky js Start
 $(window).scroll(function() {
@@ -83,10 +106,7 @@ $(".select_dropdown_menu li a").click(function(e){
 
 // Welcome Modal Js Start
 // $(window).on('load', function() {
-
-//   $('#welcomeModal').modal('show');
-              
-    
+//     $('#welcomeModal').modal('show');
 // });
 // Welcome Modal Js End
 
@@ -96,17 +116,17 @@ $('.modal').appendTo("body")
 // Modal Backdrop Js End
 
 
-// Copy Link Js Start
-function copyFunction() {
-  /* Get the text field */
-  var copyText = document.getElementById("copyInput");
-  /* Select the text field */
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /* For mobile devices */
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
-} 
-// Copy Link Js End
+// // Copy Link Js Start
+// function copyFunction() {
+//   /* Get the text field */
+//   var copyText = document.getElementById("copyInput");
+//   /* Select the text field */
+//   copyText.select();
+//   copyText.setSelectionRange(0, 99999); /* For mobile devices */
+//   /* Copy the text inside the text field */
+//   document.execCommand("copy");
+// } 
+// // Copy Link Js End
 
 
 // Avatar Upload Js Start
@@ -243,11 +263,11 @@ function ekUpload(){
     }
   }
   // Check for the various File API support.
-  if (window.File && window.FileList && window.FileReader) {
-    Init();
-  } else {
-    document.getElementById('file-drag').style.display = 'none';
-  }
+  // if (window.File && window.FileList && window.FileReader) {
+  //   Init();
+  // } else {
+  //   document.getElementById('file-drag').style.display = 'none';
+  // }
 }
 ekUpload();
 // File Upload Js End
