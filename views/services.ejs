@@ -67,14 +67,15 @@
                     <div class="modal-content">
                       <div class="modal-body">
                         <div class="welcome_modal_top">
-                          <h2>This is How You Make Money With TradeTips!</h2>
+                          <h2>This is how you make money with TradeTips!</h2>
                          <!--  <img src="images/welcome-bird.png" alt="images"> -->
                         </div>
                         <div class="welcome_modal_btm">
-                          <h3>Below is your "list of services" screen. Services are any methods that you use to sell your investing advice to others, (such as running a newsletter, posting subscriber only videos, holding virtual classes, etc.). Any investing advice service you have can be posted to the app here, which will then appear on TradeTips as your own storefront.You set your own prices, and you are in control of what your customers see and when.</h3>
-                          <p>1. Click on "Create New Service" & choose your service(s). 2 Enter details, subscription schedule, and price. 3. Choose an image for your service and publish</p>
-                          <p>Your published services storefront will appear on your TradeTips app profile for sharing and promoting what you do. </p>
-                          <p>We handle all the customer billing and make sure you get paid directly for your signups.</p>
+                         <!--  <h3>Below is your "list of services" screen. Services are any methods that you use to sell your investing advice to others, (such as running a newsletter, posting subscriber only videos, holding virtual classes, etc.). Any investing advice service you have can be posted to the app here, which will then appear on TradeTips as your own storefront.You set your own prices, and you are in control of what your customers see and when.</h3> -->
+                          <h3>1. Click on "Create New Service" & choose your service(s).</h3> 
+                          <h3>2 Enter details, subscription schedule, and price.</h3>
+                          <h3>3. Choose an image for your service and publish</h3>
+                          <p>Your published services storefront will appear on your TradeTips app profile for sharing and promoting what you do. We handle all the customer billing and make sure you get paid directly for your signups.</p>
                           <button class="btn cmn_btn btn_primary" data-dismiss="modal">Lets get Started</button>
                         </div>
                       </div>
@@ -118,7 +119,7 @@
             success: function(data) {
 
                const dataResult = data;
-                 // alert(dataResult);
+                 // alert(dataResult.length);
                  if(dataResult.length == 0){
                   $('#welcomeModal').modal('show');
                   document.getElementById('serviceMeans').innerHTML="You currently have no services created. <a data-toggle='modal' data-target='#welcomeModal' style='color:blue;'>What is a service?</a>";
