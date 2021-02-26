@@ -93,6 +93,14 @@ module.exports = function(app) {
     res.render('mentorDetails.ejs' , {tipsIds : mentorids});
   });
 
+     app.get('/aiDetails', function(req, res) {
+
+    var mentorids = req.query.id;
+
+    res.render('aiDetails.ejs' , {tipsIds : mentorids});
+  });
+
+
   app.get('/Newsletter', function(req, res) {
 
     res.render('newsletterServices.ejs');

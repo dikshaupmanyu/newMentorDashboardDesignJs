@@ -6,27 +6,27 @@
 
 @font-face {
     font-family: 'SF UI Display Bold';
-    src: url(../webfonts/sf-ui-display-bold.woff);
+    src: url(../fonts/sf-ui-display-bold.woff);
 }
 
 @font-face {
     font-family: 'SF UI Display Semibold';
-    src: url(../webfonts/sf-ui-display-semibold.woff);
+    src: url(../fonts/sf-ui-display-semibold.woff);
 }
 
 @font-face {
     font-family: 'SF UI Display Medium';
-    src: url(../webfonts/sf-ui-display-medium.woff);
+    src: url(../fonts/sf-ui-display-medium.woff);
 }
 
 @font-face {
     font-family: 'SF UI Display Light';
-    src: url(../webfonts/sf-ui-display-light.woff);
+    src: url(../fonts/sf-ui-display-light.woff);
 }
 
 @font-face {
     font-family: 'SF UI Display Thin';
-    src: url(../webfonts/sf-ui-display-thin.woff);
+    src: url(../fonts/sf-ui-display-thin.woff);
 }
 
 body {
@@ -1826,17 +1826,17 @@ button:focus {
     margin-left: auto; 
     padding-right: 9px;
 }
-.tips_wtlist_item_right{
+/*.tips_wtlist_item_right{
     width: 46px;
-}
+}*/
 .tips_wtlist_item_left {
     width: 50%;
 }
-.tips_wtlist_item_center {
+/*.tips_wtlist_item_center {
     text-align: right;
     margin-right: 15px;
     margin-left: auto;
-}
+}*/
 .tips_wtlist_item_center h3 {
     font-size: 22px;
     margin: 0px 0px 5px;
@@ -3973,3 +3973,105 @@ button:focus {
     font-family: 'SF UI Display Bold';
 }
 /* chat page css end */
+
+
+
+ul.search-list {
+    background: #041c43;
+    color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    width: 100%;
+    padding: 5px 0;
+    max-height: 180px;
+    padding: 10px 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.search-list-input {
+    position: relative;
+}
+ul.search-list li {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+}
+ul.search-list li .ck_box_custom{
+    display: block;
+    padding: 9px 18px;
+}
+ul.search-list li label{
+    margin: 0;
+    display: block;
+    cursor: pointer;
+}
+ul.search-list li .ck_box_custom input[type="checkbox"]~label:before{
+    margin-bottom: -4px;
+}
+ul.search-list li a{
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    padding: 9px 18px;
+    background-color: transparent;
+    transition: .3s;
+}
+ul.search-list li a:hover{
+    background-color: rgb(0 0 0 / 21%);
+}
+
+.switch-field-item{
+    display: none;
+    -webkit-animation: fadeInAnimation ease .5s ; 
+    animation: fadeInAnimation ease .5s ;
+}
+
+@-webkit-keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+} 
+  
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+} 
+
+.arrow-only{
+    font-size: 1.1em;
+    cursor: pointer;
+    display: inline-block;
+    transition: .3s;
+    margin-left: 5px;
+}
+
+body .only_id_use{
+    font-weight: inherit;
+    color: inherit;
+    font-size: inherit;
+    font-style: inherit;
+}
+.tips_bx[data-switch-field]{
+    display: none;
+}
+ .multi-items {
+    position: absolute;
+    cursor: text;
+    width: 350px;
+   /* background: yellow;*/
+    float: left;
+}
+
+.multi-item{
+    float: left;
+} 
