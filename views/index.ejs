@@ -17,10 +17,8 @@
            -webkit-text-security:disc;
        }
    </style>
-<!-- <body onload="getCookie()">
- -->  
- <body>
-   
+<body onload="getCookie()">
+
         <!-- Body Flyers Start -->
     <div class="body_flyer body_flyer1">
       <img src="images/body-flyer.png" alt="images">
@@ -42,9 +40,9 @@
           <input type="text" class="form-control" id="pswrd" name="password" placeholder="Enter Password" required="required">
           <div class="rmbr_frgt">
             <label>
-          <!--   <input type="checkbox" required="required" name="remember" id="rememberme">
+            <input type="checkbox" required="required" name="remember" id="rememberme">
             Remember Me
-            </label> -->
+            </label>
             <h4><a href="/forgetPassword">Forgot password?</a></h4>
           </div>
           <button class="btn cmn_btn btn_primary" id="butlogin">Login</button>
@@ -155,7 +153,7 @@
  </script>
 
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 
  $('#rememberme').click(function() {
   var rem = document.getElementById("rememberme");
@@ -191,10 +189,12 @@ function getCookie(){
  }
  else{
     $("#rememberme").prop('checked', false);
+     document.cookie = "userName=; max-age=0; path=/;";
+     document.cookie = "password=; max-age=0; path=/;";
  }
 }
 </script>
- -->
+
  
 </body>
 </html>
