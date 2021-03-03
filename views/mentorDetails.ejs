@@ -16,7 +16,7 @@
             <img onerror="handleError(this);" id="MentorUserImage" src="#" alt="images">
             <div class="author_bx_txt">
               <h2 id="MentorUser"></h2>
-              <!-- <h3>2 mins ago</h3> -->
+              <h3 id="datee"></h3>
             </div>
           </div>
           <div class="tips_bx_amount">
@@ -302,6 +302,17 @@ function handleError(image) {
                   }
 
                   document.getElementById("MentorUser").textContent = dataResult.tip.appUser.userName;
+
+
+                 var date = new Date(dataResult.tip.modifiedOn);
+                 var options = {year: "numeric", month: "long", day: "numeric"};
+
+                 var newdate = date.toGMTString('en-US', options);  
+
+
+                 const stripped = newdate.replace(/GMT/g, 'NYT');
+
+                  document.getElementById("datee").textContent = stripped;
                   document.getElementById("MentorUserImage").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+dataResult.tip.appUser.id;
                   document.getElementById("TipNumber").textContent = "$"+parseFloat(dataResult.tip.createTipPrice).toFixed(2);
                   document.getElementById("CompanySymbol").textContent = dataResult.tip.stockName;
