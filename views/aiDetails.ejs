@@ -23,13 +23,13 @@
           <h4 class="border_danger">Today’s Low</h4>
           <h3 id="lowval"></h3>
         </div>
-        <div class="ai_dtl_head_right_bx">
+        <div class="ai_dtl_head_right_bx tips_wtlist_item_right">
           <h4 class="border_primary">Change</h4>
           <h3 id="changepoint"></h3>
         </div>
         <div class="ai_dtl_head_right_bx text-right">
           <h2 id="currentprice"></h2>
-          <h5>NY Time 04 :54 AM</h5>
+          <h5 id="datetime"></h5>
         </div>
       </div>
     </div>
@@ -107,11 +107,7 @@
               <h5 id="srcdetail5"></h5>
               <p id="srcsumarry5"></p>
             </div>
-            <div class="news_bx">
-              <h4><em class="only_id_use" id="srcname6"></em> <span id="srcdate6"></span></h4>
-              <h5 id="srcdetail6"></h5>
-              <p id="srcsumarry6"></p>
-            </div>
+           
           </div>
         </div>
       </div>
@@ -264,12 +260,12 @@ function handleError(image) {
                  //  }
 
                   
-                 document.getElementById("resultSet").textContent = dataResult[0].result;
-                 if(dataResult[0].result == "buy"){
+                 document.getElementById("resultSet").textContent = dataResult[0].rsiResult ;
+                 if(dataResult[0].rsiResult == "buy"){
 
                   document.getElementById('resultSet').className = 'bs_btn buy_btn';
 
-                 }else if (dataResult[0].result == "sell"){
+                 }else if (dataResult[0].rsiResult == "sell"){
 
                   document.getElementById('resultSet').className = 'bs_btn sell_btn';
 
@@ -279,36 +275,46 @@ function handleError(image) {
                   
                  }
                   document.getElementById("CompanySymbol").textContent = dataResult[0].stock_name;
-                  document.getElementById("entrypoint").textContent = ">$"+parseFloat(dataResult[0].avg10days).toFixed(2);
-                  document.getElementById("stoppoint").textContent = ">$"+parseFloat(dataResult[0].avg50days).toFixed(2);
-                  document.getElementById("exitpoint").textContent = ">$"+parseFloat(dataResult[0].avg200days).toFixed(2);
+   
+                  // document.getElementById("stoppoint").textContent = ">$"+parseFloat(dataResult[0].avg50days).toFixed(2);
+                  // document.getElementById("exitpoint").textContent = ">$"+parseFloat(dataResult[0].avg200days).toFixed(2);
                    document.getElementById("sectorname").textContent = dataResult[0].sector_name + " Sector News" ;
                   document.getElementById("sectornews").textContent =" Sentiment based on " + dataResult[0].sector_news + " News sources" ;
                   document.getElementById("sectorsentiment").textContent = dataResult[0].news_sector_sentiment ;
                    document.getElementById("srcname1").textContent = dataResult[0].news_source_name ;
                    document.getElementById("srcdate1").textContent = dataResult[0].news_publish_date ;
-                   document.getElementById("srcdetail1").textContent = dataResult[0].news_title ;
+                   var section1 = "<a href= "+dataResult[0].sector_news_url+" target='_blank'>"+dataResult[0].news_title+"</a>";
+                   document.getElementById("srcdetail1").innerHTML = section1 ;
+
                    document.getElementById("srcsumarry1").textContent = dataResult[0].news_summary ;
                    document.getElementById("srcname2").textContent = dataResult[1].news_source_name ;
                    document.getElementById("srcdate2").textContent = dataResult[1].news_publish_date ;
-                   document.getElementById("srcdetail2").textContent = dataResult[1].news_title ;
+                    var section2 = "<a href= "+dataResult[1].sector_news_url+" target='_blank'>"+dataResult[1].news_title+"</a>";
+
+                   document.getElementById("srcdetail2").innerHTML = section2 ;
+
                    document.getElementById("srcsumarry2").textContent = dataResult[1].news_summary ;
                     document.getElementById("srcname3").textContent = dataResult[2].news_source_name ;
                     document.getElementById("srcdate3").textContent = dataResult[2].news_publish_date ;
-                   document.getElementById("srcdetail3").textContent = dataResult[2].news_title ;
+                    var section3 = "<a href= "+dataResult[2].sector_news_url+" target='_blank'>"+dataResult[2].news_title+"</a>";
+
+                   document.getElementById("srcdetail3").innerHTML = section3 ;
                    document.getElementById("srcsumarry3").textContent = dataResult[2].news_summary ;
                      document.getElementById("srcname4").textContent = dataResult[3].news_source_name ;
                      document.getElementById("srcdate4").textContent = dataResult[3].news_publish_date ;
-                   document.getElementById("srcdetail4").textContent = dataResult[3].news_title ;
+                    var section4 = "<a href= "+dataResult[3].sector_news_url+" target='_blank'>"+dataResult[3].news_title+"</a>";
+
+                   document.getElementById("srcdetail4").innerHTML = section4 ;
                    document.getElementById("srcsumarry4").textContent = dataResult[3].news_summary ;
                     document.getElementById("srcname5").textContent = dataResult[4].news_source_name ;
-                   document.getElementById("srcdetail5").textContent = dataResult[4].news_title ;
+                   var section5 = "<a href= "+dataResult[4].sector_news_url+" target='_blank'>"+dataResult[4].news_title+"</a>";
+
+                   document.getElementById("srcdetail5").innerHTML = section5 ;
                    document.getElementById("srcsumarry5").textContent = dataResult[4].news_summary ;
                    document.getElementById("srcdate5").textContent = dataResult[4].news_publish_date ;
-                   document.getElementById("srcname6").textContent = dataResult[5].news_source_name ;
-                   document.getElementById("srcdetail6").textContent = dataResult[5].news_title ;
-                   document.getElementById("srcsumarry6").textContent = dataResult[5].news_summary ;
-                   document.getElementById("srcdate6").textContent = dataResult[5].news_publish_date ;
+                 
+
+                    document.getElementById("datetime").textContent = dataResult[0].sma_generation_date ;
                   
                  //  document.getElementById("suggestion").textContent = dataResult.tip.stockSuggestion;
                  //  // console.log(dataResult.commentCount);
@@ -340,6 +346,13 @@ function handleError(image) {
 
                  //  }
 
+
+                 // '+(array[0].avg10days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:green;"><span>>$'+ parseFloat(array[0].avg10days).toFixed(2) +'</span></h4>' : array[0].avg10days > parseFloat(array[0].avg10days).toFixed(2) ?'<h4 style="color:red;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>':'<h4 style="color:red;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>')+'
+
+                 //                        '+(array[0].avg50days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:green;"><span>>$'+ parseFloat(array[0].avg50days).toFixed(2) +'</span></h4>' : array[0].avg50days > parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:red;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>':'<h4 style="color:red;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>')+'
+
+                 //                        '+(array[0].avg200days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:green;"><span>>$'+ parseFloat(array[0].avg200days).toFixed(2) +'</span></h4>' : array[0].avg200days > parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:red;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>':'<h4 style="color:red;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>')+'
+
                  
 
 
@@ -355,18 +368,55 @@ function handleError(image) {
                             // var latestPrice = d[keyName].quote.latestPrice;
                             // var createTipPrice = Number(dataResult.tip.createTipPrice);
                             // var changeprice = latestPrice - createTipPrice
-                            var valuees = d[keyName].quote.change;
+                            var valuees = parseFloat(d[keyName].quote.change).toFixed(2);
                             if(valuees > 0){
-                               $("#changepoint").text(d[keyName].quote.change);
-                               $("#changepoint").css("color" , "#09b598");
-                            }else{
-                               $("#changepoint").text(d[keyName].quote.change);
-                               $("#changepoint").css("color" , "red");
-                            }
-                           
+                               // $("#changepoint").text(valuees);
 
-                          });
-                        });
+                              $("#changepoint").html('<span class="color_buy"><span>$</span>' +valuees + '</span>');
+                               $("#changepoint").css("color" , "#09b598");
+
+                            }else{
+
+                              $("#changepoint").html('<span class="color_sell"><span>$</span>' +valuees + '</span>');
+                               $("#changepoint").css("color" , "#dc3545");
+                            }
+
+
+                   if(dataResult[0].avg10days < parseFloat(d[keyName].quote.latestPrice).toFixed(2)){
+                     document.getElementById("entrypoint").textContent = ">$"+parseFloat(dataResult[0].avg10days).toFixed(2);
+                      $("#entrypoint").css("color" , "#09b598");
+                   } else if(dataResult[0].avg10days > parseFloat(d[keyName].quote.latestPrice).toFixed(2)){
+                     document.getElementById("entrypoint").textContent = "<$"+parseFloat(dataResult[0].avg10days).toFixed(2);
+                      $("#entrypoint").css("color" , "#dc3545");
+                   } else {
+                     document.getElementById("entrypoint").textContent = "<$"+parseFloat(dataResult[0].avg10days).toFixed(2);
+                      $("#entrypoint").css("color" , "#dc3545");
+                   }
+
+                   if(dataResult[0].avg50days < parseFloat(d[keyName].quote.latestPrice).toFixed(2)){
+                     document.getElementById("stoppoint").textContent = ">$"+parseFloat(dataResult[0].avg50days).toFixed(2);
+                      $("#stoppoint").css("color" , "#09b598");
+                   } else if(dataResult[0].avg10days > parseFloat(d[keyName].quote.latestPrice).toFixed(2)){
+                     document.getElementById("stoppoint").textContent = "<$"+parseFloat(dataResult[0].avg50days).toFixed(2);
+                      $("#stoppoint").css("color" , "#dc3545");
+                   } else {
+                     document.getElementById("stoppoint").textContent = "<$"+parseFloat(dataResult[0].avg50days).toFixed(2);
+                      $("#stoppoint").css("color" , "#dc3545");
+                   }
+
+                    if(dataResult[0].avg200days < parseFloat(d[keyName].quote.latestPrice).toFixed(2)){
+                     document.getElementById("exitpoint").textContent = ">$"+parseFloat(dataResult[0].avg200days).toFixed(2);
+                      $("#exitpoint").css("color" , "#09b598");
+                   } else if(dataResult[0].avg200days > parseFloat(d[keyName].quote.latestPrice).toFixed(2)){
+                     document.getElementById("exitpoint").textContent = "<$"+parseFloat(dataResult[0].avg200days).toFixed(2);
+                      $("#exitpoint").css("color" , "#dc3545");
+                   } else {
+                     document.getElementById("exitpoint").textContent = "<$"+parseFloat(dataResult[0].avg200days).toFixed(2);
+                      $("#exitpoint").css("color" , "#dc3545");
+                   }
+                    
+                    });
+                    });
 
                   //   var formdata = {tipId: tipIds,offset: 0, limit: 100};
                   //    $.ajax({
