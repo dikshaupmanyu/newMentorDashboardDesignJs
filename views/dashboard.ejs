@@ -804,6 +804,7 @@ function delete_stck(ID)
                 usernames.push(dataResult[i].tip.appUser.userName);
 
 
+              // console.log(dataResult[i].tip.stockName);  
 
              var date = new Date(dataResult[i].tip.modifiedOn);
              var options = {year: "numeric", month: "long", day: "numeric"};
@@ -831,24 +832,41 @@ function delete_stck(ID)
         }
 
 
-              // console.log(stockdataa);
+               // console.log(stockdataa);
               // console.log(tipId);
 
-             $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ stockdataa , function(d) {
+              // var settings = {
+              //         // "async": true,
+              //         // "crossDomain": true,
+              //         "url": "https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols="+ stockdataa,
+              //         "method": "GET" 
+              //       }
 
+              //       $.ajax(settings).done(function (response) {
+              //         console.log(response);
+              //       });
+
+               $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ stockdataa , function(d) {
+                      // console.log('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ stockdataa);
+                      // console.log(d);
+
+                       // var newstcokdata = [];
                      for (k= 0; k< stockdataa.length; k ++) {
-                      // console.log(stockdataa[k]);
-                          // console.log(d[stockdataa[k]]);
+                       // console.log(stockdataa[k]);
+                         // console.log(d[stockdataa[k]]);
+
+                       
+
                           if(d[stockdataa[k]] != undefined){
 
-                              $("#skComnyName"+tipId[k]).text(d[stockdataa[k]].quote.companyName);
+                              // $("#skComnyName"+tipId[k]).text(d[stockdataa[k]].quote.companyName);
                               $("#skComnyNames"+tipId[k]).text(d[stockdataa[k]].quote.companyName);
                               $("#flatestPrice"+tipId[k]).text("$"+d[stockdataa[k]].quote.latestPrice);
 
                               $("#flatestPrices"+tipId[k]).text("$"+d[stockdataa[k]].quote.latestPrice);
 
 
-                              $("#skComnyName1"+tipId[k]).text(d[stockdataa[k]].quote.companyName);
+                              // $("#skComnyName1"+tipId[k]).text(d[stockdataa[k]].quote.companyName);
                               $("#skComnyNames1"+tipId[k]).text(d[stockdataa[k]].quote.companyName);
                               $("#flatestPrice1"+tipId[k]).text("$"+d[stockdataa[k]].quote.latestPrice);
 
@@ -1166,6 +1184,284 @@ function delete_stck(ID)
 
                                 // }
 
+                             // console.log(stockdataa[k]);   
+
+                          } else {
+
+                            // console.log(d);
+                            // console.log(d[stockdataa[k]]);
+                            
+
+
+                               
+
+                              
+                                var stockkkentrys = $("#entrydatas"+ tipId[k]).text();
+                                // alert(stockkkentrys);
+                                var stockkkentrys1 = $("#entrydatas1"+ tipId[k]).text();
+
+                                var stockkkexit = $("#exitdata"+ tipId[k]).text();
+                                var stockkkexit1 = $("#exitdata1"+ tipId[k]).text();
+                                //alert(stockkkexit);
+                                var stockkkstop = $("#stopdata"+ tipId[k]).text();
+                                var stockkkstop1 = $("#stopdata1"+ tipId[k]).text();
+                                //alert(stockkkstop);
+                                var stockkkPricess= $("#stockkTipPrice"+ tipId[k]).text();
+                                var stockkkPricess1= $("#stockkTipPrice1"+ tipId[k]).text();
+                                // alert(stockkkPricess);
+                                // alert(stockkkPricess.replace("$",""));
+                               
+                                var newwdata = $("#flatestPrice"+ tipId[k]).text();
+                                var newwdata1 = $("#flatestPrice1"+ tipId[k]).text();
+
+                                var newwdatas = $("#flatestPrices"+ tipId[k]).text();
+                                var newwdatas1 = $("#flatestPrices1"+ tipId[k]).text();
+                                // alert(newwdata);
+                                // alert(newwdata.replace("$",""));
+
+                                var suggestionslist = $(".suggestion"+ tipId[k]).text();
+                                // alert(suggestionslist);
+                                var suggestionslist1 = $(".suggestion1"+ tipId[k]).text();
+                                
+
+                                //////////////////////////////////////////////////////////////
+
+                                // $("#divClipboard"+tipId[k]).val(d[stockdataa[k]].quote.companyName+' Current price:$'+d[stockdataa[k]].quote.latestPrice+' Suggested entry: '+stockkkentrys+' exit: '+stockkkexit+' stop: '+stockkkstop+' Stock tip by '+usernames[k]+' on TradeTips. Download at TradeTipsApp.com');
+
+                                // $("#divClipboard1"+tipId[k]).val(d[stockdataa[k]].quote.companyName+' Current price:$'+d[stockdataa[k]].quote.latestPrice+' Suggested entry: '+stockkkentrys1+' exit: '+stockkkexit1+' stop: '+stockkkstop1+' Stock tip by '+usernames[k]+' on TradeTips. Download at TradeTipsApp.com');
+
+                                var userdataPin = $("#StatusPin"+ tipId[k]).text();
+                                var userdataPin1 = $("#StatusPin1"+ tipId[k]).text();                        
+                                // alert(userdataPin);
+                               
+                                if(userdataPin == "true"){
+                                        // alert("true");
+                                        $("#imgstatus"+ tipId[k]).attr("src","savetip.png");
+
+                                   }else{
+                                      // alert("false");
+                                        $("#imgstatus"+ tipId[k]).attr("src","images/tips-save-icon.png");
+
+                                   }
+
+                                
+                                if(userdataPin1 == "true"){
+                                        // alert("true");
+                                        $("#imgstatus1"+ tipId[k]).attr("src","savetip.png");
+
+                                   }else{
+                                      // alert("false");
+                                        $("#imgstatus1"+ tipId[k]).attr("src","images/tips-save-icon.png");
+
+                                   }
+
+                                   ////////////////////////////////////////////////////////////////////
+
+                                   var userdataLike = $("#StatusLike"+ tipId[k]).text();
+                                  
+                              
+                                  if(userdataLike == "true"){
+                                       // alert("true");
+                                        $("#imgLikestatus"+ tipId[k]).attr("src","unnamed.png");
+
+                                   }else{
+                                      // alert("false");
+                                        $("#imgLikestatus"+ tipId[k]).attr("src","images/tips-like-icon.png");
+
+                                   }
+
+                                  var userdataLike1 = $("#StatusLike1"+ tipId[k]).text();
+                                  // alert(userdataLike1);
+
+                                  if(userdataLike1 == true){
+                                       // alert("true");
+                                        $("#imgLikestatus1"+ tipId[k]).attr("src","unnamed.png");
+
+                                   }else{
+                                      // alert("false");
+                                        $("#imgLikestatus1"+ tipId[k]).attr("src","images/tips-like-icon.png");
+
+                                   }
+
+                                //////////////////////////change value////////////////////////////
+                                 // var newwdatak = $("#flatestPrice"+ tipId[k]).text();
+
+                                 const minusValues = newwdata.replace("$","") - stockkkPricess.replace("$","");
+                                 const values = Number(minusValues).toFixed(2);
+                                 // alert(values);
+
+                                 if(values > 0){
+                                  // alert("home");
+                                  $("#changeVals"+ tipId[k]).html(' | Change : <span class="hclass green"><span>$</span>' +values + '</span>');
+
+                                 }else{
+                                  // alert("calling home");
+                                  $("#changeVals"+ tipId[k]).html(' | Change : <span class="hclass red"><span>$</span>' +values + '</span>');
+
+                                 }
+
+                                 const minusValues1 = newwdata1.replace("$","") - stockkkPricess1.replace("$","");
+                                 const values1 = Number(minusValues1).toFixed(2);
+                                 // alert(values);
+                                 if(values1 > 0){
+                                  // alert("home");
+
+                                  $("#changeVals1"+ tipId[k]).html(' | Change : <span class="hclass green"><span>$</span>' +values1 + '</span>');
+
+                                 }else{                                 
+                                 // alert("calling home");
+
+                                  $("#changeVals1"+ tipId[k]).html(' | Change : <span class="hclass red"><span>$</span>' +values1 + '</span>');
+
+                                 }
+
+
+                                 //////////////////////////////////////////////////////
+
+                                 const minusValuesNew = newwdatas.replace("$","") - stockkkPricess.replace("$","");
+                                 const valuesk = Number(minusValuesNew).toFixed(2);
+                                 // alert(values);
+                                 if(valuesk > 0){
+                                  // alert("home");
+
+                                  $("#changeValsfront"+ tipId[k]).html(' | Change : <span class="hclass green"><span>$</span>' +valuesk + '</span>');
+
+                                 }else{
+                                  // alert("calling home");
+
+                                  $("#changeValsfront"+ tipId[k]).html(' | Change : <span class="hclass red"><span>$</span>' +valuesk + '</span>');
+
+                                 }
+
+                                 const minusValuesNew1 = newwdatas1.replace("$","") - stockkkPricess1.replace("$","");
+                                 const valuesk1 = Number(minusValuesNew1).toFixed(2);
+                                 // alert(values);
+                                 if(valuesk1 > 0){
+                                  // alert("home");
+
+                                  $("#changeValsfront1"+ tipId[k]).html(' | Change : <span class="hclass green"><span>$</span>' +valuesk1 + '</span>');
+
+                                 }else{
+                                  // alert("calling home");
+
+                                  $("#changeValsfront1"+ tipId[k]).html(' | Change : <span class="hclass red"><span>$</span>' +valuesk1 + '</span>');
+
+                                 }                                 
+
+                                 /////////////////////////entry data/////////////////////////
+
+                                // alert(newwdata);
+                                // alert(stockkkentrys);
+
+                                  
+                  
+                                // alert(suggestionslist);
+
+                                if(stockkkentrys.replace("$","") <= newwdata.replace("$","") &&  suggestionslist == "Buy"){
+
+                                  // alert("buy Diksha");
+
+
+                                  // $("#entrydata"+ tipId[k]).css("color" , "#09b598");
+                                  $("#entrydatas"+ tipId[k]).css("color" , "#09b598");
+                                  $("#entrydatas1"+ tipId[k]).css("color" , "#09b598");
+
+                               
+                                } else if(stockkkentrys.replace("$","") >= newwdata.replace("$","") && suggestionslist == "Sell"){
+
+                                   // alert("sell Diksha");
+
+                                    // $("#entrydata"+ tipId[k]).css("color" , "#09b598");
+                                    $("#entrydatas"+ tipId[k]).css("color" , "#09b598");
+                                    $("#entrydatas1"+ tipId[k]).css("color" , "#09b598");
+
+                                }else{
+                                    // alert("avoid Diksha");
+
+                                     // $("#entrydata"+ tipId[k]).css("color" , "white");
+                                     $("#entrydatas"+ tipId[k]).css("color" , "black");
+                                     $("#entrydatas1"+ tipId[k]).css("color" , "black");
+
+                                }
+
+                              
+
+                                //////////////////exit data/////////////////////////////////////////
+
+
+                                 
+                                  if(stockkkentrys.replace("$","") <= newwdata.replace("$","") &&  suggestionslist == "Buy"){
+
+
+                                  $("#exitdata"+ tipId[k]).css("color" , "#09b598");
+                                  $("#exitdata1"+ tipId[k]).css("color" , "#09b598");
+
+                               
+                                } else if(stockkkentrys.replace("$","") >= newwdata.replace("$","") && suggestionslist == "Sell"){
+
+
+                                    $("#exitdata"+ tipId[k]).css("color" , "#09b598");
+                                    $("#exitdata1"+ tipId[k]).css("color" , "#09b598");
+
+                                }else{
+
+
+                                     $("#exitdata"+ tipId[k]).css("color" , "black");
+                                     $("#exitdata1"+ tipId[k]).css("color" , "black");
+
+                                }
+
+                          
+
+                                /////////////////////stop data//////////////////////////////  
+     
+
+                                 if(suggestionslist == "Buy" && newwdata.replace("$","") < stockkkPricess.replace("$","") && newwdata.replace("$","") <=  stockkkstop.replace("$","")){
+
+
+                                  $("#stopdata"+ tipId[k]).css("color" , "red");
+                                  $("#stopdata1"+ tipId[k]).css("color" , "red");
+
+                               
+                                } else if(suggestionslist == "Sell" && stockkkPricess.replace("$","") < newwdata.replace("$","") && newwdata.replace("$","") >=  stockkkstop.replace("$","")){
+
+
+                                    $("#stopdata"+ tipId[k]).css("color" , "black");
+                                    $("#stopdata1"+ tipId[k]).css("color" , "white");
+
+                                }else{
+
+
+                                     $("#stopdata"+ tipId[k]).css("color" , "black");
+                                     $("#stopdata1"+ tipId[k]).css("color" , "white");
+
+                                }
+
+
+                              
+                                  
+                  
+                                // alert(suggestionslist);
+
+                                
+                           // console.log('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ stockdataa[k]);
+                              // console.log(stockdataa.length);
+                         //     newstcokdata.push(stockdataa[k]);
+                         //    console.log(newstcokdata);
+
+                          // var filtered = stockdataa.filter(function (el) {
+                          // return el.status != undefined;
+                          // });
+
+
+                         //  $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ stockdataa[k] , function(h) {
+
+
+                         //    console.log(h);
+
+
+                         // });
+
 
 
                           }
@@ -1345,7 +1641,7 @@ function delete_stck(ID)
 
                            // var count = Object.keys(d).length;
 
-                           console.log(array[0]);
+                           // console.log(array[0]);
 
                             // console.log(array[0]);
 

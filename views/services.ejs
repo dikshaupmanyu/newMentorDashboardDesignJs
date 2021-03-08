@@ -407,8 +407,13 @@ function DeleteService(e) {
         data: formdata,
       success: function(data) {
 
-        alert("Delete data Sucessfully !!");
-        window.location.reload();
+        //alert("Delete data Sucessfully !!");
+        $(".successmsg").html('<span>"Delete data Sucessfully !!"</span>');
+        setTimeout(function(){$(".successmsg").empty()}, 2000);
+        //window.location.reload();
+        setTimeout(function(){
+            window.location.reload(1);
+               }, 2000);
 
         }
 
