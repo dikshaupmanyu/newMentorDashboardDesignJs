@@ -1,5 +1,12 @@
 <%- include partials/innerheader %>
 <!-- Page Content Start -->
+<style type="text/css">
+  .avoid_btn {
+    background: #000;
+    border-color: #fff;
+    color: #fff;
+}
+</style>
 <div class="app_main">
   <%- include partials/innersidebar %>
 <div class="app_content">
@@ -271,7 +278,7 @@ function handleError(image) {
 
                  } else {
 
-                  document.getElementById('resultSet').className = 'bs_btn sell_btn';
+                  document.getElementById('resultSet').className = 'bs_btn avoid_btn';
                   
                  }
                   document.getElementById("CompanySymbol").textContent = dataResult[0].stock_name;
@@ -372,12 +379,12 @@ function handleError(image) {
                             if(valuees > 0){
                                // $("#changepoint").text(valuees);
 
-                              $("#changepoint").html('<span class="color_buy"><span>$</span>' +valuees + '</span>');
+                              $("#changepoint").html('<span class="color_buy">' +valuees + '</span>');
                                $("#changepoint").css("color" , "#09b598");
 
                             }else{
 
-                              $("#changepoint").html('<span class="color_sell"><span>$</span>' +valuees + '</span>');
+                              $("#changepoint").html('<span class="color_sell">' +valuees + '</span>');
                                $("#changepoint").css("color" , "#dc3545");
                             }
 

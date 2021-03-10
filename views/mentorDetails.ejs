@@ -316,15 +316,53 @@ function handleError(image) {
                   document.getElementById("MentorUser").textContent = dataResult.tip.appUser.userName;
 
 
-                 var date = new Date(dataResult.tip.modifiedOn);
+                  var date = new Date(dataResult.tip.modifiedOn);
+
                  var options = {year: "numeric", month: "long", day: "numeric"};
-
                  var newdate = date.toGMTString('en-US', options);  
+                 const stripped = newdate.replace(/GMT/g, 'EST');
+                 var newdate1 = stripped.toString(stripped);  
+                 var newdate2 = newdate1.split(/(\s+)/);
+                 newdate2.splice(11, 18);
+                 newdate2.splice(0, 2);
+                 newdate2.splice(3,3);
+                  //console.log(newdate2);
+                 function moveArrayItemToNewIndex(arr, old_index, new_index) {
+                 if (new_index >= arr.length) {
+                      var k = new_index - arr.length + 1;
+                      while (k--) {
+                          arr.push(undefined);
+                      }
+                  }
+                 arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+                 return arr;
+                 };
 
+                moveArrayItemToNewIndex(newdate2, 0, 2);
+                var result1 = moveArrayItemToNewIndex(newdate2, 0, 2);
+                //console.log(result1);
+                result1.splice(1, 0, ' ');
+                var newdate3 = result1.toString(result1);
+                var result = newdate3.replace(/,/g, "");
+                //console.log(result);
+                x = result.substring(0, 6) + "," + result.substring(6, result.length);
+                //console.log(x);
+                function formatAMPM(date) {
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var ampm = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0'+minutes : minutes;
+                    var strTime = hours + ':' + minutes + ' ' + ampm;
+                    return strTime;
+                  }
 
-                 const stripped = newdate.replace(/GMT/g, 'NYT');
-
-                  document.getElementById("datee").textContent = stripped;
+                  var date1 = formatAMPM(date);
+                  //console.log(date1);
+                  //console.log(newdate2);
+                  const stripped1 = x.replace(newdate2[4], date1);
+                  document.getElementById("datee").textContent = stripped1;
                   document.getElementById("MentorUserImage").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+dataResult.tip.appUser.id;
                   document.getElementById("TipNumber").textContent = "$"+parseFloat(dataResult.tip.createTipPrice).toFixed(2);
                   document.getElementById("CompanySymbol").textContent = dataResult.tip.stockName;
@@ -372,8 +410,15 @@ function handleError(image) {
                             $("#skComnyNames").text(d[keyName].quote.companyName);
                             var latestPrice = d[keyName].quote.latestPrice;
                             var createTipPrice = Number(dataResult.tip.createTipPrice);
-                            var changeprice = latestPrice - createTipPrice
-                            $("#changepoint").text("$"+parseFloat(changeprice).toFixed(2));
+                            var changeprice = latestPrice - createTipPrice;
+                            if(changeprice > 0){
+                              $("#changepoint").text(parseFloat(changeprice).toFixed(2));
+                              $("#changepoint").css("color" , "#09b598");
+                            }else{
+                              $("#changepoint").text(parseFloat(changeprice).toFixed(2));
+                              $("#changepoint").css("color" , "#dc3545");
+                            }
+                            
 
                              if((dataResult.tip.entryPoint).replace("$","") <= latestPrice &&  dataResult.tip.stockSuggestion == "Buy"){
 
@@ -390,7 +435,7 @@ function handleError(image) {
                                   }else{
                                       
                                     document.getElementById("entrypoint").textContent = "$"+parseFloat(dataResult.tip.entryPoint).toFixed(2);
-                                     $("#entrypoint").css("color" , "black");
+                                     $("#entrypoint").css("color" , "white");
                                   }
 
 
@@ -414,7 +459,7 @@ function handleError(image) {
 
 
                                      document.getElementById("exitpoint").textContent = "$"+parseFloat(dataResult.tip.exitPoint).toFixed(2);
-                                      $("#exitpoint").css("color" , "black");
+                                      $("#exitpoint").css("color" , "white");
 
                                 }
 
@@ -433,13 +478,13 @@ function handleError(image) {
 
 
                                     document.getElementById("stoppoint").textContent = "$"+parseFloat(dataResult.tip.stopPoint).toFixed(2);
-                                     $("#stoppoint").css("color" , "black");
+                                     $("#stoppoint").css("color" , "white");
 
                                 }else{
 
 
                                      document.getElementById("stoppoint").textContent = "$"+parseFloat(dataResult.tip.stopPoint).toFixed(2);
-                                      $("#stoppoint").css("color" , "black");
+                                      $("#stoppoint").css("color" , "white");
 
                                 }
 
