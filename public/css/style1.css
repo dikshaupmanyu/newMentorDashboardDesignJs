@@ -4067,7 +4067,7 @@ body .only_id_use{
  .multi-items {
     position: absolute;
     cursor: text;
-    width: 350px;
+   /* width: 350px;*/
    /* background: yellow;*/
     float: left;
 }
