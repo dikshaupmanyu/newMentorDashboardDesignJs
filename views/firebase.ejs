@@ -143,6 +143,28 @@
       }
 
 
+      .dashboard_wrapper.mentordashboard1_wrapper.card{
+        height: 600px;
+        height: calc(100vh - 120px);
+      }
+      @media screen and (min-width:1600px) {
+        .dashboard_wrapper.mentordashboard1_wrapper.card{
+          height: calc(100vh - 180px);
+        }
+      }
+      .input-group>#btn-input.form-control:focus{
+        z-index: 1;
+      }
+      .emojis{
+        z-index: 1;
+        display: none;
+      }
+      .emojis[style*='display: block;'] + .emoji-button{
+        pointer-events: none !important;
+        opacity: .9;
+      }
+
+
       </style>
 <!--       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  -->
@@ -177,7 +199,7 @@
           <div class="dsbrd_container">
 
 
-          <div class="dashboard_wrapper mentordashboard1_wrapper card" style="background: #ffff;height: 600px;">
+          <div class="dashboard_wrapper mentordashboard1_wrapper card" style="background: #ffff;">
                 <div class="card-header text-center" style="border: none!important;">
                     <span><b>Room One</b></span>
                 </div>
@@ -281,6 +303,20 @@
   <script>
     $(function () {
       $('#btn-input').emoji({place: 'after'});
+
+      $('.emoji-button').on("click", function(e){
+        if($('.emojis').is(":visible")){
+          console.log('click')
+        }
+      })
+
+      $('emojis').on("hide", function() {
+          alert('hide');
+       })
+       $('emojis').on("show", function() {
+          alert('show');
+       })
+
     })
   </script>
 <br>
