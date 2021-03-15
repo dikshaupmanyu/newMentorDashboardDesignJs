@@ -50,15 +50,19 @@ const db = admin.firestore();
 	app.use(flash()); // use connect-flash for flash messages stored in session
 //});
 
+app.get('/neww', function(req, res) {
+  res.sendfile('index.html');
+});
+
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
 // app.listen(port);
 
-// var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
+var httpServer = http.createServer(app);
+// var httpsServer = https.createServer(credentials, app);
 
-// httpServer.listen(port);
-httpsServer.listen(port);
+httpServer.listen(port);
+// httpsServer.listen(port);
 console.log('The magic happens on port ' + port);

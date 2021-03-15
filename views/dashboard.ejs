@@ -703,34 +703,33 @@ function delete_stck(ID)
     // alert(JSON.stringify(e));
      var multi = $("#stockName").val();
      
-    });
-  
+    });     
+         
       var userName = storageData.uname;
-       var formdata = {  offset: 0, limit: 1000000};
-       $(document).ready(function(){
-        var xt = 0;
+       var formdata = {  offset: 0, limit: 10000};
+       
+        var xt = 1;
           var myoffset=0;
-      var  mylimit=50;
-          
-          var lastScrollTop = 0;
-        setTimeout( function(){ $(window).scroll(function(event){
-             var st = $(this).scrollTop();
-             if (st > lastScrollTop){
-                 
+         var  mylimit=50;
+
+
+          loaddemodata(myoffset,mylimit);
+       
+        
+         $(window).on("scroll",function() {
+              
+             if($(window).scrollTop() + $(window).height() > $(document).height() - 100)
+             {
+                 // alert("bottom");  
               // $("#demo").append('<span class="loading-data"><img src="images/loader.png" /></span>');
 
        console.log(xt);
+       
     
-     if(mylimit<1000000)
+     if(mylimit<10000)
      {
 
-
-          if(xt==0)
-          {
-             myoffset=0;
-             mylimit=50;
-          }
-         
+          xt+= 1;
           if(xt!=0)
           {
             myoffset= mylimit+1;
@@ -741,17 +740,35 @@ function delete_stck(ID)
              console.log(xt);
              
           }
-          xt+= 1;
-       
+           
+          loaddemodata(myoffset,mylimit);
         
      }
-     formdata={  offset: myoffset, limit: mylimit};
-  $.ajax({
+    // formdata={  offset: myoffset, limit: mylimit};
+  
+
+
+                 console.log('downscroll code');
+             } 
+
+
+            
+          });
+      
+         
+         $(window).scrollTop(0);
+       
+       function loaddemodata(offset,limit)
+       {
+        
+           formdata={  offset: offset, limit: limit};
+          $.ajax({
         type: 'POST',
         url: 'https://apis.tradetipsapp.com/api/tip/getAllTipFeaturePaginationForUser',
         headers: {
           Authorization: 'Bearer '+ tokens,
            },
+           async:false,
         data: formdata,
       success: function(data) {
         var datak = JSON.stringify(data);
@@ -760,7 +777,7 @@ function delete_stck(ID)
        var text = "" ;
        var textboth = "" ;
        var len = dataResult.length;
-       // console.log(len);
+       console.log(len);
        var stockVal = [];
        var tipId = [];
        var tipPrice = [];
@@ -829,7 +846,10 @@ function delete_stck(ID)
              }
                  
         }
-               // console.log(stockdataa);
+
+              // alert(offset);
+              // alert(limit);
+              // console.log(stockdataa);
               // console.log(tipId);
               // var settings = {
               //         // "async": true,
@@ -845,9 +865,13 @@ function delete_stck(ID)
                       // console.log(d);
                        // var newstcokdata = [];
                      for (k= 0; k< stockdataa.length; k ++) {
-                       
+                          
+                          console.log("Stcok is" + stockdataa[k]+ "" +d[stockdataa[k]].quote.companyName);
                        
                           if(d[stockdataa[k]] != undefined){
+
+                             // console.log("not undefined");
+                             // console.log(d[stockdataa[k]]);
                               // $("#skComnyName"+tipId[k]).text(d[stockdataa[k]].quote.companyName);
                               $("#skComnyNames"+tipId[k]).text(d[stockdataa[k]].quote.companyName);
                               $("#flatestPrice"+tipId[k]).text("$"+d[stockdataa[k]].quote.latestPrice);
@@ -1056,7 +1080,8 @@ function delete_stck(ID)
                                 // }
                              // console.log(stockdataa[k]);  
                           } else {
-                             
+                             // console.log("undefined");
+                             // console.log(d[stockdataa[k]]);
                                 var stockkkentrys = $("#entrydatas"+ tipId[k]).text();
                                 // alert(stockkkentrys);
                                 var stockkkentrys1 = $("#entrydatas1"+ tipId[k]).text();
@@ -1248,18 +1273,7 @@ function delete_stck(ID)
       }
        
   });
-
-
-                 console.log('downscroll code');
-             } 
-
-
-             lastScrollTop = st;
-          });
-      },3000)
-
-
-});
+       }
 
   //var userName = storageData.uname;
   //var formdata = {  offset: 0, limit: 1000000};
@@ -1787,12 +1801,8 @@ function delete_stck(ID)
                 $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ users , function(r) {
                
                    for (k= 0; k< users.length; k ++) {
-
-                    if(r[users[k]] != undefined){
-                      texts += '<div class="tips_wtlist_item" id="item-'+ deletdata[k] +'"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>')+'</div><div class="tips_wtlist_item_right"><span class="delete_stck" style="    color: white;" onclick="delete_stck(this.id)" id="'+ deletdata[k] +' '+ r[users[k]].quote.symbol +'""><i class="fa fa-trash"></i></span></div></div>';
-                    }
                  
-                    
+                    texts += '<div class="tips_wtlist_item" id="item-'+ deletdata[k] +'"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>')+'</div><div class="tips_wtlist_item_right"><span class="delete_stck" style="    color: white;" onclick="delete_stck(this.id)" id="'+ deletdata[k] +' '+ r[users[k]].quote.symbol +'""><i class="fa fa-trash"></i></span></div></div>';
                    }
    
                    $("#demos").append(texts);  
@@ -1923,7 +1933,7 @@ function delete_stck(ID)
                             }
                              // console.log(d[keyName].quote.companyName);
                              // console.log(d[keyName].quote.latestPrice);
-                              $("#AIdemo").append(texts);
+                             // $("#AIdemo").append(texts);
                          if(array[0].rsiResult == "buy"){
                                textsboth = '<a href="aiDetails?id=' + array[0].id + '&stockName=' + array[0].stock_name + '"  id="mystocks-' + array[0].stock_name +'" target="_blank"><div class="tips_bx buy_bg" data-switch-field="1" style="display:block;"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img src="images/ailogo.png" alt="images"><div class="tips_bx_cmpny_name" style="color:white;"><h2><em class="only_id_use">TradeTips AI</em> <span>'+ array[0].sma_generation_date +'</span></h2></div></div><div class="tips_bx_amount"><h2>$'+ parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) +'</h2><p>Change '+ (d[array[0].stock_name].quote.change > 0 ? '<span class="color_buy">'+ parseFloat(d[array[0].stock_name].quote.change).toFixed(2) +'</span>':'<span class="color_sell">'+ parseFloat(d[array[0].stock_name].quote.change).toFixed(2) +'</span>') +'</p></div></div> <div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn buy_btn">' + array[0].rsiResult + '</span> <h2><em class="only_id_use">' + array[0].stock_name + '</em> <span>'+ d[array[0].stock_name].quote.companyName +'</span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>10 Days</h3>'+(array[0].avg10days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg10days).toFixed(2) +'</span></h4>' : array[0].avg10days > parseFloat(array[0].avg10days).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>')+'</li><li><h3>50 Days</h3>  '+(array[0].avg50days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg50days).toFixed(2) +'</span></h4>' : array[0].avg50days > parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>')+'</li> <li><h3>200 Days</h3>  '+(array[0].avg200days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg200days).toFixed(2) +'</span></h4>' : array[0].avg200days > parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>')+'</li></ul></div></div><div class="tips_bx_txt"><p>'+ array[0].news_summary +'</p></div></div></div></div></a>';
                             } else if(array[0].rsiResult == "sell") {
@@ -1933,7 +1943,7 @@ function delete_stck(ID)
                                textsboth = '<a href="aiDetails?id=' + array[0].id + '&stockName=' + array[0].stock_name + '"  id="mystocks-' + array[0].stock_name +'" target="_blank"><div class="tips_bx sell_bg" data-switch-field="1" style="display:block;"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img src="images/ailogo.png" alt="images"><div class="tips_bx_cmpny_name" style="color:white;"><h2><em class="only_id_use">TradeTips AI</em> <span>'+ array[0].sma_generation_date +'</span></h2></div></div><div class="tips_bx_amount"><h2>$'+ parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) +'</h2><p>Change '+ (d[array[0].stock_name].quote.change > 0 ? '<span class="color_buy">'+ parseFloat(d[array[0].stock_name].quote.change).toFixed(2) +'</span>':'<span class="color_sell">'+ parseFloat(d[array[0].stock_name].quote.change).toFixed(2) +'</span>') +'</p></div></div> <div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn avoid_btn">' + array[0].rsiResult + '</span> <h2><em class="only_id_use">' + array[0].stock_name + '</em> <span>'+ d[array[0].stock_name].quote.companyName +'</span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>10 Days</h3>'+(array[0].avg10days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg10days).toFixed(2) +'</span></h4>' : array[0].avg10days > parseFloat(array[0].avg10days).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>')+'</li><li><h3>50 Days</h3>  '+(array[0].avg50days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg50days).toFixed(2) +'</span></h4>' : array[0].avg50days > parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>')+'</li> <li><h3>200 Days</h3>  '+(array[0].avg200days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg200days).toFixed(2) +'</span></h4>' : array[0].avg200days > parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>')+'</li></ul></div></div><div class="tips_bx_txt"><p>'+ array[0].news_summary +'</p></div></div></div></div></a>';
                                
                             }
-                              $("#bothdemo").append(textsboth);
+                             // $("#bothdemo").append(textsboth);
                         });
                      // console.log(array);
    
