@@ -34,7 +34,7 @@
           </div>
         </div>
       </div> -->
-      <div class="package_items_area">
+      <div class="package_items_area package_items_flex">
         <p id="serviceMeans"></p><br>
         <div class="package_items_in" id="newsletterServices">
           <h2>Newsletter</h2>
@@ -161,7 +161,7 @@
                      // });
                    
                    
-                  newtip += '<div class="pckg_item"><div class="pckg_item_left"><div class="pckg_item_img"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div><div class="pckg_item_txt"><p>'+ dataResult[i].title +'</p></div></div><div class="pckg_item_right"><ul><li><h3><small>Price</small> <span>$'+ dataResult[i].price +'</span></h3></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><span><i class="fas fa-pencil-alt"></i></span><a href="/editService?id='+ dataResult[i].id +'&ids2='+ dataResult[i].serviceTypeId +'&sname=Newsletter">Edit Services</a></li><li><span><i class="far fa-trash-alt"></i></span><a onclick="DeleteService(this.id)" id="'+ dataResult[i].id +'"> Delete Services</a></li></ul></div></div></li></ul></div></div>';
+                  newtip += '<div class="pckg_item"><div class="pckg_item_left"><div class="pckg_item_img"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div><div class="pckg_item_txt"><p>'+ dataResult[i].title +'</p></div><div class="pckg_item_desc"><p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century</p></div></div><div class="pckg_item_right"><ul><li><h3><small>Price</small> <span>$'+ dataResult[i].price +'</span></h3></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><span><i class="fas fa-pencil-alt"></i></span><a href="/editService?id='+ dataResult[i].id +'&ids2='+ dataResult[i].serviceTypeId +'&sname=Newsletter">Edit Services</a></li><li><span><i class="far fa-trash-alt"></i></span><a onclick="DeleteService(this.id)" id="'+ dataResult[i].id +'"> Delete Services</a></li></ul></div></div></li></ul></div></div>';
 
                    // newtip.push(dataResult[i]);
                   }
