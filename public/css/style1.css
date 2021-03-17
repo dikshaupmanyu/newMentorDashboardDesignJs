@@ -1584,7 +1584,8 @@ button:focus {
     font-family: 'SF UI Display Light';
 }
 .tips_bx_amount p span{
-    font-family: 'SF UI Display Semibold';
+/*    font-family: 'SF UI Display Semibold';
+*/    font-family: 'SF UI Display Light';
     position: relative;
 }
 .tips_bx_amount p span.color_buy::after {
@@ -1689,7 +1690,7 @@ button:focus {
 }
 .tips_bx_cmpny_states ul li h3{
     font-size: 18px;
-    font-family: 'SF UI Display Semibold';
+    font-family: 'SF UI Display Light';
     padding: 0px 0px 6px;
 }
 .tips_bx_cmpny_states ul li h4{
