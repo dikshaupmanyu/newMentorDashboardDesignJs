@@ -21,7 +21,10 @@
           </div>
           <div class="tips_bx_amount">
             <h2 id="currentprice"></h2>
-            <p style="display: inline-block;">At Time of Tip : <span id="TipNumber"></span><p style="font-size:25px; display: inline-block;">&nbsp; | &nbsp;</p><p style="display: inline-block;"> Change&nbsp; :&nbsp; </p><span id="changepoint"></span></p>
+            
+            <p style="display: inline-block;">At Time of Tip : <span style= "font-family: 'SF UI Display Bold';" id="TipNumber"></span><p style="font-size:25px; display: inline-block;">&nbsp; | &nbsp;</p><p style="display: inline-block;"> Change&nbsp; :&nbsp; </p><span id="changepoint"></span></p>
+            
+
           </div>
         </div>
         
@@ -364,7 +367,7 @@ function handleError(image) {
                   const stripped1 = x.replace(newdate2[4], date1);
                   document.getElementById("datee").textContent = stripped1;
                   document.getElementById("MentorUserImage").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+dataResult.tip.appUser.id;
-                  document.getElementById("TipNumber").textContent = "$"+parseFloat(dataResult.tip.createTipPrice).toFixed(2);
+                  document.getElementById("TipNumber").textContent = "$"+ parseFloat(dataResult.tip.createTipPrice).toFixed(2);
                   document.getElementById("CompanySymbol").textContent = dataResult.tip.stockName;
                   // document.getElementById("entrypoint").textContent = "$"+parseFloat(dataResult.tip.entryPoint).toFixed(2);
                   // document.getElementById("stoppoint").textContent = "$"+parseFloat(dataResult.tip.stopPoint).toFixed(2);

@@ -111,6 +111,7 @@ window.addEventListener("load", function() {
    var LoggedInUsername = storageData.uname;
    var LoggedInEmail = storageData.email;
    var LoggedInId = storageData.uid;
+   // alert(LoggedInId);
    document.getElementById("myImg").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
    $('#loginvals').html(LoggedInUsername);
    $('#loginemailvals').html(LoggedInEmail);

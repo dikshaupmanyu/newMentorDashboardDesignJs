@@ -740,8 +740,8 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
               <p class='message' style="color: #000 !important">
                   ${message}
@@ -759,8 +759,8 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
             
              <p class='message' style="color: #000 !important"><video controls style="width:100%;"><source src="${message}" type="video/mp4"></video></p>
@@ -778,8 +778,8 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
               <p class='message' style="color: #000 !important"><img src="${message}" class="img-responsive" style="width:100%;"/></p>
 
@@ -796,8 +796,8 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
               
               <p class='message' style="color: #000 !important"><audio controls><source src="${message}" type="audio/mpeg"></audio></p>             

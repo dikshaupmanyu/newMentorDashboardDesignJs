@@ -32,6 +32,9 @@
     font-family: 'SF UI Display Thin';
     src: url(../fonts/sf-ui-display-thin.woff);
 }
+body>br{
+    display: none;
+}
 
 body {
     font-family: 'SF UI Display Medium';
@@ -1648,6 +1651,7 @@ button:focus {
 .tips_bx_cmpny_name{
     display: flex;
     align-items: center;
+    padding-right: 10px;
 }
 .bs_btn {
     display: block;
@@ -4110,4 +4114,8 @@ body .only_id_use{
     padding-left: 15px;
     padding-right: 19px;
     font-size: 89%;
+    color: #778396;
+}
+.package_items_flex  .pckg_item_desc p{
+    color: #778396;   
 }
