@@ -325,8 +325,20 @@ function handleError(image) {
                    document.getElementById("srcsumarry5").textContent = dataResult[4].news_summary ;
                    document.getElementById("srcdate5").textContent = dataResult[4].news_publish_date ;
                  
-
-                    document.getElementById("datetime").textContent = dataResult[0].sma_generation_date ;
+                   var date = dataResult[0].sma_generation_date;
+                   const stripped = date.replace(/EST-0500/g, 'EST');
+                   //console.log(stripped);
+                   var newdate2 = stripped .split(/(\s+)/);
+                   //console.log(newdate2);
+                   newdate2.splice(3,3);
+                   //console.log(newdate2);
+              
+                    var newdate3 = newdate2.toString(newdate2);
+                    var result = newdate3.replace(/,/g, "");
+                    //console.log(result);
+                    SMA_date = result.substring(0, 6) + ", " + result.substring(6, result.length);
+                    //console.log(SMA_date);
+                    document.getElementById("datetime").textContent = SMA_date;
                   
                  //  document.getElementById("suggestion").textContent = dataResult.tip.stockSuggestion;
                  //  // console.log(dataResult.commentCount);

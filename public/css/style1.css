@@ -4,6 +4,10 @@
   --danger-color: #DC3545;
 }
 
+.tips_bx.avoid-bg{
+    background: #000d31;
+}
+
 @font-face {
     font-family: 'SF UI Display Bold';
     src: url(../fonts/sf-ui-display-bold.woff);
@@ -1824,7 +1828,7 @@ button:focus {
 }
 .head_of_tips_wtlist_items .center_wti {
     margin-left: auto; 
-    padding-right: 9px;
+    padding-right: 26px;
 }
 /*.tips_wtlist_item_right{
     width: 46px;
