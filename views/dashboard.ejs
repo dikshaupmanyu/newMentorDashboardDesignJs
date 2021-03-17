@@ -717,16 +717,70 @@ function delete_stck(ID)
          
       var userName = storageData.uname;
        var formdata = {  offset: 0, limit: 1000000};
+        
+        var xt = 1;
+          var myoffset=0;
+         var  mylimit=10;
+          loaddemodata(myoffset,mylimit);
+
+        
+         $(window).on("scroll",function() {
+              
+             if($(window).scrollTop() + $(window).height() > $(document).height() - 100)
+             {
+                 alert("bottom");  
+              // $("#demo").append('<span class="loading-data"><img src="images/loader.png" /></span>');
+
+       console.log(xt);
+       
+    
+     if(mylimit<1000000)
+     {
+
+          xt+= 1;
+          if(xt!=0)
+          {
+            myoffset= mylimit+1;
+            mylimit=xt*50;
+
+            console.log(myoffset);
+             console.log(mylimit);
+             console.log(xt);
+             loaddemodata(myoffset,mylimit);
+          }
+           
+          
+        
+     }
+    // formdata={  offset: myoffset, limit: mylimit};
+  
+
+
+                 console.log('downscroll code');
+             } 
+
+
+            
+          });
+                $(window).scrollTop(0);
+
+       function loaddemodata(offset,limit)
+       {
+        alert(offset);
+       alert(limit);
+           formdata={  offset: offset, limit: limit};
 
   $.ajax({
+
         type: 'POST',
         url: 'https://apis.tradetipsapp.com/api/tip/getAllTipFeaturePaginationForUser',
         headers: {
           Authorization: 'Bearer '+ tokens,
            },
-        data: formdata,
+           async:false,
+        data: {  offset: offset, limit: limit},
       success: function(data) {
-       var datak = JSON.stringify(data);
+        var datak = JSON.stringify(data);
        var dataResult = JSON.parse(datak);
        // console.log(dataResult);
        var text = "" ;
@@ -738,8 +792,17 @@ function delete_stck(ID)
        var tipPrice = [];
        var stockdataa = [];
        var usernames = [];
-       for (i= 0; i< len; i ++) {
+       var initial=0;
 
+       if(offset==0)
+       {
+        initial=offset;
+       }else{
+        initial=offset-1;
+       }
+       for (i= initial; i<=limit; i ++) {
+
+                    if(dataResult[i]!=undefined){
                 stockVal.push(dataResult[i].tip.stockName);  
                 stockdataa.push(dataResult[i].tip.stockName);
                 tipId.push(dataResult[i].tip.id);  
@@ -797,6 +860,7 @@ function delete_stck(ID)
                   //console.log(date1);
                   //console.log(newdate2);
                   const stripped1 = x.replace(newdate2[4], date1);
+
          
              if(dataResult[i].tip.stockSuggestion == "Buy"){
 
@@ -816,29 +880,16 @@ function delete_stck(ID)
 
                 textboth += '<div class="tips_bx avoid_bg" data-switch-field="1" style="display:block;"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img onerror="imgError1(this);" src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId=' + dataResult[i].tip.appUser.id + '" alt="images"><div class="author_bx_txt"><h2>' + dataResult[i].tip.appUser.userName + '</h2></div></div><div class="tips_bx_amount"> <h2 class="hclass" id="flatestPrices1' + dataResult[i].tip.id + '"><span>$</span></h2><p>At Time of Tip :  <span class="hclass" id="stockkTipPrice1' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.createTipPrice).toFixed(2) +'</span><span id="changeValsfront1' + dataResult[i].tip.id + '"></span></span></div></div><div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn avoid_btn suggestion1' + dataResult[i].tip.id + '">' + dataResult[i].tip.stockSuggestion + '</span><h2>' + dataResult[i].tip.stockName + ' <span id="skComnyNames1'+ dataResult[i].tip.id +'"></span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>Entry</h3><h4 id="entrydatas1' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.entryPoint).toFixed(2) +'</h4></li><li><h3>Exit</h3><h4><span id="exitdata1' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.exitPoint).toFixed(2) +'</span></h4></li><li><h3>Stop</h3><h4 id="stopdata1' + dataResult[i].tip.id + '"><span>$</span>'+ parseFloat(dataResult[i].tip.stopPoint).toFixed(2) +'</h4></li></ul></div></div><div class="tips_bx_txt"> <p>'+ dataResult[i].tip.comment +'</p></div><div class="tips_bx_social"><ul> <li><img src="images/tips-comment-icon.png" alt="images"><a href="mentorDetails?id=' + dataResult[i].tip.id + '">' + dataResult[i].commentCount + ' Comments</a></li> <li><img id="imgstatus1' + dataResult[i].tip.id + '" alt="images"><a onclick="pinFunction1(this.id)" id="' + dataResult[i].tip.id + '" style="color: #fff;"><p id="StatusPin1' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userPinStatus + '</p>Save</a> </li><li><img id="imgLikestatus1' + dataResult[i].tip.id + '" alt="images"><a onclick="likeFunction1(this.id)" id="' + dataResult[i].tip.id + '"><span id="textvalLike1' + dataResult[i].tip.id + '">' + dataResult[i].likeCount + '</span> Likes</a><p id="StatusLike1' + dataResult[i].tip.id + '" style="display:none;">' + dataResult[i].userLikeStatus + '</p></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/tips-more-icon.png" alt="images"> More</a><div class="dropdown-menu"> <ul><li><a href="mentorDetails?id=' + dataResult[i].tip.id + '"><span><i class="fas fa-folder-open"></i></span> View Detail</a></li><li onClick="copyClipboard1(this.id)" id="'+dataResult[i].tip.id +'"><input type = "text" aria-hidden="true" style="position: absolute;left: -999em;" id="divClipboard1' +dataResult[i].tip.id+'"><span><i class="fas fa-folder-open"></i></span>Copy to Clipboard</li><li><a onclick="newhandleRemoveTipResultData(this.id)" id="' + dataResult[i].tip.id + '"><span><i class="fas fa-trash"></i></span> Remove Tip</a></li></ul></div></div></li></ul></div></div>';
              }
+           }
                  
         }
-
-
-               // console.log(stockdataa);
-              // console.log(tipId);
-
-              // var settings = {
-              //         // "async": true,
-              //         // "crossDomain": true,
-              //         "url": "https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols="+ stockdataa,
-              //         "method": "GET"
-              //       }
-
-              //       $.ajax(settings).done(function (response) {
-              //         console.log(response);
-              //       });
-
                $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ stockdataa , function(d) {
                       // console.log('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ stockdataa);
                       // console.log(d);
 
                        // var newstcokdata = [];
+
+
                      for (k= 0; k< stockdataa.length; k ++) {
                        
 
@@ -1453,15 +1504,20 @@ function delete_stck(ID)
                      }
 
                  });
+                
 
-             
-               $("#demo").append(text);
-
-               $("#tipbothdemo").append(textboth);
                
-       }
+               $(".loading-data").remove();
+              $("#demo").append(text);
+             $("#tipbothdemo").append(textboth);
+               
        
+      }
+       
+  
   });
+
+}
 
  $.ajax({
         type: 'POST',
@@ -1646,7 +1702,7 @@ function delete_stck(ID)
                                  textsboth = '<a href="aiDetails?id=' + array[0].id + '&stockName=' + array[0].stock_name + '"  id="mystocks-' + array[0].stock_name +'" target="_blank"><div class="tips_bx avoid_bg" data-switch-field="1" style="display:block;"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img src="images/ailogo.png" alt="images" style="border-radius:0px !important;"><div class="tips_bx_cmpny_name" style="color:white;"><h2><em class="only_id_use">TradeTips AI</em> <span>'+ SMA_date +'</span></h2></div></div><div class="tips_bx_amount"><h2>$'+ parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) +'</h2><p>Change &nbsp;:&nbsp;'+ (d[array[0].stock_name].quote.change > 0 ? '<span class="color_buy">'+ parseFloat(d[array[0].stock_name].quote.change).toFixed(2) +'</span>':'<span class="color_sell">'+ parseFloat(d[array[0].stock_name].quote.change).toFixed(2) +'</span>') +'</p></div></div> <div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn avoid_btn">AVOID</span> <h2><em class="only_id_use">' + array[0].stock_name + '</em> <span>'+ d[array[0].stock_name].quote.companyName +'</span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>10 Days</h3>'+(array[0].avg10days!='--' ? (array[0].avg10days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg10days).toFixed(2) +'</span></h4>' : array[0].avg10days > parseFloat(array[0].avg10days).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>') :'<h4 style="color:white;"><span>'+ array[0].avg10days+'</span></h4>')+'</li><li><h3>50 Days</h3>  '+(array[0].avg50days!='--' ?(array[0].avg50days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg50days).toFixed(2) +'</span></h4>' : array[0].avg50days> parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>') : '<h4 style="color:white;"><span>'+ array[0].avg50days+'</span></h4>')+'</li> <li><h3>200 Days</h3>  '+(array[0].avg200days!='--' ?(array[0].avg200days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg200days).toFixed(2) +'</span></h4>' : array[0].avg200days > parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>'):'<h4 style="color:white;"><span>'+ array[0].avg200days+'</span></h4>')+'</li></ul></div></div><div class="tips_bx_txt"><p>'+ array[0].news_summary +'</p></div></div></div></div></a>';
                                
                             }
-                              $("#bothdemo").append(textsboth);
+                              //$("#bothdemo").append(textsboth);
                         });
                      // console.log(array);
    
