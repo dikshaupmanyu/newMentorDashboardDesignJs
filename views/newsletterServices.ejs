@@ -351,9 +351,24 @@ $('#carousel-thumbs .carousel-item img').on('click', function(e) {
   $('#file-image').attr('src', e.target.src);
   document.getElementById('file-image').style.display= "block";
   // var src = $(e.target).attr('data-remote');
-  // // alert(src);
+  // alert(src);
   // if (src) $(this).ekkoLightbox();
+  readURLs(this);
+  // alert(readURLs(this));
 });
+
+ function readURLs(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#file-image').attr('src', e.target.src);
+      document.getElementById('file-image').style.display= "block";
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
 </script>
   <script type="text/javascript">
 
@@ -388,6 +403,7 @@ $('#carousel-thumbs .carousel-item img').on('click', function(e) {
 
 $("#file-upload").change(function() {
   readURL(this);
+  // alert(readURL(this));
 });
 
 function ImgDelete(){
@@ -405,6 +421,7 @@ $("#formoid").submit(function(event){
   var frequency = $('#frequency').val();
   var price = $('#price').val();
   var imageDetails = $('#file-image').val();
+  // alert(imageDetails);
   var file = document.getElementById("file-upload").files[0];
   // alert(file);
   var fullPath = $("#file-upload").val();    
