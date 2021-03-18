@@ -32,9 +32,9 @@ $(document).ready(function(){
   });
 
 });
-$( window ).resize(function() {
-  sidebarSlimScroll();
-});
+// $( window ).resize(function() {
+//   sidebarSlimScroll();
+// });
 
 
 // Header sticky js Start
