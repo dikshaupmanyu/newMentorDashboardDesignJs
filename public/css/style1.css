@@ -3570,16 +3570,16 @@ button:focus {
 .pckg_item {
     background: #06264D;
     border-radius: 10px;
-    padding: 18px 18px 18px;
+    /*padding: 18px 18px 18px;*/
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0px 0px 15px;
+   /* margin: 0px 0px 15px;*/
 }
 .pckg_item_left {
     display: flex;
     align-items: center;
-    width: 400px;
+   /* width: 400px;*/
 }
 .pckg_item_img img{
     width: 73px;
