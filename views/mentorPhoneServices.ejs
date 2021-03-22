@@ -453,7 +453,8 @@ $("#formoid").submit(function(event){
                 $(".successmsg").html('<span>"Your Phone Service '+dataResultp.title+' submitted successfully."</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
                setTimeout(function(){
-               window.location.reload(1);
+               // window.location.reload(1);
+               window.location.href = "/services"; 
                }, 2000);
                // window.location.reload();
 
