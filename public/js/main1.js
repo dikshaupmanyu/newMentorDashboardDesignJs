@@ -143,7 +143,7 @@ $("input[type='file']").on('change', function(e) {
     firebase.storage().ref('message_videos/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
       return snapshot.ref.getDownloadURL()
    }).then(url => {
-     console.log("Firebase storage image uploaded : ", url); 
+     console.log("Firebase storage image uploaded : ", url);
        
        
   let task = {
@@ -169,14 +169,14 @@ $("input[type='file']").on('change', function(e) {
     });
 
 
-    }); 
+    });
 
   }else if(file.type == "audio/mpeg"){
 
     firebase.storage().ref('message_audios/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
       return snapshot.ref.getDownloadURL()
    }).then(url => {
-     console.log("Firebase storage image uploaded : ", url); 
+     console.log("Firebase storage image uploaded : ", url);
        
        
   let task = {
@@ -202,7 +202,7 @@ $("input[type='file']").on('change', function(e) {
     });
 
 
-    }); 
+    });
 
   } else {
 
@@ -210,7 +210,7 @@ $("input[type='file']").on('change', function(e) {
     firebase.storage().ref('message_images/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
       return snapshot.ref.getDownloadURL()
    }).then(url => {
-     console.log("Firebase storage image uploaded : ", url); 
+     console.log("Firebase storage image uploaded : ", url);
        
        
   let task = {
@@ -236,7 +236,7 @@ $("input[type='file']").on('change', function(e) {
     });
 
 
-    }); 
+    });
 
   }
 // return firebase
@@ -264,14 +264,14 @@ $("input[type='file']").on('change', function(e) {
 //   firebase.storage().ref('message_images/').child(filename).put(blob).then(function(snapshot) {
 //     return snapshot.ref.getDownloadURL()
 //  }).then(url => {
-//    console.log("Firebase storage image uploaded : ", url); 
-//   }) 
+//    console.log("Firebase storage image uploaded : ", url);
+//   })
 // }).catch(error => {
 //   console.error(error);
 // });
 
 
-  
+ 
 });
 
 function handleDelete(id) {
@@ -335,17 +335,17 @@ function createTask(task) {
 
          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><audio controls><source src="' + task.message +'" type="audio/mpeg"></audio></div>'
 
-        
+       
       } else if(task.messageType === "video"){
 
          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><video controls style="width:100%;"><source src="' + task.message +'" type="video/mp4"></video></div>'
 
-        
+       
       } else{
 
          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><p class="message">' + task.message +'</p></div>'
 
-        
+       
       }
 
   }
@@ -392,7 +392,7 @@ function fetchTasks() {
 
             if (change.type === "added") {
                 // console.log(task);
-                
+               
                 // console.log("New city: ", change.doc.data().createdDate);
 
                 var task = change.doc.data();
@@ -451,17 +451,17 @@ function fetchTasks() {
 
               //          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><audio controls><source src="' + task.message +'" type="audio/mpeg"></audio></div>'
 
-                      
+                     
               //       } else if(task.messageType === "video"){
 
               //          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><video controls style="width:100%;"><source src="' + task.message +'" type="video/mp4"></video></div>'
 
-                      
+                     
               //       } else{
 
               //          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><p class="message">' + task.message +'</p></div>'
 
-                      
+                     
               //       }
 
               //   }
@@ -557,7 +557,7 @@ function fetchTasks() {
 // //   // li.innerHTML = reviewTemplate(doc.data())
 // //   // reviews.appendChild(li);
        
-          
+         
 // //     // });
 
 // //   });
@@ -578,7 +578,7 @@ function fetchTasks() {
 //  //  li.innerHTML = reviewTemplate(doc.data())
 //  //  reviews.appendChild(li);
        
-          
+         
 //  //    });
 
 //  //  });
@@ -642,9 +642,57 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
   // var toyear=new Date(createdDate).getFullYear();
   // var original_date=tomonth+'/'+todate+'/'+toyear;
   // alert(original_date);
+  //console.log(createdDate);
+                const date = new Date(createdDate); //new Date(createdDate).toDateString();
+                  //console.log(date);
+                var options = {year: "numeric", month: "long", day: "numeric"};
+                var newdate = date.toGMTString('en-US', options);  
+                  //console.log(newdate);
+                const stripped = newdate.replace(/GMT/g, 'EST');
+                  //console.log(stripped);
+                  // alert(date);
+                var newdate1 = stripped.toString(stripped);  
+                var newdate2 = newdate1.split(/(\s+)/);
+                 newdate2.splice(11, 18);
+                 newdate2.splice(0, 2);
+                 newdate2.splice(3,3);
+                  //console.log(newdate2);
+                 function moveArrayItemToNewIndex(arr, old_index, new_index) {
+                 if (new_index >= arr.length) {
+                      var k = new_index - arr.length + 1;
+                      while (k--) {
+                          arr.push(undefined);
+                      }
+                  }
+                 arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+                 return arr;
+                 };
 
-  const date = new Date(createdDate).toDateString();
-  // alert(date);
+                moveArrayItemToNewIndex(newdate2, 0, 2);
+                var result1 = moveArrayItemToNewIndex(newdate2, 0, 2);
+                //console.log(result1);
+                result1.splice(1, 0, ' ');
+                var newdate3 = result1.toString(result1);
+                var result = newdate3.replace(/,/g, "");
+                //console.log(result);
+                x = result.substring(0, 6) + "," + result.substring(6, result.length);
+                //console.log(x);
+                function formatAMPM(date) {
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var ampm = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0'+minutes : minutes;
+                    var strTime = hours + ':' + minutes + ' ' + ampm;
+                    return strTime;
+                  }
+
+                  var date1 = formatAMPM(date);
+                  //console.log(date1);
+                  //console.log(newdate2);
+                  const stripped1 = x.replace(newdate2[4], date1);
+                  //console.log(stripped1);
    
    if(loggedInVal == userId){
 
@@ -660,7 +708,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                      <small class="left text-muted" style = "display:inline-block;"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                   <p class='message'>
@@ -680,7 +728,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                     <p class='message'><img src="${message}" class="img-responsive" style="width:100%;"/></p>
@@ -698,7 +746,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                  <p class='message'><video controls style="width:100%;"><source src="${message}" type="video/mp4"></video></p>
@@ -715,7 +763,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                 <p class='message'><audio controls><source src="${message}" type="audio/mpeg"></audio></p>              </div>
@@ -740,7 +788,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                   <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
               <p class='message' style="color: #000 !important">
@@ -759,10 +807,10 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                   <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
-            
+           
              <p class='message' style="color: #000 !important"><video controls style="width:100%;"><source src="${message}" type="video/mp4"></video></p>
 
           </div>
@@ -778,7 +826,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                   <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
               <p class='message' style="color: #000 !important"><img src="${message}" class="img-responsive" style="width:100%;"/></p>
@@ -796,11 +844,11 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                   <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
-              
-              <p class='message' style="color: #000 !important"><audio controls><source src="${message}" type="audio/mpeg"></audio></p>             
+             
+              <p class='message' style="color: #000 !important"><audio controls><source src="${message}" type="audio/mpeg"></audio></p>            
 
           </div>
       </li>
