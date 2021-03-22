@@ -585,7 +585,7 @@ $(".scroller-dash-left").scroll(function() {
     if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
 
           checkdval= $('input.switch-field-radio').filter(':checked').val();
-              alert(checkdval);
+              // alert(checkdval);
        if(mylimit<10000)
      {
 
@@ -595,9 +595,9 @@ $(".scroller-dash-left").scroll(function() {
             myoffset= mylimit+1;
             mylimit=xt*50;
 
-            console.log(myoffset);
-             console.log(mylimit);
-             console.log(xt);
+            // console.log(myoffset);
+             // console.log(mylimit);
+             // console.log(xt);
             // alert(myoffset);  
               //   alert(mylimit);
               if(checkdval==1 || checkdval==2)
@@ -1366,7 +1366,14 @@ function loadAi(offset,limit){
        
        var lens = dataResults.length;
        // alert(lens);
+       var initial=0;
          var stocklistdataF = [];
+          if(offset==0)
+           {
+            initial=offset;
+           }else{
+            initial=offset-1;
+           }
           if(dataResults.length > 0){
                let deletdata = [];
                 let users = [];
@@ -1377,7 +1384,7 @@ function loadAi(offset,limit){
                     deletdata.push(dataResults[i].id);                  
                 }
                 let resultSet = [];
-                for (i=0; i < users.length; i++){
+                for (i=initial; i < users.length; i++){
                   var symbol = users[i];
                   // console.log(symbol);
                   // var formdata = {"stockSymbol" : symbol};
