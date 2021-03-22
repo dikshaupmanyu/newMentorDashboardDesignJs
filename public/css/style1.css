@@ -43,6 +43,18 @@ body {
     background: #000D31;
     background: radial-gradient(circle, rgba(9, 26, 74, 1) 0%, rgba(0, 13, 49, 1) 100%);
 }
+body:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000D31;
+    background: radial-gradient(circle, rgba(9, 26, 74, 1) 0%, rgba(0, 13, 49, 1) 100%);
+    z-index: -1;
+}
 
 h1,
 h2,
@@ -2046,6 +2058,10 @@ button:focus {
 }
 .review_bx_head {
     margin: 0px 0px 18px;
+}
+.review_bx_txt .author_tag{
+    float: right;
+    margin-top: 2px;
 }
 .review_bx_txt p {
     font-size: 16px;
@@ -4119,3 +4135,46 @@ body .only_id_use{
 .package_items_flex  .pckg_item_desc p{
     color: #778396;   
 }
+
+@media (min-width: 992px){
+    .scroller-dash-left,
+    .scroller-dash-right,
+    .scroller-dash-both{
+        padding-right: 5px;
+        max-height: 500px;
+        max-height: calc(100vh - 170px);
+        overflow-y: auto;
+    }
+}
+@media (min-width: 1600px){
+    .scroller-dash-left,
+    .scroller-dash-right,
+    .scroller-dash-both{
+        max-height: calc(100vh - 250px);
+    }
+}
+
+/* width */
+.scrollbar-css::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 20px;
+  }
+  
+  /* Track */
+  .scrollbar-css::-webkit-scrollbar-track {
+    background: #2b3f75; 
+    border-radius: 20px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+   
+  /* Handle */
+  .scrollbar-css::-webkit-scrollbar-thumb {
+    background: #021036; 
+    border-radius: 20px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  }
+  
+  /* Handle on hover */
+  /* .scrollbar-css::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  } */
