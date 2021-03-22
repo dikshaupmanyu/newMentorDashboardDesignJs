@@ -72,11 +72,12 @@
                 <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0" style="color: white;">
                   <thead>
                     <tr>
-                      <th>S.No</th>
+                      <!-- <th>S.No</th> -->
+                      <th>Service Name</th>
                       <th>Image</th>
                       <th>Title</th>
                       <th>Description</th>
-                      <th>Service Name</th>
+                      
                       <th>Price</th>
                       <th>Action</th>
                     </tr>
@@ -98,10 +99,11 @@
                         </div>
                         <div class="welcome_modal_btm">
                          <!--  <h3>Below is your "list of services" screen. Services are any methods that you use to sell your investing advice to others, (such as running a newsletter, posting subscriber only videos, holding virtual classes, etc.). Any investing advice service you have can be posted to the app here, which will then appear on TradeTips as your own storefront.You set your own prices, and you are in control of what your customers see and when.</h3> -->
-                          <h3>1. Click on "Create New Service" & choose your service(s).</h3> 
+                          <h3>1. Click on "Create New Service" & choose your service.</h3> 
                           <h3>2 Enter details, subscription schedule, and price.</h3>
-                          <h3>3. Choose an image for your service and publish</h3>
-                          <p>Your published services storefront will appear on your TradeTips app profile for sharing and promoting what you do. We handle all the customer billing and make sure you get paid directly for your signups.</p>
+                          <h3>3. Choose an image for your service and publish.</h3>
+                          <p>Publishing a service opens your personal storefront on the TradeTips app where users pay you to help them invest.</p>
+                          <p>The first step is to let them know what services or products you provide, and TradeTips will handle all the billing for you.</p>
                           <button class="btn cmn_btn btn_primary" data-dismiss="modal">Lets get Started</button>
                         </div>
                       </div>
@@ -212,9 +214,9 @@
                 let newtip = [];
                   for(var i=0; i< dataResult.length; i++) {                   
                    
-                  newtip += '<tr><td>'+ (i + 1) +'</td><td><div class="pckg_item"><div class="pckg_item_left"><div class="pckg_item_img"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div></td><td><div class="pckg_item_txt"><p>'+ dataResult[i].title +'</p></div></td><td><div class="pckg_item_desc"><p>'+ dataResult[i].descriptionOne +'</p></div></td><td><div class="pckg_item_desc"><p>'+ (dataResult[i].serviceTypeMaster.title)
+                  newtip += '<tr><td><div class="pckg_item_desc"><p>'+ (dataResult[i].serviceTypeMaster.title)
                    // + (dataResult[i].serviceTypeId == "b5d735b0-92ef-45d3-8f6e-e7adc7d9a8a8" ? ' 1-1 Chat Service ' : '' ) + (dataResult[i].serviceTypeId == "b9259b4f-4529-4aaa-b223-95d711ecb969" ? ' Video Channel Subscription ' : '' ) + (dataResult[i].serviceTypeId == "668b8486-64dd-43b7-9d24-563944009ebe" ? ' Live Chat Service ' : '' ) + (dataResult[i].serviceTypeId == "0f27f77e-1277-426d-83fa-192ae12165ba" ? ' Mentor Phone Group Service ' : '' ) + (dataResult[i].serviceTypeId == "6faa1011-33a7-4b71-b001-e20cebdaed22" ? ' Webinar Service ' : '' ) + (dataResult[i].serviceTypeId == "b098c61a-e451-4df7-a5d5-6ad88e096c3b" ? ' Books Sale ' : '' ) + (dataResult[i].serviceTypeId == "479a3b69-ed95-43c9-984a-593f1e519dc0" ? ' Investing Class Service ' : '' )
-                    + '</p></div></td><td><div class="pckg_item_right"><ul><li><h3> <span>$'+ dataResult[i].price +'</span></h3></li></ul><td><ul><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><span><i class="fas fa-pencil-alt"></i></span><a href="/editService?id='+ dataResult[i].id +'&ids2='+ dataResult[i].serviceTypeId +'&sname=Newsletter">Edit Services</a></li><li><span><i class="far fa-trash-alt"></i></span><a onclick="DeleteService(this.id)" id="'+ dataResult[i].id +'"> Delete Services</a></li></ul></div></div></li></ul></div></div></td></tr>';
+                    + '</p></div></td><td><div class="pckg_item"><div class="pckg_item_left"><div class="pckg_item_img"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div></td><td><div class="pckg_item_txt"><p>'+ dataResult[i].title +'</p></div></td><td><div class="pckg_item_desc"><p>'+ dataResult[i].descriptionOne +'</p></div></td><td><div class="pckg_item_right"><ul><li><h3> <span>$'+ dataResult[i].price +'</span></h3></li></ul><td><ul><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><span><i class="fas fa-pencil-alt"></i></span><a href="/editService?id='+ dataResult[i].id +'&ids2='+ dataResult[i].serviceTypeId +'&sname=Newsletter">Edit Services</a></li><li><span><i class="far fa-trash-alt"></i></span><a onclick="DeleteService(this.id)" id="'+ dataResult[i].id +'"> Delete Services</a></li></ul></div></div></li></ul></div></div></td></tr>';
 
                   }
                    $("#newsletterServices").append(newtip);
