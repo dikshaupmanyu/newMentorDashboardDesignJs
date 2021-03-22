@@ -148,13 +148,13 @@ ul.search-list li a:hover{
        <div class="tips_boxes" id="bothdemo">
            
          </div>
-
+                  <div class="tips_boxes" id="AIdemo">
+   
+                </div>
                 <div class="tips_boxes" id="tipbothdemo">
    
                 </div>
-                <div class="tips_boxes" id="AIdemo">
-   
-                </div>
+                
    
                 <div class="tips_boxes" id="demo">
    
@@ -502,8 +502,9 @@ function delete_stck(ID)
          var  mylimit=50;
          //alert(myoffset);  
                 // alert(mylimit);
+                loadAi(myoffset,mylimit);
           loaddemodata(myoffset,mylimit);
-         loadAi(myoffset,mylimit);
+         
 
         /* $(window).scroll(function() {
    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
@@ -583,6 +584,8 @@ function delete_stck(ID)
 $(".scroller-dash-left").scroll(function() {
     if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
 
+          checkdval= $('input.switch-field-radio').filter(':checked').val();
+              alert(checkdval);
        if(mylimit<10000)
      {
 
@@ -597,8 +600,11 @@ $(".scroller-dash-left").scroll(function() {
              console.log(xt);
             // alert(myoffset);  
               //   alert(mylimit);
+              if(checkdval==1 || checkdval==2)
+               loadAi(myoffset,mylimit);
+               if(checkdval==1 || checkdval==3)  
             loaddemodata(myoffset,mylimit);
-            loadAi(myoffset,mylimit);
+            
           }
            
           
@@ -608,50 +614,7 @@ $(".scroller-dash-left").scroll(function() {
     } 
     
 });
-/*
-        $(".scroller-dash-left").on("scroll",function() {
-              
-            
-          var winsc=$(".scroller-dash-left").scrollTop();
-          var winsch=$(".scroller-dash-left").height();
-          var doch=$(document).height();
-             if(winsc + winsch >  doch- 100)
-             { 
-            
-       console.log(xt);
-       
-    
-     if(mylimit<10000)
-     {
 
-          xt+= 1;
-          if(xt!=0)
-          {
-            myoffset= mylimit+1;
-            mylimit=xt*50;
-
-            console.log(myoffset);
-             console.log(mylimit);
-             console.log(xt);
-            // alert(myoffset);  
-              //   alert(mylimit);
-            loaddemodata(myoffset,mylimit);
-            loadAi(myoffset,mylimit);
-          }
-           
-          
-        
-     }
-    // formdata={  offset: myoffset, limit: mylimit};
-  
-
-
-                 console.log('downscroll code');
-             } 
-
-
-            
-          });*/
       
                $(window).on('unload', function() {
                $(window).scrollTop(0);
@@ -968,12 +931,6 @@ $(".scroller-dash-left").scroll(function() {
 
                                  /////////////////////////entry data/////////////////////////
 
-                                // alert(newwdata);
-                                // alert(stockkkentrys);
-
-                                 
-                 
-                                // alert(suggestionslist);
 
                                 if(stockkkentrys.replace("$","") <= newwdata.replace("$","") &&  suggestionslist == "Buy"){
 
@@ -1002,30 +959,6 @@ $(".scroller-dash-left").scroll(function() {
 
                                 }
 
-                                // if(stockkkentrys1.replace("$","") <= newwdata1.replace("$","") &&  suggestionslist1 == "Buy"){
-
-                                //    alert("buy upmanyu");
-
-                                //   // $("#entrydata1"+ tipId[k]).css("color" , "#09b598");
-                                //   $("#entrydatas1"+ tipId[k]).css("color" , "#09b598");
-
-                               
-                                // } else if(stockkkentrys1.replace("$","") >= newwdata1.replace("$","") && suggestionslist1 == "Sell"){
-
-                                //    alert("sell upmanyu");
-
-                                //     // $("#entrydata1"+ tipId[k]).css("color" , "#09b598");
-                                //     $("#entrydatas1"+ tipId[k]).css("color" , "#09b598");
-
-                                // }else{
-
-                                //    alert("avoid upmanyu");
-
-                                //      // $("#entrydata1"+ tipId[k]).css("color" , "white");
-                                //      $("#entrydatas1"+ tipId[k]).css("color" , "black");
-
-                                // }                                
-
 
                                 //////////////////exit data/////////////////////////////////////////
 
@@ -1052,27 +985,6 @@ $(".scroller-dash-left").scroll(function() {
 
                                 }
 
-                                //  if(stockkkentrys1.replace("$","") <= newwdata1.replace("$","") &&  suggestionslist1 == "Buy"){
-
-
-                                //   $("#exitdata1"+ tipId[k]).css("color" , "#09b598");
-                                //   // $("#exitdatas1"+ tipId[k]).css("color" , "#09b598");
-
-                               
-                                // } else if(stockkkentrys1.replace("$","") >= newwdata1.replace("$","") && suggestionslist1 == "Sell"){
-
-
-                                //     $("#exitdata1"+ tipId[k]).css("color" , "#09b598");
-                                //     // $("#exitdatas1"+ tipId[k]).css("color" , "#09b598");
-
-                                // }else{
-
-
-                                //      $("#exitdata1"+ tipId[k]).css("color" , "black");
-                                //      // $("#exitdatas1"+ tipId[k]).css("color" , "black");
-
-                                // }
-
 
                                 /////////////////////stop data//////////////////////////////  
      
@@ -1098,29 +1010,6 @@ $(".scroller-dash-left").scroll(function() {
 
                                 }
 
-
-                                //  if(suggestionslist1 == "Buy" && newwdata1.replace("$","") < stockkkPricess1.replace("$","") && newwdata1.replace("$","") <=  stockkkstop1.replace("$","")){
-
-
-                                //   $("#stopdata1"+ tipId[k]).css("color" , "red");
-                                //   // $("#stopdatas1"+ tipId[k]).css("color" , "red");
-
-                               
-                                // } else if(suggestionslist1 == "Sell" && stockkkPricess1.replace("$","") < newwdata1.replace("$","") && newwdata1.replace("$","") >=  stockkkstop1.replace("$","")){
-
-
-                                //     $("#stopdata1"+ tipId[k]).css("color" , "black");
-                                //     // $("#stopdatas1"+ tipId[k]).css("color" , "white");
-
-                                // }else{
-
-
-                                //      $("#stopdata1"+ tipId[k]).css("color" , "black");
-                                //      // $("#stopdatas1"+ tipId[k]).css("color" , "white");
-
-                                // }
-
-                             // console.log(stockdataa[k]);  
 
                           } else {
 
@@ -1553,7 +1442,7 @@ function loadAi(offset,limit){
                                  textsboth = '<a href="aiDetails?id=' + array[0].id + '&stockName=' + array[0].stock_name + '"  id="mystocks-' + array[0].stock_name +'" target="_blank"><div class="tips_bx avoid_bg" data-switch-field="1" style="display:block;"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img src="images/ailogo.png" alt="images" style="border-radius:0px !important;"><div class="tips_bx_cmpny_name" style="color:white;"><h2><em class="only_id_use">TradeTips AI</em> <span>'+ SMA_date +'</span></h2></div></div><div class="tips_bx_amount"><h2>$'+ parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) +'</h2><p>Change &nbsp;:&nbsp;'+ (d[array[0].stock_name].quote.change > 0 ? '<span class="color_buy">'+ parseFloat(d[array[0].stock_name].quote.change).toFixed(2) +'</span>':'<span class="color_sell">'+ parseFloat(d[array[0].stock_name].quote.change).toFixed(2) +'</span>') +'</p></div></div> <div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn avoid_btn">AVOID</span> <h2><em class="only_id_use">' + array[0].stock_name + '</em> <span>'+ d[array[0].stock_name].quote.companyName +'</span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>10 Days</h3>'+(array[0].avg10days!='--' ? (array[0].avg10days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg10days).toFixed(2) +'</span></h4>' : array[0].avg10days > parseFloat(array[0].avg10days).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg10days).toFixed(2)+'</span></h4>') :'<h4 style="color:white;"><span>'+ array[0].avg10days+'</span></h4>')+'</li><li><h3>50 Days</h3>  '+(array[0].avg50days!='--' ?(array[0].avg50days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg50days).toFixed(2) +'</span></h4>' : array[0].avg50days> parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg50days).toFixed(2)+'</span></h4>') : '<h4 style="color:white;"><span>'+ array[0].avg50days+'</span></h4>')+'</li> <li><h3>200 Days</h3>  '+(array[0].avg200days!='--' ?(array[0].avg200days < parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ? '<h4 style="color:#09b598;"><span>>$'+ parseFloat(array[0].avg200days).toFixed(2) +'</span></h4>' : array[0].avg200days > parseFloat(d[array[0].stock_name].quote.latestPrice).toFixed(2) ?'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>':'<h4 style="color:#dc3545;"><span><$'+parseFloat(array[0].avg200days).toFixed(2)+'</span></h4>'):'<h4 style="color:white;"><span>'+ array[0].avg200days+'</span></h4>')+'</li></ul></div></div><div class="tips_bx_txt"><p>'+ array[0].news_summary +'</p></div></div></div></div></a>';
                                
                             }
-                              $("#bothdemo").append(textsboth);
+                             // $("#bothdemo").append(textsboth);
                         });
                      // console.log(array);
    
@@ -2122,18 +2011,11 @@ function likeFunction1(e) {
     //alert(document.getElementById('MY_'+comp).offsetWidth);
     //alert(addbutton);
     //alert(mywidth);
-    if(action=='plus')
-    {
-     //  elem=parseInt(mypadding[0],10)+document.getElementById('MY_'+comp).offsetWidth;
-       //elem=parseInt(mypadding[0],10)+document.getElementById('MY_'+comp).offsetWidth;
-     }else{
-       //elem=parseInt(mypadding[0],10)-document.getElementById('MY_'+comp).offsetWidth+2;
-       //elem=parseInt(mypadding[0],10)-document.getElementById('MY_'+comp).offsetWidth+2;
-     }
+    
     elem= multiwidth;
         // alert(multiwidth);
          document.getElementById('multi-items').innerHTML.replace(/&nbsp;/g,'');
-    if(elem>mywidth)
+    if(elem>mywidth && action=='plus')
     {
       //alert('not');
        document.getElementById("search-stock").blur();
@@ -2146,6 +2028,16 @@ function likeFunction1(e) {
         }  
         lineno++;
     }
+
+    if(action=='minus')
+    {
+      elem=parseInt(mypadding[0],10)-document.getElementById('MY_'+comp).offsetWidth;
+     //  elem=parseInt(mypadding[0],10)+document.getElementById('MY_'+comp).offsetWidth;
+       //elem=parseInt(mypadding[0],10)+document.getElementById('MY_'+comp).offsetWidth;
+     }else{
+       //elem=parseInt(mypadding[0],10)-document.getElementById('MY_'+comp).offsetWidth+2;
+       //elem=parseInt(mypadding[0],10)-document.getElementById('MY_'+comp).offsetWidth+2;
+     }
 
          /*if(300<elem)
          {
