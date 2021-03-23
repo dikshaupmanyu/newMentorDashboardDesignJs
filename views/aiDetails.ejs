@@ -290,42 +290,8 @@ function handleError(image) {
    
                   // document.getElementById("stoppoint").textContent = ">$"+parseFloat(dataResult[0].avg50days).toFixed(2);
                   // document.getElementById("exitpoint").textContent = ">$"+parseFloat(dataResult[0].avg200days).toFixed(2);
-                   document.getElementById("sectorname").textContent = dataResult[0].sector_name + " Sector News" ;
-                  document.getElementById("sectornews").textContent =" Sentiment based on " + dataResult[0].sector_news + " News sources" ;
-                  document.getElementById("sectorsentiment").textContent = dataResult[0].news_sector_sentiment ;
-                   document.getElementById("srcname1").textContent = dataResult[0].news_source_name ;
-                   document.getElementById("srcdate1").textContent = dataResult[0].news_publish_date ;
-                   var section1 = "<a href= "+dataResult[0].sector_news_url+" target='_blank'>"+dataResult[0].news_title+"</a>";
-                   document.getElementById("srcdetail1").innerHTML = section1 ;
-
-                   document.getElementById("srcsumarry1").textContent = dataResult[0].news_summary ;
-                   document.getElementById("srcname2").textContent = dataResult[1].news_source_name ;
-                   document.getElementById("srcdate2").textContent = dataResult[1].news_publish_date ;
-                    var section2 = "<a href= "+dataResult[1].sector_news_url+" target='_blank'>"+dataResult[1].news_title+"</a>";
-
-                   document.getElementById("srcdetail2").innerHTML = section2 ;
-
-                   document.getElementById("srcsumarry2").textContent = dataResult[1].news_summary ;
-                    document.getElementById("srcname3").textContent = dataResult[2].news_source_name ;
-                    document.getElementById("srcdate3").textContent = dataResult[2].news_publish_date ;
-                    var section3 = "<a href= "+dataResult[2].sector_news_url+" target='_blank'>"+dataResult[2].news_title+"</a>";
-
-                   document.getElementById("srcdetail3").innerHTML = section3 ;
-                   document.getElementById("srcsumarry3").textContent = dataResult[2].news_summary ;
-                     document.getElementById("srcname4").textContent = dataResult[3].news_source_name ;
-                     document.getElementById("srcdate4").textContent = dataResult[3].news_publish_date ;
-                    var section4 = "<a href= "+dataResult[3].sector_news_url+" target='_blank'>"+dataResult[3].news_title+"</a>";
-
-                   document.getElementById("srcdetail4").innerHTML = section4 ;
-                   document.getElementById("srcsumarry4").textContent = dataResult[3].news_summary ;
-                    document.getElementById("srcname5").textContent = dataResult[4].news_source_name ;
-                   var section5 = "<a href= "+dataResult[4].sector_news_url+" target='_blank'>"+dataResult[4].news_title+"</a>";
-
-                   document.getElementById("srcdetail5").innerHTML = section5 ;
-                   document.getElementById("srcsumarry5").textContent = dataResult[4].news_summary ;
-                   document.getElementById("srcdate5").textContent = dataResult[4].news_publish_date ;
-                 
-                   var date = dataResult[0].sma_generation_date;
+                  function datechange(publish_date){
+                   var date = publish_date
                    const stripped = date.replace(/EST-0500/g, 'EST');
                    //console.log(stripped);
                    var newdate2 = stripped .split(/(\s+)/);
@@ -335,9 +301,50 @@ function handleError(image) {
               
                     var newdate3 = newdate2.toString(newdate2);
                     var result = newdate3.replace(/,/g, "");
-                    //console.log(result);
-                    SMA_date = result.substring(0, 6) + ", " + result.substring(6, result.length);
-                    //console.log(SMA_date);
+                    var SMA_date = result.substring(0, 6) + ", " + result.substring(6, result.length);                
+                    return SMA_date;
+                  }
+
+                   document.getElementById("sectorname").textContent = dataResult[0].sector_name + " Sector News" ;
+                  document.getElementById("sectornews").textContent =" Sentiment based on " + dataResult[0].sector_news + " News sources" ;
+                  console.log(dataResult[0]);
+                  console.log(dataResult[0].news_sector_sentiment);
+                  if (dataResult[0].news_sector_sentiment != 'null'){
+                  document.getElementById("sectorsentiment").textContent = dataResult[0].news_sector_sentiment ;}
+
+                   document.getElementById("srcname1").textContent = dataResult[0].news_source_name ;
+                   document.getElementById("srcdate1").textContent = datechange(dataResult[0].news_publish_date);
+                   var section1 = "<a href= "+dataResult[0].sector_news_url+" target='_blank'>"+dataResult[0].news_title+"</a>";
+                   document.getElementById("srcdetail1").innerHTML = section1 ;
+
+                   document.getElementById("srcsumarry1").textContent = dataResult[0].news_summary ;
+                   document.getElementById("srcname2").textContent = dataResult[1].news_source_name ;
+                   document.getElementById("srcdate2").textContent = datechange(dataResult[1].news_publish_date);
+                    var section2 = "<a href= "+dataResult[1].sector_news_url+" target='_blank'>"+dataResult[1].news_title+"</a>";
+
+                   document.getElementById("srcdetail2").innerHTML = section2 ;
+
+                   document.getElementById("srcsumarry2").textContent = dataResult[1].news_summary ;
+                    document.getElementById("srcname3").textContent = dataResult[2].news_source_name ;
+                    document.getElementById("srcdate3").textContent = datechange(dataResult[2].news_publish_date);
+                    var section3 = "<a href= "+dataResult[2].sector_news_url+" target='_blank'>"+dataResult[2].news_title+"</a>";
+
+                   document.getElementById("srcdetail3").innerHTML = section3 ;
+                   document.getElementById("srcsumarry3").textContent = dataResult[2].news_summary ;
+                     document.getElementById("srcname4").textContent = dataResult[3].news_source_name ;
+                     document.getElementById("srcdate4").textContent = datechange(dataResult[3].news_publish_date);
+                    var section4 = "<a href= "+dataResult[3].sector_news_url+" target='_blank'>"+dataResult[3].news_title+"</a>";
+
+                   document.getElementById("srcdetail4").innerHTML = section4 ;
+                   document.getElementById("srcsumarry4").textContent = dataResult[3].news_summary ;
+                    document.getElementById("srcname5").textContent = dataResult[4].news_source_name ;
+                   var section5 = "<a href= "+dataResult[4].sector_news_url+" target='_blank'>"+dataResult[4].news_title+"</a>";
+
+                   document.getElementById("srcdetail5").innerHTML = section5 ;
+                   document.getElementById("srcsumarry5").textContent = dataResult[4].news_summary ;
+                   document.getElementById("srcdate5").textContent = datechange(dataResult[4].news_publish_date);
+                 
+                   var SMA_date = datechange(dataResult[0].sma_generation_date);
                     document.getElementById("datetime").textContent = SMA_date;
                   
                  //  document.getElementById("suggestion").textContent = dataResult.tip.stockSuggestion;

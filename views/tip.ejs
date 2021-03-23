@@ -1,9 +1,26 @@
+<style type="text/css">
+  @media (min-width: 992px){
 
+    .tipscroller-dash-right
+    {
+        padding-right: 5px;
+                overflow-y: auto;
+    }
+}
+@media (min-width: 1600px){
+
+    .tipscroller-dash-right
+    {
+       /* max-height: calc(100vh - 250px);*/
+    }
+}
+
+</style>
 
     <%- include partials/innerheader %>
 
       <div class="app_main">
-                  
+                 
             <%- include partials/innersidebar %>
         <div class="app_content">
           <div class="dsbrd_container">
@@ -19,7 +36,7 @@
             </div>
           </div>
         </div> -->
-        <div class="post_new_tips_area">
+        <div class="post_new_tips_area tipscroller-dash-right scrollbar-css" style="height: 678px;">
           <div class="post_tip_head">
             <h2>Post New Tips</h2>
           </div>
@@ -78,7 +95,7 @@
                        <input type="text" class="form-control" id="setStop" placeholder="Set Stop" readonly="readonly" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
                     </div>
                   </div>
-                  
+                 
                 </div>
               </div>
               <div class="post_new_tip_bx post_new_tip_bx4">
@@ -112,8 +129,8 @@
           </div>
          <!--  <span><a href="#">Manage</a></span> -->
         </div>
-        <div class="tips_wtlist_items" id="demos">
-          
+        <div class="tips_wtlist_items scroller-dash-right scrollbar-css" id="demos">
+         
         </div>
       </div>
     </div>
@@ -146,7 +163,7 @@
         data: formdata,
       success: function(datas) {
        var dataks = JSON.stringify(datas);
-       var dataResults = JSON.parse(dataks); 
+       var dataResults = JSON.parse(dataks);
        // console.log(dataResults);
        var texts = "" ;
        
@@ -160,33 +177,35 @@
                 let users = [];
                 for(var i= dataResults.length - 1; i >= 0 ; i--){
 
-                    users.push(dataResults[i].stockSymbol); 
-                    deletdata.push(dataResults[i].id);                   
+                    users.push(dataResults[i].stockSymbol);
+                    deletdata.push(dataResults[i].id);                  
 
                 }
 
                 $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ users , function(r) {
-                
+               
                    for (k= 0; k< users.length; k ++) {
+                    if(r[users[k]] != undefined){
 
                     texts += '<div class="tips_wtlist_item"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>')+'</div></div>';
 
 
                    }
+                 }
 
-    
+   
                    $("#demos").append(texts);  
 
-                }); 
+                });
 
-                  
+                 
 
-              } 
+              }
 
-            
-            
-          
-      
+           
+           
+         
+     
        }
        
   });
@@ -201,7 +220,7 @@
   //       data: formdata,
   //     success: function(datastip) {
   //      var datatips = JSON.stringify(datastip);
-  //      var dataResultTips = JSON.parse(datatips); 
+  //      var dataResultTips = JSON.parse(datatips);
   //      // alert(dataResultTips.length);
   //     // alert(dataResultTips.length-5);
   //      var tipslist = "" ;
@@ -219,13 +238,13 @@
 
   //                  }
 
-    
+   
   //                  $("#demoTipLists").append(tipslist);  
-                  
+                 
 
-  //             }     
-          
-      
+  //             }    
+         
+     
   //      }
        
   // });
@@ -249,12 +268,12 @@
   var timeFrame = "15 days";
   var stockSuggestion;
   var createTipPrice = $('#createprice').val();
-  
+ 
 //   $("input[type=file]").on("change", function() {
 //   $("[for=file]").html(this.files[0].name);
 //   alert(URL.createObjectURL(this.files[0]));
 // });
-  
+ 
   var file = document.getElementById("file").files[0];
   // alert(file);
   var fullPath = $("#file").val();    
@@ -282,7 +301,7 @@
 
       formdata.append("stockSuggestion", "Sell");
 
-  
+ 
     } else {
 
       formdata.append("stockSuggestion", "Avoid");
@@ -329,7 +348,7 @@
 
                 var datak = JSON.stringify(result);
                 // alert(datak);
-                var dataResultp = JSON.parse(datak); 
+                var dataResultp = JSON.parse(datak);
                 // alert(dataResultp.stockName);
                 alert("Your tip for "+dataResultp.stockName+" was submitted successfully");
                 window.location.reload();
@@ -376,14 +395,14 @@ $(document).ready(function(){
            var dataResult = JSON.parse(datak);
            var len = dataResult.length;
            // alert(len);
-          
-      
+         
+     
             // $("#suggesstion-box").show();
               $("#suggesstion-box").css("overflow-y", "scroll");
               $("#suggesstion-box").css("height", "200px");
               $("#suggesstion-box").empty();
 
-                  
+                 
                   clearTimeout(timer);
              
                  for( var i = 0; i<len; i++){
@@ -402,7 +421,7 @@ $(document).ready(function(){
                     $(':radio[name="symbolName"]').change(function(){
                         $(this).parent('li').addClass('selected').siblings().removeClass('selected');
 
-                    }).filter(':checked').change();   
+                    }).filter(':checked').change();  
 
 
                 }
@@ -435,7 +454,7 @@ $(document).ready(function(){
                                  document.getElementById("setStop").value = JSON.stringify(data[dataset].quote.latestPrice);
                                  document.getElementById("setExit").value = JSON.stringify(data[dataset].quote.latestPrice);
                                   document.getElementById("createprice").value = JSON.stringify(data[dataset].quote.latestPrice);
-                              
+                             
                             }
 
                           });
