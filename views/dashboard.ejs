@@ -447,10 +447,13 @@ $(document).ready(function(){
                    }
    
                    //$("#demos").append(texts);  
+                   $("#search-stock").css('padding-left','0');
+                   $("#search-stock").attr('placeholder','Enter Symbol or Company Name');
                    $("#demos").prepend(texts);
                    $('.magicsearch-hidden').val('');
                    myarr.splice(0, myarr.length);
                    myarrdata.splice(0, myarrdata.length);
+                   mydeletedata.splice(0, mydeletedata.length);
                    companies.splice(0, companies.length);
                    $('.multi-items').html('');
                    $(".successmsg").html('<span>Company Added Successfully</span>');
