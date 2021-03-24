@@ -466,7 +466,8 @@ $("#file-upload").change(function() {
                  console.log(datak);
                 var dataResultp = JSON.parse(datak);
                 // alert(dataResultp.title);
-                alert("Your Image uploaded successfully");
+                $(".successmsg").html('<span>Your Image uploaded successfully</span>');
+           setTimeout(function(){$(".successmsg").empty()}, 3000);
                 //window.location.reload();
 
        })

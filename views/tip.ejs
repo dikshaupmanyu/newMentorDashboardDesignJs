@@ -15,6 +15,34 @@
     }
 }
 
+.load-wrapp-list
+{
+    float: left;
+  width: 100%;
+  margin: 0px 10px 10px 0;
+  padding: 9px 173px 20px;
+  border-radius: 5px;
+  text-align: center;
+
+}
+
+.ring-1 {
+  width: 10px;
+  height: 10px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 7px dashed #ccc;
+  border-radius: 100%;
+}
+
+.load-4 .ring-1 {
+  animation: loadingD 1.5s 0.3s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
+}
+
+.l-4 {
+  animation-delay: 0.84s;
+}
+
 </style>
 
     <%- include partials/innerheader %>
@@ -27,8 +55,7 @@
 
    <div class="dashboard_wrapper mentordashboard1_wrapper row">
       <div class="dashboard_wrapper_left col">
-       <!--  <div class="post_recent_tips_area">
-          <div class="post_tip_head">
+       <!--  <div class="post_recent_tips_area          <div class="post_tip_head">
             <h2>Recent Tips</h2>
           </div>
           <div class="post_tip_recent_boxes">
@@ -129,7 +156,24 @@
           </div>
          <!--  <span><a href="#">Manage</a></span> -->
         </div>
+                      
+                <br>
+                <div class="tips_wtlist_items">
+                  <div class="head_of_tips_wtlist_items tips_wtlist_item">
+                   <div class="left_wti">Company Name</div>
+                   <div class="center_wti">Price</div>
+                   <div class="center_wti">Change</div>
+                   <!-- <div class="center_wti">Action</div> -->
+                  </div>
+                </div>
+                
         <div class="tips_wtlist_items scroller-dash-right scrollbar-css" id="demos">
+          <div class="load-wrapp-list">
+          <div class="load-4">
+                            <div class="ring-1"></div>
+                          </div>
+                       </div>
+                     </div>   
          
         </div>
       </div>
@@ -143,6 +187,28 @@
    <%- include partials/innerfooter %>
 
 <script type="text/javascript">
+  function delete_stck(ID)
+{
+ var r = confirm("Are you sure to delete this company ?");
+ //stockname=stockname.toUpperCase();
+ ID=ID.split(' ');
+ if (r == true) {
+     $.ajax({
+       type: "POST",
+        url: "https://apis.tradetipsapp.com/api/stockDetail/deleteStock",
+        data:'stockId='+ID[0],
+        headers: { Authorization: 'Bearer '+ tokens},
+        success: function(data){
+           // alert(ID[1]);
+           $('#mystocks-'+ID[1]).remove();
+           // alert("calling hide div");
+           $("#item-"+ID[0]).css('display','none');
+            $(".successmsg").html('<span>Company Delete Successfully</span>');
+            setTimeout(function(){$(".successmsg").empty()}, 3000);
+        }
+       });
+   }
+  }
 
   var sData = localStorage.getItem('allTokenData');
   var storageData= JSON.parse(sData);
@@ -153,7 +219,7 @@
   // alert(userName);
   var formdata = {  offset: 0, limit: 1000000};
 
-
+$(".load-wrapp-list").css('display','block');
   $.ajax({
         type: 'POST',
         url: 'https://apis.tradetipsapp.com/api/stockDetail/getAllStockOfUserByUserName?userName='+ userName,
@@ -187,13 +253,15 @@
                    for (k= 0; k< users.length; k ++) {
                     if(r[users[k]] != undefined){
 
-                    texts += '<div class="tips_wtlist_item"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>')+'</div></div>';
+                 /*   texts += '<div class="tips_wtlist_item"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>')+'</div></div>';*/
+                    texts += '<div class="tips_wtlist_item" id="item-'+ deletdata[k] +'"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>')+'</div><div class="tips_wtlist_item_right"><span class="delete_stck" style="    color: white;" onclick="delete_stck(this.id)" id="'+ deletdata[k] +' '+ r[users[k]].quote.symbol +'""><i class="fa fa-trash"></i></span></div></div>';
+
 
 
                    }
                  }
 
-   
+                      $(".load-wrapp-list").css('display','none');
                    $("#demos").append(texts);  
 
                 });
@@ -282,7 +350,14 @@
 
   if(entryPoint == exitPoint || entryPoint == stopPoint){
 
-      alert("Your entryPoint or exitPoint will not be same");
+      //alert("Your entryPoint or exitPoint will not be same");
+      $(".successmsg").html('<span>"Your entryPoint or exitPoint will not be same"</span>');
+            setTimeout(function(){$(".successmsg").empty()}, 3000);
+   /*           setTimeout(function(){
+               // window.location.reload(1);
+               window.location.href = "/tip"; 
+               }, 2000);*/
+
 
 
   }else{
@@ -350,8 +425,13 @@
                 // alert(datak);
                 var dataResultp = JSON.parse(datak);
                 // alert(dataResultp.stockName);
-                alert("Your tip for "+dataResultp.stockName+" was submitted successfully");
-                window.location.reload();
+                //alert("Your tip for "+dataResultp.stockName+" was submitted successfully");
+                $(".successmsg").html('<span>"Your tip for '+dataResultp.stockName+' was submitted successfully."</span>');
+            setTimeout(function(){$(".successmsg").empty()}, 3000);
+              setTimeout(function(){
+               // window.location.reload(1);
+               window.location.href = "/tip"; 
+               }, 2000);
 
        })
       .catch(error => console.log('error', error));
