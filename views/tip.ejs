@@ -1,17 +1,19 @@
 <style type="text/css">
-  @media (min-width: 992px){
 
-    .tipscroller-dash-right
-    {
+
+@media (min-width: 992px){
+    .tipscroller-dash-left{
         padding-right: 5px;
-                overflow-y: auto;
+        max-height: 500px;
+        max-height: calc(100vh - 170px);
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 }
 @media (min-width: 1600px){
-
-    .tipscroller-dash-right
-    {
-       /* max-height: calc(100vh - 250px);*/
+    .tipscroller-dash-left{
+        max-height: calc(100vh - 250px);
+        overflow-x: hidden;
     }
 }
 
@@ -63,7 +65,8 @@
             </div>
           </div>
         </div> -->
-        <div class="post_new_tips_area tipscroller-dash-right scrollbar-css" style="height: 678px;">
+        <div class="post_new_tips_area tipscroller-dash-left scrollbar-css" 
+        >
           <div class="post_tip_head">
             <h2>Post New Tips</h2>
           </div>
