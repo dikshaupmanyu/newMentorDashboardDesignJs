@@ -96,7 +96,76 @@ ul.search-list li a:hover{
 .input_group button#stockadd{
   padding: 6px 12px !important;
 }
+  /*  loader css start */
 
+
+.load-wrapp {
+  float: left;
+  width: 100%;
+  margin: -34px 10px 10px 0;
+  padding: 0px 20px 20px;
+  border-radius: 5px;
+  text-align: center;
+
+}
+
+.load-wrapp-list
+{
+    float: left;
+  width: 100%;
+  margin: 0px 10px 10px 0;
+  padding: 9px 173px 20px;
+  border-radius: 5px;
+  text-align: center;
+
+}
+
+.ring-1 {
+  width: 10px;
+  height: 10px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 7px dashed #ccc;
+  border-radius: 100%;
+}
+
+.load-4 .ring-1 {
+  animation: loadingD 1.5s 0.3s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
+}
+
+.l-4 {
+  animation-delay: 0.84s;
+}
+
+
+ul.search-list-loader {
+    background: #041c43;
+    color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    width: 100%;
+        list-style: none;
+    margin: 0;
+    padding: 0;
+
+    /* margin-top: 37px; */
+    margin-top: 0 !important;
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%)
+}
+
+
+@keyframes loadingD {
+  0 {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+  /*  loader css end*/
 
 </style>
       <div class="app_main">
@@ -202,18 +271,22 @@ ul.search-list li a:hover{
                       <button  id="stockadd" class="btn">Add</button>
                     </div>
                   </div>
-                  <ul id="symbol-box" class="symbol-box search-list" style="background: #010E32;"></ul>
+                       
+                        <ul class="search-list-loader load-wrapp" style="display: none;">
+                         <div >
+                          <div class="load-4">
+                            <div class="ring-1"></div>
+                          </div>
+                       </div>
+                     </ul>
+
+                  <ul id="symbol-box" class="symbol-box search-list" style="background: #010E32;">
+                     
+   
+                  </ul>
                </div>
-               <!--  <div class="input-group input_group">
-                  <input type="text" class="form-control" placeholder="Search over 1 million stocks & tips" style="text-transform:uppercase" autocomplete="off" data-stocks="" id="search-stock">
-                  <label class="multi-items"></label>
-                 <div class="input-group-append">
-                  <input type="hidden" class="magicsearch-hidden" />
-                    <button id="stockadd" class="btn">Add</button>
-                  </div>
-                  </div>
-                  <ul id="symbol-box" class="symbol-box" style="background: #010E32;"></ul>
-                -->
+              
+
                 <br>
                 <div class="tips_wtlist_items">
                   <div class="head_of_tips_wtlist_items tips_wtlist_item">
@@ -224,22 +297,12 @@ ul.search-list li a:hover{
                   </div>
                 </div>
                 <div class="tips_wtlist_items" id="demos">
-               
-                  <!-- <div class="tips_wtlist_item">
-                    <div class="tips_wtlist_item_left">
-                      <h2>NIKE <span>NIKE INC</span></h2>
-                    </div>
-                    <div class="tips_wtlist_item_center">
-                      <h3>$28.05</h3>
-                      <h4><span class="round_tag buy_tag"><img src="images/t-logo.png" alt="images"></span> TradeTips AI Trend</h4>
-                    </div>
-                    <div class="tips_wtlist_item_right">
-                      <h3><span class="color_buy">3.3%</span></h3>
-                      <h4><span class="color_buy">Buy</span></h4>
-                    </div>
-                  </div> -->
-                 
-               
+                  <div class="load-wrapp-list tips_wtlist_item" style="display: none;">
+                          <div class="load-4">
+                            <div class="ring-1"></div>
+                          </div>
+                       </div>
+
                 </div>
               </div>
               </div>
@@ -287,6 +350,7 @@ ul.search-list li a:hover{
   $(function() {
      $("#search-stock").keyup(function(){
       clearTimeout(timers);
+       $('.load-wrapp').css('display','block');
        $('#symbol-box').css('display','none');
     timers = setTimeout(() => {
 //           // alert("timeout");
@@ -388,7 +452,9 @@ ul.search-list li a:hover{
                          //$(this).parent('li').addClass('selected').siblings().removeClass('selected');
                      });  
                  }
+                     $('.load-wrapp').css('display','none');
                     $('#symbol-box').css('display','block');
+
                              
         }
         });
@@ -400,7 +466,9 @@ ul.search-list li a:hover{
 $(document).ready(function(){
  $("#stockadd").click(function(){
             //alert(myarr);
-           
+             $('#symbol-box').css('display','none');
+           $('.load-wrapp-list').css('display','block');
+          
           var allIDS=$('.magicsearch-hidden').val();
            allIDS  =allIDS.split(',');
            // console.log(allIDS);
@@ -442,11 +510,13 @@ $(document).ready(function(){
                   // alert('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ myarr);
               // console.log(r);
                    for (k= 0; k< myarr.length; k ++) {
+
                    texts += '<div class="tips_wtlist_item"  id="item-'+ mydeletedata[k] +'"><div class="tips_wtlist_item_left"><h2>'+ r[myarr[k]].quote.symbol +'<span>'+ r[myarr[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[myarr[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[myarr[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[myarr[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[myarr[k]].quote.change).toFixed(2) +'</span></h3>')+'</div><div class="tips_wtlist_item_right"><span class="delete_stck"  style="color: white;" onclick="delete_stck(this.id)" id="'+ mydeletedata[k] +' '+ r[myarr[k]].quote.symbol +'"><i class="fa fa-trash"></i></span></div></div>';
                      // texts += '<div class="tips_wtlist_item" id="item-'+ mydeletedata[k] +'"><div class="tips_wtlist_item_left"><h2>'+ r[myarr[k]].quote.symbol +'<span>'+ r[myarr[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[myarr[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[myarr[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[myarr[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[myarr[k]].quote.change).toFixed(2) +'</span></h3>')+'</div><div class="tips_wtlist_item_right"><span class="delete_stck" style="    color: white;" onclick="delete_stck(this.id)" id="'+ mydeletedata[k] +'"><i class="fa fa-trash"></i></span></div></div>';
                    }
    
-                   //$("#demos").append(texts);  
+                   //$("#demos").append(texts); 
+                    $('.load-wrapp-list').css('display','none'); 
                    $("#search-stock").css('padding-left','0');
                    $("#search-stock").attr('placeholder','Enter Symbol or Company Name');
                    $("#demos").prepend(texts);
@@ -1309,6 +1379,7 @@ $(".scroller-dash-left").scroll(function() {
 
 }
 
+  $(".load-wrapp-list").css('display','block');
  $.ajax({
         type: 'POST',
         url: 'https://apis.tradetipsapp.com/api/stockDetail/getAllStockOfUserByUserName?userName='+ userName,
@@ -1337,7 +1408,7 @@ $(".scroller-dash-left").scroll(function() {
                     texts += '<div class="tips_wtlist_item" id="item-'+ deletdata[k] +'"><div class="tips_wtlist_item_left"><h2>'+ r[users[k]].quote.symbol +'<span>'+ r[users[k]].quote.companyName +'</span></h2></div><div class="tips_wtlist_item_center"><h3>$ '+ parseFloat(r[users[k]].quote.latestPrice).toFixed(2) +'</h3> '+ (r[users[k]].quote.change > 0 ? ' </div><div class="tips_wtlist_item_right"><h3><span class="color_buy">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>':'</div><div class="tips_wtlist_item_right"><h3><span class="color_sell">'+ parseFloat(r[users[k]].quote.change).toFixed(2) +'</span></h3>')+'</div><div class="tips_wtlist_item_right"><span class="delete_stck" style="    color: white;" onclick="delete_stck(this.id)" id="'+ deletdata[k] +' '+ r[users[k]].quote.symbol +'""><i class="fa fa-trash"></i></span></div></div>';
                    }
                  }
-   
+                       $(".load-wrapp-list").css('display','none');
                    $("#demos").append(texts);  
                 });
                  
