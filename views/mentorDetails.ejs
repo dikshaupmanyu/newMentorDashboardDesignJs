@@ -614,7 +614,9 @@ function handleError(image) {
 
             }
             else{
-              alert('Please fill the field !');
+              //alert('Please fill the field !');
+              $(".successmsg").html('<span>Please fill the field !</span>');
+            setTimeout(function(){$(".successmsg").empty()}, 3000);
             }
           });
 
@@ -694,6 +696,9 @@ function pinFunction(e) {
         // $("#imgstatus").attr("src","show.jpeg");
 
         document.getElementById("imgstatus").src="images/tips-save-icon.png";
+        $(".successmsg").html('<span>Unsaved!!!</span>');
+        setTimeout(function(){$(".successmsg").empty()}, 3000);
+                
 
 
         }
@@ -721,6 +726,8 @@ function pinFunction(e) {
 
 
         document.getElementById("imgstatus").src="savetip.png";
+           $(".successmsg").html('<span>Saved!!!</span>');
+        setTimeout(function(){$(".successmsg").empty()}, 3000);
 
 
 
@@ -767,7 +774,10 @@ function likeFunction(e) {
 
         $("#likeimgstatus").attr("src","images/tips-like-icon.png");
 
-        window.location.reload("/");
+        $(".successmsg").html('<span>Unliked!!!</span>');
+        setTimeout(function(){$(".successmsg").empty()}, 3000);
+
+        //window.location.reload("/");
 
 
         }
@@ -796,7 +806,10 @@ function likeFunction(e) {
 
         $("#likeimgstatus").attr("src","unnamed.png");
 
-         window.location.reload("/");
+        $(".successmsg").html('<span>Liked!!!</span>');
+        setTimeout(function(){$(".successmsg").empty()}, 3000);
+
+        // window.location.reload("/");
 
 
         }
