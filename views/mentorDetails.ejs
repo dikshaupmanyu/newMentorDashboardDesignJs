@@ -1,6 +1,17 @@
 <%- include partials/innerheader %>
  <!-- Page Content Start -->
-
+<style type="text/css">
+  .tips_bx_amount span span.color_sell::after {
+    display: inline-block;
+    margin-left: .390em;
+    vertical-align: 0.100em;
+    content: "";
+    border-top: .4em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+</style>
 <div class="app_main">
   <%- include partials/innersidebar %>
 <div class="app_content">
@@ -413,14 +424,35 @@ function handleError(image) {
                             $("#skComnyNames").text(d[keyName].quote.companyName);
                             var latestPrice = d[keyName].quote.latestPrice;
                             var createTipPrice = Number(dataResult.tip.createTipPrice);
+
                             var changeprice = latestPrice - createTipPrice;
-                            if(changeprice > 0){
-                              $("#changepoint").text(parseFloat(changeprice).toFixed(2));
-                              $("#changepoint").css("color" , "#09b598");
+
+                            var valuees = parseFloat(changeprice).toFixed(2);
+                            if(valuees > 0){
+                               // $("#changepoint").text(valuees);
+
+                              $("#changepoint").html('<span class="color_buy">' +valuees + '</span>');
+                               $("#changepoint").css("color" , "#09b598");
+
                             }else{
-                              $("#changepoint").text(parseFloat(changeprice).toFixed(2));
-                              $("#changepoint").css("color" , "#dc3545");
+
+                              $("#changepoint").html('<span class="color_sell">' +valuees + '</span>');
+                               $("#changepoint").css("color" , "#dc3545");
                             }
+                            // if(changeprice > 0){
+                            //   $("#changepoint").text(parseFloat(changeprice).toFixed(2));
+                            //   // $("#changepoint").css("color" , "#09b598");
+
+                            //   $("#changepoint").addClass("color_buy");
+
+
+                            //   // class="color_buy
+                            // }else{
+                            //   $("#changepoint").text(parseFloat(changeprice).toFixed(2));
+                            //   // $("#changepoint").css("color" , "#dc3545");
+
+                            //   $("#changepoint").addClass("color_sell");
+                            // }
                             
 
                              if((dataResult.tip.entryPoint).replace("$","") <= latestPrice &&  dataResult.tip.stockSuggestion == "Buy"){
