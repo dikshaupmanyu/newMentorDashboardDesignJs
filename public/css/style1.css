@@ -4091,8 +4091,8 @@ body .only_id_use{
     display: none;
 }
  .multi-items {
-    position: absolute;
-    cursor: text;
+/*    position: absolute;
+*/    cursor: text;
    /* width: 350px;*/
    /* background: yellow;*/
     float: left;
