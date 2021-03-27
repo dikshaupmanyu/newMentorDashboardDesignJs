@@ -1,0 +1,163 @@
+<%- include partials/innerheader %>
+<!-- Page Content Start -->
+<style type="text/css">
+  .avoid_btn {
+    background: #000;
+    border-color: #fff;
+    color: #fff;
+}
+</style>
+<div class="app_main">
+  <%- include partials/innersidebar %>
+<div class="app_content">
+  <div class="dsbrd_container">
+    <div class="ai_dtl_head">
+      <div class="ai_dtl_head_left">
+        <a href="dashboard"><button class="btn back_btn"><i class="fas fa-arrow-left"></i></button></a>
+        <div class="tips_bx_cmpny_name">
+          <span id="resultSet"></span>
+          <h2><em class="only_id_use" id="CompanySymbol"></em> <span id="skComnyNames"></span></h2>
+
+         <!--  <span>Automatic Data Processing Inc</span> -->
+        </div>
+      </div>
+      <div class="ai_dtl_head_right">
+        <div class="ai_dtl_head_right_bx">
+          <h4 class="border_secondary">Today’s High</h4>
+          <h3 id="highval"></h3>
+        </div>
+        <div class="ai_dtl_head_right_bx">
+          <h4 class="border_danger">Today’s Low</h4>
+          <h3 id="lowval"></h3>
+        </div>
+        <div class="ai_dtl_head_right_bx tips_wtlist_item_right">
+          <h4 class="border_primary">Change</h4>
+          <h3 id="changepoint"></h3>
+        </div>
+        <div class="ai_dtl_head_right_bx text-right">
+          <h2 id="currentprice"></h2>
+          <h5 id="datetime"></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="graph_area">
+    <div class="row ml-0 mr-0">
+      <div class="graph_bx graph_bx_left col">
+        <h2>Historical Data</h2>
+        <ul>
+          <li class="active">1D</li>
+          <li>5D</li>
+          <li>1M</li>
+          <li>3M</li>
+          <li>6M</li>
+          <li>1YR</li>
+        </ul>
+        <div class="graph_bx_img">
+          <img src="images/left-graph.png" alt="images">
+        </div>
+      </div>
+     
+    </div>
+  </div>
+ 
+</div>
+</div>
+<!-- Page Content Start -->
+<%- include partials/innerfooter %>
+<script type="text/javascript">
+
+
+  var sData = localStorage.getItem('allTokenData');
+  var storageData= JSON.parse(sData);
+  var LoggedInId = storageData.uid;
+
+  var tokens = storageData.tokendata;
+
+  var symbol = "<%=stockSymbol%>";
+
+  $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/sectorNewsSentiment/getSentimentandSMAByStockSymbolResultSet?stockSymbol='+symbol,
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        // data: formdata,
+      success: function(data) {
+     
+            const dataResult = data;
+
+                 if(dataResult[0].rsiResult == "buy"){
+
+                   document.getElementById("resultSet").textContent = dataResult[0].rsiResult ;
+                  document.getElementById('resultSet').className = 'bs_btn buy_btn';
+
+                   }else if (dataResult[0].rsiResult == "sell"){
+
+
+                      document.getElementById("resultSet").textContent = dataResult[0].rsiResult ;
+                      document.getElementById('resultSet').className = 'bs_btn sell_btn';
+
+                     } else {
+
+                      document.getElementById("resultSet").textContent = "AVOID" ;
+
+                      document.getElementById('resultSet').className = 'bs_btn avoid_btn';
+                      
+                     }
+
+
+                  document.getElementById("CompanySymbol").textContent = dataResult[0].stock_name;
+   
+               
+                  function datechange(publish_date){
+                   var date = publish_date
+                   const stripped = date.replace(/EST-0500/g, 'EST');
+                   //console.log(stripped);
+                   var newdate2 = stripped .split(/(\s+)/);
+                   //console.log(newdate2);
+                   newdate2.splice(3,3);
+                   //console.log(newdate2);
+              
+                    var newdate3 = newdate2.toString(newdate2);
+                    var result = newdate3.replace(/,/g, "");
+                    var SMA_date = result.substring(0, 6) + ", " + result.substring(6, result.length);                
+                    return SMA_date;
+                  }
+
+                  
+
+
+                  $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ dataResult[0].stock_name , function(d) {
+
+                          var count = Object.keys(d).length;
+                          Object.keys(d).map((keyName, key) => {
+                            console.log(d[keyName].quote);
+                             $("#currentprice").text("$"+d[keyName].quote.latestPrice);
+                            $("#skComnyNames").text(d[keyName].quote.companyName);
+                             $("#highval").text("$"+d[keyName].quote.high);
+                              $("#lowval").text("$"+d[keyName].quote.low);
+                        
+                                var valuees = parseFloat(d[keyName].quote.change).toFixed(2);
+                                if(valuees > 0){
+                                   // $("#changepoint").text(valuees);
+
+                                  $("#changepoint").html('<span class="color_buy">' +valuees + '</span>');
+                                   $("#changepoint").css("color" , "#09b598");
+
+                                }else{
+
+                                  $("#changepoint").html('<span class="color_sell">' +valuees + '</span>');
+                                   $("#changepoint").css("color" , "#dc3545");
+                                }
+
+                  
+                      });
+
+                   }); 
+      
+           }       
+       });
+      
+
+  </script>

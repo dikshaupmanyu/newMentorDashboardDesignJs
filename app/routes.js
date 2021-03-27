@@ -9,6 +9,17 @@ module.exports = function(app) {
     res.render('chat.ejs');
   });
 
+
+   app.get('/stockChart', function(req, res) {
+
+    var mentorids = req.query.id;
+
+    var symbol = req.query.stockName;
+
+    res.render('stockChart.ejs' , {tipsIds : mentorids , stockSymbol : symbol});
+  });
+
+
   app.get('/dashboard', function(req, res) {
 
     // var request = require("request");
