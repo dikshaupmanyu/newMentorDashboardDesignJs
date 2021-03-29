@@ -63,6 +63,25 @@ ul.search-list {
 .search-list-input {
     position: relative;
 }
+.search-list-input .input_group{
+  border-radius: 5px;
+  position: relative;
+  padding-right: 60px !important;
+}
+.search-list-input .input_group .input-group-append{
+  position: absolute;
+  right: 0;
+}
+ .search-list-input .input_group input.form-control{
+  /* flex: 0 0 110px; */
+  width: auto !important;
+  padding-left: 5px !important;
+  padding-right: 5px;
+}
+
+.search-list-input .multi-items{
+  order: -1;
+} 
 ul.search-list li {
     display: block;
     font-size: 14px;
@@ -419,7 +438,7 @@ ul.search-list-loader {
                      
                        //myarrdata.push({id:myids[1],stockSymbol:clicked.val(),stockImage:null,stockDetail:null});
                        //myarrdata.push({stockSymbol:clicked.val(),stockName:myids[1]});
-                       $('.multi-items').append('<div class="multi-item" id="MY_'+compid+'" data-symbol="'+myname+'" title="'+clicked.val()+'" ><span style="color:#fff;">'+clicked.val()+'</span><span class="multi-item-close" id="'+compid+'"  onclick="remove_element(this.id,this.title)" style="top: 13px;color:#fff;cursor:pointer;padding-left:2px;"><b>x</b></span></div>&nbsp;');
+                       $('.multi-items').append('<div class="multi-item" id="MY_'+compid+'" data-symbol="'+myname+'" title="'+clicked.val()+'" ><span style="color:#fff;">'+clicked.val()+'</span><span class="multi-item-close" id="'+compid+'"  onclick="remove_element(this.id,this.title)" style="top: 13px;color:#fff;cursor:pointer;padding-left:2px;"><b>x</b></span></div>');
                          if(!adjustinput(compid,'plus')){
                             remove_element(myids[1],clicked.val());
                          }
