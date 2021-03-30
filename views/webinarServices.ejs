@@ -34,6 +34,12 @@
           <textarea class="form-control" placeholder="Enter your description here"name="description1" id="description1"></textarea>
           <h5>Max 200 Characters</h5>
         </div>
+         <div class="form-group">
+          <label>Enter Url</label>
+          <input type="text" class="form-control" placeholder="Enter your Url" name="description2" id="description2">
+          
+          <h5>Max 200 Characters</h5>
+        </div>
         <!-- <div class="form-group">
          <label>Webinar Schedule</label>
           <input type="text" class="form-control" placeholder="What is your schedule for webinar" name="webinar schedule">
@@ -402,7 +408,7 @@ $("#formoid").submit(function(event){
   var userId = userids;
   var serviceName = $('#serviceName').val();
   var descriptionOne = $('#description1').val();
-  // var descriptionTwo = $('#description2').val();
+  var descriptionTwo = $('#description2').val();
   var serviceTypeId = $('#serviceTypeIds').val();
   var frequency = $('#frequency').val();
   var price = $('#price').val();
@@ -420,7 +426,7 @@ $("#formoid").submit(function(event){
     formdata.append("title", title);
     formdata.append("serviceTypeId", serviceTypeId);
     formdata.append("descriptionOne", descriptionOne);
-    formdata.append("descriptionTwo", "");
+    formdata.append("descriptionTwo", descriptionTwo);
     formdata.append("stripeProductName", stripeProductName);
     formdata.append("frequency", frequency);
     formdata.append("price", price);
