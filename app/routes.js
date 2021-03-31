@@ -14,6 +14,11 @@ module.exports = function(app) {
     res.render('profile.ejs');
   });
 
+    app.get('/mentorProfile', function(req, res) {
+
+    res.render('mentorProfile.ejs');
+  });
+
 
    app.get('/stockChart', function(req, res) {
 
