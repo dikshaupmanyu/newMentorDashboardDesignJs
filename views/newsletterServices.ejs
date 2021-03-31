@@ -358,7 +358,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 
 $('#carousel-thumbs .carousel-item img').on('click', function(e) {
   alert(e.target.src);
-  readURLs(file);
+  // readURLs(file);
   
   // var src = $(e.target).attr('data-remote');
   // alert(src);
@@ -411,7 +411,10 @@ function getBase64Image(imgUrl) {
 
     var file = "data:image/png;base64,"+base64image;
 
+    readURLs(file);
+
   function readURLs(file) {
+    // alert(file);
       var reader = new FileReader();
     
     reader.onload = function(e) {
@@ -482,21 +485,21 @@ $("#formoid").submit(function(event){
   var serviceName = $('#serviceName').val();
   var descriptionOne = $('#description1').val();
   var serviceTypeId = $('#serviceTypeIds').val();
-  // var descriptionTwo = $('#description2').val();
+  var descriptionTwo = $('#description2').val();
   var frequency = $('#frequency').val();
   var price = $('#price').val();
-  var imageDetails = $('#file-image').attr('src');
-  alert(imageDetails);
+  var imageDetails = $('#file-image').val();
+  // alert(imageDetails);
   var file = document.getElementById("file-upload").files[0];
-  alert(file);
-  if(file == undefined){
-    readURLs(file);
-  }
+  // alert(file);
+  // if(file == undefined){
+  //   readURLs(file);
+  // }
  
-  // var fullPath = $("#file-upload").val();
+  var fullPath = $("#file-upload").val();
   // alert(fullPath);   
-  var filename = imageDetails.replace(/^.*[\\\/]/, '');
-  alert(filename);
+  var filename = fullPath.replace(/^.*[\\\/]/, '');
+  // alert(filename);
   var frequencyss = $("#frequency option:selected").text();
   var stripeProductName = userName +'_'+ serviceName +'_'+ frequencyss;
   // alert(stripeProductName);
@@ -508,7 +511,7 @@ $("#formoid").submit(function(event){
     formdata.append("serviceTypeId", serviceTypeId);
     formdata.append("stripeProductName", stripeProductName);
     formdata.append("descriptionOne", descriptionOne);
-    formdata.append("descriptionTwo", "null");
+    formdata.append("descriptionTwo", descriptionTwo);
     formdata.append("frequency", frequency);
     formdata.append("price", price);
     formdata.append("mentorId", userId);
