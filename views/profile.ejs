@@ -43,9 +43,11 @@
                                 <img id="imagePreview" alt="Preview" class="img-responsive">
                                 <!-- <div id="imagePreview" alt="Preview" class="" style="background-image: url(../images/avatar.png);"></div> -->
                               </div>
-                              <div class="avatar-edit">
-                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                                <label for="imageUpload"><span><i class="far fa-edit"></i></span> Click to edit picture</label>
+                             
+
+                             <div class="avatar-edit">
+                                <input type='file' name="fileUpload" id="file-upload" accept=".png, .jpg, .jpeg" />
+                                <label for="file-upload"><span><i class="far fa-edit"></i></span> Click to edit picture</label>
                               </div>
                             </div>
                           </div>
@@ -661,28 +663,11 @@
   document.getElementById("F_name").value = user_name;
   document.getElementById("emails").value = email_id;
   document.getElementById("imagePreview").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
-
- /*function readURL(input) {
-   alert(input.files[0]);
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    
-    reader.onload = function(e) {
-      // alert(e.target.result);
-      $('#imagePreview').attr('src', e.target.result);
-      document.getElementById('imagePreview').style.display= "block";
-    }
-    
-    reader.readAsDataURL(input.files[0]); // convert to base64 string
-  }
-}
-
-$("#imageUpload").change(function() {
-  readURL(this);
-   alert(readURL(this));
-});*/
-
-/*  var formdata = {appuserName: user_name};
+  var imageDetails = $('#file-image').val();
+  // alert(imageDetails);
+  
+  
+  var formdata = {appuserName: user_name};
 
     $.ajax({
         type: 'POST',
@@ -699,8 +684,31 @@ $("#imageUpload").change(function() {
             var paswrd = data['password'];
             var first_name = document.getElementById("F_name").value;
             var email_val = document.getElementById("emails").value;
+            var file = document.getElementById("file-upload").files[0];
+            // alert(file);
+            var fullPath = $("#file-upload").val();    
+            var filename = fullPath.replace(/^.*[\\\/]/, '');
+            // alert(filename);
+
+            function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              
+              reader.onload = function(e) {
+                $('#file-image').attr('src', e.target.result);
+                document.getElementById('file-image').style.display= "block";
+              }
+              
+              reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+          }
+
+          $("#file-upload").change(function() {
+            readURL(this);
+          });
+
           var formdata = new FormData();
-          formdata.append("appuserid", users_id);
+          formdata.append("appUserName", user_name);
           formdata.append("status", "null");
           formdata.append("firstName", first_name);
           formdata.append("middleName", "");
@@ -709,27 +717,35 @@ $("#imageUpload").change(function() {
           formdata.append("email", email_val);
           formdata.append("userName", user1);
           formdata.append("password", paswrd);
-          formdata.append("imageDetails", "");
+          if(filename == ""){
+            // alert("null");
+              formdata.append("imageDetails", "");
+
+            }else{
+              alert("not null");
+              formdata.append("imageDetails", file , filename);
+
+          }
           formdata.append("userLocation", "");
           formdata.append("userType", "");
           formdata.append("saved_stocks", "MSFT,SPY");
           formdata.append("savedMentors", "Peter J, Ron G");
           formdata.append("description", "");
 
-var requestOptions = {
+var requestOptionss = {
   method: 'POST',
-  body: formdata1,
+  body: formdata,
   redirect: 'follow'
 };
-fetch("https://apis.tradetipsapp.com/api/appUser/appUserUpdateById", requestOptions)
-  .then(response => response.text())
+fetch("https://apis.tradetipsapp.com/api/appUserWebModify/appUserUpdateByUserName", requestOptionss)
+  .then(response => response.json())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
 
           });
 
         }
-      });*/
+      });
          
 $('#button_click').on('click', function() {
   console.log(set_pswrd.value);
@@ -761,6 +777,15 @@ $('#button_click').on('click', function() {
     formdata.append("userName", user_name);
     formdata.append("oldPassword", old_pswrd);
     formdata.append("newPassword", new_pswrd);
+    if(filename == ""){
+    // alert("null");
+      formdata.append("imageDetails", "");
+
+    }else{
+    // alert("not null");
+      formdata.append("imageDetails", file , filename);
+
+    }
     
     var requestOptions = {
           method: 'POST',
