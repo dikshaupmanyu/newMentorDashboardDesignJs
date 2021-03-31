@@ -90,8 +90,8 @@
                         </div>
                       </div>
                       <div class="dlt_tt_ac">
-                        <h2>Delete TradeTips Account</h2>
-                        <h3 data-toggle="modal" data-target="#acc_deleteModal"><span><i class="far fa-trash-alt"></i></span> I want to delete TradeTips Account</h3>
+                        <!-- <h2>Delete TradeTips Account</h2>
+                        <h3 data-toggle="modal" data-target="#acc_deleteModal"><span><i class="far fa-trash-alt"></i></span> I want to delete TradeTips Account</h3> -->
                         <!-- delete account modal start -->
                         <div class="modal fade delete_modal" id="acc_deleteModal" tabindex="-1" aria-labelledby="acc_deleteModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -587,7 +587,54 @@
                           <li><span>Account Name</span> BOA12323213</li>
                           <li><span>Tax ID</span> 32323213</li>
                         </ul>
-                        <h3><a href="#"><span><i class="far fa-edit"></i></span> Update Bank Information</a></h3>
+                        <h3 data-toggle="modal" data-target="#welcomeModal"><a href="#"><span><i class="far fa-edit"></i></span> Update Bank Information</a></h3>
+                        <div class="modal welcome_modal" tabindex="-1" id="welcomeModal">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="welcome_modal_top">
+                          <h2>Bank Information</h2>
+                        </div>
+                        <div class="welcome_modal_btm">
+                         <!--  <h3>Below is your "list of services" screen. Services are any methods that you use to sell your investing advice to others, (such as running a newsletter, posting subscriber only videos, holding virtual classes, etc.). Any investing advice service you have can be posted to the app here, which will then appear on TradeTips as your own storefront.You set your own prices, and you are in control of what your customers see and when.</h3> -->
+                          <!-- <h3>1. Click on "Create New Service" & choose your service.</h3> --> 
+                                                <!-- <div class="prfl_tb_cntnt_bx">
+                        <h2>Change Password</h2> -->
+                        <div class="edit_profile_form">
+                          <div class="input-group">
+                            <label>Bank Name</label>
+                            <input type="text" class="form-control" name="Bank Name" placeholder="Bank of America"> 
+                          </div>
+                          <div class="input-group">
+                            <label>Account No.</label>
+                            <input type="password" class="form-control" name="Account No." placeholder="1231231245334380483290">
+                          </div>
+                          <div class="input-group">
+                            <label>Bank Code</label>
+                            <input type="text" class="form-control" name="Bank Code" placeholder="BOA12323213">
+                          </div>
+                          <div class="input-group">
+                            <label>Account Name</label>
+                            <input type="text" class="form-control" name="Account Name" placeholder="BOA12323213">
+                          </div>
+                          <div class="input-group">
+                            <label>Tax ID</label>
+                            <input type="text" class="form-control" name="Tax ID" placeholder="32323213">
+                          </div>
+                          <div class="input-group">
+                            <!-- <label>&nbsp;</label> -->
+                            <a href="/profile"><button class="btn cmn_btn btn_danger">Cancel</button></a>
+                            <label>&nbsp;</label>
+                             <button class="btn cmn_btn btn_primary" data-dismiss="modal" >Upload Detail</button>
+                          </div>
+                        </div>
+                      </div>
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                       </div>
                     </div>
                   </div>
@@ -614,6 +661,26 @@
   document.getElementById("F_name").value = user_name;
   document.getElementById("emails").value = email_id;
   document.getElementById("imagePreview").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
+
+ /*function readURL(input) {
+   alert(input.files[0]);
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      // alert(e.target.result);
+      $('#imagePreview').attr('src', e.target.result);
+      document.getElementById('imagePreview').style.display= "block";
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+$("#imageUpload").change(function() {
+  readURL(this);
+   alert(readURL(this));
+});*/
 
 /*  var formdata = {appuserName: user_name};
 
