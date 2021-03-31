@@ -660,7 +660,21 @@
   console.log(email_id);
   console.log(LoggedInId);
   document.getElementById("user_n").value = user_name;
-  document.getElementById("F_name").value = user_name;
+
+  var formdata1 = {appuserName: user_name};
+   $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/appUser/getAppUserByUserName',
+        headers: {
+                   Authorization: 'Bearer '+ tokens,
+                  },
+        data: formdata1,
+        success: function(data) {
+          var user = data['fName'];
+          document.getElementById("F_name").value = user;
+}
+});
+
   document.getElementById("emails").value = email_id;
   document.getElementById("imagePreview").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
   var imageDetails = $('#file-image').val();
@@ -722,7 +736,7 @@
               formdata.append("imageDetails", "");
 
             }else{
-              alert("not null");
+              //alert("not null");
               formdata.append("imageDetails", file , filename);
 
           }
@@ -732,20 +746,32 @@
           formdata.append("savedMentors", "Peter J, Ron G");
           formdata.append("description", "");
 
-var requestOptionss = {
-  method: 'POST',
-  body: formdata,
-  redirect: 'follow'
-};
-fetch("https://apis.tradetipsapp.com/api/appUserWebModify/appUserUpdateByUserName", requestOptionss)
-  .then(response => response.json())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+          var requestOptionss = {
+            method: 'POST',
+            headers: {
+                      Authorization: 'Bearer '+ tokens
+                      },
+            body: formdata,
+            redirect: 'follow'
+          };
+          fetch("https://apis.tradetipsapp.com/api/appUserWebModify/appUserUpdateByUserName", requestOptionss)
+            .then(response => response.json())
+            .then(result =>{
+                      //console.log(result);
+                      $(".successmsg").html('<span>Data updated successfully.</span>');
+                      setTimeout(function(){$(".successmsg").empty()}, 3000);
+                      setTimeout(function(){
+                          window.location.href = "/profile"; 
+                        }, 2000);
 
-          });
 
-        }
-      });
+                     })
+                    .catch(error => console.log('error', error));
+
+                    });
+
+                  }
+                });
          
 $('#button_click').on('click', function() {
   console.log(set_pswrd.value);
@@ -777,15 +803,6 @@ $('#button_click').on('click', function() {
     formdata.append("userName", user_name);
     formdata.append("oldPassword", old_pswrd);
     formdata.append("newPassword", new_pswrd);
-    if(filename == ""){
-    // alert("null");
-      formdata.append("imageDetails", "");
-
-    }else{
-    // alert("not null");
-      formdata.append("imageDetails", file , filename);
-
-    }
     
     var requestOptions = {
           method: 'POST',
