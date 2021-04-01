@@ -9,7 +9,8 @@
         <div class="author_bx">
           <img id = "imagePreview" alt="images">
           <div class="author_bx_txt">
-            <h2 id ="user_n"><span><img src="images/mentor-tag.png" alt="images"></span></h2>
+            <!-- <h2 id ="user_n"><span><img src="images/mentor-tag.png" alt="images"></span></h2> -->
+            <h2 id ="user_n"></h2>
          </div>
         </div>    
         </div>
@@ -659,10 +660,12 @@
                 </div>
               </div> -->
             </div>
+            <!-- <div class="mentor_feed" id="Services">
+              </div> -->
+
             <div class="tab-pane fade" id="mtb_service" role="tabpanel" aria-labelledby="mt_service">
               <div class="mentor_service_area" id="newsletterServices">
-               
-          
+                       
                 
               </div>
              
@@ -674,11 +677,11 @@
         <div class="mentor_follow_area">
           <ul>
             <li>
-              <h2>21,500</h2>
+              <h2 id = "follower"></h2>
               <h3>Followers</h3>
             </li>
             <li>
-              <h2>21,500</h2>
+              <h2 id = "followings"></h2>
               <h3>Following</h3>
             </li>
           </ul>
@@ -688,7 +691,7 @@
           <h2>About Mentor</h2>
           <p>Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l"alcôve ovoïde, où les bûches se consument dans l"âtre, ce qui lui permet de penser à la cænogenèse de l"être dont il est.</p>
           <h3><a href="#">Read more</a></h3>
-          <h4>Member Since <span>04 JAN 2020</span></h4>
+          <h4>Member Since <span id = "create_date"></span></h4>
         </div>
       </div>
     </div>
@@ -709,7 +712,17 @@
   var LoggedInId = storageData.uid;
   var tokens = storageData.tokendata;
 
-  console.log(LoggedInId);
+  var date = storageData.creation_date;
+  var newdate2 = date.split(/(\s+)/);
+  var date1 = new Date(newdate2[0]);
+  mm =  date1.toDateString();
+  var newdate1 = mm.split(/(\s+)/);
+  newdate1.splice(0, 2);
+  var newdate3 = newdate1.toString(newdate1);
+  var res = newdate3.replace(/[, ]+/g, " ").trim();
+  var date2 = res.substring(0, 6) + "," + res.substring(6, res.length);
+   document.getElementById("create_date").textContent = date2;
+
   document.getElementById("imagePreview").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
   document.getElementById("user_n").textContent = user_name;
 
@@ -724,12 +737,9 @@
                   mentorId: LoggedInId,
                 },
                success: function(data) {
-       console.log(data);
                  var datak = JSON.stringify(data);
                  var dataResult = JSON.parse(datak); 
-                  console.log(dataResult);
                   var len = dataResult.length;
-              console.log(len);
              if(dataResult.length == 0){
                 
                   document.getElementById('newsletterServices').innerHTML="<br><p>You currently have no Services created.</p>";
@@ -750,13 +760,297 @@
                   }
                    $("#newsletterServices").append(newtip);
 
-                }
-
-                  
+                }                  
                  
-
-
              }
              });
+
+        $.ajax({
+              type: 'POST',
+              url: 'https://apis.tradetipsapp.com/api/followUserList/getAllFollowUserListByUserName',
+              headers: {
+                Authorization: 'Bearer '+ tokens,
+                 },
+              data: {
+                  limit: 100,
+                  offset: 0,
+                  followUserName: user_name
+                },
+               success: function(data) {
+                var data_len = data.length;
+                document.getElementById("follower").textContent = data_len;
+
+               }
+             });
+         $.ajax({
+              type: 'POST',
+              url: 'https://apis.tradetipsapp.com/api/followUserList/getAllFollowUserListByUserName',
+              headers: {
+                Authorization: 'Bearer '+ tokens,
+                 },
+              data: {
+                  limit: 100,
+                  offset: 0,
+                  userName: user_name
+                },
+               success: function(data) {
+                var data_len = data.length;
+                document.getElementById("followings").textContent = data_len;
+
+
+               }
+             });
+   /*       $.ajax({
+              type: 'POST',
+              url: 'https://apis.tradetipsapp.com/api/timeline/getTimeLineWithPaginationForUser',
+              headers: {
+                Authorization: 'Bearer '+ tokens,
+                 },
+              data: {
+                  limit: 100,
+                  offset: 0,
+                  activityType: "TipPin"
+                },
+               success: function(data) {
+                   console.log(data);
+                    let savedtip = [];
+                  for(var i=0; i< data.length; i++) {
+                    savedtip += '<div class="tab-pane fade"id="mtb_save"role="tabpanel"aria-labelledby="mt_save"><div class="mentor_feed><div class="tips_bx buy_bg"><div class="mentor_feed"><div class="tips_bx buy_bg"><div class="tips_bx_head"><div class="tips_bx_author author_bx"><img src="images/user.png" alt="images"><div class="author_bx_txt"><h2>Williams Park</h2><h3>2 mins ago</h3></div></div><div class="tips_bx_amount"><h2>$782.65</h2><p>AT TIME OF TIP : $781.50 | Change $1.01, <span class="color_buy">1.13%</span></p></div></div><div class="tips_bx_cmpny"><div class="tips_bx_cmpny_name"><span class="bs_btn buy_btn">Buy</span><h2>NKE <span>NIKE, Inc.</span></h2></div><div class="tips_bx_cmpny_states"><ul><li><h3>Entry</h3><h4>$789</h4></li><li><h3>Stop</h3><h4>$888</h4></li><li><h3>Exit</h3><h4><span class="color_buy">$888</span></h4></li></ul></div></div><div class="tips_bx_txt"><p>Zwei flinke Boxer jagen die quirlige Eva und ihren Mops durch Sylt. Franz jagt im komplett verwahrlosten Taxi quer durch Bayern.</p></div><div class="tips_bx_social"><ul><li><a href="#"><img src="images/tips-comment-icon.png" alt="images">21 Comments</a></li><li><a href="#"><img src="images/tips-save-icon.png" alt="images">Save</a></li><li><a href="#"><img src="images/tips-like-icon.png" alt="images">6 Likes</a></li><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/tips-more-icon.png" alt="images"> More</a><div class="dropdown-menu"><ul><li><span><i class="fas fa-folder-open"></i></span> Archive all</li><li><span><i class="fas fa-check-double"></i></span> Mark all as read</li></ul></div></div></li></ul></div></div></div></div>'                 
+
+               }
+               $("#Services").append(savedtip);
+             }
+
+             });*/
+
+/*            <div class="tab-pane fade" id="mtb_save" role="tabpanel" aria-labelledby="mt_save">
+              <div class="mentor_feed">
+                <div class="tips_bx buy_bg">
+                  <div class="tips_bx_head">
+                    <div class="tips_bx_author author_bx">
+                      <img src="images/user.png" alt="images">
+                      <div class="author_bx_txt">
+                        <h2>Williams Park</h2>
+                        <h3>2 mins ago</h3>
+                      </div>
+                    </div>
+                    <div class="tips_bx_amount">
+                      <h2>$782.65</h2>
+                      <p>AT TIME OF TIP : $781.50 | Change $1.01, <span class="color_buy">1.13%</span></p>
+                    </div>
+                  </div>
+                  <div class="tips_bx_cmpny">
+                    <div class="tips_bx_cmpny_name">
+                      <span class="bs_btn buy_btn">Buy</span>
+                      <h2>NKE <span>NIKE, Inc.</span></h2>
+                    </div>
+                    <div class="tips_bx_cmpny_states">
+                      <ul>
+                        <li>
+                          <h3>Entry</h3>
+                          <h4>$789</h4>
+                        </li>
+                        <li>
+                          <h3>Stop</h3>
+                          <h4>$888</h4>
+                        </li>
+                        <li>
+                          <h3>Exit</h3>
+                          <h4><span class="color_buy">$888</span></h4>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="tips_bx_txt">
+                    <p>Zwei flinke Boxer jagen die quirlige Eva und ihren Mops durch Sylt. Franz jagt im komplett verwahrlosten Taxi quer durch Bayern. Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich.</p>
+                  </div>
+                  <div class="tips_bx_social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <img src="images/tips-comment-icon.png" alt="images">
+                          21 Comments
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="images/tips-save-icon.png" alt="images">
+                          Save
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="images/tips-like-icon.png" alt="images">
+                          6 Likes
+                        </a>
+                      </li>
+                      <li>
+                        <div class="dropdown msg_option_dropdown">
+                          <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="images/tips-more-icon.png" alt="images"> More
+                          </a>
+                          <div class="dropdown-menu">
+                            <ul>
+                              <li><span><i class="fas fa-folder-open"></i></span> Archive all</li>
+                              <li><span><i class="fas fa-check-double"></i></span> Mark all as read</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tips_bx buy_bg">
+                  <div class="tips_bx_head">
+                    <div class="tips_bx_author author_bx">
+                      <img src="images/user.png" alt="images">
+                      <div class="author_bx_txt">
+                        <h2>Williams Park</h2>
+                        <h3>2 mins ago</h3>
+                      </div>
+                    </div>
+                    <div class="tips_bx_amount">
+                      <h2>$782.65</h2>
+                      <p>AT TIME OF TIP : $781.50 | Change $1.01, <span class="color_buy">1.13%</span></p>
+                    </div>
+                  </div>
+                  <div class="tips_bx_cmpny">
+                    <div class="tips_bx_cmpny_name">
+                      <span class="bs_btn buy_btn">Buy</span>
+                      <h2>NKE <span>NIKE, Inc.</span></h2>
+                    </div>
+                    <div class="tips_bx_cmpny_states">
+                      <ul>
+                        <li>
+                          <h3>Entry</h3>
+                          <h4>$789</h4>
+                        </li>
+                        <li>
+                          <h3>Stop</h3>
+                          <h4>$888</h4>
+                        </li>
+                        <li>
+                          <h3>Exit</h3>
+                          <h4><span class="color_buy">$888</span></h4>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="tips_bx_txt">
+                    <p>Zwei flinke Boxer jagen die quirlige Eva und ihren Mops durch Sylt. Franz jagt im komplett verwahrlosten Taxi quer durch Bayern. Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich.</p>
+                  </div>
+                  <div class="tips_bx_social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <img src="images/tips-comment-icon.png" alt="images">
+                          21 Comments
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="images/tips-save-icon.png" alt="images">
+                          Save
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="images/tips-like-icon.png" alt="images">
+                          6 Likes
+                        </a>
+                      </li>
+                      <li>
+                        <div class="dropdown msg_option_dropdown">
+                          <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="images/tips-more-icon.png" alt="images"> More
+                          </a>
+                          <div class="dropdown-menu">
+                            <ul>
+                              <li><span><i class="fas fa-folder-open"></i></span> Archive all</li>
+                              <li><span><i class="fas fa-check-double"></i></span> Mark all as read</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tips_bx sell_bg">
+                  <div class="tips_bx_head">
+                    <div class="tips_bx_author author_bx">
+                      <img src="images/user.png" alt="images">
+                      <div class="author_bx_txt">
+                        <h2>Williams Park</h2>
+                        <h3>2 mins ago</h3>
+                      </div>
+                    </div>
+                    <div class="tips_bx_amount">
+                      <h2>$782.65</h2>
+                      <p>AT TIME OF TIP : $781.50 | Change $1.01, <span class="color_sell">1.13%</span></p>
+                    </div>
+                  </div>
+                  <div class="tips_bx_cmpny">
+                    <div class="tips_bx_cmpny_name">
+                      <span class="bs_btn sell_btn">Sell</span>
+                      <h2>NKE <span>NIKE, Inc.</span></h2>
+                    </div>
+                    <div class="tips_bx_cmpny_states">
+                      <ul>
+                        <li>
+                          <h3>Entry</h3>
+                          <h4>$789</h4>
+                        </li>
+                        <li>
+                          <h3>Stop</h3>
+                          <h4>$888</h4>
+                        </li>
+                        <li>
+                          <h3>Exit</h3>
+                          <h4><span class="color_sell">$888</span></h4>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="tips_bx_txt">
+                    <p>Zwei flinke Boxer jagen die quirlige Eva und ihren Mops durch Sylt. Franz jagt im komplett verwahrlosten Taxi quer durch Bayern. Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich.</p>
+                  </div>
+                  <div class="tips_bx_social">
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <img src="images/tips-comment-icon.png" alt="images">
+                          21 Comments
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="images/tips-save-icon.png" alt="images">
+                          Save
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="images/tips-like-icon.png" alt="images">
+                          6 Likes
+                        </a>
+                      </li>
+                      <li>
+                        <div class="dropdown msg_option_dropdown">
+                          <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="images/tips-more-icon.png" alt="images"> More
+                          </a>
+                          <div class="dropdown-menu">
+                            <ul>
+                              <li><span><i class="fas fa-folder-open"></i></span> Archive all</li>
+                              <li><span><i class="fas fa-check-double"></i></span> Mark all as read</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>*/
 </script>
       
