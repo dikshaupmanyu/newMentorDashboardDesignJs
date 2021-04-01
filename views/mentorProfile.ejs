@@ -665,8 +665,9 @@
 
             <div class="tab-pane fade" id="mtb_service" role="tabpanel" aria-labelledby="mt_service">
               <div class="mentor_service_area" id="newsletterServices">
-                       
-                
+               <h4>TradeTips Recommended Services</h4>  
+                <p>Learn how to invest, trade and use TradeTips</p>      
+                <br>
               </div>
              
             </div>
@@ -677,11 +678,11 @@
         <div class="mentor_follow_area">
           <ul>
             <li>
-              <h2 id = "follower"></h2>
+              <h2 id = "follower" style="text-align: center;"></h2>
               <h3>Followers</h3>
             </li>
             <li>
-              <h2 id = "followings"></h2>
+              <h2 id = "followings" style="text-align: center;"></h2>
               <h3>Following</h3>
             </li>
           </ul>
@@ -753,7 +754,7 @@
                   for(var i=0; i< dataResult.length; i++) {  
                     
 
-                   newtip += '<div class="mentor_srvc"><h2>'+dataResult[i].serviceTypeMaster.title+'</h2><div class="mentor_srvc_bx"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"><div class="mentor_srvc_bx_txt"><h3>'+dataResult[i].title+'<span>$'+dataResult[i].price+'</span></h3><p>'+dataResult[i].descriptionOne+'</p><button class="btn cmn_btn btn_primary" data-toggle="modal" data-target="#serviceModal">Subscribe</button></div></div>'                 
+                   newtip += '<div class="mentor_srvc"><h2>'+dataResult[i].serviceTypeMaster.title+'</h2><div class="mentor_srvc_bx"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"><div class="mentor_srvc_bx_txt"><h3>'+dataResult[i].title+'<span>$'+dataResult[i].price+'</span></h3><p>'+dataResult[i].descriptionOne+'</p><button class="btn cmn_btn btn_primary" data-toggle="modal" data-target="#serviceModal">View Detail</button></div></div><br>'                 
 
                
 
