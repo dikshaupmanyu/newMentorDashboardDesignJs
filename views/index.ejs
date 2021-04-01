@@ -122,6 +122,7 @@
                             const tds3 = dataResult.id;
                             const tds4 = dataResult.accessTokenStreamIOWithID;
                             const tds5 = dataResult.email;
+                            const tds6 = dataResult.createdOn;
 
                             localStorage.setItem('allTokenData', JSON.stringify({
                                 tokendata: tdss,
@@ -130,6 +131,7 @@
                                 uid: tds3,
                                 streamdatatoken: tds4,
                                 email:tds5,
+                                creation_date:tds6,
                             }));
 
                        // window.location.href = "/home";  
