@@ -2,7 +2,7 @@ var compression = require('compression')
 var express  = require('express');
 var app      = express();
 var fs      = require('fs');
-var port     = process.env.PORT || 80;
+var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -60,9 +60,9 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 // launch ======================================================================
 // app.listen(port);
 
-// var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
+var httpServer = http.createServer(app);
+// var httpsServer = https.createServer(credentials, app);
 
-// httpServer.listen(port);
-httpsServer.listen(port);
+httpServer.listen(port);
+// httpsServer.listen(port);
 console.log('The magic happens on port ' + port);
