@@ -129,6 +129,27 @@ module.exports = function(app) {
     res.render('newsletterServices.ejs');
   });
 
+  app.get('/TradeAlerts', function(req, res) {
+
+    res.render('tradeAlerts.ejs');
+  });
+
+  app.get('/TradeAlerts', function(req, res) {
+
+    res.render('tradeAlerts.ejs');
+  });
+
+  app.get('/DueDiligence', function(req, res) {
+
+    res.render('dueDiligence.ejs');
+  });
+
+  app.get('/recommendedService', function(req, res) {
+
+    res.render('recommendedService.ejs');
+  });
+
+
   app.get('/LiveChat', function(req, res) {
 
     res.render('chatRoomServices.ejs');

@@ -730,7 +730,7 @@
 
         $.ajax({
               type: 'POST',
-              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllServiceSubscriptionPlanForMentor',
+              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllServiceSubscriptionPlanForMentorWithSuggestions',
               headers: {
                 Authorization: 'Bearer '+ tokens,
                  },
@@ -739,15 +739,17 @@
                 },
                success: function(data) {
                  var datak = JSON.stringify(data);
-                 var dataResult = JSON.parse(datak); 
+                 var fdataResult = JSON.parse(datak); 
+                 console.log(fdataResult.suggestedServiceSubscriptionPlans);
+                 var dataResult = fdataResult.suggestedServiceSubscriptionPlans;
                   var len = dataResult.length;
-             if(dataResult.length == 0){
-                
-                  document.getElementById('newsletterServices').innerHTML="<br><p>You currently have no Services created.</p>";
-                  $("#newsletterServices").css("text-align", "center");
-                  $("#newsletterServices").css("color", "white");
+               if(dataResult.length == 0){
+                  
+                    document.getElementById('newsletterServices').innerHTML="<br><p>You currently have no Services created.</p>";
+                    $("#newsletterServices").css("text-align", "center");
+                    $("#newsletterServices").css("color", "white");
 
-               } else {
+                 } else {
 
 
                 let newtip = [];
