@@ -23,6 +23,10 @@
       </div>
       <form id="formoid" enctype="multipart/form-data" onsubmit="return false">
 
+         <input type="text" class="form-control" placeholder="Enter your title here" name="serviceTypeId" id="serviceTypeIds" value="33428f3b-cf07-4861-875d-05d1189fdc71" style="display: none;">
+
+       <input type="text" class="form-control" placeholder="Enter your title here" name="serviceName" id="serviceName" value="Recommended" style="display: none;">
+
       <div class="createpackage_form">
         <div class="form-group">
           <label>Recommended Title</label>
@@ -332,14 +336,17 @@ function ImgDelete(){
  
 
 $("#formoid").submit(function(event){
+
+
+
   var title = $('#title').val();
   var userId = userids;
   var serviceName = $('#serviceName').val();
   var descriptionOne = $('#description1').val();
-  // var serviceTypeId = $('#serviceTypeIds').val();
+  var serviceTypeId = $('#serviceTypeIds').val();
   var descriptionTwo = $('#description2').val();
   var frequency = $('#frequency').val();
-  var price = $('#price').val();
+  var price = "0";
   var imageDetails = $('#file-image').val();
   // alert(imageDetails);
   var file = document.getElementById("file-upload").files[0];
@@ -360,13 +367,14 @@ $("#formoid").submit(function(event){
  
   var formdata = new FormData();
     formdata.append("title", title);
-    // formdata.append("serviceTypeId", serviceTypeId);
-    // formdata.append("stripeProductName", stripeProductName);
+    formdata.append("serviceTypeId", serviceTypeId);
+    formdata.append("stripeProductName", stripeProductName);
     formdata.append("descriptionOne", descriptionOne);
     formdata.append("descriptionTwo", descriptionTwo);
     formdata.append("frequency", frequency);
     formdata.append("price", price);
     formdata.append("mentorId", userId);
+    formdata.append("isSuggested", true);
     if(filename == ""){
     // alert("null");
       formdata.append("imageDetails", "");

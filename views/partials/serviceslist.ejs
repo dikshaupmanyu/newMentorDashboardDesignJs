@@ -1,3 +1,5 @@
+  <a href="recommendedService" id="recomndDataService"><button class="btn cmn_btn btn_small btn_primary" type="button">Create Recommended Service</button></a>
+
   <button class="btn cmn_btn btn_small btn_primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create New Service</button>
           <div class="dropdown-menu"  id="listservice">
            
@@ -12,6 +14,15 @@
   
   var userids = storageData.uid;
 
+  var userName = storageData.uname
+
+  // alert(userName);
+
+  if(userName == "govinda"){
+   $('a#recomndDataService').css("display", "block");
+
+  }else
+   $('a#recomndDataService').css("display", "none");
 
         $.ajax({
               type: 'POST',
@@ -26,7 +37,7 @@
                   for(var i=0; i< dataResult.length; i++){
 
                  
-                  tiplist += ' <a class="dropdown-item" href="/' + dataResult[i].serviceType + '">' + dataResult[i].title + '</a>';
+                  tiplist += ' <a class="dropdown-item" id="' + dataResult[i].serviceType + '" href="/' + dataResult[i].serviceType + '">' + dataResult[i].title + '</a>';
 
                    // newtip.push(dataResult[i]);
                   }
@@ -37,3 +48,9 @@
 
             });
   </script>
+
+  <style type="text/css">
+    #Recommended {
+      display: none;
+    }
+  </style>

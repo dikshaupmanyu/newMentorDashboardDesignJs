@@ -424,7 +424,7 @@ $("#file-upload").change(function() {
   var title = $('#title').val();
   var userId = userids;
   var descriptionOne = $('#description1').val();
-  // var descriptionTwo = "";
+  var descriptionTwo = $('#description2').val();
   var frequency = $('#frequency').val();
   var price = $('#price').val();
   var imageDetails = $('#file-image').val();
@@ -442,7 +442,7 @@ $("#file-upload").change(function() {
     formdata.append("serviceTypeId", serviceTypeId);
     formdata.append("serviceSubscriptionPlanMentorId", serviceTypeSubscriptionId);
     formdata.append("descriptionOne", descriptionOne);
-    formdata.append("descriptionTwo", "null");
+    formdata.append("descriptionTwo", descriptionTwo);
     formdata.append("stripeProductName", stripeProductName);
     formdata.append("frequency", frequency);
     formdata.append("price", price);
@@ -534,7 +534,7 @@ function ImgDelete(){
 
                   document.getElementById("title").value = dataResult.title;
                   document.getElementById("description1").value = dataResult.descriptionOne;
-                  // document.getElementById("description2").value = null;
+                  document.getElementById("description2").value = dataResult.descriptionTwo;
                   document.getElementById("frequency").value = dataResult.frequency;
                   document.getElementById("price").value = dataResult.price;
                   document.getElementById("file-image").src = "https://apistest.tradetipsapp.com"+dataResult.imageDetails;
