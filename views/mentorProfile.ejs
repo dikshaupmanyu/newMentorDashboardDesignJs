@@ -711,6 +711,7 @@
   var user_name = storageData.uname;
   var email_id = storageData.email;
   var LoggedInId = storageData.uid;
+  alert(LoggedInId);
   var tokens = storageData.tokendata;
 
   var date = storageData.creation_date;
@@ -730,12 +731,12 @@
 
         $.ajax({
               type: 'POST',
-              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllServiceSubscriptionPlanForMentorWithSuggestions',
+              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllTypeServicesForUser',
               headers: {
                 Authorization: 'Bearer '+ tokens,
                  },
               data: {
-                  mentorId: LoggedInId,
+                  userId: LoggedInId,
                 },
                success: function(data) {
                  var datak = JSON.stringify(data);
@@ -743,6 +744,7 @@
                  console.log(fdataResult.suggestedServiceSubscriptionPlans);
                  var dataResult = fdataResult.suggestedServiceSubscriptionPlans;
                   var len = dataResult.length;
+                  alert(len);
                if(dataResult.length == 0){
                   
                     document.getElementById('newsletterServices').innerHTML="<br><p>You currently have no Services created.</p>";

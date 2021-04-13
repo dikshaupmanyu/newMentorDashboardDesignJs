@@ -14,15 +14,19 @@
   
   var userids = storageData.uid;
 
-  var userName = storageData.uname
+  var loginName = storageData.uname
 
   // alert(userName);
 
-  if(userName == "govinda"){
-   $('a#recomndDataService').css("display", "block");
+  if(loginName === "govinda"){
 
-  }else
-   $('a#recomndDataService').css("display", "none");
+   $('#recomndDataService').css("display", "block");
+
+  }else{
+
+   $('#recomndDataService').css("display", "none");
+  }
+
 
         $.ajax({
               type: 'POST',
@@ -47,6 +51,7 @@
               }
 
             });
+  
   </script>
 
   <style type="text/css">
