@@ -179,7 +179,18 @@
 
  $('#rememberme').click(function() {
   var rem = document.getElementById("rememberme");
-  //alert(rem.checked);
+  //alert(document.cookie);
+  function removeCookies() {
+            var res = document.cookie;
+            var multiple = res.split(";");
+            //alert(multiple);
+            for(var i = 0; i < multiple.length; i++) {
+               var key = multiple[i].split("=");
+               document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+               //alert(document.cookie);
+            }
+          }
+  removeCookies();
   if (rem.checked == true){
       if ($('#rememberme').is(':checked')){
           //alert("yesss");
@@ -189,6 +200,7 @@
           // alert(expires);
           document.cookie = "userName="+usrname+";expires="+expires+";path=/";
           //document.cookie = "password="+pass+";expires="+expires+";path=/"+"; secure";
+
           function encode_cookie(cookie_value) {
 
               // This variable holds the encoded cookie characters
@@ -221,7 +233,7 @@ document.cookie = "password="+AA+";expires="+expires+";path=/";
 });
 
 function getCookie(){
-  //alert(document.cookie.length);
+  //alert(document.cookie);
   if(document.cookie.length!=0){
 
     var data = document.cookie.split("=");
