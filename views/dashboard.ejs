@@ -1499,15 +1499,15 @@ function loadAi(offset,limit){
                       processData: false,
                     success: function(data, textStatus, jqXHR) {
                         // console.log(textStatus + ": " + jqXHR.status);
-                       if(jqXHR.status == 500){
-                       }else{
-                         var filtered = data.filter(function (el) {
-                          return el.status != 500;
-                        });
-                       }
-                        if(filtered.length > 0){
+                       // if(jqXHR.status == 500){
+                       // }else{
+                       //   var filtered = data.filter(function (el) {
+                       //    return el.status != 500;
+                       //  });
+                       // }
+                        // if(filtered.length > 0){
                        // console.log(filtered);  
-                       var dataks = JSON.stringify(filtered);
+                       var dataks = JSON.stringify(data);
                        var array = JSON.parse(dataks);
                        $.get('https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols='+ array[0].stock_name , function(d) {
 
@@ -1562,15 +1562,15 @@ function loadAi(offset,limit){
                      // console.log(array);
    
                      
-                   }
+                     // }
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                       // console.log(textStatus + ": " + jqXHR.status + " " + errorThrown);
-                    }
+                     }
                     });
      
            
-                   }
+                 }
                  
        }
      }
