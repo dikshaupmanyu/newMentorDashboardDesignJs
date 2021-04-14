@@ -218,7 +218,7 @@ module.exports = function(app) {
   });
 
 
-  app.get('/firebase', function(req, res) {
+  app.get('/chatWindow', function(req, res) {
 
     const admin = require('firebase-admin');
   
@@ -238,7 +238,7 @@ module.exports = function(app) {
     // });
         // console.log(sub_array);
 
-     res.render('firebase.ejs');
+     res.render('chatWindow.ejs');
 
        
     // });
