@@ -357,7 +357,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 */
 
 $('#carousel-thumbs .carousel-item img').on('click', function(e) {
-  alert(e.target.src);
+  //alert(e.target.src);
   // readURLs(file);
   
   // var src = $(e.target).attr('data-remote');
@@ -379,6 +379,7 @@ $('#carousel-thumbs .carousel-item img').on('click', function(e) {
 // });
 
 var imgUrl = e.target.src;
+//alert(imgUrl);
 
 function getBase64Image(imgUrl) {
   return new Promise(
@@ -405,30 +406,19 @@ function getBase64Image(imgUrl) {
 
 }
 
-
-   let base64image = getBase64Image(imgUrl).then(function(base64image) {
-    // alert(base64image);
+let base64image = getBase64Image(imgUrl).then(function(base64image) {
+  //alert(base64image);
 
     var file = "data:image/png;base64,"+base64image;
+    //alert(file);
 
-    readURLs(file);
-
-  function readURLs(file) {
-    // alert(file);
-      var reader = new FileReader();
-    
-    reader.onload = function(e) {
-      // alert(e.target.result);
-      $('#file-image').attr('src', imgUrl);
-      document.getElementById('file-image').style.display= "block";
-    }
-    
-    reader.readAsDataURL(file); // convert to base64 string
-
-  }
+    fileconvert(file);
    
+   
+
   });
 
+ 
  
 
 
@@ -471,12 +461,32 @@ function getBase64Image(imgUrl) {
 
 $("#file-upload").change(function() {
   readURL(this);
-  // alert(readURL(this));
+ // alert(readURL(this));
 });
 
 function ImgDelete(){
   document.getElementById('file-image').style.display= "none";
 }
+
+
+
+ function fileconvert(file){
+
+     fetch(file)
+      .then(res => res.blob())
+      .then(blob => {
+        // $('#file-image').attr('src', file);
+        var formdata = new FormData()
+        // fd.append('image', blob, 'filename')
+        formdata.append("imageDetails", blob , 'filename');
+        
+       // alert(formdata);
+        //alert(blob)
+
+      })
+
+    }
+
  
 
 $("#formoid").submit(function(event){
@@ -495,15 +505,17 @@ $("#formoid").submit(function(event){
   // if(file == undefined){
   //   readURLs(file);
   // }
+  
+
+
  
   var fullPath = $("#file-upload").val();
-  // alert(fullPath);   
+//  alert(fullPath);   
   var filename = fullPath.replace(/^.*[\\\/]/, '');
-  // alert(filename);
+ // alert(filename);
   var frequencyss = $("#frequency option:selected").text();
   var stripeProductName = userName +'_'+ serviceName +'_'+ frequencyss;
   // alert(stripeProductName);
-
 
  
   var formdata = new FormData();
@@ -516,14 +528,36 @@ $("#formoid").submit(function(event){
     formdata.append("price", price);
     formdata.append("mentorId", userId);
     if(filename == ""){
-    // alert("null");
-      formdata.append("imageDetails", "");
+     // alert("null");
+      //formdata.append("imageDetails", "");
+       // function fileconvert(file){
+
+       //   fetch(file)
+       //    .then(res => res.blob())
+       //    .then(blob => {
+       //      alert(blob)
+       //      // $('#file-image').attr('src', file);
+       //      // var formdata = new FormData()
+       //      // fd.append('image', blob, 'filename')
+       //      formdata.append("imageDetails", blob , 'filename');
+            
+       //      //alert(formdata);
+       //      //alert(blob)
+
+       //    })
+
+       // }
+
+       fileconvert(file);
+
 
     }else{
-    // alert("not null");
+      alert("not null");
       formdata.append("imageDetails", file , filename);
 
     }
+
+    //alert(filename);
     var requestOptions = {
       method: 'POST',
       headers: {

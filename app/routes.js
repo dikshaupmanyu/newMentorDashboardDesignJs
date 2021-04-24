@@ -32,73 +32,10 @@ module.exports = function(app) {
 
   app.get('/dashboard', function(req, res) {
 
-    // var request = require("request");
-
-    // let users = [];
-
-
-    // var options = { method: 'POST',
-    //   url: 'https://apis.tradetipsapp.com/api/stockDetail/getAllStockOfUserByUserName',
-    //   headers: 
-    //    { 'postman-token': '1ac0c8ab-24ca-0fe0-5e43-9a97bb2f184c',
-    //      'cache-control': 'no-cache',
-    //      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6InBhbmthanRlamF3YXRAZ21haWwuY29tIiwic3ViIjoiZDlhY2VkMjMtN2I4OS00YWJjLWJkNzEtNTUyM2FiODNhOThhIiwiaWF0IjoxNjEyNzg3MTgzLCJleHAiOjE2MTMzOTE5ODN9.RMvzoOwyfRcV5hQ60ImZ_H55-aY0Wc_RVPHgYbO1jJ9rdBoSrn69R7LUbWtjOymklcizjeKCJMye4rG3p_gWrQ',
-    //      'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-    //   formData: { userName: 'pankaj' } };
-
-    // request(options, function (error, response, body) {
-    //   if (error) throw new Error(error);
-
-            // console.log(response);
-
-             // console.log(body);
-
-              // for(var i= response.length - 1; i >= 0 ; i--){
-
-              //       users.push(response[i].stockSymbol);
-              //   }
-
-              //   let resultSet = [];
-              //   for (i=0; i < users.length; i++){
-              //     var symbol = users[i];
-                  // console.log(symbol);
-
-                  // var options1 = { method: 'POST',
-                  //   url: 'https://apis.tradetipsapp.com/api/sectorNewsSentiment/getSentimentandSMAByStockSymbolResultSet',
-                  //   headers: 
-                  //    { 'postman-token': 'c5300459-c48a-4a3e-04c0-2cffbd2bbb05',
-                  //      'cache-control': 'no-cache',
-                  //      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6InBhbmthanRlamF3YXRAZ21haWwuY29tIiwic3ViIjoiZDlhY2VkMjMtN2I4OS00YWJjLWJkNzEtNTUyM2FiODNhOThhIiwiaWF0IjoxNjEyNzg3MTgzLCJleHAiOjE2MTMzOTE5ODN9.RMvzoOwyfRcV5hQ60ImZ_H55-aY0Wc_RVPHgYbO1jJ9rdBoSrn69R7LUbWtjOymklcizjeKCJMye4rG3p_gWrQ',
-                  //      'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-                  //   formData: { stockSymbol: symbol } };
-
-                  // request(options1, function (error, response, body1) {
-                  //   if (error) throw new Error(error);
-
-                  //   console.log(body1);
-                  // });
-
-
-                // }
-      // var options1 = { method: 'POST',
-      //   url: 'https://apis.tradetipsapp.com/api/sectorNewsSentiment/getSentimentandSMAByStockSymbolResultSet',
-      //   headers: 
-      //    { 'postman-token': 'c5300459-c48a-4a3e-04c0-2cffbd2bbb05',
-      //      'cache-control': 'no-cache',
-      //      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6InBhbmthanRlamF3YXRAZ21haWwuY29tIiwic3ViIjoiZDlhY2VkMjMtN2I4OS00YWJjLWJkNzEtNTUyM2FiODNhOThhIiwiaWF0IjoxNjEyNzg3MTgzLCJleHAiOjE2MTMzOTE5ODN9.RMvzoOwyfRcV5hQ60ImZ_H55-aY0Wc_RVPHgYbO1jJ9rdBoSrn69R7LUbWtjOymklcizjeKCJMye4rG3p_gWrQ',
-      //      'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-      //   formData: { stockSymbol: 'FB' } };
-
-      // request(options1, function (error, response, body1) {
-      //   if (error) throw new Error(error);
-
-      //   console.log(body1);
-
+   
         res.render('dashboard.ejs');
 
-      // });
 
-    // });
 
   });
 
@@ -226,18 +163,6 @@ module.exports = function(app) {
 
 
 
-    // db.collection("/openGroups/demoOpenGroup1/messages").get().then((querySnapshot) => {
-
-    //     var sub_array = [];
-     
-    // querySnapshot.forEach((doc) => {
-    //     // console.log(doc);
-    //      // console.log(`${doc.id} => ${doc.data()}`);
-    //      sub_array.push(doc.data());
-          
-    // });
-        // console.log(sub_array);
-
      res.render('chatWindow.ejs');
 
        
@@ -287,39 +212,7 @@ module.exports = function(app) {
 
     app.get('/home', function(req, res) {
 
-      // var fdata = [];
-
-      // var request = require("request");
-
-      // // var sData = window.localStorage.getItem('allTokenData');
-      
-      // // var storageData= JSON.parse(sData);
- 
-      // // var tokens = storageData.tokendata;
-
-      // // console.log(tokens);
-
-      // var dattt = {  offset: 0, limit: 1000000};
-
-  
-      
-      // var options = { method: 'POST',
-      //   url: 'https://apis.tradetipsapp.com/api/tip/getAllTipFeaturePaginationForUser',
-      //   headers: {
-      //     Authorization: 'Bearer '+ 'eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1haGVzaHdhcmkwNmdvdmluZEBnbWFpbC5jb20iLCJzdWIiOiJmMTQ4NmIzMy03YTM0LTQ1MDYtYWFhMS1kM2Y0YmYzOGQzNjYiLCJpYXQiOjE2MDk3NTAxOTcsImV4cCI6MTYxMDM1NDk5N30.sjeJgyz4Sq9P1jEDWr3IsovutZlPrYKvwHispVN2qtyh0g6SNL2-LdkD6XzMWLrUuYHnuFDEss5N0dxRGanNOw',
-      //      },
-      //   formData: dattt };
-
-      // request(options, function (error, response, body) {
-      //   if (error) throw new Error(error);
-
-      //   console.log(body);
-      //    // fdata.push(body);
-
-      //     res.render('home.ejs',{data : body});
-      // });
-       
-      //  // console.log(fdata);
+   
 
     res.render('home.ejs');
 
