@@ -464,7 +464,7 @@ $("#file-upload").change(function() {
       body: formdata,
       redirect: 'follow'
     };
-    fetch("https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/modifyServiceSubscriptionPlanByMentor", requestOptions)
+    fetch("https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlan/modifyServiceSubscriptionPlanByMentor", requestOptions)
       .then(response => response.json())
       .then(result => {
                 // alert("calling val" +result);
@@ -487,7 +487,7 @@ function ImgDelete(){
   var serviceTypeSubscriptionId = $('#serviceTypeSubscriptionId').val();
          $.ajax({
               type: 'POST',
-              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/deleteServiceSubscriptionPlanImageByMentor',
+              url: 'https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlan/deleteServiceSubscriptionPlanImageByMentor',
               headers: {
                 Authorization: 'Bearer '+ tokens,
                  },
@@ -518,7 +518,7 @@ function ImgDelete(){
   
          $.ajax({
               type: 'POST',
-              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getServiceSubscriptionPlanById',
+              url: 'https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getServiceSubscriptionPlanById',
               headers: {
                 Authorization: 'Bearer '+ tokens,
                  },
@@ -537,7 +537,7 @@ function ImgDelete(){
                   document.getElementById("description2").value = dataResult.descriptionTwo;
                   document.getElementById("frequency").value = dataResult.frequency;
                   document.getElementById("price").value = dataResult.price;
-                  document.getElementById("file-image").src = "https://apistest.tradetipsapp.com"+dataResult.imageDetails;
+                  document.getElementById("file-image").src = "https://apis.tradetipsapp.com"+dataResult.imageDetails;
                    
                  
 
@@ -598,7 +598,7 @@ $("#formoid").submit(function(event){
       redirect: 'follow'
     };
 
-    fetch("https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/modifyServiceSubscriptionPlanByMentor", requestOptions)
+    fetch("https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlan/modifyServiceSubscriptionPlanByMentor", requestOptions)
       .then(response => response.json())
       .then(result => {
                 // alert("calling val" +result);

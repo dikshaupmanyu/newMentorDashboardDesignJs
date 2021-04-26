@@ -23,7 +23,10 @@
       </div>
       <form id="formoid" enctype="multipart/form-data" onsubmit="return false">
 
-         <input type="text" class="form-control" placeholder="Enter your title here" name="serviceTypeId" id="serviceTypeIds" value="33428f3b-cf07-4861-875d-05d1189fdc71" style="display: none;">
+      <!--    <input type="text" class="form-control" placeholder="Enter your title here" name="serviceTypeId" id="serviceTypeIds" value="33428f3b-cf07-4861-875d-05d1189fdc71" style="display: none;"> -->
+
+           <input type="text" class="form-control" placeholder="Enter your title here" name="serviceTypeId" id="serviceTypeIds" value="afcb862d-230a-4c25-8b7e-0e5050382d98" style="display: none;">
+
 
        <input type="text" class="form-control" placeholder="Enter your title here" name="serviceName" id="serviceName" value="Recommended" style="display: none;">
 
@@ -89,7 +92,7 @@
           </div>
           <div class="cover_img_optn">
             <ul>
-         <li class="mr-auto ml-0"><a href="#">Click here</a> and Choose from a Group of Images</li>
+        <!--  <li class="mr-auto ml-0"><a href="#">Click here</a> and Choose from a Group of Images</li> -->
          <li><a onclick="ImgDelete();" style="cursor: pointer;"><span><i class="far fa-trash-alt"></i></span> Remove Picture</a></li>
             </ul>
           </div>
@@ -213,7 +216,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 */
 
 $('#carousel-thumbs .carousel-item img').on('click', function(e) {
-  alert(e.target.src);
+  // alert(e.target.src);
   // readURLs(file);
   
   // var src = $(e.target).attr('data-remote');
@@ -308,7 +311,7 @@ function getBase64Image(imgUrl) {
   
   var userids = storageData.uid;
 
-  alert(userids);
+  // alert(userids);
 
   var userName = storageData.uname;
 
@@ -396,7 +399,7 @@ $("#formoid").submit(function(event){
       redirect: 'follow'
     };
 
-    fetch("https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/addServiceSubscriptionPlanByMentor", requestOptions)
+    fetch("https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlan/addServiceSubscriptionPlanByMentor", requestOptions)
       .then(response => response.json())
       .then(result => {
                 // alert("calling val" +result);
@@ -404,14 +407,13 @@ $("#formoid").submit(function(event){
                 var datak = JSON.stringify(result);
                 // alert(datak);
                 var dataResultp = JSON.parse(datak); 
-                // alert(dataResultp.title);
-                //alert("Your newsletter "+dataResultp.title+" was submitted successfully");
+                //alert(dataResultp.title);
               $(".successmsg").html('<span>"Your Recommended '+dataResultp.title+' was submitted successfully"</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
                //window.location.reload();
                setTimeout(function(){
                // window.location.reload(1);
-               // window.location.href = "/services"; 
+               window.location.href = "/services"; 
                }, 2000);
                 
 

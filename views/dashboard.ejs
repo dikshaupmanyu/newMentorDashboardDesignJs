@@ -442,10 +442,11 @@ ul.search-list-loader {
                    success: function(data){
                         //alert(data);
                       // console.log("value is" + data);
+                     // var dataid = [];
                       var datak = JSON.stringify(data);
                       var dataResult = JSON.parse(datak);
                       var len = dataResult.length;
-                      console.log(dataResult);    
+                      //console.log(dataResult);    
 
                       $("#symbol-box").empty();
                        $input=$("#search-stock");
@@ -453,7 +454,8 @@ ul.search-list-loader {
                            
                            
                              clearTimeout(timers);
-                    
+                             
+                            
                           for( var i = 0; i<len; i++){
                                // alert(len);
                                var id = dataResult[i]['id'];
@@ -468,18 +470,32 @@ ul.search-list-loader {
                                 // console.log(ss);
                                 // console.log(id);
                                 // console.log("input#checkbtn_"+id);
+
                                  if(ss ==true){
                                 
                                     // $("input#checkbtn_"+id).prependTo("#symbol-box");
 
+
+
                                     $("<li style='list-style: none;' value='"+symbol+"'><span class='ck_box_custom'><input id='checkbtn_"+id+"' type='checkbox' class='checkbtn' name='symbols[]' data-id='"+name+"'  value='"+symbol+"'><label for='checkbtn_"+id+"'>&nbsp;"+symbol+"</label></span></li>").prependTo("#symbol-box");
-                                      setTimeout($("input#checkbtn_"+id).prop("checked", true),3600);
+
+                                     // dataid.push($("input#checkbtn_"+id).prop("checked", true));
+
+                                      $("input#checkbtn_"+id).prop("checked", true);
+
+
+
+                                      // setTimeout($("input#checkbtn_"+id).prop("checked", true),3600);
+
+                                       // setTimeout(dataid,3600);     
                                    
                                  } else {
 
                                    $("#symbol-box").append("<li style='list-style: none;' value='"+symbol+"'><span class='ck_box_custom'><input id='checkbtn_"+id+"' type='checkbox' class='checkbtn' name='symbols[]' data-id='"+name+"'  value='"+symbol+"'><label for='checkbtn_"+id+"'>&nbsp;"+symbol+"</label></span></li>");
 
-                                 }       
+                                 }  
+
+
 
                                clearTimeout(timers);
                                $('.checkbtn').on('click',function(){
@@ -520,6 +536,15 @@ ul.search-list-loader {
                                  $("#search-stock").val('');
                                });  
                            }
+
+                           //console.log(dataid);
+
+                           // setTimeout(for(i=0; i< dataid.length; i ++){
+                           //   dataid[0];
+                           // })
+
+                           
+
                              
                               // $('.load-wrapp').css('display','none');
                               $('#symbol-box').css('display','block');

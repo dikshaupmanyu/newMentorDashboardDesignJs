@@ -47,7 +47,7 @@ var db = firebase.firestore();
 // var loggedInVal = storageData.uid;
 // alert(loggedInVal);
        
-const docRef = db.collection("/openGroups/demoOpenGroup1/messages/");
+const docRef = db.collection("/openGroups/roomOne/messages/");
 const tasksDOM = document.getElementById("tasks");
 var fullName   = document.getElementById('user_nickname');
 var message    = document.getElementById('btn-input');
