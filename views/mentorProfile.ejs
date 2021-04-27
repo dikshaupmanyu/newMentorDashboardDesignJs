@@ -711,7 +711,7 @@
   var user_name = storageData.uname;
   var email_id = storageData.email;
   var LoggedInId = storageData.uid;
-  alert(LoggedInId);
+  //alert(LoggedInId);
   var tokens = storageData.tokendata;
 
   var date = storageData.creation_date;
@@ -731,7 +731,7 @@
 
         $.ajax({
               type: 'POST',
-              url: 'https://apistest.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllTypeServicesForUser',
+              url: 'https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlan/getAllTypeServicesForUser',
               headers: {
                 Authorization: 'Bearer '+ tokens,
                  },
@@ -741,10 +741,11 @@
                success: function(data) {
                  var datak = JSON.stringify(data);
                  var fdataResult = JSON.parse(datak); 
-                 console.log(fdataResult.suggestedServiceSubscriptionPlans);
+                // console.log(fdataResult.suggestedServiceSubscriptionPlans);
                  var dataResult = fdataResult.suggestedServiceSubscriptionPlans;
+                 //console.log(dataResult);
                   var len = dataResult.length;
-                  alert(len);
+                  //alert(len);
                if(dataResult.length == 0){
                   
                     document.getElementById('newsletterServices').innerHTML="<br><p>You currently have no Services created.</p>";
@@ -756,11 +757,14 @@
 
                 let newtip = [];
                   for(var i=0; i< dataResult.length; i++) {  
+
+
+                  if(dataResult[i].isActive == true){
+
+                  //  console.log(dataResult[i].title);
+                    newtip += '<div class="mentor_srvc"><h2>'+dataResult[i].serviceTypeMaster.title+'</h2><div class="mentor_srvc_bx"><img src="https://apis.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"><div class="mentor_srvc_bx_txt"><h3>'+dataResult[i].title+'<span>Free</span></h3><p>'+dataResult[i].descriptionOne+'</p><a href="'+dataResult[i].descriptionTwo+'" target="_blank"><button class="btn cmn_btn btn_primary">View Detail</button></a></div></div><br>'                 
+                  }
                     
-
-                   newtip += '<div class="mentor_srvc"><h2>'+dataResult[i].serviceTypeMaster.title+'</h2><div class="mentor_srvc_bx"><img src="https://apistest.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"><div class="mentor_srvc_bx_txt"><h3>'+dataResult[i].title+'<span>Free</span></h3><p>'+dataResult[i].descriptionOne+'</p><a href="'+dataResult[i].descriptionTwo+'" target="_blank"><button class="btn cmn_btn btn_primary">View Detail</button></a></div></div><br>'                 
-
-               
 
                   }
                    $("#newsletterServices").append(newtip);
