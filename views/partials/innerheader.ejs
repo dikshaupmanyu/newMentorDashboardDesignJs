@@ -126,7 +126,12 @@ window.addEventListener("load", function() {
  
   var sData = localStorage.getItem('allTokenData');
   var storageData= JSON.parse(sData);
-  // alert(storageData.uid);
+  // alert(storageData);
+  if(storageData == null){
+    window.location.href = "/";
+  }
+
+  
  
    var LoggedInUsername = storageData.uname;
    var LoggedInEmail = storageData.email;
