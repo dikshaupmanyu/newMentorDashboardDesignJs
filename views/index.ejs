@@ -53,10 +53,10 @@
           <input type="text" class="form-control" id="uname" name="userName" placeholder="Enter Username" required="required">
           <input type="text" class="form-control" id="pswrd" name="password" placeholder="Enter Password" required="required" autocomplete="off">
           <div class="rmbr_frgt">
-            <label>
+          <!--   <label>
             <input type="checkbox" required="required" name="remember" id="rememberme">
             Remember Me
-            </label>
+            </label> -->
             <h4><a href="/forgetPassword">Forgot password?</a></h4>
           </div>
           <button class="btn cmn_btn btn_primary" id="butlogin">Login</button>
@@ -177,100 +177,100 @@
 
 <script type="text/javascript">
 
- $('#rememberme').click(function() {
-  var rem = document.getElementById("rememberme");
-  //alert(document.cookie);
-  function removeCookies() {
-            var res = document.cookie;
-            var multiple = res.split(";");
-            //alert(multiple);
-            for(var i = 0; i < multiple.length; i++) {
-               var key = multiple[i].split("=");
-               document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
-               //alert(document.cookie);
-            }
-          }
-  removeCookies();
-  if (rem.checked == true){
-      if ($('#rememberme').is(':checked')){
-          //alert("yesss");
-          var usrname = $('#uname').val(); 
-          var pass = $('#pswrd').val();
-          var expires = (new Date(Date.now()+ 10*24*60*60*1000)).toUTCString();
-          // alert(expires);
-          document.cookie = "userName="+usrname+";expires="+expires+";path=/";
-          //document.cookie = "password="+pass+";expires="+expires+";path=/"+"; secure";
+//  $('#rememberme').click(function() {
+//   var rem = document.getElementById("rememberme");
+//   //alert(document.cookie);
+//   function removeCookies() {
+//             var res = document.cookie;
+//             var multiple = res.split(";");
+//             //alert(multiple);
+//             for(var i = 0; i < multiple.length; i++) {
+//                var key = multiple[i].split("=");
+//                document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+//                //alert(document.cookie);
+//             }
+//           }
+//   removeCookies();
+//   if (rem.checked == true){
+//       if ($('#rememberme').is(':checked')){
+//           //alert("yesss");
+//           var usrname = $('#uname').val(); 
+//           var pass = $('#pswrd').val();
+//           var expires = (new Date(Date.now()+ 10*24*60*60*1000)).toUTCString();
+//           // alert(expires);
+//           document.cookie = "userName="+usrname+";expires="+expires+";path=/";
+//           //document.cookie = "password="+pass+";expires="+expires+";path=/"+"; secure";
 
-          function encode_cookie(cookie_value) {
+//           function encode_cookie(cookie_value) {
 
-              // This variable holds the encoded cookie characters
-              var coded_string = ""
+//               // This variable holds the encoded cookie characters
+//               var coded_string = ""
               
-              // Run through each character in the cookie value
-              for (var counter = 0; counter < cookie_value.length; counter++) {
+//               // Run through each character in the cookie value
+//               for (var counter = 0; counter < cookie_value.length; counter++) {
               
-                // Add the character's numeric code to the string
-                coded_string += cookie_value.charCodeAt(counter)+ 25
+//                 // Add the character's numeric code to the string
+//                 coded_string += cookie_value.charCodeAt(counter)+ 25
                 
-                // Separate each code with a plus sign (+)
-                if (counter < cookie_value.length - 1) {
-                  coded_string += "+"
-                }
-              }
-              return coded_string
-            }
-AA = encode_cookie(pass);
-//alert(AA);
-document.cookie = "password="+AA+";expires="+expires+";path=/";
+//                 // Separate each code with a plus sign (+)
+//                 if (counter < cookie_value.length - 1) {
+//                   coded_string += "+"
+//                 }
+//               }
+//               return coded_string
+//             }
+// AA = encode_cookie(pass);
+// //alert(AA);
+// document.cookie = "password="+AA+";expires="+expires+";path=/";
 
-  }
-}
-  else{
-      //alert("noooooo");
-      document.cookie = "userName=; max-age=0; path=/;";
-      document.cookie = "password=; max-age=0; path=/;";
-  }
-});
+//   }
+// }
+//   else{
+//       //alert("noooooo");
+//       document.cookie = "userName=; max-age=0; path=/;";
+//       document.cookie = "password=; max-age=0; path=/;";
+//   }
+// });
 
-function getCookie(){
-  //alert(document.cookie);
-  if(document.cookie.length!=0){
+// function getCookie(){
+//   //alert(document.cookie);
+//   if(document.cookie.length!=0){
 
-    var data = document.cookie.split("=");
-    var name = data[1].split(";");
-    //alert(name[0]);
-    //alert(data[2]);
-    function decode_cookie(coded_string) {
+//     var data = document.cookie.split("=");
+//     var name = data[1].split(";");
+//     //alert(name[0]);
+//     //alert(data[2]);
+//     function decode_cookie(coded_string) {
 
-        // This variable holds the decoded cookie value
-        var cookie_value = ""
+//         // This variable holds the decoded cookie value
+//         var cookie_value = ""
         
-        // Use + to split the coded string into an array
-        var code_array = coded_string.split("+")
+//         // Use + to split the coded string into an array
+//         var code_array = coded_string.split("+")
         
-        // Loop through the array
-        for (var counter = 0; counter < code_array.length; counter++) {
+//         // Loop through the array
+//         for (var counter = 0; counter < code_array.length; counter++) {
 
-          // Convert the code into a character and 
-          // add it to the cookie value string
-          cookie_value += String.fromCharCode(code_array[counter]- 25)
-        }
-        return cookie_value
-}
+//           // Convert the code into a character and 
+//           // add it to the cookie value string
+//           cookie_value += String.fromCharCode(code_array[counter]- 25)
+//         }
+//         return cookie_value
+// }
 
-BB = decode_cookie(data[2]);
-//alert(BB);
-    $("#uname").val(name[0]);
-    $("#pswrd").val(BB);
-    $("#rememberme").prop('checked', true);
- }
- else{
-    $("#rememberme").prop('checked', false);
-     // alert(document.cookie);
-     document.cookie = "userName=; max-age=0; path=/;";
-     document.cookie = "password=; max-age=0; path=/;";
- }
-}
+// BB = decode_cookie(data[2]);
+// //alert(BB);
+//     $("#uname").val(name[0]);
+//     $("#pswrd").val(BB);
+//     $("#rememberme").prop('checked', true);
+//  }
+//  else{
+//     $("#rememberme").prop('checked', false);
+//      // alert(document.cookie);
+//      document.cookie = "userName=; max-age=0; path=/;";
+//      document.cookie = "password=; max-age=0; path=/;";
+//  }
+// }
 </script>
 
  
