@@ -1559,7 +1559,7 @@ function loadAi(offset,limit){
                           headers: {
                             Authorization: 'Bearer '+ tokens ,
                           },
-                          //async:false,
+                          async:true,
                           // data: formdata,
                           processData: false,
                           success: function(data, textStatus, jqXHR) {

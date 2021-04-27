@@ -11,6 +11,9 @@
     border-bottom: 0;
     border-left: .3em solid transparent;
 }
+/*img[src="#"] {
+    display: none;
+}*/
 </style>
 <div class="app_main">
   <%- include partials/innersidebar %>
@@ -100,6 +103,10 @@
               </div>
             </li>  -->
           </ul>
+        </div>
+        <br>
+         <div class="tips_bx_txt">
+          <img id="tipImage" src="#">
         </div>
         <div id="commentdemo"> </div>
         <div class="review_area">
@@ -313,18 +320,24 @@ function handleError(image) {
 
                     document.getElementById("likeimgstatus").src = "images/tips-like-icon.png";
 
-                  }
+                  } 
 
+                  if(dataResult.tip.imageDetails != null){
 
-                   
-                               
+                     document.getElementById("tipImage").src = "https://apis.tradetipsapp.com/api/appUser/getImageByTipId?tipId="+dataResult.tip.id;      
 
-                                 
-                             
-                              
+                  }else{
+
+                     document.getElementById("tipImage").src = "#"; 
+
+                     document.getElementById("tipImage").style.display = "none";
      
 
-                               
+                  }    
+
+                  
+
+                 
 
 
                   document.getElementById("MentorUser").textContent = dataResult.tip.appUser.userName;
