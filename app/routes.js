@@ -4,23 +4,23 @@ module.exports = function(app) {
     res.render('index.ejs');
   });
 
-   app.get('/chat', isLoggedIn, function(req, res) {
+   app.get('/chat', function(req, res) {
 
     res.render('chat.ejs');
   });
 
-    app.get('/profile', isLoggedIn, function(req, res) {
+    app.get('/profile', function(req, res) {
 
     res.render('profile.ejs');
   });
 
-    app.get('/mentorProfile',isLoggedIn, function(req, res) {
+    app.get('/mentorProfile', function(req, res) {
 
     res.render('mentorProfile.ejs');
   });
 
 
-   app.get('/stockChart',isLoggedIn, function(req, res) {
+   app.get('/stockChart', function(req, res) {
 
     var mentorids = req.query.id;
 
@@ -30,7 +30,7 @@ module.exports = function(app) {
   });
 
 
-  app.get('/dashboard', isLoggedIn , function(req, res) {
+  app.get('/dashboard', function(req, res) {
 
    
         res.render('dashboard.ejs');
@@ -39,19 +39,19 @@ module.exports = function(app) {
 
   });
 
-  app.get('/chatCodee', isLoggedIn , function(req, res) {
+  app.get('/chatCodee', function(req, res) {
 
     res.render('chatCodee.ejs');
   });
 
-   app.get('/mentorDetails', isLoggedIn, function(req, res) {
+   app.get('/mentorDetails', function(req, res) {
 
     var mentorids = req.query.id;
 
     res.render('mentorDetails.ejs' , {tipsIds : mentorids});
   });
 
-     app.get('/aiDetails',isLoggedIn, function(req, res) {
+     app.get('/aiDetails', function(req, res) {
 
     var mentorids = req.query.id;
 
@@ -61,75 +61,75 @@ module.exports = function(app) {
   });
 
 
-  app.get('/Newsletter',isLoggedIn, function(req, res) {
+  app.get('/Newsletter', function(req, res) {
 
     res.render('newsletterServices.ejs');
   });
 
-  app.get('/TradeAlerts',isLoggedIn, function(req, res) {
+  app.get('/TradeAlerts', function(req, res) {
 
     res.render('tradeAlerts.ejs');
   });
 
-  app.get('/TradeAlerts',isLoggedIn, function(req, res) {
+  app.get('/TradeAlerts', function(req, res) {
 
     res.render('tradeAlerts.ejs');
   });
 
-  app.get('/DueDiligence',isLoggedIn, function(req, res) {
+  app.get('/DueDiligence', function(req, res) {
 
     res.render('dueDiligence.ejs');
   });
 
-  app.get('/recommendedService',isLoggedIn, function(req, res) {
+  app.get('/recommendedService', function(req, res) {
 
     res.render('recommendedService.ejs');
   });
 
 
-  app.get('/LiveChat',isLoggedIn, function(req, res) {
+  app.get('/LiveChat', function(req, res) {
 
     res.render('chatRoomServices.ejs');
   });
 
-  app.get('/1-1Chat',isLoggedIn, function(req, res) {
+  app.get('/1-1Chat', function(req, res) {
 
     res.render('chatVideoServices.ejs');
   });
   
 
-  app.get('/Webinar',isLoggedIn, function(req, res) {
+  app.get('/Webinar', function(req, res) {
 
     res.render('webinarServices.ejs');
   });
 
-   app.get('/MentorPhoneGroup',isLoggedIn, function(req, res) {
+   app.get('/MentorPhoneGroup', function(req, res) {
 
     res.render('mentorPhoneServices.ejs');
   });
 
-    app.get('/Books',isLoggedIn, function(req, res) {
+    app.get('/Books', function(req, res) {
 
     res.render('bookServices.ejs');
   });
 
-    app.get('/Class',isLoggedIn, function(req, res) {
+    app.get('/Class', function(req, res) {
 
     res.render('classServices.ejs');
   });
 
 
-  app.get('/VideoSubscription',isLoggedIn, function(req, res) {
+  app.get('/VideoSubscription', function(req, res) {
 
     res.render('videoServices.ejs');
   });
 
-  app.get('/services',isLoggedIn, function(req, res) {
+  app.get('/services', function(req, res) {
 
     res.render('services.ejs');
   });
 
-   app.get('/editService',isLoggedIn, function(req, res) {
+   app.get('/editService', function(req, res) {
 
     var serviceIddd = req.query.id;
 
@@ -155,7 +155,7 @@ module.exports = function(app) {
   });
 
 
-  app.get('/chatWindow',isLoggedIn, function(req, res) {
+  app.get('/chatWindow', function(req, res) {
 
     const admin = require('firebase-admin');
   
@@ -173,7 +173,7 @@ module.exports = function(app) {
 
   });
 
-  app.post('/firebasejs',isLoggedIn, function(req, res) {
+  app.post('/firebasejs', function(req, res) {
 
      // console.log(req.body);
 
@@ -210,7 +210,7 @@ module.exports = function(app) {
 
   });
 
-    app.get('/home',isLoggedIn, function(req, res) {
+    app.get('/home', function(req, res) {
 
    
 
@@ -218,22 +218,16 @@ module.exports = function(app) {
 
   });
 
-    app.get('/room', isLoggedIn, function(req, res) {
+    app.get('/room', function(req, res) {
 
     res.render('room.ejs');
   });
 
-     app.get('/tip', isLoggedIn, function(req, res) {
+     app.get('/tip', function(req, res) {
 
     res.render('tip.ejs');
   });
 
+
+
 };
-
-function isLoggedIn(req, res, next) {
-  // console.log(req);
-  if (req.isAuthenticated())
-    return next();
-
-  res.redirect('/');
-}
