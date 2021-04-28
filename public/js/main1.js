@@ -101,7 +101,8 @@ function handleCreate(event) {
     });
 
    }else{
-    alert("Message not empty");
+   // alert("Message not empty");
+    $(".successmsg").html('<span>Message not empty.</span>');
    }    
  
 }

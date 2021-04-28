@@ -29,14 +29,14 @@
       <div class="createpackage_form">
         <div class="form-group">
           <label>Video Subscription Title</label>
-          <input type="text" class="form-control" placeholder="Enter your title here" name="title" id="title">
+          <input type="text" class="form-control" placeholder="Enter your title here" name="title" id="title" required="required">
           <h5>Max 200 Characters</h5>
         </div>
         <div class="form-group">
           <label>Description</label>
           <!-- <input type="text" class="form-control" placeholder="Enter your description here" name="description1" id="description1"> -->
-          <textarea class="form-control" placeholder="Enter your description here"name="description1" id="description1"></textarea>
-          <h5>Max 200 Characters</h5>
+          <textarea class="form-control" placeholder="Enter your description here"name="description1" id="description1" required="required"></textarea>
+          <h5 style="margin-top: 10px;">Max 200 Characters</h5>
         </div>
          <div class="form-group">
           <label>Enter Url</label>
@@ -66,14 +66,14 @@
              <label>Price </label>
               <div class="price_box">
                 <img src="images/doller-icon.png" alt="images">
-                <input type="text" class="form-control" name="onlynumbers" placeholder="Ex. 200" id="price">
+                <input type="text" class="form-control" name="onlynumbers" placeholder="Ex. 200" id="price" required="required">
               </div>
             </div>          
            </div>
            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
             <div class="form-group">
              <label>Video Channel Subscription Schedule</label>
-              <select name="frequency" id="frequency" class="form-control">
+              <select name="frequency" id="frequency" class="form-control" required="required">
                 <option>Select Schedule</option>
                 <option value="1">Daily</option>
                 <option value="7">Weekly</option>

@@ -1,3 +1,56 @@
+
+<script type="text/javascript">
+  window.history.forward(); 
+        function noBack() { 
+            window.history.forward(); 
+        } 
+
+
+  // window.onload = checkUser;
+  // function checkUser(){
+  //   if(localStorage.getItem("allTokenData") === "") {
+  //     window.location ="/";
+  //   } 
+  //   else {
+  //     $("#nav-placeholder").load("nav_auth.html");
+  //   }
+  // };       
+window.addEventListener("load", function() {
+
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+ 
+  var sData = localStorage.getItem('allTokenData');
+  var storageData= JSON.parse(sData);
+  // alert(storageData);
+  if(storageData == null){
+    // window.location.href = "/";
+  setTimeout(function(){window.location = "/";}, 1000);
+        
+  } 
+
+
+
+  
+ 
+   var LoggedInUsername = storageData.uname;
+   var LoggedInEmail = storageData.email;
+   var LoggedInId = storageData.uid;
+   // alert(LoggedInId);
+   document.getElementById("myImg").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
+   $('#loginvals').html(LoggedInUsername);
+   $('#loginemailvals').html(LoggedInEmail);
+
+
+});
+
+
+function myFunction() {
+  localStorage.clear();
+  window.location.href="/";
+}
+
+</script>
 <!DOCTYPE html>
 <html>
   <head>
@@ -113,148 +166,3 @@
 
 
 
-
-<script type="text/javascript">
-  window.history.forward(); 
-        function noBack() { 
-            window.history.forward(); 
-        } 
-window.addEventListener("load", function() {
-
-  var url_string = window.location.href; 
-  var urls = new URL(url_string);
- 
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
-  // alert(storageData);
-  if(storageData == null){
-    window.location.href = "/";
-  }
-
-  
- 
-   var LoggedInUsername = storageData.uname;
-   var LoggedInEmail = storageData.email;
-   var LoggedInId = storageData.uid;
-   // alert(LoggedInId);
-   document.getElementById("myImg").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
-   $('#loginvals').html(LoggedInUsername);
-   $('#loginemailvals').html(LoggedInEmail);
-
-
-});
-
-
-
-// var timer;
-
-// $(document).ready(function(){
-
-
-//     $("#search-box").keyup(function(){
-//         // alert($(this).val());
-//       // alert("timeset");
-
-//      clearTimeout(timer);
-
-//     timer = setTimeout(() => {
-//           // alert("timeout");
-//           // alert($(this).val());
-//         $.ajax({
-//         type: "POST",
-//         url: "https://apis.tradetipsapp.com/api/stocksearchdetails/searchStockSymbol",
-//         data:'stockSymbol='+$(this).val(),
-//         headers: { Authorization: 'Bearer '+ tokens},
-//         beforeSend: function(){
-//             // $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
-//              $("#suggesstion-box").css("overflow-y", "none");
-//              // clearTimeout(timer);
-
-//         },
-//         success: function(data){
-//             // alert(data);
-
-//            var datak = JSON.stringify(data);
-//            var dataResult = JSON.parse(datak);
-//            var len = dataResult.length;
-//            // alert(len);
-          
-      
-//             // $("#suggesstion-box").show();
-//               $("#suggesstion-box").css("overflow-y", "scroll");
-//               $("#suggesstion-box").css("height", "100px");
-//               $("#suggesstion-box").empty();
-
-                  
-//                   clearTimeout(timer);
-             
-//                  for( var i = 0; i<len; i++){
-//                     // alert(len);
-//                     var id = dataResult[i]['id'];
-//                     var symbol = dataResult[i]['stockSymbol'];
-//                     var name = dataResult[i]['stockName'];
-//                      // alert(name);
-
-//                      clearTimeout(timer);  
-
-//                     $("#suggesstion-box").append("<li style='    list-style: none;' value='"+symbol+"'><input id='radiobtn"+symbol+"' type='radio' name='symbolName' value='"+symbol+"'>&nbsp;"+symbol+"</li>");
-
-//                     clearTimeout(timer);
-
-//                     $(':radio[name="symbolName"]').change(function(){
-//                         $(this).parent('li').addClass('selected').siblings().removeClass('selected');
-
-//                     }).filter(':checked').change();   
-
-
-//                 }
-
-                   
-//                 $('input:radio[name="symbolName"]').click(function () {
-//                     // alert("hi");
-//                     // alert($(this).val());
-
-//                     var dataset = $(this).val();
-
-//                     // alert(dataset);
-
-//                      document.getElementById("setEntry").readOnly  = false;
-//                     document.getElementById("setStop").readOnly  = false;
-//                      document.getElementById("setExit").readOnly  = false;
-//                      document.getElementById("search-box").readOnly  = true;
-
-//                     var url = "https://cloud.iexapis.com/stable/stock/market/batch?token=pk_dd324da3fb5f4428a47b05ab12f23ce2&types=quote&symbols="+dataset;
-//                           $.ajax({
-//                             url : url,
-//                             type: "GET",
-//                             success: function(data)
-//                             {
-//                                      // alert(data[symbol]);
-
-//                                 document.getElementById("search-box").value  = dataset;
-
-//                                  // document.getElementById("setEntry").value = JSON.stringify(data[dataset].quote.latestPrice);
-//                                  // document.getElementById("setStop").value = JSON.stringify(data[dataset].quote.latestPrice);
-//                                  // document.getElementById("setExit").value = JSON.stringify(data[dataset].quote.latestPrice);
-//                                  //  document.getElementById("createprice").value = JSON.stringify(data[dataset].quote.latestPrice);
-                              
-//                             }
-
-//                           });
-//                 });
-     
-                             
-//         }
-//         });
-//          }  , 1000 );
-//     });
-// });
-
-
-
-function myFunction() {
-  localStorage.clear();
-  window.location.href="/";
-}
-
-</script>

@@ -1,0 +1,32 @@
+
+<style>
+       #pswrd{
+           -webkit-text-security:disc;
+       }
+        .successmsg{ color: #fff;
+  /*padding-left: 300px;*/
+  text-align: center;
+  margin-top: 30px;
+
+}
+
+   </style>
+
+    <script type="text/javascript">
+     
+  var url_string = window.location.href; 
+  var urls = new URL(url_string);
+ 
+  var sData = localStorage.getItem('allTokenData');
+  var storageData= JSON.parse(sData);
+  var LoggedInId = storageData.uid;
+  // alert(LoggedInId);
+  if(LoggedInId == null){
+    window.location.href = "/";  
+  }else{
+    window.location.href = "/dashboard";
+  }
+
+       
+ </script>
+
