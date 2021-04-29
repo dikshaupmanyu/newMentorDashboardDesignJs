@@ -381,13 +381,14 @@ ul.search-list-loader {
   </script>
 
 <script type="text/javascript">
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
+  // var sData = localStorage.getItem('allTokenData');
+  // var storageData= JSON.parse(sData);
  
-  var tokens = storageData.tokendata;
+  var tokens = "<%= tokens %>";
   // alert(tokens);
   
-  var userName = storageData.uname;
+  var userName = "<%= userName %>";
+ // alert(userName);
   //var stock1 = [];
    var myarrdata = new Array();
    var myarr = new Array();

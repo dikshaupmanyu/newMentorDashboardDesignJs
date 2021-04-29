@@ -50,6 +50,7 @@
           <a href="#"><img src="images/logo.png" alt="images"></a>
         </div>
         <div class="account_bx_frm">
+          <form action="/authenticate" method="post">
           <input type="text" class="form-control" id="uname" name="userName" placeholder="Enter Username" required="required">
           <input type="text" class="form-control" id="pswrd" name="password" placeholder="Enter Password" required="required" autocomplete="off">
           <div class="rmbr_frgt">
@@ -59,8 +60,8 @@
             </label> 
             <h4><a href="/forgetPassword">Forgot password?</a></h4>
           </div>
-          <button class="btn cmn_btn btn_primary" id="butlogin">Login</button>
-          
+          <button class="btn cmn_btn btn_primary">Login</button>
+          </form>
         </div>
       </div>
     </div>

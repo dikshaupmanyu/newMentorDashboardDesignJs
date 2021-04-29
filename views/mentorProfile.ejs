@@ -705,14 +705,16 @@
 
 <script type="text/javascript">
   
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
- 
-  var user_name = storageData.uname;
-  var email_id = storageData.email;
-  var LoggedInId = storageData.uid;
-  //alert(LoggedInId);
-  var tokens = storageData.tokendata;
+
+
+   var user_name =  "<%= userName %>";
+
+   var email_id =  "<%= email %>"
+
+  var tokens = "<%= tokens %>";
+  // alert(tokens);
+  
+  var LoggedInId = "<%= userid %>";
 
   var date = storageData.creation_date;
   var newdate2 = date.split(/(\s+)/);

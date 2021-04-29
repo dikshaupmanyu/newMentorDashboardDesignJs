@@ -17,26 +17,26 @@
   // };       
 window.addEventListener("load", function() {
 
-  var url_string = window.location.href; 
-  var urls = new URL(url_string);
+  // var url_string = window.location.href; 
+  // var urls = new URL(url_string);
  
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
+  // var sData = localStorage.getItem('allTokenData');
+  // var storageData= JSON.parse(sData);
   // alert(storageData);
-  if(storageData == null){
-    // window.location.href = "/";
-  setTimeout(function(){window.location = "/";}, 1000);
+  // if(storageData == null){
+  //   // window.location.href = "/";
+  // $("html").css("dispalay" , "none");
+  // setTimeout(function(){window.location = "/";}, 1000);
         
-  } 
+  // } 
 
 
-
-  
  
-   var LoggedInUsername = storageData.uname;
-   var LoggedInEmail = storageData.email;
-   var LoggedInId = storageData.uid;
+   var LoggedInUsername = "<%= userName %>";
+   var LoggedInEmail = "<%= email %>";
+   var LoggedInId = "<%= userid %>";
    // alert(LoggedInId);
+
    document.getElementById("myImg").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
    $('#loginvals').html(LoggedInUsername);
    $('#loginemailvals').html(LoggedInEmail);
@@ -143,7 +143,7 @@ function myFunction() {
                         </svg>
                         My Profile
                       </a> -->
-                      <a class="dropdown-item" href="#" onclick="myFunction()">
+                      <a class="dropdown-item" href="/logout">
                         <svg id="noun_Log_Out_1933995" data-name="noun_Log Out_1933995" xmlns="http://www.w3.org/2000/svg" width="16.524" height="16.524" viewBox="0 0 16.524 16.524">
                           <g id="Group_14310" data-name="Group 14310" transform="translate(0 0)">
                             <g id="Group_14309" data-name="Group 14309">

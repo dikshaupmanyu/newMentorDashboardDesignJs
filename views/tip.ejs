@@ -216,10 +216,11 @@
   var sData = localStorage.getItem('allTokenData');
   var storageData= JSON.parse(sData);
  
-  var tokens = storageData.tokendata;
-  //alert(tokens);
-  var userName = storageData.uname;
-  // alert(userName);
+  var tokens = "<%= tokens %>";
+  // alert(tokens);
+  
+  var userName = "<%= userName %>";
+  
   var formdata = {  offset: 0, limit: 1000000};
 
 $(".load-wrapp-list").css('display','block');

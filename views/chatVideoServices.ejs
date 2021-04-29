@@ -372,15 +372,22 @@ $('#carousel-thumbs .carousel-item img').on('click', function(e) {
   //   });
   // });
 
-  var sData = localStorage.getItem('allTokenData');
+  // var sData = localStorage.getItem('allTokenData');
 
-  var storageData= JSON.parse(sData);
+  // var storageData= JSON.parse(sData);
  
-  var tokens = storageData.tokendata;
+  // var tokens = storageData.tokendata;
   
-  var userids = storageData.uid;
+  // var userids = storageData.uid;
 
-  var userName = storageData.uname;
+  // var userName = storageData.uname;
+
+   var userName =  "<%= userName %>"
+
+  var tokens = "<%= tokens %>";
+  // alert(tokens);
+  
+  var userids = "<%= userid %>";
 
    function readURL(input) {
   if (input.files && input.files[0]) {

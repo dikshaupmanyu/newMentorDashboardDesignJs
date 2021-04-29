@@ -184,13 +184,17 @@
     });
   });
 
-  var sData = localStorage.getItem('allTokenData');
+  // var sData = localStorage.getItem('allTokenData');
 
-  var storageData= JSON.parse(sData);
+  // var storageData= JSON.parse(sData);
  
-  var tokens = storageData.tokendata;
   
-  var userids = storageData.uid;
+  // var userids = storageData.uid;
+
+   var tokens = "<%= tokens %>";
+  // alert(tokens);
+  
+  var userids = "<%= userid %>";
 
    $.ajax({
               type: 'POST',

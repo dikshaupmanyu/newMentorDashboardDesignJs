@@ -278,9 +278,12 @@ function handleError(image) {
 
   var sData = localStorage.getItem('allTokenData');
   var storageData= JSON.parse(sData);
-  var LoggedInId = storageData.uid;
+  var LoggedInId = "<%= userid %>";
 
-  var tokens = storageData.tokendata;
+  var tokens = "<%= tokens %>";
+  // alert(tokens);
+  
+  var userName = "<%= userName %>";
 
   var tipIds = "<%=tipsIds%>";
 

@@ -84,11 +84,14 @@
 <script type="text/javascript">
 
 
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
-  var LoggedInId = storageData.uid;
 
-  var tokens = storageData.tokendata;
+
+  var userName =  "<%= userName %>"
+
+  var tokens = "<%= tokens %>";
+  // alert(tokens);
+  
+  var LoggedInId = "<%= userid %>";
 
   var symbol = "<%=stockSymbol%>";
 

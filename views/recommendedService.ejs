@@ -303,17 +303,12 @@ function getBase64Image(imgUrl) {
   //   });
   // });
 
-  var sData = localStorage.getItem('allTokenData');
+ var userName =  "<%= userName %>"
 
-  var storageData= JSON.parse(sData);
- 
-  var tokens = storageData.tokendata;
+  var tokens = "<%= tokens %>";
+  // alert(tokens);
   
-  var userids = storageData.uid;
-
-  // alert(userids);
-
-  var userName = storageData.uname;
+  var userids = "<%= userid %>";
 
   function readURL(input) {
   // alert(input.files[0]);

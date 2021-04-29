@@ -4,10 +4,6 @@ module.exports = function(app) {
     res.render('index.ejs');
   });
 
-    app.get('/checkPage', function(req, res) {
-    res.render('checkPage.ejs');
-  });
-
    app.get('/chat', function(req, res) {
 
     res.render('chat.ejs');

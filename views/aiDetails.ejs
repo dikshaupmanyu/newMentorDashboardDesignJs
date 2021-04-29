@@ -217,13 +217,15 @@ function handleError(image) {
     return true;
 }
 
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
-  var LoggedInId = storageData.uid;
+  // var sData = localStorage.getItem('allTokenData');
+  // var storageData= JSON.parse(sData);
+  var LoggedInId = "<%= userid %>";
 
-  var tokens = storageData.tokendata;
+  var userName = "<%= userName %>";
 
   var symbol = "<%=stockSymbol%>";
+
+    var tokens = "<%= tokens %>";
 
   // alert(tipIds);
 

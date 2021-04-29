@@ -14,12 +14,16 @@
     <script>
         window.addEventListener("load", function() {
 
-            var url_string = window.location.href; 
-            var urls = new URL(url_string);
-            var sData = localStorage.getItem('allTokenData');
-            var storageData= JSON.parse(sData);
-            $("#user_nickname").val(storageData.uname);
-            $('#user_id').val(storageData.uid);
+
+            var userName =  "<%= userName %>"
+
+            var tokens = "<%= tokens %>";
+            // alert(tokens);
+            
+            var LoggedInId = "<%= userid %>";
+
+            $("#user_nickname").val(userName);
+            $('#user_id').val(LoggedInId);
             // var today = new Date();
             // // alert(today);
             // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";

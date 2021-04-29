@@ -68,11 +68,8 @@ function handleCreate(event) {
   event.preventDefault();
    // alert(JSON.stringify(event));
 
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
-  var loggedInVal = storageData.uid;
-  // alert(loggedInVal);
-  var loggedInName = storageData.uname;
+   var loggedInVal = "<%= userid %>";
+   var loggedInName = "<%= userName %>";
   // alert(loggedInName);
   // var today = Date.now();
   // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
@@ -130,11 +127,8 @@ $("input[type='file']").on('change', function(e) {
   console.log(file);
   console.log(file.type);
 
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
-  var loggedInVal = storageData.uid;
-  // alert(loggedInVal);
-  var loggedInName = storageData.uname;
+  var loggedInVal = "<%= userid %>";
+   var loggedInName = "<%= userName %>";
   // alert(loggedInName);
   // var today = Date.now();
   // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
@@ -285,11 +279,11 @@ function handleDelete(id) {
 // dom functions
 function createTask(task) {
   // alert(task);
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
-  var loggedInVal = storageData.uid;
-   var loggedInName = storageData.uname;
-  // alert(loggedInName)
+  // var sData = localStorage.getItem('allTokenData');
+  // var storageData= JSON.parse(sData);
+  var loggedInVal = "<%= userid %>";
+   var loggedInName = "<%= userName %>";
+
   const elem = document.createElement("li");
   // elem.id = task.id;
   // elem.innerHTML = reviewTemplate(task)
@@ -398,10 +392,8 @@ function fetchTasks() {
 
                 var task = change.doc.data();
 
-                var sData = localStorage.getItem('allTokenData');
-                var storageData= JSON.parse(sData);
-                var loggedInVal = storageData.uid;
-                 var loggedInName = storageData.uname;
+                 var loggedInVal = "<%= userid %>";
+                 var loggedInName = "<%= userName %>";
                 // alert(loggedInName)
                 const elem = document.createElement("li");
                 elem.id = task.messageId;
@@ -633,9 +625,8 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
   //           alert('Image does not exist.');
   //       }
   //   }).catch(err => alert('Error:', err));
-  var sData = localStorage.getItem('allTokenData');
-  var storageData= JSON.parse(sData);
-  var loggedInVal = storageData.uid;
+   var loggedInVal = "<%= userid %>";
+   var loggedInName = "<%= userName %>";
   // alert(loggedInVal);
   // alert(userId);
   // var todate=new Date(createdDate).getDate();
