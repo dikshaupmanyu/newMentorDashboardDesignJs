@@ -46,13 +46,22 @@ var db = firebase.firestore();
 // var storageData= JSON.parse(sData);
 // var loggedInVal = storageData.uid;
 // alert(loggedInVal);
-       
+
+// alert(<%= req.session %>);
+
 const docRef = db.collection("/openGroups/roomOne/messages/");
 const tasksDOM = document.getElementById("tasks");
 var fullName   = document.getElementById('user_nickname');
+//alert(fullName.value);
 var message    = document.getElementById('btn-input');
 var userId     = document.getElementById('user_id');
-// var hiddenId   = document.getElementById('hiddenId');
+//alert(userId.value);
+
+var hiddenId   = document.getElementById('hiddenId');
+
+
+
+
 var date = document.getElementById('dateval');
 // utility functions
 function cleanData(snapshots) {
@@ -65,14 +74,17 @@ function cleanData(snapshots) {
 
 // form functions
 function handleCreate(event) {
-  event.preventDefault();
-   // alert(JSON.stringify(event));
 
-   var loggedInVal = "<%= userid %>";
-   var loggedInName = "<%= userName %>";
+   event.preventDefault();
+   // alert(JSON.stringify(event));
+    //alert(user_id.value);
+   // alert(user_nickname.value);
+   var loggedInVal = user_id.value;
+   //alert(loggedInName);
+   var loggedInName = user_nickname.value;
   // alert(loggedInName);
   // var today = Date.now();
-  // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
+   //var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
        
    if(message.value != ""){
 
@@ -87,6 +99,8 @@ function handleCreate(event) {
     messageSource : "Web"
     // status: "incomplete"
   };
+
+  // alert(JSON.stringify(task));
   return docRef
     .add(task)
     .then((ref) => {
@@ -127,11 +141,11 @@ $("input[type='file']").on('change', function(e) {
   console.log(file);
   console.log(file.type);
 
-  var loggedInVal = "<%= userid %>";
-   var loggedInName = "<%= userName %>";
+  var loggedInVal = user_id.value;
+   var loggedInName = user_nickname.value;
   // alert(loggedInName);
-  // var today = Date.now();
-  // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
+  var today = Date.now();
+  var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
 
   if(file.type == "video/mp4"){
 
@@ -234,36 +248,36 @@ $("input[type='file']").on('change', function(e) {
     });
 
   }
-// return firebase
-//     .app()
-//     .storage()
-//     .ref('message_images')
-//     .child(file.name)
-//     .put(file)
-//     // .then(snapshot => {
-//     //   // snapshot represents the uploaded file
-//     //   console.log(snapshot);
-//     // })
-//     .getDownloadURL()
-//     .then(imgUrl => {
-//       console.log(imgUrl);
-//     });
+return firebase
+    .app()
+    .storage()
+    .ref('message_images')
+    .child(file.name)
+    .put(file)
+    // .then(snapshot => {
+    //   // snapshot represents the uploaded file
+    //   console.log(snapshot);
+    // })
+    .getDownloadURL()
+    .then(imgUrl => {
+      console.log(imgUrl);
+    });
 
-// var remoteimageurl = e.target.files[0]
-// var filename = file.name
+var remoteimageurl = e.target.files[0]
+var filename = file.name
 
-// fetch(remoteimageurl).then(res => {
-//   return res.blob();
-// }).then(blob => {
-//     //uploading blob to firebase storage
-//   firebase.storage().ref('message_images/').child(filename).put(blob).then(function(snapshot) {
-//     return snapshot.ref.getDownloadURL()
-//  }).then(url => {
-//    console.log("Firebase storage image uploaded : ", url);
-//   })
-// }).catch(error => {
-//   console.error(error);
-// });
+fetch(remoteimageurl).then(res => {
+  return res.blob();
+}).then(blob => {
+    //uploading blob to firebase storage
+  firebase.storage().ref('message_images/').child(filename).put(blob).then(function(snapshot) {
+    return snapshot.ref.getDownloadURL()
+ }).then(url => {
+   console.log("Firebase storage image uploaded : ", url);
+  })
+}).catch(error => {
+  console.error(error);
+});
 
 
  
@@ -616,7 +630,8 @@ function fetchTasks() {
 
 function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,messageType}) {
 
-  // alert(profileImageUrl);
+   // alert(user_id.value);
+  // alert(userId);
   // fetch(profileImageUrl, { method: 'HEAD' })
   //   .then(res => {
   //       if (res.ok) {
@@ -625,8 +640,9 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
   //           alert('Image does not exist.');
   //       }
   //   }).catch(err => alert('Error:', err));
-   var loggedInVal = "<%= userid %>";
-   var loggedInName = "<%= userName %>";
+    var loggedInVal = user_id.value;
+   //alert(loggedInName);
+   var loggedInName = user_nickname.value;
   // alert(loggedInVal);
   // alert(userId);
   // var todate=new Date(createdDate).getDate();
