@@ -51,8 +51,10 @@
         </div>
         <div class="account_bx_frm">
           <form action="/authenticate" method="post">
+          <input type="text" class="form-control" id="urls" name="url" value="<%= path %>" style="display: none;">
           <input type="text" class="form-control" id="uname" name="userName" placeholder="Enter Username" required="required">
           <input type="text" class="form-control" id="pswrd" name="password" placeholder="Enter Password" required="required" autocomplete="off">
+           
           <div class="rmbr_frgt">
              <label>
             <!--<input type="checkbox" required="required" name="remember" id="rememberme">
@@ -85,11 +87,12 @@
        {
          var url_string = window.location.href; 
          var urls = new URL(url_string);
-       //alert(urls);
+         // alert(url_string);
          $('#butlogin').on('click', function() {
             //alert("hii");
             var userName = $('#uname').val();
             var password = $('#pswrd').val();
+            var urls = $('#url').val();
             if(userName!="" && password!="" ){
               $.ajax({
                 type: 'POST',
