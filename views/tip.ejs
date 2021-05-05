@@ -329,11 +329,11 @@ $(".load-wrapp-list").css('display','block');
   // alert(stockName);
   var userids = userids;
   var entryPoint = $('#setEntry').val();
-  // alert(entryPoint);
+  alert(entryPoint);
   var exitPoint = $('#setExit').val();
-  // alert(exitPoint);
+  alert(exitPoint);
   var stopPoint = $('#setStop').val();
-  // alert(stopPoint);
+  alert(stopPoint);
   var tipComment = $('#commentdata').val();
   var imageDetails = $('#image').val();
   var status = "Pending";
@@ -368,13 +368,13 @@ $(".load-wrapp-list").css('display','block');
 
     var formdata = new FormData();
 
-    if(entryPoint < exitPoint) {
+    if(parseFloat(entryPoint) < parseFloat(exitPoint)) {
 
          // alert("Buy");
 
       formdata.append("stockSuggestion", "Buy");
 
-    } else if(entryPoint > exitPoint) {
+    } else if(parseFloat(entryPoint) > parseFloat(exitPoint)) {
 
         // alert("Sell");
 
