@@ -650,13 +650,19 @@
   var sData = localStorage.getItem('allTokenData');
   var storageData= JSON.parse(sData);
  
-  var user_name = storageData.uname;
-  var email_id = storageData.email;
-  var LoggedInId = storageData.uid;
-  var tokens = storageData.tokendata;
+  var user_name =  "<%= userName %>" ;
+
+    var email_id =  "<%= email %>"
+
+  var tokens = "<%= tokens %>";
+  // alert(tokens);
+  
+  var LoggedInId = "<%= userid %>";
   console.log(user_name);
   console.log(email_id);
   console.log(LoggedInId);
+
+    
   document.getElementById("user_n").value = user_name;
 
   var formdata1 = {appuserName: user_name};
