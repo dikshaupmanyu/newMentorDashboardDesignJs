@@ -16,7 +16,7 @@
                   <nav>
                     <div class="nav nav-tabs nav_tab_btn nav-fill" role="tablist">
                       <a class="nav-item nav-link active" id="pt1" data-toggle="tab" href="#pt-1" role="tab" aria-controls="pt-1" aria-selected="true">Profile</a>
-                      <a class="nav-item nav-link" id="pt2" data-toggle="tab" href="#pt-2" role="tab" aria-controls="pt-2" aria-selected="true">Advance</a>
+                      <a class="nav-item nav-link" id="pt2" data-toggle="tab" href="#pt-2" role="tab" aria-controls="pt-2" aria-selected="true">Advanced</a>
                       <!-- <a class="nav-item nav-link" id="pt3" data-toggle="tab" href="#pt-3" role="tab" aria-controls="pt-3" aria-selected="true">Account Setting</a>
                       <a class="nav-item nav-link" id="pt4" data-toggle="tab" href="#pt-4" role="tab" aria-controls="pt-4" aria-selected="true">Manage Subscriptions</a>
                       <a class="nav-item nav-link" id="pt5" data-toggle="tab" href="#pt-5" role="tab" aria-controls="pt-5" aria-selected="true">Payment History</a>
@@ -67,9 +67,9 @@
                       </div>
                     </div>
                     <div class="tab-pane fade" id="pt-2" role="tabpanel" aria-labelledby="pt2">
-                      <div class="prfl_tb_cntnt_bx">
-                        <h2>Advance</h2>
-                      </div> 
+                     <!--  <div class="prfl_tb_cntnt_bx">
+                        <h2>Advanced</h2>
+                      </div>  -->
                       <div class="prfl_tb_cntnt_bx">
                         <h2>Change Password</h2>
                         <div class="edit_profile_form">
@@ -796,10 +796,10 @@ $('#button_click').on('click', function() {
     }
   else
    {
-    var sData = localStorage.getItem('allTokenData');
-    var storageData= JSON.parse(sData);
+    // var sData = localStorage.getItem('allTokenData');
+    // var storageData= JSON.parse(sData);
    
-    var user_name = storageData.uname;
+    var user_name = user_name;
     var  old_pswrd =  document.getElementById("current_pswrd").value;
     var new_pswrd = document.getElementById("set_pswrd").value;
 
@@ -821,13 +821,19 @@ $('#button_click').on('click', function() {
     .then(response => response.json())
         .then(result => {
             //console.log(result);
-            $(".successmsg").html('<span>Password changed successfully.</span>');
-            setTimeout(function(){$(".successmsg").empty()}, 3000);
-            setTimeout(function(){
-                window.location.href = "/profile"; 
-              }, 2000);
-
-
+            if(result.status == "true"){
+              $(".successmsg").html('<span>Password changed successfully.</span>');
+              setTimeout(function(){$(".successmsg").empty()}, 3000);
+              setTimeout(function(){
+                  window.location.href = "/profile"; 
+                }, 2000);
+             } else {
+              $(".successmsg").html('<span>Old Password not entered correctly.</span>');
+              setTimeout(function(){$(".successmsg").empty()}, 3000);
+              setTimeout(function(){
+                  window.location.href = "/profile"; 
+                }, 2000);
+             }  
            })
           .catch(error => console.log('error', error));
     }
