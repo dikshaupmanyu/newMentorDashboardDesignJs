@@ -14,9 +14,6 @@
 /*img[src="#"] {
     display: none;
 }*/
-svg text {
-  font-family: FontAwesome;
-}
 </style>
 <div class="app_main">
   <%- include partials/innersidebar %>
@@ -273,8 +270,7 @@ svg text {
 
 <script type="text/javascript">
 var default_avatar = 'images/userIcon.png';
-
-
+ 
 function handleError(image) {
     image.src = default_avatar;
     return true;
@@ -292,8 +288,6 @@ function handleError(image) {
   var tipIds = "<%=tipsIds%>";
 
   // alert(tipIds);
-
-
 
   var formdata = {tipId: tipIds};
   $.ajax({
@@ -568,7 +562,7 @@ function handleError(image) {
                       if(dataResult1.length != 0) {
                         for(i=0;i<dataResult1.length;i++){
 
-                            var text = '<div class="review_bx"><div class="review_bx_head"><div class="author_bx"><img onerror="handleError(this);" src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId='+dataResult1[i].appUser.id+'" alt="images"><div class="author_bx_txt"><h2 style="display: inline-block";>'+dataResult1[i].appUser.userName+'</h2></div></div></div><div class="review_bx_txt"><input type="hidden" name="a" id="a" value="'+ dataResult1[i].appUser.userName +'"><span class="author_tag" onclick="return flagclick(this.id)" id = "'+ dataResult1[i].id +'"><i class="fas fa-flag" aria-hidden="true" style="color:white;"></i></span><p>'+dataResult1[i].commentDetails+'</p></div>';
+                            var text = '<div class="review_bx"><div class="review_bx_head"><div class="author_bx"><img onerror="handleError(this);" src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId='+dataResult1[i].appUser.id+'" alt="images"><div class="author_bx_txt"><h2 style="display: inline-block";>'+dataResult1[i].appUser.userName+'</h2></div></div></div><div class="review_bx_txt"><span class="author_tag"><a javascript:void(0); onclick="return flagclick(\'' + dataResult1[i].id + '\',\'' + dataResult1[i].appUser.id + '\')"><i class="fa fa-flag" aria-hidden="true" style="color:white;"></i></a></span><p>'+dataResult1[i].commentDetails+'</p></div>';
                             $("#commentdemo").append(text);
                        }
                        }
@@ -636,9 +630,8 @@ function handleError(image) {
                        },
                       data: formdata,
                       success: function(data) {
-                        // alert(data[0]);
          
-                      var texts = '<div class="review_bx"><div class="review_bx_head"><div class="author_bx"><img src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId='+data[0].appUser.id+'" alt="images"><div class="author_bx_txt"><h2 style="display: inline-block";>'+data[0].appUser.userName+'</h2></div></div></div><div class="review_bx_txt"><input type="hidden" name="a" id="a" value="'+ data[0].appUser.userName +'"><span class="author_tag" onclick="return flagclick(this.id)" id = "'+ data[0].id +'"><i class="fas fa-flag" aria-hidden="true"  style="color:white;"></i></span><p>'+data[0].commentDetails+'</p></div>';
+                      var texts = '<div class="review_bx"><div class="review_bx_head"><div class="author_bx"><img src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId='+data[0].appUser.id+'" alt="images"><div class="author_bx_txt"><h2 style="display: inline-block";>'+data[0].appUser.userName+'</h2></div></div></div><div class="review_bx_txt"><span class="author_tag"><a javascript:void(0); onclick="return flagclick(\'' + data[0].id + '\',\'' + data[0].appUser.id + '\')"><i class="fa fa-flag" aria-hidden="true" style="color:white;"></i></a></span><p>'+data[0].commentDetails+'</p></div>';
                       $("#commentdemo").prepend(texts);
                       }
                     });
@@ -678,21 +671,17 @@ function handleError(image) {
             }
           });
 
-function flagclick(e) {
-  // alert(e);
-  // alert(f);
-  // document.getElementById("result").innerHTML += name;
-  //     document.getElementById("ageshow").innerHTML += age;
+function flagclick(e , f) {
+  //alert("yes");
   //console.log(e);
 //console.log(LoggedInId);
-var f = document.getElementById('a').value;
-// alert(f);
 var formdata = new FormData();
 formdata.append("commentId", e);
-formdata.append("userId", LoggedInId);
+formdata.append("userId", f);
 formdata.append("isFlag", "true");
 formdata.append("flagReason", "");
-formdata.append("flagCreatedBy" ,f);
+formdata.append("flagCreatedBy" ,userName);
+
 //console.log(formdata);
 var requestOptions = {
   method: 'POST',
