@@ -20,7 +20,8 @@ var Base64 = require('Base64');
 var expressJwt = require('express-jwt');
 var jwt = require('jsonwebtoken');
 const admin = require('firebase-admin');
-
+var bodyParser = require('body-parser');
+const serviceAccount = require('./serviceAccountKey.json');
 //initialize admin SDK using serciceAcountKey
 
 admin.initializeApp({
@@ -29,7 +30,11 @@ admin.initializeApp({
 
 });
 const db = admin.firestore();
-// console.log(db);
+// idToken comes from the client app
+
+
+
+
 
  
 	app.use(compression());
@@ -59,13 +64,27 @@ app.get('/neww', function(req, res) {
 // launch ======================================================================
 // app.listen(port);
 
-app.get('/',(req,res)=>
-{
-if(req.session.loggedIn)
-res.render('dashboard.ejs')
-else
-res.render('index.ejs')
-})
+
+ app.get('/', function(req, res) {
+
+  	console.log(req.query.path);
+
+  	var fpaths = req.query.path;
+
+     if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('dashboard.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+
+	   } else {
+	     res.render('index.ejs' , {path:fpaths});
+	   }
+  });
 ///////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/dashboard',(req,res)=>
@@ -76,12 +95,162 @@ var fdata = req.session.tokens;
 var fusername = req.session.username;
 var fuid = req.session.uid; 
 var femail = req.session.email; 
+var Chat_fcmtoken = req.session.fcmtoken;
 
-res.render('dashboard.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+res.render('dashboard.ejs', {fcmtoken : Chat_fcmtoken , tokens : fdata , userName : fusername , userid : fuid , email :femail});
 }
 else
 res.redirect('/')
 })
+
+//////////////////////////////////////////////////////////////////////
+
+app.get('/stockChart', function(req, res) {
+
+	if(req.session.loggedIn) 
+	{
+	var fdata = req.session.tokens;
+	var fusername = req.session.username;
+	var fuid = req.session.uid; 
+	var femail = req.session.email; 
+
+
+    var mentorids = req.query.id;
+
+    var symbol = req.query.stockName;
+
+   
+
+    res.render('stockChart.ejs' , { tokens : fdata , userName : fusername , userid : fuid , email :femail,tipsIds : mentorids , stockSymbol : symbol});
+    }
+	else
+	res.redirect('/')
+  });
+
+/////////////////////////////////////////////////////////////////
+
+app.get('/prediction', function(req, res) {
+
+	if(req.session.loggedIn) 
+	{
+	var fdata = req.session.tokens;
+	var fusername = req.session.username;
+	var fuid = req.session.uid; 
+	var femail = req.session.email; 
+
+
+    var mentorids = req.query.id;
+
+    var symbol = req.query.stockName;
+
+   
+
+    res.render('prediction.ejs' , { tokens : fdata , userName : fusername , userid : fuid , email :femail,tipsIds : mentorids , stockSymbol : symbol});
+    }
+	else
+	res.redirect('/')
+  });
+
+/////////////////////////////////////////////////////////////////
+
+    app.get('/profile', function(req, res) {
+
+	    if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('profile.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+  });
+
+
+///////////////////////////////////////////////////////////////////////
+app.get('/settings', function(req, res) {
+
+	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('profile.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+   app.get('/myprofile', function(req, res) {
+
+   	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+		var fdate = req.session.createdOn;
+
+		res.render('follower.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail , date : fdate});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+//////////////////////////////////////////////////////////////////////////////
+
+   app.get('/visitProfile', function(req, res) {
+
+   	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+		var fdate = req.session.createdOn;
+		var visitedNames = req.query.Names;
+		var visitedIds = req.query.Ids;
+		//var visitedDates = req.query.dates;
+
+		res.render('visitProfile.ejs', {visitedName : visitedNames ,visitedId : visitedIds , tokens : fdata , userName : fusername , userid : fuid , email :femail , date : fdate});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+  /////////////////////////////////////////////////////////////////////
+
+   app.get('/followUserList', function(req, res) {
+
+   	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('followUserList.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+
 
 //////////////////////////////////////////////////////////////////////
 
@@ -369,6 +538,8 @@ res.redirect('/')
 
   app.get('/services', function(req, res) {
 
+  	console.log(req.route.path);
+
      if(req.session.loggedIn) 
 	   { 
 		var fdata = req.session.tokens;
@@ -379,7 +550,7 @@ res.redirect('/')
 		res.render('services.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
 
 	   } else {
-	     res.redirect('/')
+	     res.render('index.ejs' , {path : req.route.path});
 	   }
   });
 
@@ -410,6 +581,24 @@ res.redirect('/')
   });
 /////////////////////////////////////////////////////////////////////
 
+app.get('/faq', function(req, res) {
+
+	    if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('faq.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+  });
+
+/// //////////////////////////////////////////////////////////////
+
 
 app.get('/forgetPassword', function(req, res) {
 
@@ -419,6 +608,27 @@ app.get('/forgetPassword', function(req, res) {
 
 
   });
+
+//////////////////////////////////////////////////////////////////////
+
+    app.get('/notification', function(req, res) {
+
+	    if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('notification.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+  });
+
+/// //////////////////////////////////////////////////////////////
+
 
 
   app.get('/chatWindow', function(req, res) {
@@ -433,8 +643,9 @@ app.get('/forgetPassword', function(req, res) {
 		var fusername = req.session.username;
 		var fuid = req.session.uid; 
 		var femail = req.session.email; 
+		var Chat_fcmtoken = req.session.fcmtoken;
 
-		res.render('chatWindow.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+		res.render('chatWindow.ejs', {tokens : fdata , fcmToken : Chat_fcmtoken , userName : fusername , userid : fuid , email :femail});
 
 	   } else {
 	     res.redirect('/')
@@ -477,8 +688,10 @@ app.post('/authenticate'
 ,(req,res,next)=>
 {
 
-console.log(req.body);
+// console.log(req.body);
+// console.log(req.body.url);
 
+// console.log(req);
 // Actual implementation would check values in a database
 if(req.body.userName!="" && req.body.password!="") 
 {
@@ -486,20 +699,52 @@ if(req.body.userName!="" && req.body.password!="")
 request.post('https://apis.tradetipsapp.com/api/auth/appSignIn',
     { formData : { 'userName': req.body.userName ,'password': req.body.password } },
     function (error, response, body) {
-  
+        // console.log(response);
     	var dataResult = JSON.parse(body);
+    	// console.log(dataResult);
+    	if(dataResult.accessToken){                  
+        if(req.body.userName != "admin"){
+          // $("#success").show();
+          // $('#success').html('Login Sucessfully !');
+
+
         var tokens = dataResult.accessToken; 
+        var fcmtoken = dataResult.fcmToken;
+
 	    const uid = dataResult.id;
 	    const email = dataResult.email;
 	    const createdOn = dataResult.createdOn;
-    	console.log(tokens);  
+    	// console.log(tokens);  
+    	const paths = req.body.url;
+    	// console.log(paths);
 
-    	res.locals.uname = req.body.userName
+    	res.locals.uname = req.body.userName;
+    	res.locals.fcm = fcmtoken;
     	res.locals.tokens = tokens;
     	res.locals.uid = uid;
     	res.locals.email = email;
     	res.locals.createdOn = createdOn;
+    	res.locals.paths = paths;
 		next()  
+		 } else{
+            // res.render("index.ejs" , {message: 'Invalid Username or Password !!!'});
+            // res.setTimeout(3000);
+            return res.redirect('/');
+          }                                       
+        }
+      else if(dataResult.statusCode==201){
+        // alert('Invalid Username or Password !!!');
+        // res.render("index.ejs" , {message: 'Invalid Username or Password !!!'});
+        // res.setTimeout(3000);
+        return res.redirect('/');
+      } else {
+        // alert('Invalid Username or Password !!!');
+        // res.render("index.ejs" , {message: 'Invalid Username or Password !!!'});
+        // res.setTimeout(3000);
+        return res.redirect('/');
+
+      }
+
     });
 }
 else
@@ -510,14 +755,24 @@ res.sendStatus(401)
 req.session.loggedIn = true
 req.session.username = res.locals.uname
 req.session.tokens = res.locals.tokens
+req.session.fcmtoken = res.locals.fcm
 req.session.uid = res.locals.uid
 req.session.email = res.locals.email
 req.session.createdOn = res.locals.createdOn
+req.session.paths = res.locals.paths
 
 console.log(req.session)
 var data = req.session;
 
+if(req.session.paths != "undefined"){
+return res.redirect(req.session.paths);
+
+}else{
+
 return res.redirect('/dashboard');
+
+}
+
 });
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -528,9 +783,9 @@ return res.redirect('/');
 
 });
 /////////////////////////////////////////
-//var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
+var httpServer = http.createServer(app);
+// var httpsServer = https.createServer(credentials, app);
 
-//httpServer.listen(port);
-httpsServer.listen(port);
+httpServer.listen(port);
+// httpsServer.listen(port);
 console.log('The magic happens on port ' + port);
