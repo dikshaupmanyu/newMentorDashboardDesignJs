@@ -29,6 +29,7 @@
             var urls = new URL(url_string);
             var sData = localStorage.getItem('allTokenData');
             var storageData= JSON.parse(sData);
+            // alert(storageData);
             $("#user_nickname").val(storageData.uname);
             $('#user_id').val(storageData.uid);
             // var today = new Date();
@@ -229,7 +230,7 @@ $(".card-body").animate({ scrollTop: $(document).height() }, "fast");
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase.js"></script>
 
 
-    <script src="js/main12.js"></script>
+    <script src="js/main1.js"></script>
 
       <script type="text/javascript" src="js/custom.js"></script>
 

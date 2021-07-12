@@ -48,7 +48,7 @@ credits{
           <h4 class="border_danger">Today’s Low</h4>
           <h3 id="lowval"></h3>
         </div> -->
-        <div class="ai_dtl_head_right_bx tips_wtlist_item_right">
+        <div class="ai_dtl_head_right_bx tips_wtlist_item_right" style="width: 100px;">
           <h4 class="border_primary">Change</h4>
           <h3 id="changepoint"></h3>
         </div>
@@ -57,6 +57,7 @@ credits{
           <h5 id="DateVals"></h5>
         </div>
       </div>
+       <a id="symbolprediction" style="color: white;"><button class="btn btn-success">Get 5-Day Prediction</button></a>
     </div> 
   </div>
   <div class="graph_area">
@@ -165,7 +166,7 @@ credits{
                       <h4 class="border_danger">Today’s Low</h4>
                       <h3 id="lowval6m"></h3>
                     </div>
-               </div>
+                  </div>
                </div>
              </div>   
             </div>
@@ -189,8 +190,10 @@ credits{
                </div>
              </div>   
             </div>
+
+
         </div>
-       
+
       </div>
 
       <!-- <div class="tab">
@@ -218,9 +221,6 @@ credits{
 <%- include partials/innerfooter %>
 <script type="text/javascript">
 
-
-
-
   var userName =  "<%= userName %>"
 
   var tokens = "<%= tokens %>";
@@ -229,6 +229,11 @@ credits{
   var LoggedInId = "<%= userid %>";
 
   var symbol = "<%=stockSymbol%>";
+
+  var stockid = "<%=tipsIds%>";
+
+
+  document.getElementById("symbolprediction").href= "prediction?stockName=<%=stockSymbol%>&id=<%=tipsIds%>";
 
  // var newftd = "1621232672661" ;
 var date = new Date();
@@ -391,13 +396,12 @@ const a = null
                           });
                         }
 
-
                         $("#highval").text(dataakhigh);
                         $("#lowval").text(dataaklow);
 
 
                       var chart = new CanvasJS.Chart("chartContainer", {
-                           width:750,
+                        width : 750,
                         height:500,
                         zoomEnabled: true,
                         animationEnabled: true,
@@ -513,11 +517,11 @@ const a = null
                     var dataaklowds = Math.min.apply(null, filteredds);
 
                           var y;
-                          var dataPoints = [];
+                          var data = [];
                             for (var j = 0 ; j < arraydatak.length; j ++) {
                               // console.log(arraydatak[j].Date);
 
-                              dataPoints.push({
+                              data.push({
                               x: j,
                               label : arraydatak[j].Date,
                               y: JSON.parse(arraydatak[j].Close)
@@ -527,8 +531,9 @@ const a = null
                         $("#highval5d").text(dataakhighds);
                         $("#lowval5d").text(dataaklowds);
 
-                         var chart1 = new CanvasJS.Chart("chartContainer1", {
-                          width:750,
+
+                         var chart = new CanvasJS.Chart("chartContainer1", {
+                        width:750,
                         height:500,
                         zoomEnabled: true,
                         animationEnabled: true,
@@ -541,7 +546,7 @@ const a = null
                         //     {text: "Low Value :"+ dataaklowds
                         //     }
                         //     ],
-                            axisX:{
+                             axisX:{
                               crosshair: {
                                 enabled: true,
                                 snapToDataPoint: true,
@@ -571,18 +576,30 @@ const a = null
                                       color: 'none',
                                   }
                               } ]
-                          },  
+                          }, 
                         data: [{
                           type: "line",
-                          markerType: "none",
-                          dataPoints: dataPoints
+                          markerType : "none",
+                          dataPoints: data
                         }]
                       });
 
-                      chart1.render();
-
+                      chart.render();
+                 }
+                 
+                 });     
 
 ////////////////////////////////////1 month///////////////////////////////////////
+
+
+  $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/getcsvfile/getstockjsonfile?stockName='+symbol,
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+      success: function(data) {
+
                     var stocktime1m = [];
                    var stockhigh1m = [];
                    var stocklow1m = [];
@@ -624,8 +641,9 @@ const a = null
                          $("#highval1m").text(dataakhighds1m);
                         $("#lowval1m").text(dataaklowds1m);
 
+
                         var chart2 = new CanvasJS.Chart("chartContainer2", {
-                          width:750,
+                        width:750,
                         height:500,
                         zoomEnabled: true,
                         animationEnabled: true,
@@ -677,8 +695,20 @@ const a = null
                       });
 
                       chart2.render();
+                    }
+
+                  });
 
 ///////////////////////// 3month //////////////////////////////////////////////////
+
+
+  $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/getcsvfile/getstockjsonfile?stockName='+symbol,
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+      success: function(data) {
 
                     var stocktime3m = [];
                    var stockhigh3m = [];
@@ -717,8 +747,10 @@ const a = null
                               y: JSON.parse(arraydatak3m[j].Close)
                             });
                           }
-                         $("#highval3m").text(dataakhighds3m);
+
+                        $("#highval3m").text(dataakhighds3m);
                         $("#lowval3m").text(dataaklowds3m);
+
 
                         var chart3 = new CanvasJS.Chart("chartContainer3", {
                         width:750,
@@ -774,8 +806,20 @@ const a = null
 
                       chart3.render();
 
+                    }
+
+                  });
+
 ///////////////////////////////6 month ////////////////////////////////////////
 
+    
+  $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/getcsvfile/getstockjsonfile?stockName='+symbol,
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+      success: function(data) {
 
                     var stocktime6m = [];
                    var stockhigh6m = [];
@@ -814,22 +858,25 @@ const a = null
                               y: JSON.parse(arraydatak6m[j].Close)
                             });
                           }
+
                          $("#highval6m").text(dataakhighds6m);
                         $("#lowval6m").text(dataaklowds6m);
+
+
                         var chart4 = new CanvasJS.Chart("chartContainer4", {
-                           width:750,
+                        width:750,
                         height:500,
                         zoomEnabled: true,
                         animationEnabled: true,
-                        title :{
-                          text: symbol
-                        },
-                        subtitles: [{
-                             text: "High Value :"+ dataakhighds6m 
-                            },
-                            {text: "Low Value :"+ dataaklowds6m
-                            }
-                            ],
+                        // title :{
+                        //   text: symbol
+                        // },
+                        // subtitles: [{
+                        //      text: "High Value :"+ dataakhighds6m 
+                        //     },
+                        //     {text: "Low Value :"+ dataaklowds6m
+                        //     }
+                        //     ],
                            axisX:{
                               crosshair: {
                                 enabled: true,
@@ -864,14 +911,27 @@ const a = null
                         data: [{
                           type: "line",
                           markerType : "none",
-                          dataPoints: dataPoints6m
+                          dataPoints: dataPoints6m,
                         }]
                       });
 
                       chart4.render();
 
+                    }
+
+
+                  });
+
 ///////////////////////////////1 year ////////////////////////////////////////
 
+
+  $.ajax({
+        type: 'POST',
+        url: 'https://apis.tradetipsapp.com/api/getcsvfile/getstockjsonfile?stockName='+symbol,
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+      success: function(data) {
 
                     var stocktime1y = [];
                    var stockhigh1y = [];
@@ -914,8 +974,9 @@ const a = null
                          $("#highval1y").text(dataakhighds1y);
                         $("#lowval1y").text(dataaklowds1y);
 
+
                         var chart5 = new CanvasJS.Chart("chartContainer5", {
-                           width:750,
+                        width:750,
                         height:500,
                         zoomEnabled: true,
                         animationEnabled: true,

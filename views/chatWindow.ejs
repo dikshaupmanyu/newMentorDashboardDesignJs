@@ -14,8 +14,11 @@
     <script>
         window.addEventListener("load", function() {
 
+           // alert("<%= fcmToken %>");
 
-            var userName =  "<%= userName %>"
+             var fcmToken = "<%= fcmToken %>";
+
+            var userName =  "<%= userName %>";
 
             var tokens = "<%= tokens %>";
             // alert(tokens);
@@ -24,11 +27,29 @@
 
             $("#user_nickname").val(userName);
             $('#user_id').val(LoggedInId);
+            $("#user_fcm_token").val(fcmToken);
             // var today = new Date();
             // // alert(today);
             // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
             // // alert(str);
             // $('#dateval').val(str);
+
+
+          firebase.auth().signInWithCustomToken(fcmToken)
+            .then((userCredential) => {
+              // Signed in
+              // console.log(userCredential);
+              var user = userCredential.user;
+              // var ids = userCredential.uid;
+              console.log(user.uid);
+              // ...
+            })
+            .catch((error) => {
+              console.log("error is" + error);
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // ...
+            });
     });
     </script>
       <style type="text/css">
@@ -289,6 +310,7 @@
                       <div class="input-group">
                         <input type="hidden" id="user_id">
                         <input type="hidden" id="user_nickname">
+                        <input type="hidden" id="user_fcm_token">
                        <!--  <input type="hidden" id="dateval"> -->
                         <span class="input-group-btn">
                              <input type="file" style="display: none;">
@@ -350,7 +372,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase.js"></script>
 
 
-    <script src="js/main1.js"></script>
+    <script src="js/main12.js"></script>
 
       <script type="text/javascript" src="js/custom.js"></script>
 

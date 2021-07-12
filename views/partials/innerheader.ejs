@@ -21,6 +21,31 @@
 { color: #fff;
    padding-left: 350px;
 }
+
+.notification {
+  color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px
+}
+
+.notification:hover {
+  /*background: red;*/
+  color: white;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+</style>
 </style>
 
     <!-- Body Flyers Start -->
@@ -66,6 +91,14 @@
             <div class="app_header_content_right">
               <ul class="d-flex">
                 <li class="header_right_menu">
+                   <div class="dropdown user_dropdown">
+                    <a href="notification" class="notification">
+                     <i class="far fa-bell"></i>
+                      <span class="badge" id="badgecount"></span></a>
+                  </div>
+                </li>
+                <li class="header_right_menu">
+                 
                   <div class="dropdown user_dropdown">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <img id="myImg" alt="images">
@@ -125,11 +158,41 @@ window.addEventListener("load", function() {
    var LoggedInUsername = "<%= userName %>";
    var LoggedInEmail = "<%= email %>";
    var LoggedInId = "<%= userid %>";
-   // alert(LoggedInId);
+   var tokens = "<%= tokens %>";
+   // alert(tokens);
 
    document.getElementById("myImg").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
    $('#loginvals').html(LoggedInUsername);
    $('#loginemailvals').html(LoggedInEmail);
+
+    $.ajax({
+        type: 'POST',
+        url: 'https://apistest.tradetipsapp.com/api/notificationActivity/getCountOfAllUnreadNotificationActivityDetails',
+        headers: {
+          Authorization: 'Bearer '+ tokens,
+           },
+        // data: formdata,
+      success: function(data) {
+
+        // alert(data);
+
+        if(data.unReadCount > 0){
+
+          // alert(data.unReadCount);
+
+           document.getElementById("badgecount").textContent = data.unReadCount;
+
+        }else {
+
+           document.getElementById("badgecount").textContent = "0";
+          // alert("no count");
+        }
+
+     },error: function(error){
+       document.getElementById("badgecount").textContent = "0";
+     }
+
+   });
 
 
 });

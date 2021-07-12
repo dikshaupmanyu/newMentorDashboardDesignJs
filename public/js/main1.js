@@ -16,7 +16,8 @@ var config = {
     auth_uri: "https://accounts.google.com/o/oauth2/auth",
     token_uri: "https://oauth2.googleapis.com/token",
     auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-    client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zgd2j%40chatdemo-96e4f.iam.gserviceaccount.com"
+    client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zgd2j%40chatdemo-96e4f.iam.gserviceaccount.com",
+    vapidKey: 'BN2e4vqb2-OY-QX6Z0531oQ1pSiiEUNQU2SEcSaEiMvJFcy8unSAW6gPrFJQeHz0VQyPu2JLqVuaFDnfeDmpy3o'
     // apiKey: "AIzaSyA89MvmT1QzbvnCGfZ8B7yaJRuE3DwaOPE",
     // authDomain: "chatdemo-96e4f.firebaseapp.com",
     // databaseURL: "https://chatdemo-96e4f.firebaseio.com",
@@ -40,7 +41,45 @@ var config = {
 firebase.initializeApp(config);
 
 var db = firebase.firestore();
-// alert(db);
+// alert(JSON.stringify(db));
+
+var fcmtoken = "eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImV4cCI6MTYyNTA1Mzg3MywiaWF0IjoxNjI1MDUwMjczLCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1vbHYxYkB0cmFkZXRpcHMtOWJhYTMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1vbHYxYkB0cmFkZXRpcHMtOWJhYTMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiJkOWFjZWQyMy03Yjg5LTRhYmMtYmQ3MS01NTIzYWI4M2E5OGEifQ.Xh3uMkM6xGtv0x61FvLWxMSw6eVhQwucnKgrT2QoDy7ZE-NZE0yb_6SqrZS2dDZMlWiosAIMpGi-Czs2zBgbp2rHLfMsk5gZ6RJM5dPMJgZuG-V4jZfZK-EWlJLrEVfUVu_g_IW4ql1tUASQCSxsRh5d64I70BsPuIEW3nxvtS8dL74yaAZAm77dEJMINl47EzJKLiW5snSePd_EZ3jDCqGb5gq8Z0KX3I-TDhnY4ijI2KGpFKN6KcrMnNTOP4khx8o9luJRYF5uHbUpRLJVkVMIsvzdRVE2HzXZcX9-MbYQ2j0a36HrUXxL15SV8B7RUwMBP659Tl2cVwmEPjWMFA";
+
+firebase.auth().signInWithCustomToken(fcmtoken)
+  .then((userCredential) => {
+    // Signed in
+    // console.log(userCredential);
+    var user = userCredential.user;
+    // var ids = userCredential.uid;
+    console.log(user.uid);
+    // ...
+  })
+  .catch((error) => {
+    console.log("error is" + error);
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+
+// const messaging = firebase.messaging();
+// // Add the public key generated from the console here.
+
+// // Get registration token. Initially this makes a network call, once retrieved
+// // subsequent calls to getToken will return from cache.
+// messaging.getToken({}).then((currentToken) => {
+//   if (currentToken) {
+//     // Send the token to your server and update the UI if necessary
+//     // ...
+//   } else {
+//     // Show permission request UI
+//     console.log('No registration token available. Request permission to generate one.');
+//     // ...
+//   }
+// }).catch((err) => {
+//   console.log('An error occurred while retrieving token. ', err);
+//   // ...
+// });
+
 
 // var sData = localStorage.getItem('allTokenData');
 // var storageData= JSON.parse(sData);
@@ -49,7 +88,7 @@ var db = firebase.firestore();
 
 // alert(<%= req.session %>);
 
-const docRef = db.collection("/openGroups/roomOne/messages/");
+const docRef = db.collection("/openGroups/demoOpenGroup1/messages/");
 const tasksDOM = document.getElementById("tasks");
 var fullName   = document.getElementById('user_nickname');
 //alert(fullName.value);
@@ -297,6 +336,11 @@ function createTask(task) {
   // var storageData= JSON.parse(sData);
   var loggedInVal = "<%= userid %>";
    var loggedInName = "<%= userName %>";
+
+   messaging.onMessage((payload) => {
+  alert('Message received. ', payload);
+  // ...
+});
 
   const elem = document.createElement("li");
   // elem.id = task.id;
