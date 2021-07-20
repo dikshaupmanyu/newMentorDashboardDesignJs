@@ -40,6 +40,7 @@ var config = {
 
 firebase.initializeApp(config);
 
+
 var db = firebase.firestore();
 // alert(JSON.stringify(db));
 
@@ -66,7 +67,10 @@ var db = firebase.firestore();
 
 // // Get registration token. Initially this makes a network call, once retrieved
 // // subsequent calls to getToken will return from cache.
-// messaging.getToken({}).then((currentToken) => {
+
+// messaging.usePublicVapidKey('BN2e4vqb2-OY-QX6Z0531oQ1pSiiEUNQU2SEcSaEiMvJFcy8unSAW6gPrFJQeHz0VQyPu2JLqVuaFDnfeDmpy3o');
+
+// messaging.getToken().then((currentToken) => {
 //   if (currentToken) {
 //     // Send the token to your server and update the UI if necessary
 //     // ...
@@ -436,7 +440,6 @@ function fetchTasks() {
   //   .get()
   //   .then((snapshots) => cleanData(snapshots));
     // .then((tasks) => tasks.map((task) => createTask(task)));
-
 
      docRef.orderBy("createdDate", "asc").onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
