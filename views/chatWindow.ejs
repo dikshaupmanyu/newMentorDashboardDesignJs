@@ -35,21 +35,21 @@
             // $('#dateval').val(str);
 
 
-          // firebase.auth().signInWithCustomToken(fcmToken)
-          //   .then((userCredential) => {
-          //     // Signed in
-          //     // console.log(userCredential);
-          //     var user = userCredential.user;
-          //     // var ids = userCredential.uid;
-          //     console.log(user.uid);
-          //     // ...
-          //   })
-          //   .catch((error) => {
-          //     console.log("error is" + error);
-          //     var errorCode = error.code;
-          //     var errorMessage = error.message;
-          //     // ...
-          //   });
+          firebase.auth().signInWithCustomToken(fcmToken)
+            .then((userCredential) => {
+              // Signed in
+              // console.log(userCredential);
+              var user = userCredential.user;
+              // var ids = userCredential.uid;
+              console.log(user.uid);
+              // ...
+            })
+            .catch((error) => {
+              console.log("error is" + error);
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // ...
+            });
     });
     </script>
       <style type="text/css">
