@@ -16,8 +16,9 @@ var config = {
     auth_uri: "https://accounts.google.com/o/oauth2/auth",
     token_uri: "https://oauth2.googleapis.com/token",
     auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-    client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zgd2j%40chatdemo-96e4f.iam.gserviceaccount.com"
-   // apiKey: "AIzaSyA89MvmT1QzbvnCGfZ8B7yaJRuE3DwaOPE",
+    client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zgd2j%40chatdemo-96e4f.iam.gserviceaccount.com",
+    vapidKey: 'BN2e4vqb2-OY-QX6Z0531oQ1pSiiEUNQU2SEcSaEiMvJFcy8unSAW6gPrFJQeHz0VQyPu2JLqVuaFDnfeDmpy3o'
+    // apiKey: "AIzaSyA89MvmT1QzbvnCGfZ8B7yaJRuE3DwaOPE",
     // authDomain: "chatdemo-96e4f.firebaseapp.com",
     // databaseURL: "https://chatdemo-96e4f.firebaseio.com",
     // projectId: "chatdemo-96e4f",
@@ -34,17 +35,15 @@ var config = {
     // token_uri: "https://oauth2.googleapis.com/token",
     // auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
     // client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zgd2j%40chatdemo-96e4f.iam.gserviceaccount.com"
+
 };
 
 firebase.initializeApp(config);
 
 var db = firebase.firestore();
-
-// console.log(req.session);
+// alert(JSON.stringify(db));
 
 // var fcmtoken = "eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImV4cCI6MTYyNTA1Mzg3MywiaWF0IjoxNjI1MDUwMjczLCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1vbHYxYkB0cmFkZXRpcHMtOWJhYTMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1vbHYxYkB0cmFkZXRpcHMtOWJhYTMuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiJkOWFjZWQyMy03Yjg5LTRhYmMtYmQ3MS01NTIzYWI4M2E5OGEifQ.Xh3uMkM6xGtv0x61FvLWxMSw6eVhQwucnKgrT2QoDy7ZE-NZE0yb_6SqrZS2dDZMlWiosAIMpGi-Czs2zBgbp2rHLfMsk5gZ6RJM5dPMJgZuG-V4jZfZK-EWlJLrEVfUVu_g_IW4ql1tUASQCSxsRh5d64I70BsPuIEW3nxvtS8dL74yaAZAm77dEJMINl47EzJKLiW5snSePd_EZ3jDCqGb5gq8Z0KX3I-TDhnY4ijI2KGpFKN6KcrMnNTOP4khx8o9luJRYF5uHbUpRLJVkVMIsvzdRVE2HzXZcX9-MbYQ2j0a36HrUXxL15SV8B7RUwMBP659Tl2cVwmEPjWMFA";
-
-
 
 // firebase.auth().signInWithCustomToken(fcmtoken)
 //   .then((userCredential) => {
@@ -62,13 +61,45 @@ var db = firebase.firestore();
 //     // ...
 //   });
 
+// const messaging = firebase.messaging();
+// // Add the public key generated from the console here.
+
+// // Get registration token. Initially this makes a network call, once retrieved
+// // subsequent calls to getToken will return from cache.
+// messaging.getToken({}).then((currentToken) => {
+//   if (currentToken) {
+//     // Send the token to your server and update the UI if necessary
+//     // ...
+//   } else {
+//     // Show permission request UI
+//     console.log('No registration token available. Request permission to generate one.');
+//     // ...
+//   }
+// }).catch((err) => {
+//   console.log('An error occurred while retrieving token. ', err);
+//   // ...
+// });
+
+
+// var sData = localStorage.getItem('allTokenData');
+// var storageData= JSON.parse(sData);
+// var loggedInVal = storageData.uid;
+// alert(loggedInVal);
+
+// alert(<%= req.session %>);
 
 const docRef = db.collection("/openGroups/roomOne/messages/");
 const tasksDOM = document.getElementById("tasks");
 var fullName   = document.getElementById('user_nickname');
+// alert(fullName.value);
 var message    = document.getElementById('btn-input');
 var userId     = document.getElementById('user_id');
-// var hiddenId   = document.getElementById('hiddenId');
+// alert(userId.value);
+
+var hiddenId   = document.getElementById('hiddenId');
+
+
+
 
 var date = document.getElementById('dateval');
 // utility functions
@@ -82,16 +113,17 @@ function cleanData(snapshots) {
 
 // form functions
 function handleCreate(event) {
-  event.preventDefault();
-   // alert(JSON.stringify(event));
 
-  var url_string = window.location.href;
-  var urls = new URL(url_string);
-  var loggedInName = urls.searchParams.get("uname");
-  var loggedInVal = urls.searchParams.get("uid");
-  // alert(loggedInName);
+   event.preventDefault();
+   // alert(JSON.stringify(event));
+    //alert(user_id.value);
+   // alert(user_nickname.value);
+   var loggedInVal = user_id.value;
+   // alert(loggedInVal);
+   var loggedInName = user_nickname.value;
+    // alert(loggedInName);
   // var today = Date.now();
-  // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
+   //var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
        
    if(message.value != ""){
 
@@ -106,6 +138,8 @@ function handleCreate(event) {
     messageSource : "Web"
     // status: "incomplete"
   };
+
+  // alert(JSON.stringify(task));
   return docRef
     .add(task)
     .then((ref) => {
@@ -117,7 +151,8 @@ function handleCreate(event) {
     });
 
    }else{
-    alert("Message not empty");
+   // alert("Message not empty");
+    $(".successmsg").html('<span>Message not empty.</span>');
    }    
  
 }
@@ -145,20 +180,18 @@ $("input[type='file']").on('change', function(e) {
   console.log(file);
   console.log(file.type);
 
-  var url_string = window.location.href;
-  var urls = new URL(url_string);
-  var loggedInName = urls.searchParams.get("uname");
-  var loggedInVal = urls.searchParams.get("uid");
+  var loggedInVal = user_id.value;
+   var loggedInName = user_nickname.value;
   // alert(loggedInName);
-  // var today = Date.now();
-  // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
+  var today = Date.now();
+  var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
 
   if(file.type == "video/mp4"){
 
     firebase.storage().ref('message_videos/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
       return snapshot.ref.getDownloadURL()
    }).then(url => {
-     console.log("Firebase storage image uploaded : ", url); 
+     console.log("Firebase storage image uploaded : ", url);
        
        
   let task = {
@@ -184,14 +217,14 @@ $("input[type='file']").on('change', function(e) {
     });
 
 
-    }); 
+    });
 
   }else if(file.type == "audio/mpeg"){
 
     firebase.storage().ref('message_audios/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
       return snapshot.ref.getDownloadURL()
    }).then(url => {
-     console.log("Firebase storage image uploaded : ", url); 
+     console.log("Firebase storage image uploaded : ", url);
        
        
   let task = {
@@ -217,7 +250,7 @@ $("input[type='file']").on('change', function(e) {
     });
 
 
-    }); 
+    });
 
   } else {
 
@@ -225,7 +258,7 @@ $("input[type='file']").on('change', function(e) {
     firebase.storage().ref('message_images/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
       return snapshot.ref.getDownloadURL()
    }).then(url => {
-     console.log("Firebase storage image uploaded : ", url); 
+     console.log("Firebase storage image uploaded : ", url);
        
        
   let task = {
@@ -251,42 +284,42 @@ $("input[type='file']").on('change', function(e) {
     });
 
 
-    }); 
+    });
 
   }
-// return firebase
-//     .app()
-//     .storage()
-//     .ref('message_images')
-//     .child(file.name)
-//     .put(file)
-//     // .then(snapshot => {
-//     //   // snapshot represents the uploaded file
-//     //   console.log(snapshot);
-//     // })
-//     .getDownloadURL()
-//     .then(imgUrl => {
-//       console.log(imgUrl);
-//     });
+return firebase
+    .app()
+    .storage()
+    .ref('message_images')
+    .child(file.name)
+    .put(file)
+    // .then(snapshot => {
+    //   // snapshot represents the uploaded file
+    //   console.log(snapshot);
+    // })
+    .getDownloadURL()
+    .then(imgUrl => {
+      console.log(imgUrl);
+    });
 
-// var remoteimageurl = e.target.files[0]
-// var filename = file.name
+var remoteimageurl = e.target.files[0]
+var filename = file.name
 
-// fetch(remoteimageurl).then(res => {
-//   return res.blob();
-// }).then(blob => {
-//     //uploading blob to firebase storage
-//   firebase.storage().ref('message_images/').child(filename).put(blob).then(function(snapshot) {
-//     return snapshot.ref.getDownloadURL()
-//  }).then(url => {
-//    console.log("Firebase storage image uploaded : ", url); 
-//   }) 
-// }).catch(error => {
-//   console.error(error);
-// });
+fetch(remoteimageurl).then(res => {
+  return res.blob();
+}).then(blob => {
+    //uploading blob to firebase storage
+  firebase.storage().ref('message_images/').child(filename).put(blob).then(function(snapshot) {
+    return snapshot.ref.getDownloadURL()
+ }).then(url => {
+   console.log("Firebase storage image uploaded : ", url);
+  })
+}).catch(error => {
+  console.error(error);
+});
 
 
-  
+ 
 });
 
 function handleDelete(id) {
@@ -299,11 +332,16 @@ function handleDelete(id) {
 // dom functions
 function createTask(task) {
   // alert(task);
-  var url_string = window.location.href;
-  var urls = new URL(url_string);
-  var loggedInName = urls.searchParams.get("uname");
-  var loggedInVal = urls.searchParams.get("uid");
-  // alert(loggedInName)
+  // var sData = localStorage.getItem('allTokenData');
+  // var storageData= JSON.parse(sData);
+  var loggedInVal = "<%= userid %>";
+   var loggedInName = "<%= userName %>";
+
+   messaging.onMessage((payload) => {
+  alert('Message received. ', payload);
+  // ...
+});
+
   const elem = document.createElement("li");
   // elem.id = task.id;
   // elem.innerHTML = reviewTemplate(task)
@@ -350,17 +388,17 @@ function createTask(task) {
 
          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><audio controls><source src="' + task.message +'" type="audio/mpeg"></audio></div>'
 
-        
+       
       } else if(task.messageType === "video"){
 
          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><video controls style="width:100%;"><source src="' + task.message +'" type="video/mp4"></video></div>'
 
-        
+       
       } else{
 
          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><p class="message">' + task.message +'</p></div>'
 
-        
+       
       }
 
   }
@@ -407,29 +445,20 @@ function fetchTasks() {
 
             if (change.type === "added") {
                 // console.log(task);
-                
+               
                 // console.log("New city: ", change.doc.data().createdDate);
 
                 var task = change.doc.data();
 
-                var sData = localStorage.getItem('allTokenData');
-                var storageData= JSON.parse(sData);
-                // var loggedInVal = storageData.uid;
-                //  var loggedInName = storageData.uname;
-                // // alert(loggedInName)
-
-                var url_string = window.location.href;
-                var urls = new URL(url_string);
-                var loggedInName = urls.searchParams.get("uname");
-                var loggedInVal = urls.searchParams.get("uid");
-
+                 var loggedInVal = "<%= userid %>";
+                 var loggedInName = "<%= userName %>";
+                // alert(loggedInName)
                 const elem = document.createElement("li");
                 elem.id = task.messageId;
                 elem.innerHTML = reviewTemplate(task);
                 tasksDOM.append(elem);
 
-               $('.card-body').scrollTop($('.card-body')[0].scrollHeight);
-
+                 $('.card-body').scrollTop($('.card-body')[0].scrollHeight);
 
                 // $('#tasks').scrollTop($('#tasks')[0].scrollHeight);
               //   elem.setAttribute("id", task.messageId);
@@ -473,17 +502,17 @@ function fetchTasks() {
 
               //          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><audio controls><source src="' + task.message +'" type="audio/mpeg"></audio></div>'
 
-                      
+                     
               //       } else if(task.messageType === "video"){
 
               //          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><video controls style="width:100%;"><source src="' + task.message +'" type="video/mp4"></video></div>'
 
-                      
+                     
               //       } else{
 
               //          elem.innerHTML = '<span class="chat-img left clearfix mx-2"><img src="'+ task.profileImageUrl +'" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="right text-muted"><span class="glyphicon glyphicon-time"></span>' + task.createdDate + '</small><strong class="primary-font" class="fullName">'+ task.userName +'</strong></div><p class="message">' + task.message +'</p></div>'
 
-                      
+                     
               //       }
 
               //   }
@@ -579,7 +608,7 @@ function fetchTasks() {
 // //   // li.innerHTML = reviewTemplate(doc.data())
 // //   // reviews.appendChild(li);
        
-          
+         
 // //     // });
 
 // //   });
@@ -600,7 +629,7 @@ function fetchTasks() {
 //  //  li.innerHTML = reviewTemplate(doc.data())
 //  //  reviews.appendChild(li);
        
-          
+         
 //  //    });
 
 //  //  });
@@ -645,18 +674,79 @@ function fetchTasks() {
 
 function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,messageType}) {
 
-  var url_string = window.location.href;
-  var urls = new URL(url_string);
-  var loggedInName = urls.searchParams.get("uname");
-  var loggedInVal = urls.searchParams.get("uid");
+   // alert(user_id.value);
+  // alert(userId);
+  // fetch(profileImageUrl, { method: 'HEAD' })
+  //   .then(res => {
+  //       if (res.ok) {
+  //           alert('Image exists.');
+  //       } else {
+  //           alert('Image does not exist.');
+  //       }
+  //   }).catch(err => alert('Error:', err));
+    var loggedInVal = user_id.value;
+   //alert(loggedInName);
+   var loggedInName = user_nickname.value;
+  // alert(loggedInVal);
+  // alert(userId);
+  // var todate=new Date(createdDate).getDate();
+  // var tomonth=new Date(createdDate).getMonth()+1;
+  // var toyear=new Date(createdDate).getFullYear();
+  // var original_date=tomonth+'/'+todate+'/'+toyear;
+  // alert(original_date);
+  //console.log(createdDate);
+                const date = new Date(createdDate); //new Date(createdDate).toDateString();
+                  //console.log(date);
+                var options = {year: "numeric", month: "long", day: "numeric"};
+                var newdate = date.toGMTString('en-US', options);  
+                  //console.log(newdate);
+                const stripped = newdate.replace(/GMT/g, 'EST');
+                  //console.log(stripped);
+                  // alert(date);
+                var newdate1 = stripped.toString(stripped);  
+                var newdate2 = newdate1.split(/(\s+)/);
+                 newdate2.splice(11, 18);
+                 newdate2.splice(0, 2);
+                 newdate2.splice(3,3);
+                  //console.log(newdate2);
+                 function moveArrayItemToNewIndex(arr, old_index, new_index) {
+                 if (new_index >= arr.length) {
+                      var k = new_index - arr.length + 1;
+                      while (k--) {
+                          arr.push(undefined);
+                      }
+                  }
+                 arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+                 return arr;
+                 };
 
-  const date = new Date(createdDate).toDateString();
-  // alert(date);
+                moveArrayItemToNewIndex(newdate2, 0, 2);
+                var result1 = moveArrayItemToNewIndex(newdate2, 0, 2);
+                //console.log(result1);
+                result1.splice(1, 0, ' ');
+                var newdate3 = result1.toString(result1);
+                var result = newdate3.replace(/,/g, "");
+                //console.log(result);
+                x = result.substring(0, 6) + "," + result.substring(6, result.length);
+                //console.log(x);
+                function formatAMPM(date) {
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var ampm = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0'+minutes : minutes;
+                    var strTime = hours + ':' + minutes + ' ' + ampm;
+                    return strTime;
+                  }
 
-  
+                  var date1 = formatAMPM(date);
+                  //console.log(date1);
+                  //console.log(newdate2);
+                  const stripped1 = x.replace(newdate2[4], date1);
+                  //console.log(stripped1);
    
    if(loggedInVal == userId){
-
 
         if(messageType == "text"){
 
@@ -670,7 +760,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                      <small class="left text-muted" style = "display:inline-block;"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                   <p class='message'>
@@ -690,7 +780,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                     <p class='message'><img src="${message}" class="img-responsive" style="width:100%;"/></p>
@@ -708,7 +798,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                  <p class='message'><video controls style="width:100%;"><source src="${message}" type="video/mp4"></video></p>
@@ -725,7 +815,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               </span>
               <div class="chat-body clearfix">
                   <div class="header clearfix">
-                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${date}</small>
+                      <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
                 <p class='message'><audio controls><source src="${message}" type="audio/mpeg"></audio></p>              </div>
@@ -750,8 +840,8 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
               <p class='message' style="color: #000 !important">
                   ${message}
@@ -769,10 +859,10 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
-            
+           
              <p class='message' style="color: #000 !important"><video controls style="width:100%;"><source src="${message}" type="video/mp4"></video></p>
 
           </div>
@@ -788,8 +878,8 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
               <p class='message' style="color: #000 !important"><img src="${message}" class="img-responsive" style="width:100%;"/></p>
 
@@ -806,11 +896,11 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
           </span>
           <div class="chat-body clearfix agent" style="float:none;background:#77839647;color:#000;">
               <div class="header clearfix">
-                  <small class="right text-muted" style="color: #000 !important"><span class="glyphicon glyphicon-time"></span>${date}</small>
-                  <strong class="primary-font" class='fullName' style="color: #000 !important">${userName}</strong>
+                  <small class="right text-muted" style="color: #000"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
+                  <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
-              
-              <p class='message' style="color: #000 !important"><audio controls><source src="${message}" type="audio/mpeg"></audio></p>             
+             
+              <p class='message' style="color: #000 !important"><audio controls><source src="${message}" type="audio/mpeg"></audio></p>            
 
           </div>
       </li>
