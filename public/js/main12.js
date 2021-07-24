@@ -338,7 +338,7 @@ function createTask(task) {
   // alert(task);
   // var sData = localStorage.getItem('allTokenData');
   // var storageData= JSON.parse(sData);
-  var loggedInVal = "<%= userid %>";
+  var loggedInVal = user_id.value;
    var loggedInName = "<%= userName %>";
 
    messaging.onMessage((payload) => {
@@ -453,8 +453,11 @@ function fetchTasks() {
 
                 var task = change.doc.data();
 
-                 var loggedInVal = "<%= userid %>";
-                 var loggedInName = "<%= userName %>";
+                 // var loggedInVal = "<%= userid %>";
+                 // var loggedInName = "<%= userName %>";
+                    var loggedInVal = user_id.value;
+                   // alert(loggedInVal);
+                   var loggedInName = user_nickname.value;
                 // alert(loggedInName)
                 const elem = document.createElement("li");
                 elem.id = task.messageId;
