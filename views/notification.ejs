@@ -56,7 +56,7 @@ $(document).ready(function(){
    var notificationVals = "" ;
     $.ajax({
         type: 'POST',
-        url: 'https://apistest.tradetipsapp.com/api/notificationActivity/getAllNotificationActivityDetailsWithPagination',
+        url: 'https://apis.tradetipsapp.com/api/notificationActivity/getAllNotificationActivityDetailsWithPagination',
         headers: {
           Authorization: 'Bearer '+ tokens,
            },
@@ -100,7 +100,7 @@ $(document).ready(function(){
   var formdata = {notificationId : e};
    $.ajax({
         type: 'POST',
-        url: 'https://apistest.tradetipsapp.com/api/notificationActivity/createNotificationAsReadByNotificationId',
+        url: 'https://apis.tradetipsapp.com/api/notificationActivity/createNotificationAsReadByNotificationId',
         headers: {
           Authorization: 'Bearer '+ tokens,
            },
@@ -122,7 +122,7 @@ function deletenotification(e) {
   var formdata = {notificationId : e};
    $.ajax({
         type: 'POST',
-        url: 'https://apistest.tradetipsapp.com/api/notificationActivity/deleteNotificationDetailsById',
+        url: 'https://apis.tradetipsapp.com/api/notificationActivity/deleteNotificationDetailsById',
         headers: {
           Authorization: 'Bearer '+ tokens,
            },
@@ -146,7 +146,7 @@ function deleteAllnotification() {
   var tokens = "<%= tokens %>";
   $.ajax({
         type: 'POST',
-        url: 'https://apistest.tradetipsapp.com/api/notificationActivity/deleteAllNotificationForLoginUser',
+        url: 'https://apis.tradetipsapp.com/api/notificationActivity/deleteAllNotificationForLoginUser',
         headers: {
           Authorization: 'Bearer '+ tokens,
            },
