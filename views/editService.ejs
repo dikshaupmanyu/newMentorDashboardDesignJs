@@ -57,7 +57,7 @@
             </div>
              <div class="form-group">
           <label>Enter Url</label>
-         <!--  <input type="text" class="form-control" placeholder="Enter your Url" name="description2" id="description2"> -->
+          <input type="text" class="form-control" placeholder="Enter your Url" name="description2" id="description2">
           
           <h5>Max 200 Characters</h5>
         </div>
@@ -525,11 +525,11 @@ function ImgDelete(){
                   serviceSubscriptionPlanId : serviceTypeSubscriptionId,
                 },
             success: function(data) {
-                // alert(JSON.stringify(data));
+                 // alert(JSON.stringify(data));
                const dataResult = data;
                   let newtip = [];
 
-                  // alert(dataResult.frequency);
+                  // alert(dataResult.price);
 
                   document.getElementById("title").value = dataResult.title;
                   document.getElementById("description1").value = dataResult.descriptionOne;
