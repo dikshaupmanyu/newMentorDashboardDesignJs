@@ -606,7 +606,7 @@ $("#formoid").submit(function(event){
                 // alert(datak);
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
-                //alert("Your newsletter "+dataResultp.title+" was submitted successfully");
+                //alert("Your "+dataResultp.title+" was submitted successfully");
                 $(".successmsg").html('<span>"Your '+dataResultp.title+' submitted successfully."</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
                setTimeout(function(){
