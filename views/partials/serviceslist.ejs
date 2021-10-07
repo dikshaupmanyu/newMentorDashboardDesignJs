@@ -1,8 +1,7 @@
   <a href="recommendedService" id="recomndDataService"><button class="btn cmn_btn btn_small btn_primary" type="button">Create Recommended Service</button></a>
   <br>
   <button class="btn cmn_btn btn_small btn_primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create New Service</button>
-          <div class="dropdown-menu"  id="listservice">
-           
+          <div class="dropdown-menu"  id="listservice">           
           </div>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript">
@@ -24,6 +23,7 @@
   if(loginName === "TradeTipsApp"){
 
    $('#recomndDataService').css("display", "block");
+   $('#MACDtips').css("display" , "block");
 
   }else{
 
@@ -41,14 +41,34 @@
 
                const dataResult = data;
                   let tiplist = [];
-                  for(var i=0; i< dataResult.length; i++){
+                  if(loginName === "TradeTipsApp"){
+                     for(var i=0; i< dataResult.length; i++){
+
+                 
+                      tiplist += ' <a class="dropdown-item" id="' + dataResult[i].serviceType + '" href="/' + dataResult[i].serviceType + '">' + dataResult[i].title + '</a>';
+
+                       // newtip.push(dataResult[i]);
+                      }
+                  }else{
+                     for(var i=0; i< dataResult.length-1; i++){
 
                  
                   tiplist += ' <a class="dropdown-item" id="' + dataResult[i].serviceType + '" href="/' + dataResult[i].serviceType + '">' + dataResult[i].title + '</a>';
 
                    // newtip.push(dataResult[i]);
                   }
-                   $("#listservice").append(tiplist);
+                  }
+                 
+                  $("#listservice").append(tiplist);
+
+
+
+
+                  // tiplistdata = '<p>---------------------------</p><a class="dropdown-item" id="MACDtips" href="#">MACD Tips</a>';
+
+                  // $("#listservice").append(tiplist,tiplistdata);
+
+
                  
 
               }
