@@ -183,8 +183,8 @@ $("input[type='file']").on('change', function(e) {
   var loggedInVal = user_id.value;
    var loggedInName = user_nickname.value;
   // alert(loggedInName);
-  var today = Date.now();
-  var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
+  // var today = Date.now();
+  // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
 
   if(file.type == "video/mp4"){
 
