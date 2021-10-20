@@ -726,7 +726,7 @@ request.post('https://apis.tradetipsapp.com/api/auth/appSignIn',
     	var dataResult = JSON.parse(body);
     	// console.log(dataResult);
     	if(dataResult.accessToken){                  
-        if(req.body.userName != "admin"){
+        if(req.body.userName != "admin"  && dataResult.isMentor == "true"){
           // $("#success").show();
           // $('#success').html('Login Sucessfully !');
 
@@ -806,9 +806,9 @@ return res.redirect('/');
 
 });
 /////////////////////////////////////////
-//var httpServer = http.createServer(app);
+// var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-//httpServer.listen(port);
+// httpServer.listen(port);
 httpsServer.listen(port);
 console.log('The magic happens on port ' + port);
