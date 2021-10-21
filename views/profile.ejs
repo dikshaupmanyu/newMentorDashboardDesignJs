@@ -60,6 +60,10 @@
                             <input type="email" class="form-control" name="email" id = "emails" style="color:white;" readonly>
                           </div>
                           <div class="input-group">
+                            <label>Twitter Id</label>
+                            <input type="text" class="form-control" name="twitterId" id = "twitterIds" style="color:white;">
+                          </div>
+                          <div class="input-group">
                             <label class="hide-sm">&nbsp;</label>
                             <button class="btn cmn_btn btn_primary" id = "postbtn">Save Changes</button>
                           </div>
@@ -676,10 +680,14 @@
         success: function(data) {
           var user = data['fName'];
           document.getElementById("F_name").value = user;
+              // document.getElementById("twitterIds").value = twitterId;
+
 }
 });
 
   document.getElementById("emails").value = email_id;
+
+
   document.getElementById("imagePreview").src = "https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId="+LoggedInId;
   var imageDetails = $('#file-image').val();
   // alert(imageDetails);
@@ -702,6 +710,7 @@
             var paswrd = data['password'];
             var first_name = document.getElementById("F_name").value;
             var email_val = document.getElementById("emails").value;
+            var twitter_val = document.getElementById("twitterIds").value;           
             var file = document.getElementById("file-upload").files[0];
             // alert(file);
             var fullPath = $("#file-upload").val();    
@@ -733,6 +742,7 @@
           formdata.append("lastName", "");
           formdata.append("gender", "");
           formdata.append("email", email_val);
+          formdata.append("twitterId", twitter_val);
           formdata.append("userName", user1);
           formdata.append("password", paswrd);
           if(filename == ""){
@@ -764,9 +774,9 @@
                       //console.log(result);
                       $(".successmsg").html('<span>Data updated successfully.</span>');
                       setTimeout(function(){$(".successmsg").empty()}, 3000);
-                      setTimeout(function(){
-                          window.location.href = "/profile"; 
-                        }, 2000);
+                      // setTimeout(function(){
+                      //     window.location.href = "/profile"; 
+                      //   }, 2000);
 
 
                      })
