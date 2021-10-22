@@ -1499,6 +1499,8 @@ $(".scroller-dash-left").scroll(function() {
 
                         const array = await responseone.json();
 
+                        if(array[0] != undefined){
+
                          const response = await fetch(`https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols=${array[0].stock_name}`);
                           const d = await response.json()
                               // return datas;
@@ -1533,6 +1535,8 @@ $(".scroller-dash-left").scroll(function() {
                               }
                           
                           $("#AIdemo").append(texts);
+
+                        }
                      }
 
 
