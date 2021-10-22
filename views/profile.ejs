@@ -679,8 +679,9 @@
         data: formdata1,
         success: function(data) {
           var user = data['fName'];
+          var twitterId = data['twitterIds'];;
           document.getElementById("F_name").value = user;
-              // document.getElementById("twitterIds").value = twitterId;
+              document.getElementById("twitterIds").value = twitterId;
 
 }
 });
@@ -703,7 +704,7 @@
                   },
         data: formdata,
         success: function(data) {
-          //console.log(data);
+          console.log(data);
             $('#postbtn').on('click', function() {
             var users_id = data['id'];
             var user1 = data['userName'];
