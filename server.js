@@ -290,6 +290,54 @@ app.get('/settings', function(req, res) {
 
 ////////////////////////////////////////////////////////////////////////
 
+
+ app.get('/macdDetails', function(req, res) {
+    
+     if(req.session.loggedIn) { 
+    var mentorids = req.query.id;
+
+    var symbol = req.query.stockName;
+
+        var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+        res.render('macdDetails.ejs' , {tipsIds : mentorids , stockSymbol : symbol ,tokens : fdata , userName : fusername , userid : fuid , email :femail});
+     
+      } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+////////////////////////////////////////////////////////////////////////
+
+ app.get('/macdSellDetails', function(req, res) {
+    
+     if(req.session.loggedIn) { 
+    var mentorids = req.query.id;
+
+    var symbol = req.query.stockName;
+
+        var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+        res.render('macdSellDetails.ejs' , {tipsIds : mentorids , stockSymbol : symbol ,tokens : fdata , userName : fusername , userid : fuid , email :femail});
+     
+      } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+
+
+////////////////////////////////////////////////////////////////////////
+
+
  app.get('/aiDetails', function(req, res) {
     
      if(req.session.loggedIn) { 
@@ -806,7 +854,7 @@ return res.redirect('/');
 
 });
 /////////////////////////////////////////
-// var httpServer = http.createServer(app);
+//var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 // httpServer.listen(port);
