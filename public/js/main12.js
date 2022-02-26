@@ -441,8 +441,9 @@ function fetchTasks() {
   //   .then((snapshots) => cleanData(snapshots));
     // .then((tasks) => tasks.map((task) => createTask(task)));
 
-     docRef.orderBy("createdDate", "asc").onSnapshot(function(snapshot) {
-        snapshot.docChanges().forEach(function(change) {
+     docRef.orderBy("createdDate", "desc").limit(100).onSnapshot(function(snapshot) {
+    
+        snapshot.docChanges().reverse().forEach(function(change) {
 
          
 
