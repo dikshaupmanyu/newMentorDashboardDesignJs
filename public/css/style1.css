@@ -4184,3 +4184,22 @@ body .only_id_use{
   /* .scrollbar-css::-webkit-scrollbar-thumb:hover {
     background: #555; 
   } */
+
+  three-dots.three-dots{
+    cursor: pointer;
+}
+  #tasksuserlist{
+    position: fixed !important;
+    left: auto !important;
+    top: 0 !important;
+    transform: none !important;
+    right: 0;
+    height: 100%;
+    overflow: auto;
+  }
+  .modal{
+    background-color: rgb(8 12 62 / 50%);
+  }
+  .modal-backdrop{
+      display: none !important;
+  }

@@ -1,4 +1,5 @@
   <a href="recommendedService" id="recomndDataService"><button class="btn cmn_btn btn_small btn_primary" type="button">Create Recommended Service</button></a>
+    <a href="macdtipService" id="macdDataService"><button class="btn cmn_btn btn_small btn_primary" type="button">Create MACD Service</button></a>
   <br>
   <button class="btn cmn_btn btn_small btn_primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create New Service</button>
           <div class="dropdown-menu"  id="listservice">           
@@ -23,11 +24,13 @@
   if(loginName === "TradeTipsApp"){
 
    $('#recomndDataService').css("display", "block");
-   $('#MACDtips').css("display" , "block");
+   $('#macdDataService').css("display" , "block");
 
   }else{
 
    $('#recomndDataService').css("display", "none");
+      $('#macdDataService').css("display" , "none");
+
   }
 
 
@@ -80,5 +83,9 @@
   <style type="text/css">
     #Recommended {
       display: none;
+    }
+
+    #MACDTips{
+    display: none;
     }
   </style>
