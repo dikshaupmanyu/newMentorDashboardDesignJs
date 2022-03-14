@@ -56,7 +56,7 @@ $(document).ready(function(){
    var notificationVals = "" ;
     $.ajax({
         type: 'POST',
-        url: 'https://apis.tradetipsapp.com/api/notificationActivity/getAllNotificationActivityDetailsWithPagination',
+        url: 'https://apis.tradetipsapp.com/api/notificationActivity/getAllUnreadBundleNotificationActivityMessage',
         headers: {
           Authorization: 'Bearer '+ tokens,
            },

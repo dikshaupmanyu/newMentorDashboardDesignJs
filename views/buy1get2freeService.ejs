@@ -9,7 +9,7 @@
 <div class="app_content">
   <div class="dsbrd_container">
     <div class="package_head">
-        <h2>MACD Services</h2>
+        <h2>Buy 1 Get 2 Free Services</h2>
 
                 <%- include partials/serviceslist %>
 
@@ -19,20 +19,20 @@
     <div class="createpackage_wrapper create_newsletter">
       <div class="createpackage_head">
 <!--         <button class="btn back_btn"><i class="fas fa-arrow-left"></i></button>
- -->        <h2>Create New MACD Services</h2>
+ -->        <h2>Create New Buy 1 Get 2 Free Services</h2>
       </div>
       <form id="formoid" enctype="multipart/form-data" onsubmit="return false">
 
-      <!--    <input type="text" class="form-control" placeholder="Enter your title here" name="serviceTypeId" id="serviceTypeIds" value="4d23e22a-f7bd-4e19-9516-f44d6dbe0977" style="display: none;"> -->
+         <input type="text" class="form-control" placeholder="Enter your title here" name="serviceTypeId" id="serviceTypeIds" value="acb73675-ad27-41bd-a93a-735a9d02cab9" style="display: none;">
 
-           <input type="text" class="form-control" placeholder="Enter your title here" name="serviceTypeId" id="serviceTypeIds" value="c6aea02f-645d-4a52-a7ec-9b7465b0c4ad" style="display: none;">
+        <!--    <input type="text" class="form-control" placeholder="Enter your title here" name="serviceTypeId" id="serviceTypeIds" value="c6aea02f-645d-4a52-a7ec-9b7465b0c4ad" style="display: none;"> -->
 
 
-       <input type="text" class="form-control" placeholder="Enter your title here" name="serviceName" id="serviceName" value="MACDTips" style="display: none;">
+       <input type="text" class="form-control" placeholder="Enter your title here" name="serviceName" id="serviceName" value="Buy1Get2Free" style="display: none;">
 
       <div class="createpackage_form">
         <div class="form-group">
-          <label>MACD Title</label>
+          <label>Buy 1 Get 2 Free Title</label>
           <input type="text" class="form-control" placeholder="Enter your title here" name="title" id="title" required="required">
           <h5>Max 200 Characters</h5>
         </div>
@@ -48,7 +48,7 @@
           
           <h5>Max 200 Characters</h5>
         </div>
-<!--          <div class="form-group">
+        <!--  <div class="form-group">
           <label>Enter Frequency</label>
           <input type="text" class="form-control" placeholder="Frequency" name="frequency" id="frequency">
           
@@ -66,7 +66,7 @@
          </div>
          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
           <div class="form-group">
-           <label>MACD Schedule</label>
+           <label>Buy 1 Get 2 Free Schedule</label>
             <select name="frequency" id="frequency" class="form-control">
               <option>Select Schedule</option>
               <option value="1">Daily</option>
@@ -79,7 +79,7 @@
         </div>
         </div>
         <div class="form-group">
-         <label>MACD Image</label>
+         <label>Buy 1 Get 2 Free Image</label>
           <div id="file-upload-form" class="uploader">
             <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
             <label class="file_upload_label" for="file-upload" id="file-drag">
@@ -359,7 +359,8 @@ $("#formoid").submit(function(event){
   // alert(fullPath);   
   var filename = fullPath.replace(/^.*[\\\/]/, '');
   // alert(filename);
-  var frequencyss = $("#frequency option:selected").text();
+  var frequencyss = $("#frequency option:selected").val();
+  // alert(frequencyss);
   var stripeProductName = userName +'_'+ serviceName +'_'+ frequencyss;
   // alert(stripeProductName);
 
@@ -402,8 +403,7 @@ $("#formoid").submit(function(event){
                 var datak = JSON.stringify(result);
                 // alert(datak);
                 var dataResultp = JSON.parse(datak); 
-                //alert(dataResultp.title);
-              $(".successmsg").html('<span>"Your MACDTips '+dataResultp.title+' was submitted successfully"</span>');
+              $(".successmsg").html('<span>"Your Buy1Get2Free '+dataResultp.title+' was submitted successfully"</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
                //window.location.reload();
                setTimeout(function(){

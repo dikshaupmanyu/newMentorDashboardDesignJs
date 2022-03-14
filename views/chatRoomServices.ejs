@@ -416,10 +416,10 @@ $("#formoid").submit(function(event){
   var descriptionOne = $('#description1').val();
   var serviceTypeId = $('#serviceTypeIds').val();
   var descriptionTwo = $('#description2').val();
-  var frequency = $('#frequency').val();
+  // var frequency = $('#frequency').val();
   var price = $('#price').val();
   var imageDetails = $('#file-image').val();
-   var frequencyss = $("#frequency option:selected").text();
+   var frequencyss = $("#frequency option:selected").val();
   var stripeProductName = userName +'_'+ serviceName +'_'+ frequencyss;
   
   var file = document.getElementById("file-upload").files[0];
@@ -433,7 +433,7 @@ $("#formoid").submit(function(event){
     formdata.append("descriptionOne", descriptionOne);
     formdata.append("descriptionTwo", descriptionTwo);
     formdata.append("stripeProductName", stripeProductName);
-    formdata.append("frequency", frequency);
+    formdata.append("frequency", frequencyss);
     formdata.append("price", price);
     formdata.append("mentorId", userId);
     if(filename == ""){

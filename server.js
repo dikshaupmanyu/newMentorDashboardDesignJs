@@ -479,6 +479,150 @@ app.get('/settings', function(req, res) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
+app.get('/Buy1Get1Free', function(req, res) {
+
+  	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('buy1get1freeService.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+///////////////////////////////////////////////////////////////////////////
+
+app.get('/Buy1Get2Free', function(req, res) {
+
+  	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('buy1get2freeService.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+app.get('/DiscountDeal', function(req, res) {
+
+  	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('discountdealService.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+
+///////////////////////////////////////////////////////////////////////////
+
+app.get('/ExclusiveOffer', function(req, res) {
+
+  	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('exclusiveofferService.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+///////////////////////////////////////////////////////////////////////////
+
+app.get('/SpecialService', function(req, res) {
+
+  	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('specialService.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+///////////////////////////////////////////////////////////////////////////
+
+app.get('/StocksToWatch', function(req, res) {
+
+  	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('stockstowatchService.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+
+///////////////////////////////////////////////////////////////////////////
+
+app.get('/SubscribeGetMore', function(req, res) {
+
+  	 if(req.session.loggedIn) 
+	   { 
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+
+		res.render('subscribegetService.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+	   } else {
+	     res.redirect('/')
+	   }
+
+  });
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
   app.get('/LiveChat', function(req, res) {
 
      if(req.session.loggedIn) 
@@ -854,7 +998,7 @@ return res.redirect('/');
 
 });
 /////////////////////////////////////////
-//var httpServer = http.createServer(app);
+// var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 // httpServer.listen(port);

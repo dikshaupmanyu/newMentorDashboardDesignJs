@@ -48,12 +48,12 @@
           
           <h5>Max 200 Characters</h5>
         </div>
-         <div class="form-group">
+        <!--  <div class="form-group">
           <label>Enter Frequency</label>
           <input type="text" class="form-control" placeholder="Frequency" name="frequency" id="frequency">
           
           <h5>Max 200 Characters</h5>
-        </div>
+        </div> -->
        <!--  <div class="row">
          <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
           <div class="form-group">
@@ -338,14 +338,13 @@ function ImgDelete(){
 $("#formoid").submit(function(event){
 
 
-
   var title = $('#title').val();
   var userId = userids;
   var serviceName = $('#serviceName').val();
   var descriptionOne = $('#description1').val();
   var serviceTypeId = $('#serviceTypeIds').val();
   var descriptionTwo = $('#description2').val();
-  var frequency = $('#frequency').val();
+  // var frequency = $('#frequency').val();
   var price = "0";
   var imageDetails = $('#file-image').val();
   // alert(imageDetails);
@@ -359,20 +358,18 @@ $("#formoid").submit(function(event){
   // alert(fullPath);   
   var filename = fullPath.replace(/^.*[\\\/]/, '');
   // alert(filename);
-  var frequencyss = $("#frequency option:selected").text();
+  var frequencyss = $("#frequency option:selected").val();
   var stripeProductName = userName +'_'+ serviceName +'_'+ frequencyss;
   // alert(stripeProductName);
 
-
- 
-  var formdata = new FormData();
+var formdata = new FormData();
     formdata.append("title", title);
     formdata.append("serviceTypeId", serviceTypeId);
     formdata.append("stripeProductName", stripeProductName);
     formdata.append("serviceSubscriptionStatus", "");
     formdata.append("descriptionOne", descriptionOne);
     formdata.append("descriptionTwo", descriptionTwo);
-    formdata.append("frequency", frequency);
+    formdata.append("frequency", frequencyss);
     formdata.append("price", price);
     formdata.append("mentorId", userId);
     formdata.append("isSuggested", true);
@@ -402,8 +399,8 @@ $("#formoid").submit(function(event){
                 var datak = JSON.stringify(result);
                 // alert(datak);
                 var dataResultp = JSON.parse(datak); 
-                //alert(dataResultp.title);
-              $(".successmsg").html('<span>"Your Recommended '+dataResultp.title+' was submitted successfully"</span>');
+                // alert(dataResultp.title);
+          $(".successmsg").html('<span>"Your Recommended '+dataResultp.title+' was submitted successfully"</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
                //window.location.reload();
                setTimeout(function(){
