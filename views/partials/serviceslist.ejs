@@ -4,6 +4,19 @@
   <button class="btn cmn_btn btn_small btn_primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create New Service</button>
           <div class="dropdown-menu"  id="listservice">           
           </div>
+            <style type="text/css">
+    #Recommended {
+      display: none;
+    }
+
+    #MACDTips{
+    display: none;
+    }
+     #listservice.dropdown-menu.show{
+    overflow-y: scroll;
+    height:400px;
+}
+  </style>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript">
   // var sData = localStorage.getItem('allTokenData');
@@ -80,12 +93,3 @@
   
   </script>
 
-  <style type="text/css">
-    #Recommended {
-      display: none;
-    }
-
-    #MACDTips{
-    display: none;
-    }
-  </style>
