@@ -859,8 +859,9 @@ app.get('/forgetPassword', function(req, res) {
 		var fuid = req.session.uid; 
 		var femail = req.session.email; 
 		var Chat_fcmtoken = req.session.fcmtoken;
+		var uniquereplyId = req.query.messageId;
 
-		res.render('chatWindow.ejs', {tokens : fdata , fcmToken : Chat_fcmtoken , userName : fusername , userid : fuid , email :femail});
+		res.render('chatWindow.ejs', {uniquereply : uniquereplyId ,tokens : fdata , fcmToken : Chat_fcmtoken , userName : fusername , userid : fuid , email :femail});
 
 	   } else {
 	     res.redirect('/')
