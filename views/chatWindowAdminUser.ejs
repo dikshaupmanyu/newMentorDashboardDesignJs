@@ -871,7 +871,7 @@ text-align:center;
                         </span>
                         <input id="btn-input" type="text" class="form-control input-lg" placeholder="Type your message here..." autocomplete="off"/>
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit">
+                            <button class="btn btn-primary" type="submit" id="Btn_1">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </button>
                         </span>
@@ -978,7 +978,16 @@ text-align:center;
       })
     </script>
 
-
+<script>
+  $(document).keypress(function (e) {
+  
+  if (e.which == 13) {
+   e.preventDefault();
+   $('#Btn_1').click();
+  //  alert('Click button was trigger');
+  }
+ });
+</script>
 
 </body>
 </html>
