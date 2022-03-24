@@ -724,7 +724,7 @@ function fetchTasksReply(id) {
                 // alert(elemreplys);
                 tasksDOMReply.append(elemreplys);
       }else{
-
+                $('ul#tasksreply'+id).empty();       
       snapshots.docChanges().forEach(function(changes) {
           // alert(snapshots.size);
           if (changes.type === "added") {
