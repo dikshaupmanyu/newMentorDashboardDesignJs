@@ -660,6 +660,7 @@ function fetchTasks() {
           const tasksDOMReply = document.getElementById("tasksreply"+docId);
           const elemreplys = document.createElement("li");
               console.log(elemreplys)
+              elemreplys.id = "testingIds";
                 elemreplys.innerHTML = "<img src='/images/noreply.png' style='display:block;margin:0 auto; overflow:auto; width:22.5%'><h3 class='text-center'><b>No Replies Yet</b></h3><br><p class='text-center'>Enter your messages here.</p>";
                 // alert(elemreplys);
                 tasksDOMReply.append(elemreplys);
@@ -668,7 +669,7 @@ function fetchTasks() {
       }
       else{
 
-        $('ul#tasksreply'+id).empty();
+        $('li#testingIds').empty();
 
         snapshots.docChanges().forEach(function(changes) {
             // alert(snapshots.size);
