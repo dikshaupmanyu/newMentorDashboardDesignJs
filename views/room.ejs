@@ -4,7 +4,56 @@
 
 
  -->
+ <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
 
+ <style>
+     .header-flag{
+   padding-top:1rem;
+   padding-bottom :1rem;
+   border-bottom:2px solid ;
+   color:black;
+    text-align:center;
+    font-size:23px;
+  }
+  .reasonFlag{
+              font-size: 20px;
+              text-align: center;
+              box-sizing: border-box; 
+              /* padding:16px; */
+   }
+
+   .pin{
+     /* padding:4px; */
+     text-align: center;
+     margin:15px;
+     /* font-size: 12px; */
+   }
+
+   #Btn{
+     margin-bottom:15px; 
+     width:56%;
+     /* padding:4px; */
+   }
+
+   .close{
+     position:absolute;
+     top:2px;
+     left:95%;
+   }
+
+   .modal-content{
+     width:85%;
+   }
+   /* .flag{
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 0.1px solid black;
+    cursor:pointer;
+    color:red;
+    
+  } */
+ </style>
   <div class="app_main">
                   
             <%- include partials/innersidebar %>
@@ -12,7 +61,7 @@
           <div class="dsbrd_container">
 
              <div class="tip_list_head">
-                  <h2>Room One</h2>
+                  <h2>Chat Room</h2>
              </div> 
              <div class="post_new_tips_wrapper" style="background: none;width: 80%;">
               <ul style="list-style: none;">
@@ -27,13 +76,54 @@
 
               <a href="/chatWindow">
            
-              <button type="button" class="btn cmn_btn btn_small btn_primary" id="login-button">Enter Strategy Room</button>
+              <button type="button" class="btn cmn_btn btn_small btn_primary" id="room-button-1">Enter Strategy Room</button>
               </a>
+              <a data-toggle="modal" data-target="#exampleModalCenterpin">
+           
+              <button type="button" class="btn cmn_btn btn_small btn_primary" id="room-button-2">Enter @basilnsage Room</button>
+              </a>
+
+              <div class="modal fade" id="exampleModalCenterpin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div>
+                      <h5 class="header-flag" id="exampleModalLongTitle">Enter Room Code</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                     <div class="pincode">
+                        <div class="reasonFlag">
+                          <form onsubmit="return CodeSubmit(event)">
+                          <input type="password" id="pcode" class="pin" placeholder="Enter Code Here"/>
+                          <br>
+                         <button type="submit" class="Btn btn btn-primary" id="Btn">Submit</button>
+                         </form>
+                        </div>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
   </div>
+  <script  src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<script  src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script  src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+
+<script  src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+<script  src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase.js"></script>
+
+
+      <script src="js/codelist.js"></script>
+
 
      <%- include partials/innerfooter %>
 
