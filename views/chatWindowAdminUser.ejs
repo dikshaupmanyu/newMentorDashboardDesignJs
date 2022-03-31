@@ -457,6 +457,17 @@ background-color:rgb(255,255,255);
 }
 
 
+#tasksuserlist{
+    position: absolute !important;
+    left: auto !important;
+    top:27px !important;
+    transform: none !important;
+    right: 0;
+    height: 493px;
+    overflow: auto;
+    border-radius: 0;
+  }
+
 
 .content {
           position: absolute;
@@ -724,7 +735,7 @@ text-align:center;
     padding:0.5rem;
   }
 
-  .modal-content{
+  #modal-content-1{
     height:32rem;
   }
 
@@ -733,7 +744,7 @@ text-align:center;
   }
 
   .close{
-    line-height: 2.2;
+    line-height: 2;
   }
   .modal-body{
     display: flex;
@@ -793,7 +804,7 @@ text-align:center;
             <div class="app_header_content_left">
             </div>
             <div class="card-header text-center" style="border: none!important; color: #ffff">
-              <span><b>@basilnsage Room</b></span>
+              <span><b id="room-button-2">@basilnsage Room</b></span>
             </div>
             <div class="app_header_content_right">
               <ul class="d-flex">
@@ -979,15 +990,17 @@ text-align:center;
     </script>
 
 <script>
+
   $(document).keypress(function (e) {
-  
-  if (e.which == 13) {
-   e.preventDefault();
-   $('#Btn_1').click();
-  //  alert('Click button was trigger');
-  }
- });
-</script>
+    
+    if (e.which == 13) {
+     e.preventDefault();
+     $('#Btn_1').click();
+    //  alert('Click button was trigger');
+    }
+   });
+  </script>
+
 
 </body>
 </html>

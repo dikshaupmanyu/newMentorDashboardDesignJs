@@ -42,6 +42,21 @@ firebase.initializeApp(config);
  
 var db = firebase.firestore();
 
+function getGroupDetailroomOne() {
+
+       var monthlies = db.collection("/openGroups").doc("roomOne").get();
+       monthlies.then((res) => {
+        // console.log(res.data().groupCode);
+        document.getElementById('room-button-1').innerText = "Enter " + res.data().groupTitle + " Room";
+
+       });
+
+
+}
+
+ getGroupDetailroomOne();
+
+
 
 const docRef = db.collection("/openGroups/roomOne/messages/");
 const tasksDOM = document.getElementById("tasks");
@@ -103,7 +118,7 @@ function handleCreate(event) {
   //   $(".successmsg").html('<span>Message not empty.</span>');
   //   setTimeout(function(){$(".successmsg").empty()}, 5000);
   //  }    
- 
+
 }
 
 
@@ -254,6 +269,7 @@ else{
 function popupCreate(event) {
    // alert("calling " + JSON.stringify(event));
      
+    $('ul#tasksreply'+event).show();
 
    var docId     = document.getElementById('btn-input-replyId'+event).value;
    // alert(docId);
@@ -283,6 +299,7 @@ function popupCreate(event) {
 
 
   if(message.value != ""){
+    // alert("message")
 
     let taskR = {
     userName: loggedInName,
@@ -299,7 +316,8 @@ function popupCreate(event) {
     return docReply
       .add(taskR)
       .then((ref) => {
-        // console.log(ref);
+      // alert(ref);
+       // alert(ref.id);
      // console.log("div#exampleModalCenter"+uniqueDocId);
 
      // $("div#exampleModalCenter"+uniqueDocId).css("display", "none");
@@ -307,14 +325,15 @@ function popupCreate(event) {
         taskR.id = ref.id;
         // fullName.value = '';
         message.value  = '';
-        // console.log(message.value)
+        // alert("")
         // date.value = '';
-        // return createTask(task);
+       return fetchTasksReply(taskR.id);
       });
 
   
    }
-  //   else {
+  //  if(message.value == "") {
+  //     // alert("empty")
   //   $(".successmsg").html('<span>Message not empty.</span>');
   //   setTimeout(function(){$(".successmsg").empty()}, 5000);
   //  }    
@@ -491,8 +510,10 @@ function handleDeleteReply(obj1,obj2) {
 }
 
 function replypopup(id) {
+   // closepopup(id);
+   // alert("reply value");
    fetchTasksReply(id);
-   
+  
 
 }
 
@@ -652,46 +673,64 @@ function fetchTasks() {
 
 
  function fetchTasksReply(id) {
-
+   // $('ul#tasksreply'+id).reset();
     var docId     = id;
       const docRefreply = db.collection("/openGroups/roomOne/messages/"+docId+"/replies/");
     
      docRefreply.orderBy("createdDate", "asc").onSnapshot(function(snapshots) {
       // alert(snapshots.size);
-       if(snapshots.size == 0){
           const tasksDOMReply = document.getElementById("tasksreply"+docId);
+               
+       if(snapshots.size == 0){
+
+         if($('li#testingIds').size() > 0){
+                  $('li#testingIds').remove();
+                }    
+
           const elemreplys = document.createElement("li");
-              console.log(elemreplys)
-              elemreplys.id = "testingIds";
+              // console.log(elemreplys);
+               elemreplys.id = "testingIds";
+              //  alert(elemreplys)
                 elemreplys.innerHTML = "<img src='/images/noreply.png' style='display:block;margin:0 auto; overflow:auto; width:22.5%'><h3 class='text-center'><b>No Replies Yet</b></h3><br><p class='text-center'>Enter your messages here.</p>";
                 // alert(elemreplys);
                 tasksDOMReply.append(elemreplys);
-                $('ul#tasksreply'+id).show();      
+                $('ul#tasksreply'+id).show();       
                
       }
       else{
-
-        $('li#testingIds').empty();
+          // $('li#testingIds').empty();
+           if($('li#testingIds').size() > 0){
+                  $('li#testingIds').remove();
+                }    
 
         snapshots.docChanges().forEach(function(changes) {
-            // alert(snapshots.size);
-            if (changes.type === "added") {
-                const tasksDOMReply = document.getElementById("tasksreply"+docId);
+             // alert(snapshots.size);
+          
+           const tasksDOMReplys = document.getElementById("tasksreply"+docId);
                 var taskreply = changes.doc.data();
                 var taskId = changes.doc.id;
+
+
+            if (changes.type === "added") {
                 var userIdcs     = document.getElementById('user_id');
-                    // console.log(userIdcs.value);
+                    // console.log("userIdcs"+userIdcs.value);
                     var userNamescs = document.getElementById("user_nickname");
-                   // console.log(userNamecss.value);
+                  // console.log("userName "+userNamecs/.value);
                     var loggedInVal = userIdcs.value;
-                    // console.log(loggedInVal);
+                    // console.log("loggedVal"+loggedInVal);
                    var loggedInName = userNamescs.value;
-                    // console.log(loggedInName);
-                const elemreply = document.createElement("li");
-                elemreply.id = changes.doc.id;
-                elemreply.innerHTML = reviewTemplateReply(taskreply,loggedInVal,loggedInName,taskId,docId);
-                tasksDOMReply.append(elemreply);
-                // $('ul#tasksreply'+id).empty()
+                  // $('ul#tasksreply'+id).show();     
+                if($("li#"+taskId).size() > 0){
+                  $("li#"+taskId).remove();
+                }    
+                // alert($("li#"+taskId).size());
+                const elemreplys = document.createElement("li");
+                elemreplys.id = changes.doc.id;
+                elemreplys.innerHTML = reviewTemplateReply(taskreply,loggedInVal,loggedInName,taskId,docId);
+                tasksDOMReplys.append(elemreplys);
+                
+                
+             
 
               }
               
@@ -706,9 +745,6 @@ function fetchTasks() {
          
           
         });
-
-
-
 
 }
 
@@ -740,7 +776,7 @@ function fetchTasks() {
 
 // //   var li = document.createElement('li')
 // //   li.id = doc.id;
-// //   li.innerHTML = reviewTemplate('<li class="admin clearfix"><span class="chat-img right clearfix mx-2"><img src="https://apis.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId=d9aced23-7b89-4abc-bd71-5523ab83a98a" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="left text-muted"><span class="glyphicon glyphicon-time"></span>' + createdDate + '</small><strong class="right primary-font" class="fullName"> ' + userName + '</strong></div><p class="message"> ' + message + '</p></div></li>')
+// //   li.innerHTML = reviewTemplate('<li class="admin clearfix"><span class="chat-img right clearfix mx-2"><img src="https://apistest.tradetipsapp.com/api/appUser/getImageByAppUserId?appUserId=d9aced23-7b89-4abc-bd71-5523ab83a98a" alt="Admin" class="img-circle" style="width: 100%;"/></span><div class="chat-body clearfix"><div class="header clearfix"><small class="left text-muted"><span class="glyphicon glyphicon-time"></span>' + createdDate + '</small><strong class="right primary-font" class="fullName"> ' + userName + '</strong></div><p class="message"> ' + message + '</p></div></li>')
 // //   reviews.appendChild(li);
 
 // //     });
@@ -915,14 +951,14 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
             <div class="Overlay">
                 <div class="Overlay-1">
                   <div class="Content"  id='Popup${taskId}'>
-                    <a role="button" data-toggle="modal" data-target="#exampleModalCenter${taskId}"> <div class="Pop" onClick='replypopup(this.id)' id='${taskId}'>Reply</div></a>  
+                    <a onClick='replypopup(this.id)' id='${taskId}' data-toggle="modal" data-target="#exampleModalCenter${taskId}"> <div class="Pop">Reply</div></a>  
                     <a onClick='copyClipboard(this.id)' id='${taskId}'><div class="Pop">Copy</div></a>
                     <a onClick='handleDelete(this.id)' id='${taskId}' style="color:white;cursor:pointer;"><div class="Pop2">Delete</div></a>
                   </div>
                 </div>
             </div>
                   <div class="header clearfix">
-                      <small class="left text-muted" style = "display:inline-block;"><span class="glyphicon glyphicon-time"><div id="finalValn${taskId}"><a onClick='replypopup(this.id)' id='${taskId}' role="button" data-toggle="modal" data-target="#exampleModalCenter${taskId}">  Replies : <span id="sizedatan${taskId}"></span></a> </div></span>${stripped1}</small>
+                      <small class="left text-muted" style = "display:inline-block;"><span class="glyphicon glyphicon-time"><div id="finalValn${taskId}"><a role="button" data-toggle="modal" data-target="#exampleModalCenter${taskId}" onClick='replypopup(this.id)' id='${taskId}' > Replies : <span id="sizedatan${taskId}"></span></a> </div></span>${stripped1}</small>
                     
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
@@ -942,7 +978,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                   
                   <form id="${taskId}">
                   
-                    <div class="modal-content">
+                    <div class="modal-content" id="modal-content-1">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle${taskId}">Reply</h5>
                         <button type="button" class="close" aria-label="Close" data-dismiss="modal" aria-label="Close" onClick='closepopup(this.id)' id='${taskId}' style="cursor:pointer">
@@ -970,8 +1006,8 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                  
                        
                         <span class="input-group-btn">
-                            <button class="Btn btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
-                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            <button class="Btn btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}" >
+                                <i class="fa fa-paper-plane" aria-hidden="true" ></i>
                             </button>
                         </span>
                       </div>
@@ -995,7 +1031,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               <div class="Overlay">
                   <div class="Overlay-1">
                     <div class="Content-2" id='Popup${taskId}'>
-                      <div  class="Pop" onClick='replypopup(this.id)' id='${taskId}'><a  role="button" data-toggle="modal" data-target="#exampleModalCenter${taskId}">  Reply </a> </div> 
+                    <a role="button" data-toggle="modal" data-target="#exampleModalCenter${taskId}" > <div class="Pop" onClick='replypopup(this.id)' id='${taskId}'>Reply</div></a>  
                       <a onClick='handleDelete(this.id)' id='${taskId}' style="color:white;cursor:pointer;"><div class="Pop2">Delete</div></a>
                     </div>
                   </div>
@@ -1017,7 +1053,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                   
                   <form id="${taskId}">
                   
-                    <div class="modal-content"> 
+                    <div class="modal-content" id="modal-content-1"> 
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle${taskId}">Reply</h5>
                         
@@ -1066,7 +1102,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
               <div class="Overlay">
                   <div class="Overlay-1">
                     <div class="Content-2"  id='Popup${taskId}'>
-                      <div  class="Pop" onClick='replypopup(this.id)' id='${taskId}'><a  role="button" data-toggle="modal" data-target="#exampleModalCenter${taskId}">Reply </a> </div> 
+                    <a role="button" data-toggle="modal" data-target="#exampleModalCenter${taskId}" > <div class="Pop" onClick='replypopup(this.id)' id='${taskId}'>Reply</div></a>  
                       <a onClick='handleDelete(this.id)' id='${taskId}' style="color:white;cursor:pointer;"><div class="Pop2">Delete</div></a>
                     </div>
                   </div>
@@ -1088,7 +1124,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                   
                   <form id="${taskId}">
                   
-                    <div class="modal-content">
+                    <div class="modal-content" id="modal-content-1">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle${taskId}">Reply</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick='closepopup(this.id)' id='${taskId}' style="cursor:pointer">
@@ -1161,7 +1197,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                   
                   <form id="${taskId}">
                   
-                    <div class="modal-content">
+                    <div class="modal-content" id="modal-content-1">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle${taskId}">Reply</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick='closepopup(this.id)' id='${taskId}' style="cursor:pointer">
@@ -1233,7 +1269,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                   
                   <form id="${taskId}">
                   
-                    <div class="modal-content">
+                    <div class="modal-content" id="modal-content-1">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle${taskId}">Reply</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick='closepopup(this.id)' id='${taskId}' style="cursor:pointer">
@@ -1341,7 +1377,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                         </label>
 
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
+                            <button class="Btn btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </button>
                         </span>
@@ -1430,7 +1466,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                         </label>
        
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
+                            <button class="Btn btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </button>
                         </span>
@@ -1517,7 +1553,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                         </label>
                      
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
+                            <button class="Btn btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </button>
                         </span>
@@ -1605,7 +1641,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                         </label>
                    
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
+                            <button class="Btn btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </button>
                         </span>
@@ -1695,7 +1731,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                         </label>
                    
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
+                            <button class="Btn btn btn-primary" type="button" onClick='popupCreate(this.id)' id="${taskId}">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </button>
                         </span>
@@ -1788,6 +1824,9 @@ function reviewTemplateReply({profileImageUrl,userName,userId, message,createdDa
                   //console.log(newdate2);
                   const stripped1 = x.replace(newdate2[4], date1);
                   //console.log(stripped1);
+                  var fileName = message.substring(message.lastIndexOf('%') + 3);
+                  // console.log(fileName)
+     var fName = fileName.substring(0, fileName.indexOf("?"));
    
    if(loggedInVal == userId){
         if(messageType == "text"){
@@ -1914,7 +1953,12 @@ function reviewTemplateReply({profileImageUrl,userName,userId, message,createdDa
                       <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
-                 <p class='message'><a href="${message}" target="_blank">click here to download pdf</a></p>
+                  <p class='message'><a href="${message}" target="_blank"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                  width="25" height="25"
+                  viewBox="0 0 172 172"
+                  style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ecf0f1"><path d="M44.79167,14.33333c-8.89025,0 -16.125,7.23475 -16.125,16.125v111.08333c0,8.89025 7.23475,16.125 16.125,16.125h82.41667c8.89025,0 16.125,-7.23475 16.125,-16.125v-69.875h-41.20833c-8.89025,0 -16.125,-7.23475 -16.125,-16.125v-41.20833zM96.75,17.48275v38.05892c0,2.96342 2.41158,5.375 5.375,5.375h38.05892z"></path></g></g></svg>
+                   ${fName}</a></p>
               </div>
           </li>
           `
@@ -1946,7 +1990,12 @@ function reviewTemplateReply({profileImageUrl,userName,userId, message,createdDa
                       <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
-                <p class='message'><audio controls><source src="${message}" type="audio/mpeg"></audio></p>              </div>
+               <p class='message'><a href="${message}" target="_blank"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                  width="25" height="25"
+                  viewBox="0 0 172 172"
+                  style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ecf0f1"><path d="M44.79167,14.33333c-8.89025,0 -16.125,7.23475 -16.125,16.125v111.08333c0,8.89025 7.23475,16.125 16.125,16.125h82.41667c8.89025,0 16.125,-7.23475 16.125,-16.125v-69.875h-41.20833c-8.89025,0 -16.125,-7.23475 -16.125,-16.125v-41.20833zM96.75,17.48275v38.05892c0,2.96342 2.41158,5.375 5.375,5.375h38.05892z"></path></g></g></svg>
+                   ${fName}</a></p>
           </li>
           `
 
@@ -2025,7 +2074,12 @@ function reviewTemplateReply({profileImageUrl,userName,userId, message,createdDa
                       <small class="left text-muted"><span class="glyphicon glyphicon-time"></span>${stripped1}</small>
                       <strong class="right primary-font" class='fullName'>${userName}</strong>
                   </div>
-                 <p class='message'><a href="${message}" target="_blank">click here to download pdf</a></p>
+                  <p class='message'><a href="${message}" target="_blank"> 
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                  width="25" height="25"
+                  viewBox="0 0 172 172"
+                  style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ecf0f1"><path d="M44.79167,14.33333c-8.89025,0 -16.125,7.23475 -16.125,16.125v111.08333c0,8.89025 7.23475,16.125 16.125,16.125h82.41667c8.89025,0 16.125,-7.23475 16.125,-16.125v-69.875h-41.20833c-8.89025,0 -16.125,-7.23475 -16.125,-16.125v-41.20833zM96.75,17.48275v38.05892c0,2.96342 2.41158,5.375 5.375,5.375h38.05892z"></path></g></g></svg>
+                   ${fName}</a></p>
               </div>
           </li>
           `
@@ -2043,7 +2097,12 @@ function reviewTemplateReply({profileImageUrl,userName,userId, message,createdDa
                   <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
               </div>
              
-              <p class='message' style="color: #000 !important"><audio controls><source src="${message}" type="audio/mpeg"></audio></p>            
+              <p class='message'><a href="${message}" target="_blank"> 
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+              width="25" height="25"
+              viewBox="0 0 172 172"
+              style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ecf0f1"><path d="M44.79167,14.33333c-8.89025,0 -16.125,7.23475 -16.125,16.125v111.08333c0,8.89025 7.23475,16.125 16.125,16.125h82.41667c8.89025,0 16.125,-7.23475 16.125,-16.125v-69.875h-41.20833c-8.89025,0 -16.125,-7.23475 -16.125,-16.125v-41.20833zM96.75,17.48275v38.05892c0,2.96342 2.41158,5.375 5.375,5.375h38.05892z"></path></g></g></svg>
+               ${fName}</a></p>
 
           </div>
       </li>
@@ -2056,10 +2115,6 @@ function reviewTemplateReply({profileImageUrl,userName,userId, message,createdDa
 };
 
 
-
-$("#submit").click(function(){
-  $(".model-content").css("display", "none")
-})
 
 
 // function reviewTemplateReply({profileImageUrl,userName,userId, message,createdDate,messageType,messageId}) {
@@ -2180,6 +2235,7 @@ $("#submit").click(function(){
 //   }
 // });
 
+
 function togglePopup(e) {
   $("#popup"+e).toggle()
 }
@@ -2234,6 +2290,7 @@ function emojifunction(e)
         //specialButtons: green
     });
  }
+
 
 
 
@@ -2358,8 +2415,9 @@ function flagData(e,f){
 
 
 function closepopup(id){
-  // alert(id);
-   $('ul#tasksreply'+id).empty()
+ // alert(id);
+   $('ul#tasksreply'+id).empty();
+     $('li#testingIds').empty();
   // alert('exampleModalCenter'+id);
   // alert('exampleModalCenteraJWnlbLqkTu8K5P7Dtf8');
   // var finaldataval = '#exampleModalCenter'+id;
@@ -2371,7 +2429,6 @@ function closepopup(id){
 
 // });
 }
-
 
 $(document).keypress(function (e) {
   
