@@ -361,7 +361,9 @@ $("#formoid").submit(function(event){
 
     }else{
       console.log("false");
-      alert("You enter Wrong code !!");
+      // alert("You enter Wrong code !!");
+      $(".successmsg").html('<span>You enter Wrong code !!</span>');
+  setTimeout(function(){$(".successmsg").empty()}, 8000); 
     }
 
   });

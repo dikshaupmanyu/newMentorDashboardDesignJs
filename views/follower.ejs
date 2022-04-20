@@ -914,12 +914,16 @@ function addFollow(id) {
             //data - response from server
             var datak = JSON.stringify(data);
             var dataResultp = JSON.parse(datak); 
-            alert("Following Successfully !!!");
+            // alert("Following Successfully !!!");
+            $(".successmsg").html('<span>Following Successfully !!!</span>');
+  setTimeout(function(){$(".successmsg").empty()}, 8000); 
             window.location.reload();
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
-           alert("Not updated !!");
+          //  alert("Not updated !!");
+          $(".successmsg").html('<span>Not updated</span>');
+  setTimeout(function(){$(".successmsg").empty()}, 8000); 
         }
 
     });

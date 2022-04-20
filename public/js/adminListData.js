@@ -2290,7 +2290,8 @@ var copyText = document.getElementById("textMessage"+e).innerText;
   elem.select();
   document.execCommand("copy");
   document.body.removeChild(elem);
-  alert("Message has been copied to clipboard..");                             
+  $(".successmsg").html('<span>Message has been copied to clipboard..</span>');
+  setTimeout(function(){$(".successmsg").empty()}, 8000);                         
                                
 }
 

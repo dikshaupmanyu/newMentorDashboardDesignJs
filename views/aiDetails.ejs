@@ -583,7 +583,9 @@ function handleError(image) {
 
             }
             else{
-              alert('Please fill the field !');
+              // alert('Please fill the field !');
+              $(".successmsg").html('<span>Please fill the fiels !</span>');
+  setTimeout(function(){$(".successmsg").empty()}, 8000); 
             }
           });
 
