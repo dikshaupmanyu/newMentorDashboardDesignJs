@@ -70,8 +70,17 @@ $(document).ready(function(){
 
         for(i = 0; i < dataResult.length; i ++){
          // alert(dataResult[i].notificationId);
+
+         if(dataResult[i].read == true){
+                 notificationVals += '<li style="color:white;"><div class="tips_bx avoid_bg"><div class="mentor_feed"><div class="tips_bx_author author_bx"><div class="author_bx_txt"><h2>'+dataResult[i].notificationText+'</h2></div>&nbsp;&nbsp;<a onclick="deletenotification(this.id)" id="' + dataResult[i].notificationId + '" style="cursor:pointer;"><i class="fa fa-trash"></i></a></div></div></li>'; 
+               
+              }else{
+                notificationVals += '<li style="color:white;"><div class="tips_bx avoid_bg" style="background-color:#0060ff33"><div class="mentor_feed"><div class="tips_bx_author author_bx"><div class="author_bx_txt"><h2>'+dataResult[i].notificationText+'</h2></div>&nbsp;&nbsp;<a onclick="deletenotification(this.id)" id="' + dataResult[i].notificationId + '" style="cursor:pointer;"><i class="fa fa-trash"></i></a></div></div></li>'; 
+               
+              }
+
   
-         notificationVals += '<li style="color:white;"><div class="tips_bx avoid_bg"><div class="mentor_feed"><div class="tips_bx_author author_bx"><div class="author_bx_txt"><h2>'+dataResult[i].notificationText+'</h2></div>&nbsp;&nbsp;<a onclick="deletenotification(this.id)" id="' + dataResult[i].notificationId + '" style="cursor:pointer;"><i class="fa fa-trash"></i></a></div></div></li>'; 
+         
   
           readnotification(dataResult[i].notificationId);       
           
