@@ -184,13 +184,14 @@ window.addEventListener("load", function() {
 
         }else {
 
-           document.getElementById("badgecount").textContent = "0";
+           document.getElementById("badgecount").style.display= "none";
           // alert("no count");
         }
 
-     },error: function(error){
-       document.getElementById("badgecount").textContent = "0";
      }
+    //  ,error: function(error){
+    //    document.getElementById("badgecount").textContent = "0";
+    //  }
 
    });
 
