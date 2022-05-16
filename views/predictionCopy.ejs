@@ -1,9 +1,6 @@
 <%- include partials/innerheader %>
 <!-- Page Content Start -->
- <script src="js/canvasjs.min.js"></script>
-
-
- <!-- <script src='https://cdn.plot.ly/plotly-2.11.1.min.js'></script> -->
+<script src="js/canvasjs.min.js"></script>
 
 <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
@@ -39,8 +36,6 @@ credits{
 }
 .input-color input {
     padding-left: 20px;
-    background: linear-gradient(to top, rgb(51 139 247 / 22%), rgb(255 29 108 / 22%));
-    color:#fff;
 }
 .input-color .color-box {
     width: 10px;
@@ -97,21 +92,21 @@ credits{
           <ul>
             <li>
                 <div class="input-color">
-                    <input type="text" value="News Model" />
+                    <input type="text" value="newsAffected" />
                     <div class="color-box" style="background-color: #FF850A;"></div>
                     <!-- Replace "#FF850A" to change the color -->
                 </div>
             </li>
             <li>
                 <div class="input-color">
-                    <input type="text" value="VXX Model " />
+                    <input type="text" value="vxxaffected" />
                     <div class="color-box" style="background-color: navy;"></div>
                     <!-- Replace "navy" to change the color -->
                 </div>
             </li>
              <li>
                 <div class="input-color">
-                    <input type="text" value="Technical Model" />
+                    <input type="text" value="normalizedPrice" />
                     <div class="color-box" style="background-color: green;"></div>
                     <!-- Replace "navy" to change the color -->
                 </div>
@@ -191,9 +186,8 @@ const a = null
 
             if(dataResult.status == false){
               //  alert(dataResult.message);
-              $(".successmsg").html(dataResult.message);
-              setTimeout(function(){ $(window.location.replace('/dashboard'))}, 1000,  );
-              //  window.location.replace('/dashboard');
+
+               window.location.replace('/dashboard');
 
             }else{
 
@@ -216,12 +210,12 @@ const a = null
                                 if(valuees > 0){
                                    // $("#changepoint").text(valuees);
 
-                                  $("#changepoint").html('<span class="color_buy"  style="font-size:20px">' +valuees + '</span>');
+                                  $("#changepoint").html('<span class="color_buy">' +valuees + '</span>');
                                    $("#changepoint").css("color" , "#09b598");
 
                                 }else{
 
-                                  $("#changepoint").html('<span class="color_sell"  style="font-size:20px">' +valuees + '</span>');
+                                  $("#changepoint").html('<span class="color_sell">' +valuees + '</span>');
                                    $("#changepoint").css("color" , "#dc3545");
                                 }
 
@@ -230,54 +224,17 @@ const a = null
 
                    }); 
 
-                   cp();
-                        async function cp(){
-
-                             var mydata = new Headers();
-                              mydata.append("Authorization", `Bearer ${tokens}`);    
-
-                              var formData = new FormData();
-                              formData.append("stockSymbol", symbol);
-
-                              var requestOp = {
-                                method: 'POST',
-                                headers: mydata,
-                                body: formData,
-                                redirect: 'follow'
-                              };
-
-                              const  current_price = await fetch(`https://apis.tradetipsapp.com/api/sectorNewsSentiment/getSentimentandSMAByStockSymbolResultSet`, requestOp);
-
-                              const array = await  current_price.json();
-                              // console.log(array)
-
-                               const currentprice = await fetch(`https://cloud.iexapis.com/stable/stock/market/batch?types=quote&token=pk_dd324da3fb5f4428a47b05ab12f23ce2&symbols=${array[0].stock_name}`);
-                                const d = await currentprice.json()
-                                    // return d;
-                              var currentPrice = d[array[0].stock_name].quote.latestPrice
-                                // console.log(d[array[0].stock_name]);
-
-                                var CPP = {
-                                  x:0,
-                                  y:currentPrice,
-                                  label:"CurrentPrice",
-                                };
-
                     var data = [];
                   var data1 = [];
                   var data2 = [];
                   var data3 = [];
-
-                  data.splice(0,0,CPP)
-                  data1.splice(0,0,CPP)
-                  data2.splice(0,0,CPP)
 
                   var totalreslt = dataResult.object.length;
                   // alert(totalreslt);
 
                   // console.log(dataResult.object[41].stockName);
 
-                  var finalshowingAffected = (dataResult.object[totalreslt-1].vxxaffected).slice(7);
+                  var finalshowingAffected = (dataResult.object[totalreslt-1].vxxaffected).slice(6);
                   // console.log(finalshowingAffected);
                   var temp = new Array();
                   temp = finalshowingAffected.split(",");
@@ -287,75 +244,108 @@ const a = null
                   var finalshowingDates =  (dataResult.object[totalreslt-1].dates).slice(11);
                   var temp1 = new Array();
                   temp1 = finalshowingDates.split(",");
-
-                  var finalshowingnewsAffect = (dataResult.object[totalreslt-1].newsAffected).slice(7);
+                  // alert(temp1);
+                  // console.log("temp1"+temp1);
+                  var finalshowingnewsAffect = (dataResult.object[totalreslt-1].newsAffected).slice(6);
+                  // console.log(finalshowingAffected);
                   var temp2 = new Array();
                   temp2 = finalshowingnewsAffect.split(",");
-
-                  var finalshowingNormalizedPrice = (dataResult.object[totalreslt-1].normalizedPrice).slice(7);
+                  // alert(temp2)
+                  // console.log("temp2"+temp2);
+                  var finalshowingNormalizedPrice = (dataResult.object[totalreslt-1].normalizedPrice).slice(6);
+                  // console.log(finalshowingAffected);
                   var temp3 = new Array();
                   temp3 = finalshowingNormalizedPrice.split(",");
-
-
+                  // alert(temp3);
+                  // console.log("temp3"+temp3);
                       temp1.forEach((num1, i) => {
+                        // console.log(i);
                         const num2 = temp[i];
+                        console.log("num1"+num1);
+                        console.log(num2);
                         
                         var str = num2;
+
                         var datasss = str.replace(/\'/g, '"');
-                        var fparse = JSON.parse(datasss);
+                        var stringified = JSON.stringify(datasss);
+                        // alert(datasss);
+                        var fparse = JSON.parse(stringified);
+                        // alert(fparse);
+                        // console.log("0" +fparse)
                         const num3 = temp2[i];
 
 
                         var str3 = num3;
+                        
                         var datasss3 = str3.replace(/\'/g, '"');
-                        var fparse3 = JSON.parse(datasss3);
+                        // alert(datasss);
+                        var stringified1 = JSON.stringify(datasss3);
+                        var fparse3 = JSON.parse(stringified1);
+                        // console.log("3" +fparse3)
+                        // alert(fparse);
+
                         const num4 = temp3[i];
 
 
-                        var str4 = num4;     
+                        var str4 = num4;
+                        
                         var datasss4 = str4.replace(/\'/g, '"');
-                        var fparse4 = JSON.parse(datasss4);
+                        // alert(datasss);
+                        var stringified2 = JSON.stringify(datasss4);
+                        var fparse4 = JSON.parse(stringified2);
+                        // console.log("4" +fparse4)
+                        // alert(fparse);
+
                         var fparse5 = "";
 
 
+                       
+
                         data.push({
-                            x:i+1,
+                            x:i,
                             y: fparse,
-                            label : "VXX Model<br>" + num1 ,
-                            type:'line'
+                            label : "vxxaffected<br>" + fparse,
+
                           });
 
                          data1.push({
-                            x:i+1,
+                            x:i,
                             y: fparse3,
-                            label : "News Model<br>" + num1 ,
+                            label : "newsaffectedaaaaaaaaa<br>" + fparse3,
 
                           });
 
                          data2.push({
-                            x:i+1,
+                            x:i,
                             y: fparse4,
-                            label : "Technical Model<br>" + num1,
+                            label : "normalizedPrice<br>" + fparse4,
 
                           });
 
                           data3.push({
-                            x:i+1,
+                            x:i,
                             y: fparse5,
                             label : num1,
 
-                          }); 
+                          });
+
+                         
+
+                      
+                          
+                          
                         });
                         
                         console.log(data)
                         console.log(data1)
                         console.log(data2)
-                        // console.log(data3)
+                        console.log(data3)
 
+// var chartContainer = document.getElementById("chartContainer")
                      var chart = new CanvasJS.Chart("chartContainer",
                    
                        {
-                        // width:600,
+                        width:600,
                         height:300,
                         zoomEnabled: true,
                         animationEnabled: true,
@@ -400,8 +390,7 @@ const a = null
                             enabled: true,
                             snapToDataPoint: true,
                             valueFormatString: "MMM YYYY"
-                          },
-                          labelAngle: 1,
+                          }
                         },
                         axisY: {
                           crosshair: {
@@ -425,13 +414,13 @@ const a = null
                        
                           type: "line",
                           markerType : "none",
-                          color : " rgb(4, 4, 153)",
+                          color : "navy blue",
                           dataPoints: data
                         },{
                          
                           type: "line",
                           markerType : "none",
-                          color : "#FF850A",
+                          color : "orange",
                           dataPoints: data1
                         },{
                          
@@ -444,7 +433,7 @@ const a = null
                          
                           type: "line",
                           markerType : "none",
-                          color: "yellow",
+                          color: "green",
                           dataPoints: data3
                         }
                      ],
@@ -452,14 +441,8 @@ const a = null
                       
                       });
                       
-                      chart.render();
-                      setAxisXMinimum();
-
-                      function setAxisXMinimum(){
-                        chart.axisX[0].set("minimum", chart.options.data[0].dataPoints[0].x);
-                      }
-                      // console.log(chart)
-                    }
+chart.render()
+                      console.log(chart)
                     }
                     
                        
