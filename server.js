@@ -1013,10 +1013,72 @@ app.get('/forgetPassword', function(req, res) {
 
   });
 
+   ///////////////////////////////////////////////////////////////////////////
+
+   app.post('/sendEmail', function(req, res) {
+
+   var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'vermayash1120@gmail.com',
+    pass: 'Ab123456@'
+  }
+});
+
+var mailOptions = {
+  from: 'vermayash1120@gmail.com',
+  to: 'seanlives@gmail.com',
+  subject: 'New service Created',
+  text: 'The new service is Created on mentor dashboard. Please check it..'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
+  });
 
 
-  ///////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////
 
+   app.post('/sendUpdatedEmail', function(req, res) {
+
+   var nodemailers = require('nodemailer');
+
+var transporter = nodemailers.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'vermayash1120@gmail.com',
+    pass: 'Ab123456@'
+  }
+});
+
+var mailOptions = {
+  from: 'vermayash1120@gmail.com',
+  to: 'seanlives@gmail.com',
+  subject: 'Service Updated',
+  text: 'There have some changes done in previously creating service. Please check it..'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
+  });
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   
    app.post('/firebasejs', function(req, res) {
 
     const admin = require('firebase-admin');

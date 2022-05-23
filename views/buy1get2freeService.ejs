@@ -401,6 +401,11 @@ $("#formoid").submit(function(event){
       redirect: 'follow'
     };
 
+      var requestOptionsdata = {
+      method: 'POST',
+      redirect: 'follow'
+    };
+
     fetch("https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlan/addServiceSubscriptionPlanByMentor", requestOptions)
       .then(response => response.json())
       .then(result => {
@@ -409,6 +414,9 @@ $("#formoid").submit(function(event){
                 var datak = JSON.stringify(result);
                 // alert(datak);
                 var dataResultp = JSON.parse(datak); 
+
+               fetch('/sendEmail',requestOptionsdata).then(resp => console.log(resp.json()));
+
               $(".successmsg").html('<span>"Your Buy1Get2Free '+dataResultp.title+' was submitted successfully"</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
                //window.location.reload();
