@@ -1017,6 +1017,8 @@ app.get('/forgetPassword', function(req, res) {
 
    app.post('/sendEmail', function(req, res) {
 
+  	console.log(req.query.serviceName);
+
    var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
@@ -1030,8 +1032,8 @@ var transporter = nodemailer.createTransport({
 var mailOptions = {
   from: 'vermayash1120@gmail.com',
   to: 'seanlives@gmail.com',
-  subject: 'New service Created',
-  text: 'The new service is Created on mentor dashboard. Please check it..'
+  subject: 'New Service Created',
+  text: 'The new '+req.query.serviceName+' is created on mentor dashboard. Please check it.'
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -1039,6 +1041,7 @@ transporter.sendMail(mailOptions, function(error, info){
     console.log(error);
   } else {
     console.log('Email sent: ' + info.response);
+
   }
 });
 
@@ -1048,6 +1051,8 @@ transporter.sendMail(mailOptions, function(error, info){
  ///////////////////////////////////////////////////////////////////////////
 
    app.post('/sendUpdatedEmail', function(req, res) {
+
+  	console.log(req.query.serviceName);
 
    var nodemailers = require('nodemailer');
 
@@ -1061,9 +1066,9 @@ var transporter = nodemailers.createTransport({
 
 var mailOptions = {
   from: 'vermayash1120@gmail.com',
-  to: 'seanlives@gmail.com',
+  to: 'diksha.novasoftcorps@gmail.com',
   subject: 'Service Updated',
-  text: 'There have some changes done in previously creating service. Please check it..'
+  text: 'There have some changes done in previously creating '+req.query.serviceName+'. Please check it.'
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -1206,9 +1211,9 @@ return res.redirect('/');
 
 });
 /////////////////////////////////////////
-// var httpServer = http.createServer(app);
+//var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-// httpServer.listen(port);
+//httpServer.listen(port);
 httpsServer.listen(port);
 console.log('The magic happens on port ' + port);

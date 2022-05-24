@@ -454,11 +454,6 @@ $("#formoid").submit(function(event){
       redirect: 'follow'
     };
 
-     var requestOptionsdata = {
-      method: 'POST',
-      redirect: 'follow'
-    };
-
 
     fetch("https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlan/addServiceSubscriptionPlanByMentor", requestOptions)
       .then(response => response.json())
@@ -470,7 +465,11 @@ $("#formoid").submit(function(event){
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
                 //alert("Your "+dataResultp.title+" was submitted successfully");
-                fetch('/sendEmail',requestOptionsdata).then(resp => console.log(resp.json()));
+                 fetch('/sendEmail?serviceName='+dataResultp.serviceTypeMaster.description,{
+                  method: 'POST',
+                  redirect: 'follow'
+                }).then(resp => console.log(resp.json()));
+                 
                 $(".successmsg").html('<span>"Your Webinar '+dataResultp.title+' submitted successfully."</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
                setTimeout(function(){
