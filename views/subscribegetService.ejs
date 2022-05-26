@@ -64,6 +64,7 @@
             </div> -->
             <select name="price" id="price" class="form-control" required="required">
               <option>Select Price</option>
+               <option value="Free">Free</option>
                <% for (i = 0.49; i <= 999.99 ; i+=0.50) { %>
                 <option value="<%= parseFloat(i).toFixed(2) %>">$ <%= parseFloat(i).toFixed(2) %></option>
               <% } %>
@@ -413,7 +414,7 @@ $("#formoid").submit(function(event){
                   method: 'POST',
                   redirect: 'follow'
                 }).then(resp => console.log(resp.json()));
-               
+
               $(".successmsg").html('<span>"Your SubscribeGetMore '+dataResultp.title+' was submitted successfully"</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
                //window.location.reload();
