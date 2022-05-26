@@ -1033,8 +1033,9 @@ var mailOptions = {
   from: 'vermayash1120@gmail.com',
   to: 'seanlives@gmail.com',
   subject: 'New Service Created',
-  text: 'The new '+req.query.serviceName+' is created on mentor dashboard. Please check it.'
+  text: 'There is a new '+req.query.serviceName+' created on the mentor dashboard. ' + '\r\n\n' + ' Please check it.'
 };
+
 
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
@@ -1068,7 +1069,7 @@ var mailOptions = {
   from: 'vermayash1120@gmail.com',
   to: 'seanlives@gmail.com',
   subject: 'Service Updated',
-  text: 'There have some changes done in previously creating '+req.query.serviceName+'. Please check it.'
+  text: 'There have been some changes done to a '+req.query.serviceName+ '.' + '\r\n\n' + 'Please check it.'
 };
 
 transporter.sendMail(mailOptions, function(error, info){
