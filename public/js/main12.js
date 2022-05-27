@@ -1069,7 +1069,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                      
                     <strong class="right primary-font" class='fullName'>${userName}</strong>
                 </div>
-                  <p class='message'><img src="${message}" class="img-responsive" style="width:500px;"/> <svg class="Chevron" onclick="TogglePopup(this.id)" id="${taskId}"  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                  <p class='message'><img src="${message}" class="img-responsive" onClick='myImgs(this.id)' id="message_img${taskId}" style="width:500px;" data-toggle="modal" data-target="#ModalCenter${taskId}"/> <svg class="Chevron" onclick="TogglePopup(this.id)" id="${taskId}"  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                   width="24" height="24"
                   viewBox="0 0 172 172"
                   style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M124.36689,70.61689l-35.83333,35.83333c-0.67183,0.67205 -1.58315,1.04963 -2.53342,1.04963c-0.95026,0 -1.86159,-0.37757 -2.53342,-1.04963l-35.83333,-35.83333c-1.35798,-1.40602 -1.33856,-3.64097 0.04365,-5.02318c1.38221,-1.38221 3.61716,-1.40163 5.02318,-0.04365l33.29977,33.29977l33.29977,-33.29985c1.40602,-1.35798 3.64097,-1.33856 5.02318,0.04365c1.38221,1.38221 1.40163,3.61716 0.04365,5.02318z"></path></g></g></svg>
@@ -1115,6 +1115,15 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                 </form>
                 </div>
               </div>
+
+
+              <div class="modal fade bd-example-modal-lg"  id="ModalCenter${taskId}"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="top:80px">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <img src="" id="preview${taskId}" class="modal-preview" alt="previewImage">
+                </div>
+              </div>
+            </div>
         `
 
       }else if(messageType == "video"){
@@ -1546,7 +1555,7 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                 <strong class="primary-font" class='fullName' style="color: #000">${userName}</strong>
             </div>
             <p class='message' style="color: #000 !important">
-           <img src="${message}"   style="width:500px;"/> <img class="chevron" onclick="togglePopup(this.id)" id="${taskId}" src=" https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/000000/external-chevron-arrow-line-royyan-wijaya-detailed-outline-royyan-wijaya.png" />
+           <img src="${message}"   style="width:500px;" onclick="myImgs(this.id)"  id="message_img${taskId}"  data-toggle="modal" data-target="#ModalCenter${taskId}"/> <img class="chevron" onclick="togglePopup(this.id)" id="${taskId}" src=" https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/24/000000/external-chevron-arrow-line-royyan-wijaya-detailed-outline-royyan-wijaya.png" />
           
            
             </p>
@@ -1610,6 +1619,14 @@ function reviewTemplate({profileImageUrl,userName,userId, message,createdDate,me
                   </div>
                 </div>
               </div>
+
+              <div class="modal fade bd-example-modal-lg"  id="ModalCenter${taskId}"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="top:80px">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <img src="" id="preview${taskId}" class="modal-preview" alt="previewImage">
+                </div>
+              </div>
+            </div>
     `
    }else if(messageType == "document"){
 
@@ -2264,6 +2281,13 @@ function reviewTemplateReply({profileImageUrl,userName,userId, message,createdDa
 // });
 
 
+function myImgs(e){
+  // alert(e)
+  var img = document.getElementById(e);
+   $(".modal-preview").attr('src',img.src)
+};
+
+
 function togglePopup(e) {
 $("#popup"+e).toggle()
 }
@@ -2337,7 +2361,9 @@ var copyText = document.getElementById("textMessage"+e).innerText;
   elem.select();
   document.execCommand("copy");
   document.body.removeChild(elem);
-  alert("Message has been copied to clipboard..");                             
+  $(".successmsg").html('<span>Message has been copied to clipboard..</span>');
+  setTimeout(function(){$(".successmsg").empty()}, 5000);
+  // alert("Message has been copied to clipboard..");                             
 
 }
 
