@@ -576,7 +576,15 @@ function ImgDelete(){
                   document.getElementById("description2").value = dataResult.descriptionTwo;
                   document.getElementById("frequency").value = dataResult.frequency;
                   document.getElementById("price").value = dataResult.price;
-                  document.getElementById("file-image").src = "https://apis.tradetipsapp.com"+dataResult.imageDetails;
+                  document.getElementById("thumbnailImage").value = dataResult.thumbnailImageUrl;
+                  // document.getElementById("file-image").src = "https://apistest.tradetipsapp.com"+dataResult.imageDetails;
+                  if(dataResult.imageDetails){
+                      document.getElementById("file-image").src = "https://apis.tradetipsapp.com"+dataResult.imageDetails;
+                  }else{
+
+                      document.getElementById("file-image").src = dataResult.thumbnailImageUrl;
+                  
+                   }
                    
                  
 
