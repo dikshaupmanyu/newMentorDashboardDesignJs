@@ -1,4 +1,4 @@
- 
+
 
   <%- include partials/innerheader %>
 <!-- Page Content Start -->
@@ -87,8 +87,8 @@
         </div>
         <div class="form-group">
          <label>Buy 1 Get 1 Free Image</label>
-          <div id="file-upload-form" class="uploader">
-            <!-- <input type="text" name="thumbnai" id="thumbnailImage" value=""></input> -->
+            <div id="file-upload-form" class="uploader">
+            <input type="hidden" name="thumbnai" id="thumbnailImage" value="" ></input>
             <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
             <label class="file_upload_label" for="file-upload" id="file-drag">
               <img id="file-image" src="#" alt="Preview" class="hidden">
@@ -96,6 +96,12 @@
                  <h2>+</h2> <h4 id="file-upload-btn">Click or Drag & Drop Your Own Image Here</h4>
                 <div id="notimage" class="hidden color_sell">Please select an image</div>
               </div>
+             <!--  <div id="response" class="hidden">
+                <div id="messages"></div>
+                <progress class="progress" id="file-progress" value="0">
+                  <span>0</span>%
+                </progress>
+              </div> -->
             </label>
           </div>
           <div class="cover_img_optn">
@@ -358,82 +364,58 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 */
 
 $('#carousel-thumbs .carousel-item img').on('click', function(e) {
-  // alert(e.target.src);
-  // readURLs(file);
-  
-  // var src = $(e.target).attr('data-remote');
-  // alert(src);
-  // if (src) $(this).ekkoLightbox();
-  // readURL(this);
 
-   $('#file-image').attr('src', e.target.src);
+  $('#file-image').attr('src', e.target.src);
+  // console.log(e.target.src);
   document.getElementById('file-image').style.display= "block";
-// var imgUrl = e.target.src;
 
+  var imgUrl = e.target.src; 
+  // alert(imgUrl);
+  $("#thumbnailImage").val(imgUrl);
 
-// let base64image = getBase64Image(imgUrl).then(function(base64image) {
-//   alert(base64image);
-//   $('#file-image').attr('src', "data:image/png;base64,"+base64image);
-//   document.getElementById('file-image').style.display= "block";
-// }, function(reason) {
-//   // alert(reason); // Error!
-// });
+  function getBase64Image(imgUrl) {
+    return new Promise(
+      function(resolve, reject) {
 
-var imgUrl = e.target.src;
+        var img = new Image();
+        img.src = imgUrl;
+        img.setAttribute('crossOrigin', 'anonymous');
 
-function getBase64Image(imgUrl) {
-  return new Promise(
-    function(resolve, reject) {
+        img.onload = function() {
+          var canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+          var dataURL = canvas.toDataURL("image/png");
+          resolve(dataURL.replace(/^data:image\/(png|jpg);base64,/, ""));
+        }
+        img.onerror = function() {
+          reject("The image could not be loaded.");
+        }
 
-      var img = new Image();
-      img.src = imgUrl;
-      img.setAttribute('crossOrigin', 'anonymous');
-
-      img.onload = function() {
-        var canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        var dataURL = canvas.toDataURL("image/png");
-        resolve(dataURL.replace(/^data:image\/(png|jpg);base64,/, ""));
-      }
-      img.onerror = function() {
-        reject("The image could not be loaded.");
-      }
-
-    });
-
-}
-
-
-   let base64image = getBase64Image(imgUrl).then(function(base64image) {
-    // alert(base64image);
-
-    var file = "data:image/png;base64,"+base64image;
-
-    readURLs(file);
-
-  function readURLs(file) {
-    // alert(file);
-      var reader = new FileReader();
-    
-    reader.onload = function(e) {
-      // alert(e.target.result);
-      $('#file-image').attr('src', imgUrl);
-      document.getElementById('file-image').style.display= "block";
-    }
-    
-    reader.readAsDataURL(file); // convert to base64 string
+      });
 
   }
+
+   let base64image = getBase64Image(imgUrl).then(function(base64image) {
+    //alert(base64image);
+
+    var file = "data:image/png;base64,"+base64image;
+    //alert(file);
+
+    fileconvert(file);
    
+   
+
   });
 
+ 
  
 
 
 });
+
 
 
 </script>
@@ -487,6 +469,8 @@ $("#formoid").submit(function(event){
   var descriptionOne = $('#description1').val();
   var serviceTypeId = $('#serviceTypeIds').val();
   var descriptionTwo = $('#description2').val();
+  var thumbnailImageURL = $('#thumbnailImage').val();
+
   // var frequency = $('#frequency').val();
   var price = $('#price').val();
   var imageDetails = $('#file-image').val();
@@ -514,6 +498,7 @@ $("#formoid").submit(function(event){
     formdata.append("serviceSubscriptionStatus", "");
     formdata.append("descriptionOne", descriptionOne);
     formdata.append("descriptionTwo", descriptionTwo);
+    formdata.append("thumbnailImageURL", thumbnailImageURL);
     formdata.append("frequency", frequencyss);
     formdata.append("price", price);
     formdata.append("mentorId", userId);

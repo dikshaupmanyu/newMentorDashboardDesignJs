@@ -80,20 +80,21 @@
         </div>
         <div class="form-group">
          <label>Add Book Cover</label>
-          <div id="file-upload-form" class="uploader">
+           <div id="file-upload-form" class="uploader">
+            <input type="hidden" name="thumbnai" id="thumbnailImage" value="" ></input>
             <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
             <label class="file_upload_label" for="file-upload" id="file-drag">
               <img id="file-image" src="#" alt="Preview" class="hidden">
-               <div id="start">
+              <div id="start">
                  <h2>+</h2> <h4 id="file-upload-btn">Click or Drag & Drop Your Own Image Here</h4>
                 <div id="notimage" class="hidden color_sell">Please select an image</div>
               </div>
-              <div id="response" class="hidden">
+             <!--  <div id="response" class="hidden">
                 <div id="messages"></div>
                 <progress class="progress" id="file-progress" value="0">
                   <span>0</span>%
                 </progress>
-              </div>
+              </div> -->
             </label>
           </div>
           <div class="cover_img_optn">
@@ -355,13 +356,58 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 */
 
 $('#carousel-thumbs .carousel-item img').on('click', function(e) {
-  // alert(e.target.src);
+
   $('#file-image').attr('src', e.target.src);
+  // console.log(e.target.src);
   document.getElementById('file-image').style.display= "block";
-  // var src = $(e.target).attr('data-remote');
-  // // alert(src);
-  // if (src) $(this).ekkoLightbox();
+
+  var imgUrl = e.target.src; 
+  // alert(imgUrl);
+  $("#thumbnailImage").val(imgUrl);
+
+  function getBase64Image(imgUrl) {
+    return new Promise(
+      function(resolve, reject) {
+
+        var img = new Image();
+        img.src = imgUrl;
+        img.setAttribute('crossOrigin', 'anonymous');
+
+        img.onload = function() {
+          var canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+          var dataURL = canvas.toDataURL("image/png");
+          resolve(dataURL.replace(/^data:image\/(png|jpg);base64,/, ""));
+        }
+        img.onerror = function() {
+          reject("The image could not be loaded.");
+        }
+
+      });
+
+  }
+
+   let base64image = getBase64Image(imgUrl).then(function(base64image) {
+    //alert(base64image);
+
+    var file = "data:image/png;base64,"+base64image;
+    //alert(file);
+
+    fileconvert(file);
+   
+   
+
+  });
+
+ 
+ 
+
+
 });
+
 </script> 
   <script type="text/javascript">
 
@@ -408,6 +454,8 @@ $("#formoid").submit(function(event){
   var serviceTypeId = $('#serviceTypeIds').val();
   var descriptionTwo = $('#description2').val();
   // var frequency = $('#frequency').val();
+    var thumbnailImageURL = $('#thumbnailImage').val();
+
   var price = $('#price').val();
   var imageDetails = $('#file-image').val();
   
@@ -424,6 +472,7 @@ $("#formoid").submit(function(event){
     formdata.append("serviceTypeId", serviceTypeId);
     formdata.append("descriptionOne", descriptionOne);
     formdata.append("descriptionTwo", descriptionTwo);
+    formdata.append("thumbnailImageURL", thumbnailImageURL);
     formdata.append("stripeProductName", stripeProductName);
     formdata.append("frequency", frequencyss);
     formdata.append("price", price);
