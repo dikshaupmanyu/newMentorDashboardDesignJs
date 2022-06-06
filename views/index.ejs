@@ -18,9 +18,10 @@
            -webkit-text-security:disc;
        }
         .successmsg{ color: #fff;
-  /*padding-left: 300px;*/
   text-align: center;
-  margin-top: 30px;
+font-size:20px;
+position: relative;
+top:70px;
 
 }
 
@@ -62,7 +63,7 @@
             </label> 
             <h4><a href="/forgetPassword">Forgot password?</a></h4>
           </div>
-          <button class="btn cmn_btn btn_primary">Login</button>
+          <button class="btn cmn_btn btn_primary" id="butlogin">Login</button>
           </form>
         </div>
       </div>
@@ -89,7 +90,7 @@
          var urls = new URL(url_string);
          // alert(url_string);
          $('#butlogin').on('click', function() {
-            //alert("hii");
+            // alert("hii");
             var userName = $('#uname').val();
             var password = $('#pswrd').val();
             var urls = $('#url').val();
@@ -115,10 +116,13 @@
                   var dataResult = JSON.parse(datak);
                   var mentor = dataResult.isMentor        
                   // alert(data.accessToken); 
-                  if(dataResult.accessToken){                  
+                  if(dataResult.accessToken){    
+                    // alert("hii")              
                     if(userName != "admin"){
-                      $("#success").show();
-                      $('#success').html('Login Sucessfully !');
+                      
+                      $(".successmsg").show();
+                      // $('#success').html('Login Sucessfully !');
+                      $(".successmsg").html('<span>Login Sucessfully !!</span>');
                   
                             const tdss = dataResult.accessToken;
                             const tds1 = dataResult.accessTokenStreamIO;
@@ -139,27 +143,20 @@
                             }));
 
                        // window.location.href = "/home";  
-                       window.location.href = "/dashboard";  
+                      //  window.location.href = "/dashboard";  
                       }
                     else{
                        //alert('Invalid Username or Password !!!');
                        $(".successmsg").html('<span>Invalid Username or Password !!!</span>');
-            setTimeout(function(){$(".successmsg").empty()}, 3000);
+            setTimeout(function(){$(".successmsg").empty()}, 2000);
                        //window.location.href = "/"; 
                       }                                       
                     }
-                  else if(dataResult.statusCode==201){
-                    // alert("false");
-                    $("#error").show();
-                    $('#error').html('Invalid Username or Password !!!');
 
-                  } else {
-                    //alert('Invalid Username or Password !!!');
-                     $(".successmsg").html('<span>Invalid Username or Password !!!</span>');
-            setTimeout(function(){$(".successmsg").empty()}, 3000);
-                    //window.location.href = "/"; 
-
-                  }
+                    if(!dataResult.accessToken){
+                      $(".successmsg").html('<span>Invalid Username or Password !!!</span>');
+            setTimeout(function(){$(".successmsg").empty()}, 2000);
+                    }
                   
                 }
 
@@ -168,7 +165,7 @@
             else{
               //alert('Please fill all the field !');
               $(".successmsg").html('<span>Please fill all the field !</span>');
-            setTimeout(function(){$(".successmsg").empty()}, 3000);
+            setTimeout(function(){$(".successmsg").empty()}, 2000);
             }
           });
 

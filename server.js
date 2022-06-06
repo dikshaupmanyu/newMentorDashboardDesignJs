@@ -78,11 +78,14 @@ app.get('/neww', function(req, res) {
 		var fuid = req.session.uid; 
 		var femail = req.session.email; 
 
-		res.render('dashboard.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});
+		setTimeout(function(){res.render('dashboard.ejs', {tokens : fdata , userName : fusername , userid : fuid , email :femail});}, 2000);
+		
 
 
 	   } else {
-	     res.render('index.ejs' , {path:fpaths});
+		
+		setTimeout(function(){res.render('index.ejs' , {path:fpaths});}, 2000);
+	     
 	   }
   });
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -1212,9 +1215,9 @@ return res.redirect('/');
 
 });
 /////////////////////////////////////////
-//var httpServer = http.createServer(app);
+// var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-//httpServer.listen(port);
+// httpServer.listen(port);
 httpsServer.listen(port);
 console.log('The magic happens on port ' + port);
