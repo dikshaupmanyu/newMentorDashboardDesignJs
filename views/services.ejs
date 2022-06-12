@@ -273,7 +273,7 @@
 
 
                 let newtip = [];
-                  for(var i=0; i< dataResult.length; i++) {  
+                  for(var i=0; i< dataResult.length; i++)if(dataResult[i].isActive != false ) {  
 
                   if(dataResult[i].serviceTypeMaster.title == "Recommended"){
                      newtip += '<div class="tips_wtlist_item"><div class="tips_wtlist_item_left"><h2>'+ dataResult[i].serviceTypeMaster.title +'</h2></div><div class="tips_wtlist_item_left"><h2><div class="pckg_item_img"><img src="https://apis.tradetipsapp.com'+ dataResult[i].imageDetails +'" alt="images"></div></h2></div><div class="tips_wtlist_item_left"><h2>'+ dataResult[i].title +'</h2></div><div class="tips_wtlist_item_left"><h2 style="margin-left:20px;">'+ dataResult[i].descriptionOne +'</h2></div><div class="tips_wtlist_item_left"><h2 style="text-align:center;">$'+ dataResult[i].price.toFixed(2) +'</h2></div><div class="tips_wtlist_item_left"><h2><ul><li><div class="dropdown msg_option_dropdown"><a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/more-icon.png" alt="images"></a><div class="dropdown-menu dropdown-menu-right"><ul><li><i class="fas fa-pencil-alt"></i><a href="/editService?id='+ dataResult[i].id +'&ids2=afcb862d-230a-4c25-8b7e-0e5050382d98&sname=Recommended">Edit Service</a></li></ul></div></div></li></ul></h2></div></div>';
