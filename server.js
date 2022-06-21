@@ -1145,12 +1145,13 @@ request.post('https://apis.tradetipsapp.com/api/auth/appSignIn',
 
 	    const uid = dataResult.id;
 	    const email = dataResult.email;
+	    const uname = dataResult.userName;
 	    const createdOn = dataResult.createdOn;
     	// console.log(tokens);  
     	const paths = req.body.url;
     	// console.log(paths);
 
-    	res.locals.uname = req.body.userName;
+    	res.locals.uname = uname;
     	res.locals.fcm = fcmtoken;
     	res.locals.tokens = tokens;
     	res.locals.uid = uid;
