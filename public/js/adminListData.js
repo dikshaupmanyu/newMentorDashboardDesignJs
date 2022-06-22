@@ -49,7 +49,7 @@ function getGroupDetail() {
        var monthlies = db.collection("/basilPrivateGroup").doc("Production").get();
        monthlies.then((res) => {
         // console.log(res.data().groupCode);
-        document.getElementById('room-button-2').innerText = "Enter " + res.data().groupTitle + " Room";
+        document.getElementById('room-button-2').innerText =  res.data().groupTitle + " Room";
 
        });
 

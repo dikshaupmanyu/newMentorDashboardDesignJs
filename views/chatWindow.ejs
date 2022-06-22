@@ -889,12 +889,12 @@ line-height:2.5;
                       <ul>
                         <li><a href="/chatWindow">
            
-                          <span id="room-Button-1">Enter Strategy Room</span>
+                          <span id="room-Button-1"></span>
                           </a>
                         </li>
                         <li><a  id="notmodalcalling">
            
-                          <span id="room-Button-2">Enter @basilnsage Room</span>
+                          <span id="room-Button-2"></span>
                           </a>
                           <div class="modal fade" id="exampleModalCenterpin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1243,7 +1243,7 @@ nummers.get().then(function (querySnapshot) {
       var monthlies = db.collection("/basilPrivateGroup").doc("Production").get();
       monthlies.then((res) => {
        // console.log(res.data().groupCode);
-       document.getElementById('room-Button-2').innerText = "Enter " + res.data().groupTitle + " Room";
+       document.getElementById('room-Button-2').innerText =  res.data().groupTitle + " Room";
 
       });
 
@@ -1257,7 +1257,7 @@ function getGroupDetailroomOnes() {
       var monthlies = db.collection("/openGroups").doc("roomOne").get();
       monthlies.then((res) => {
        // console.log(res.data().groupCode);
-       document.getElementById('room-Button-1').innerText = "Enter " + res.data().groupTitle + " Room";
+       document.getElementById('room-Button-1').innerText =  res.data().groupTitle + " Room";
 
       });
 

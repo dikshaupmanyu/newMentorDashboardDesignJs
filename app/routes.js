@@ -65,6 +65,10 @@ module.exports = function(app) {
 
     res.render('newsletterServices.ejs');
   });
+  app.get('/NewsFeed', function(req, res) {
+
+    res.render('newsFeedServices.ejs');
+  });
 
   app.get('/TradeAlerts', function(req, res) {
 

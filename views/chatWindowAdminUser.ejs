@@ -692,9 +692,37 @@ text-align:center;
 }
 
 .room{
+  display: flex;
+  justify-content:flex-start;
+  flex-direction:row-reverse;
+  align-items: center;
   position: relative;
-  left:20%;
+  bottom: 30px;
+  right:20px;
+  /* cursor: pointer; */
+  font-size:bold;
+  }
+
+  .room .rooms{
+    position:relative;
+    right:150%;
+  }
+
+#roomslist{
+/* position: fixed !important; */
+  left: auto !important;
+  top: 26.5px !important;
+  transform: none !important;
+  right: 27px;
+  min-width:13rem;
   color:#fff;
+}
+#roomslist ul li{
+font-family: SF UI Display Light;
+transition: all .2s ease-in-out;
+font-size: 15px;
+padding:6px 4px;
+cursor: pointer;
 }
 
 .btn-primary_1{
@@ -771,6 +799,7 @@ text-align:center;
     padding:5px;
     padding-left: 8px;
   }
+
 </style>
 <!--       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  -->
@@ -805,67 +834,62 @@ text-align:center;
           <div class="dsbrd_container">  
         <div class="app_header_content">
          
-          <div class="dsbrd_container">
-            <div class="app_header_content_left">
-            </div>
-            <div class="card-header text-center" style="border: none!important; color: #ffff">
-              <span><b id="room-button-2">@basilnsage Room</b></span>
-            </div>
-            <div class="room">
-              <span>
-                <a class="rooms" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                </svg></a> 
-
-                <div class="dropdown-menu" aria-labelledby="dropdownUser" id="roomslist">
-                  <ul>
-                    <li><a href="/chatWindow">
-           
-                      <span id="room-Button-1">Enter Strategy Room</span>
-                      </a>
-                    </li>
-                    <li><a  href = "/chatWindowAdminUser">
-       
-                      <span id="room-Button-2">Enter @basilnsage Room</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>  
-
-              </span>
-            </div>
-            <div class="app_header_content_right">
-              <ul class="d-flex">
-               
-                <li class="header_right_menu">
-                  
-                 
-                  <div class="dropdown user_dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <!--  <img src="images/Blue_user.png" alt="images"> -->
-                      <p style="color: white;"><span id="tasksuserlisttotal" style="color: white;"></span></p>
-                    </a>
-                     <div class="dropdown-menu" aria-labelledby="dropdownUser" id="tasksuserlist">
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-       
-
           <div class="dashboard_wrapper mentordashboard1_wrapper card" style="background: #ffff;">
                   <!-- <div class="card-header text-center" style="border: none!important; background-color:#0f2668eb; color: #ffff">
                       <span><b>@basilnsage Room</b></span>
-
+  
                     </div> -->
-           
+                    <!-- <div class="dsbrd_container"> -->
+                      <div class="app_header_content_left">
+                      </div>
+                      <div class="card-header text-center" style="border: none!important; ">
+                        <span><b id="room-button-2"></b></span>
+                      </div>
+                      <div class="room">
+                        <span>
+                          <a class="rooms" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms <svg   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                          </svg></a> 
+          
+                          <div class="dropdown-menu" aria-labelledby="dropdownUser" id="roomslist">
+                            <ul>
+                              <li><a href="/chatWindow">
+                     
+                                <span id="room-Button-1">Strategy Chat Room</span>
+                                </a>
+                              </li>
+                              <li><a  href = "/chatWindowAdminUser">
+                 
+                                <span id="room-Button-2">Future Chat Room</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>  
+          
+                        </span>
+                        <div class="app_header_content_right" style="position:absolute">
+                          <ul class="d-flex">
+                           
+                            <li class="header_right_menu">
+                              
+                             
+                              <div class="dropdown user_dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <!--  <img src="images/Blue_user.png" alt="images"> -->
+                                  <p ><span id="tasksuserlisttotal"></span></p>
+                                </a>
+                                 <div class="dropdown-menu" aria-labelledby="dropdownUser" id="tasksuserlist">
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    <!-- </div> -->
                
-
-<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<div id="chatbox-history">
+  
+  <!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <div id="chatbox-history">
   <div id="messages">
     <div>asdjf ;asd</div>
     <div>ajsd fa ;skd f;s</div>
@@ -873,11 +897,11 @@ text-align:center;
     <div>ajsd fkaj s;dlf a;ljsdl;fkja;lsd f; asd</div>
     <div>Wassup?</div>
   </div>
-</div>
+  </div>
     <script type="text/javascript">
         $('#messages').scrollTop($('#messages')[0].scrollHeight);
     </script> -->
-
+  
     <div id="fountainG">
       <div id="fountainG_1" class="fountainG"></div>
       <div id="fountainG_2" class="fountainG"></div>
@@ -919,6 +943,11 @@ text-align:center;
                    </form>
                 </div>
           </div>
+
+        </div>
+
+       
+
 
         </div>
 

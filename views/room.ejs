@@ -78,7 +78,7 @@
 
               <a href="/chatWindow">
            
-              <button type="button" class="btn cmn_btn btn_small btn_primary" id="room-button-1">Enter Strategy Room</button>
+              <button type="button" class="btn cmn_btn btn_small btn_primary" id="room-button-1"></button>
               </a>
 
              <!--  <a data-toggle="modal" data-target="#exampleModalCenterpin" id="modalcalling">
@@ -88,7 +88,7 @@
  -->
                <a id="notmodalcalling">
            
-              <button type="button" class="btn cmn_btn btn_small btn_primary" id="room-button-2">Enter @basilnsage Room</button>
+              <button type="button" class="btn cmn_btn btn_small btn_primary" id="room-button-2"></button>
               </a>
 
               <!-- <a href="/soicalChat">
@@ -283,7 +283,7 @@ nummers.get().then(function (querySnapshot) {
        var monthlies = db.collection("/basilPrivateGroup").doc("Production").get();
        monthlies.then((res) => {
         // console.log(res.data().groupCode);
-        document.getElementById('room-button-2').innerText = "Enter " + res.data().groupTitle + " Room";
+        document.getElementById('room-button-2').innerText =  res.data().groupTitle + " Room";
 
        });
 
@@ -297,7 +297,7 @@ function getGroupDetailroomOne() {
        var monthlies = db.collection("/openGroups").doc("roomOne").get();
        monthlies.then((res) => {
         // console.log(res.data().groupCode);
-        document.getElementById('room-button-1').innerText = "Enter " + res.data().groupTitle + " Room";
+        document.getElementById('room-button-1').innerText = res.data().groupTitle + " Room";
 
        });
 

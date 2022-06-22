@@ -47,7 +47,7 @@ function getGroupDetailroomOne() {
      var monthlies = db.collection("/openGroups").doc("roomOne").get();
      monthlies.then((res) => {
       // console.log(res.data().groupCode);
-      document.getElementById('room-button-1').innerText = "Enter " + res.data().groupTitle + " Room";
+      document.getElementById('room-button-1').innerText = res.data().groupTitle + " Room";
 
      });
 
@@ -61,7 +61,7 @@ function getGroupDetail() {
 var monthlies = db.collection("/basilPrivateGroup").doc("Production").get();
 monthlies.then((res) => {
  // console.log(res.data().groupCode);
- document.getElementById('room-Button-2').innerText = "Enter " + res.data().groupTitle + " Room";
+ document.getElementById('room-Button-2').innerText =  res.data().groupTitle + " Room";
 
 });
 
@@ -75,7 +75,7 @@ function getGroupDetailroomOnes() {
 var monthlies = db.collection("/openGroups").doc("roomOne").get();
 monthlies.then((res) => {
  // console.log(res.data().groupCode);
- document.getElementById('room-Button-1').innerText = "Enter " + res.data().groupTitle + " Room";
+ document.getElementById('room-Button-1').innerText =  res.data().groupTitle + " Room";
 
 });
 
