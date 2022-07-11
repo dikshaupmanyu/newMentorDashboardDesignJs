@@ -39,18 +39,45 @@
             <!-- <div class="mentor_feed" id="Services">
               </div> -->
 
-            <div class="tab-pane fade" id="mtb_service" role="tabpanel" aria-labelledby="mt_service">
-              <div class="mentor_service_area" id="purchaseServices">
-               <h4>Purchase Services</h4>  
-                <br>
+              <div class="tab-pane fade" id="mtb_service" role="tabpanel" aria-labelledby="mt_service">
+                <div class="container">
+                  <br>
+                        
+
+                  <nav>
+                    <div class="nav nav-tabs nav-fill" role="tablist">
+                      <a class="nav-item nav-link active" data-toggle="tab" href="#1" role="tab">All Service</a>
+                      <a class="nav-item nav-link" data-toggle="tab" href="#2" role="tab">My Service</a>
+                    </div>
+                  </nav>
+                  <br/>
+                  <br/>
+                  <div class="tab-content ">
+                    <div class="tab-pane active" id="1">
+                      <div class="tab-pane" id="2a">
+                        <div class="mentor_service_area" id="allService">
+                          <!-- <h4>all Services</h4> -->
+                          <br />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="2">
+                      <div class="tab-pane active" id="1a">
+                        <div class="mentor_service_area" id="purchaseServices">
+                          <h4>Purchase Services</h4>
+                          <br />
+                        </div>
+                        <div class="mentor_service_area" id="newsletterServices">
+                          <h4>TradeTips Recommended Services</h4>
+                          <p>Learn how to invest, trade and use TradeTips</p>
+                          <br />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="mentor_service_area" id="newsletterServices">
-               <h4>TradeTips Recommended Services</h4>  
-                <p>Learn how to invest, trade and use TradeTips</p>      
-                <br>
-              </div>
-             
-            </div>
              <div class="tab-pane fade" id="mtb_comments" role="tabpanel" aria-labelledby="mt_comments">
               
              
@@ -213,6 +240,150 @@
                  
              }
              });
+
+             //  ////////////////////////////////////////////////////////////////////
+      $.ajax({
+    
+    type: "POST",
+    url:
+      "https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlanWeb/getAllServiceSubscriptionPlan	",
+    headers: {
+      // Authorization: "Bearer " + tokens,
+    },
+    data: {
+      userId: LoggedInId,
+    },
+    success: function (data) {
+      console.log(data)
+      var dataks = JSON.stringify(data);
+      var fdataResults = JSON.parse(dataks);
+      // alert(fdataResults);
+      var dataResults = fdataResults;
+      // console.log(dataResults);
+      var len = dataResults.length;
+      // alert(len);
+      if (dataResults.length == 0) {
+
+        document.getElementById("allService").innerHTML =
+          "<br><p>You currently have no Services created.</p>";
+        $("#allService").css("text-align", "center");
+        $("#allService").css("color", "white");
+      } else {
+        // alert('ok')
+        let newtip = [];
+        for (var i = 0; i < dataResults.length; i++)
+          if (dataResults[i].isActive != false) {
+            // if(dataResult[i].isActive == true){
+
+            //  alert(dataResult[i].title);
+
+            function checkimage() {
+              var data;
+              if (!dataResults[i].imageDetails) {
+                data = "";
+              } else {
+                data =
+                  '<img src="https://apis.tradetipsapp.com' +
+                  dataResults[i].imageDetails +
+                  '"';
+              }
+
+              return data;
+            }
+
+            function checkprice() {
+              var price;
+              if (dataResults[i].price == "0") {
+                price = "Free";
+              } else {
+                price = "$" + dataResults[i].price;
+              }
+
+              return price;
+            }
+
+            newtip +=
+              '<div class="mentor_srvc"><h2>' +
+              dataResults[i].serviceTypeMaster.title +
+              '</h2><div class="mentor_srvc_bx">' +
+              checkimage() +
+              '</div><div class="mentor_srvc_bx_txt"><h3>' +
+              dataResults[i].title +
+              "<span>" +
+              checkprice() +
+              "</span></h3><p>" +
+              dataResults[i].descriptionOne +
+              '</p><a href="' +
+              dataResults[i].descriptionTwo +
+              '" target="_blank"><button class="btn cmn_btn btn_primary">View Detail</button></a></div></div><br>';
+            // }
+          }
+        $("#allService").append(newtip);
+      }
+
+      var dataResultpurchaseService = fdataResults;
+      var lenpurchaseService = dataResultpurchaseService.length;
+      if (dataResultpurchaseService.length == 0) {
+        // document.getElementById('purchaseServices').innerHTML="<br><p>You currently have no Services created.</p>";
+        //  $("#purchaseServices").css("text-align", "center");
+        //  $("#purchaseServices").css("color", "white");
+      } else {
+        let newtippurchaseServices = [];
+        for (var i = 0; i < dataResultpurchaseService.length; i++) {
+          function checkimagePurchase() {
+            var data;
+            if (!dataResultpurchaseService[i].imageDetails) {
+              data = "";
+            } else {
+              data =
+                '<img src="https://apis.tradetipsapp.com' +
+                dataResultpurchaseService[i].imageDetails +
+                '"';
+            }
+
+            return data;
+          }
+
+          function checkpricePurchase() {
+            var price;
+            if (
+              dataResultpurchaseService[i].serviceSubscriptionPlan.price == "0"
+            ) {
+              price = "Free";
+            } else {
+              price =
+                "$" +
+                dataResultpurchaseService[i].serviceSubscriptionPlan.price;
+            }
+
+            return price;
+          }
+
+          // if(dataResult[i].isActive == true){
+          newtippurchaseServices +=
+            '<div class="mentor_srvc"><h2>' +
+            dataResultpurchaseService[i].serviceSubscriptionPlan.title +
+            '</h2><div class="mentor_srvc_bx">' +
+            checkimagePurchase() +
+            '</div><div class="mentor_srvc_bx_txt"><h3>' +
+            dataResultpurchaseService[i].serviceSubscriptionPlan.title +
+            "<span>" +
+            checkpricePurchase() +
+            "</span></h3><p>" +
+            dataResultpurchaseService[i].serviceSubscriptionPlan
+              .descriptionOne +
+            '</p><a href="' +
+            dataResultpurchaseService[i].serviceSubscriptionPlan
+              .descriptionTwo +
+            '" target="_blank"><button class="btn cmn_btn btn_primary">View Detail</button></a></div></div><br>';
+          // }
+        }
+        $("#allService").append(newtippurchaseServices);
+      }
+    },
+  });
+
+  //////////////////////////////////////////////////////
 
         $.ajax({
               type: 'POST',
