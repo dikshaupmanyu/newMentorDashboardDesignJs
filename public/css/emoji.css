@@ -9,7 +9,7 @@
             position:absolute;
             margin-left: 94%;
             margin-top: 0;
-            z-index: 1000;
+            z-index:1;
         }
   }
 
@@ -25,7 +25,7 @@
             position:absolute;
             margin-left: 93%;
             margin-top: 0;
-            z-index: 1000;
+            z-index: 1;
         }
 
   }
@@ -41,7 +41,7 @@
             position:absolute;
             margin-left: 93%;
             margin-top: 0;
-            z-index: 1000;
+            z-index: 1;
         }
 }
 
@@ -56,7 +56,7 @@
             position:absolute;
             margin-left: 92%;
             margin-top: 0;
-            z-index: 1000;
+            z-index: 1;
         }
 }
 
@@ -71,7 +71,7 @@
             position:absolute;
             margin-left: 90%;
             margin-top: 0;
-            z-index: 1000;
+            z-index: 1;
         }
 }
 
@@ -86,6 +86,6 @@
             position:absolute;
             margin-left: 74%;
             margin-top: 0;
-            z-index: 1000;
+            z-index: 1;
         }
 }

@@ -58,6 +58,34 @@ function getGroupDetail() {
 
  getGroupDetail();
 
+ function getGroupDetailroomOnes() {
+
+  var monthlies = db.collection("/openGroups").doc("roomOne").get();
+  monthlies.then((res) => {
+   // console.log(res.data().groupCode);
+   document.getElementById('room-Button-1').innerText =  res.data().groupTitle + " Room";
+  
+  });
+  
+  
+  }
+  
+  getGroupDetailroomOnes();
+
+  function getGroupDetailroomtwo() {
+  
+    var monthlies = db.collection("/basilPrivateGroup").doc("Production").get();
+    monthlies.then((res) => {
+     // console.log(res.data().groupCode);
+     document.getElementById('room-Button-2').innerText =  res.data().groupTitle + " Room";
+    
+    });
+    
+    
+    }
+    
+    getGroupDetailroomtwo();
+
 const docRef = db.collection("/basilPrivateGroup/Production/messages/");
 const tasksDOM = document.getElementById("tasks");
 var fullName   = document.getElementById('user_nickname');
