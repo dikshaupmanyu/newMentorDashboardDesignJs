@@ -190,6 +190,7 @@
    <%- include partials/innerfooter %>
 
    <!-- <script src="https://cdn.jsdelivr.net/gh/AmagiTech/JSLoader/amagiloader.js"></script> -->
+   <script src="/js/amagiloader.js"></script>
 <script type="text/javascript">
   function delete_stck(ID)
 {
@@ -369,7 +370,7 @@ $(".load-wrapp-list").css('display','block');
 
 
     var formdata = new FormData();
-    // AmagiLoader.show();
+    AmagiLoader.show();
     if(parseFloat(entryPoint) < parseFloat(exitPoint)) {
 
          // alert("Buy");
@@ -412,6 +413,8 @@ $(".load-wrapp-list").css('display','block');
 
     // alert("tip add");
 
+    
+
     var requestOptions = {
       method: 'POST',
       headers: {
@@ -428,7 +431,7 @@ $(".load-wrapp-list").css('display','block');
     fetch("https://apis.tradetipsapp.com/api/tip/addTip", requestOptions)
     .then(response => response.json())
     .then(result => {
-        // AmagiLoader.hide();
+      AmagiLoader.hide()
         
         var datak = JSON.stringify(result);
         // alert(datak);
