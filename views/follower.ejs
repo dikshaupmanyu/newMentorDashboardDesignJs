@@ -100,7 +100,9 @@
           </div>
         </div>
       </div>
-      <div class="mentor_wrapper_right col">
+     
+    </div>
+     <div class="mentor_wrapper_right col">
         <div class="mentor_follow_area">
           <ul>
             <li>
@@ -121,7 +123,6 @@
           <h4>Member Since <span id = "create_date"></span></h4>
         </div>
       </div>
-    </div>
   </div>
 </div>
 <!-- Page Content Start -->
@@ -228,9 +229,9 @@
                     function checkservicePurchase() {
                       var url;
                       if (dataResultpurchaseService[i].serviceSubscriptionPlan.price == "0") {
-                        url = '<a href="' + dataResults[i].descriptionTwo +'" target="_blank">View</a>';
+                        url = '<a href="' + dataResultpurchaseService[i].serviceSubscriptionPlan.descriptionTwo +'" target="_blank"><button class="btn cmn_btn btn_primary">View</button></a>';
                       } else {
-                        url = '<a href="serviceDetails?id=' + dataResults[i].id +'" target="_blank">View</a>';
+                        url = '<a href="serviceDetails?id=' + dataResultpurchaseService[i].serviceSubscriptionPlan.id +'" target="_blank"><button class="btn cmn_btn btn_primary">View</button></a>';
                       }
 
                       return url;
@@ -241,7 +242,7 @@
 
 
                   // if(dataResult[i].isActive == true){
-                   newtippurchaseService += '<div class="mentor_srvc"><h2>'+dataResultpurchaseService[i].serviceSubscriptionPlan.title+'</h2><div class="mentor_srvc_bx">'+ checkimagePurchase() +'</div><div class="mentor_srvc_bx_txt"><h3>'+dataResultpurchaseService[i].serviceSubscriptionPlan.title+'<span>'+ checkpricePurchase() +'</span></h3><p>'+dataResultpurchaseService[i].serviceSubscriptionPlan.descriptionOne+'</p><a href="serviceDetails?id='+dataResultpurchaseService[i].serviceSubscriptionPlan.id+'" target="_blank"><button class="btn cmn_btn btn_primary">'+ checkservicePurchase() +'</button></a></div></div><br>'                 
+                   newtippurchaseService += '<div class="mentor_srvc"><h2>'+dataResultpurchaseService[i].serviceSubscriptionPlan.title+'</h2><div class="mentor_srvc_bx">'+ checkimagePurchase() +'</div><div class="mentor_srvc_bx_txt"><h3>'+dataResultpurchaseService[i].serviceSubscriptionPlan.title+'<span>'+ checkpricePurchase() +'</span></h3><p>'+dataResultpurchaseService[i].serviceSubscriptionPlan.descriptionOne+'</p>'+ checkservicePurchase() +'</div></div><br>'                 
                   // }
                     
 
@@ -319,9 +320,9 @@
            function checkserviceType() {
               var url;
               if (dataResults[i].price == "0") {
-                url = '<a href="' + dataResults[i].descriptionTwo +'" target="_blank">View</a>';
+                url = '<a href="' + dataResults[i].descriptionTwo +'" target="_blank"><button class="btn cmn_btn btn_primary">View</button></a>';
               } else {
-                url = '<a href="serviceDetails?id=' + dataResults[i].id +'" target="_blank">View</a>';
+                url = '<a href="serviceDetails?id=' + dataResults[i].id +'" target="_blank"><button class="btn cmn_btn btn_primary">View</button></a>';
               }
 
               return url;
@@ -338,9 +339,7 @@
               checkprice() +
               "</span></h3><p>" +
               dataResults[i].descriptionOne +
-              '</p><a href="serviceDetails?id=' +
-              dataResults[i].id +
-              '" target="_blank"><button class="btn cmn_btn btn_primary">'+ checkserviceType() +'</button></a></div></div><br>';
+              '</p>'+ checkserviceType() +'</div></div><br>';
             // }
           }
         $("#allService").append(newtip);
@@ -388,9 +387,9 @@
             function checkservicePurchase() {
               var url;
               if (dataResultpurchaseService[i].serviceSubscriptionPlan.price == "0") {
-                url = '<a href="' + dataResults[i].descriptionTwo +'" target="_blank">View</a>';
+                url = '<a href="' + dataResultpurchaseService[i].serviceSubscriptionPlan.descriptionTwo +'" target="_blank"><button class="btn cmn_btn btn_primary">View</button></a>';
               } else {
-                url = '<a href="serviceDetails?id=' + dataResults[i].id +'" target="_blank">View</a>';
+                url = '<a href="serviceDetails?id=' + dataResultpurchaseService[i].serviceSubscriptionPlan.id +'" target="_blank"><button class="btn cmn_btn btn_primary">View</button></a>';
               }
 
               return url;
