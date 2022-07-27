@@ -1,4 +1,9 @@
 <%- include partials/innerheader %>
+<style>
+  .my_tab_content .nav-tabs .nav-item{
+    padding:20px;
+  }
+</style>
 <div class="app_main">
 <%- include partials/innersidebar %>
 <div class="app_content">
@@ -17,7 +22,7 @@
         </div>
         <div class="mentor_tab_area my_tab_content">
           <nav>
-            <div class="nav nav-tabs nav-fill" role="tablist">
+            <div class="nav nav-tabs nav-fill" role="tablist"  style="margin-bottom: 15px;">
               <a class="nav-item nav-link active" id="mt_feed" data-toggle="tab" href="#mtb_feed" role="tab" aria-controls="mtb_feed" aria-selected="true">All</a>
               <a class="nav-item nav-link" id="mt_save" data-toggle="tab" href="#mtb_save" role="tab" aria-controls="mtb_save" aria-selected="false">Saved</a>
               <a class="nav-item nav-link" id="mt_comments" data-toggle="tab" href="#mtb_comments" role="tab" aria-controls="mtb_comments" aria-selected="false">Comments</a>
