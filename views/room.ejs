@@ -176,6 +176,7 @@
 
 <!--     <script src="dist/sample.index.js"></script>
  -->  
+ <script src="/js/amagiloader.js"></script>
 
     <script type="text/javascript">
 
@@ -186,6 +187,7 @@
 
          window.addEventListener("load", function() {
 
+          AmagiLoader.show();
 
 
            // document.getElementById("modalcalling").style.display = "block";
@@ -298,6 +300,8 @@ function getGroupDetailroomOne() {
        monthlies.then((res) => {
         // console.log(res.data().groupCode);
         document.getElementById('room-button-1').innerText = res.data().groupTitle + " Room";
+
+        AmagiLoader.hide();
 
        });
 

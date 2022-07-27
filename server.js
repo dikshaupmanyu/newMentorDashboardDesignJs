@@ -386,6 +386,24 @@ app.get('/settings', function(req, res) {
 	     res.redirect('/')
 	 }
   });
+  //////////////////////////////////////////////////////////////////////////
+
+   app.get('/serviceDetails', function(req, res) {
+
+   	 if(req.session.loggedIn)  { 
+
+    var mentorids = req.query.id;
+    var fdata = req.session.tokens;
+	var fusername = req.session.username;
+	var fuid = req.session.uid; 
+	var femail = req.session.email; 
+
+    res.render('serviceDetail.ejs' , {tipsIds : mentorids , tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+     } else {
+	     res.redirect('/')
+	 }
+  });
 
    ////////////////////////////////////////////////////////////////////////
 
@@ -1235,9 +1253,9 @@ return res.redirect('/');
 
 });
 /////////////////////////////////////////
-// var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
+var httpServer = http.createServer(app);
+// var httpsServer = https.createServer(credentials, app);
 
-// httpServer.listen(port);
-httpsServer.listen(port);
+httpServer.listen(port);
+// httpsServer.listen(port);
 console.log('The magic happens on port ' + port);
