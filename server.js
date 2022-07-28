@@ -406,6 +406,43 @@ app.get('/settings', function(req, res) {
   });
 
    ////////////////////////////////////////////////////////////////////////
+   app.get('/success', function(req, res) {
+
+	if(req.session.loggedIn)  { 
+		var mentorids = req.query.id;
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+		console.log('MENTOR ID'+mentorids)
+
+res.render('success.ejs' , {tipsIds : mentorids , tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+ } else {
+	 res.redirect('/')
+ }
+});
+////////////////////////////////////////////////////////////////////////
+app.get('/failure', function(req, res) {
+
+	if(req.session.loggedIn)  { 
+		var mentorids = req.query.id;
+		var fdata = req.session.tokens;
+		var fusername = req.session.username;
+		var fuid = req.session.uid; 
+		var femail = req.session.email; 
+		console.log('MENTOR ID'+mentorids)
+
+res.render('failure.ejs' , {tipsIds : mentorids , tokens : fdata , userName : fusername , userid : fuid , email :femail});
+
+ } else {
+	 res.redirect('/')
+ }
+});
+
+
+
+   ////////////////////////////////////////////////////////////////////////
 
     app.get('/Newsletter', function(req, res) {
 
