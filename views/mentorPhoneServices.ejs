@@ -65,7 +65,7 @@
               </div> -->
               <select name="price" id="price" class="form-control" required="required">
               <option>Select Price</option>
-               <option value="Free">Free</option>
+               <option value="0">Free</option>
                <option value="9.99">9.99</option>
                <option value="19.99">19.99</option>
                <option value="24.99">24.99</option>
@@ -427,6 +427,7 @@ $('#carousel-thumbs .carousel-item img').on('click', function(e) {
 
 </script>     
 
+<script src="/js/amagiloader.js"></script>
   <script type="text/javascript">
 
   // $(function(){
@@ -513,7 +514,7 @@ $("#formoid").submit(function(event){
       redirect: 'follow'
     };
 
-
+    AmagiLoader.show();
     fetch("https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlan/addServiceSubscriptionPlanByMentor", requestOptions)
       .then(response => response.json())
       .then(result => {
@@ -523,11 +524,11 @@ $("#formoid").submit(function(event){
                 // alert(datak);
                 var dataResultp = JSON.parse(datak); 
                 // alert(dataResultp.title);
-                 fetch('/sendEmail?serviceName='+dataResultp.serviceTypeMaster.description,{
+                 fetch('/sendEmail?serviceName='+dataResultp.descriptionOne,{
                   method: 'POST',
                   redirect: 'follow'
                 }).then(resp => console.log(resp.json()));
-
+                AmagiLoader.hide();
                 $(".successmsg").html('<span>"Your Phone Service '+dataResultp.title+' submitted successfully."</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
                setTimeout(function(){
