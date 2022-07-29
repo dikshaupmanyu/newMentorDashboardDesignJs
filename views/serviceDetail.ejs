@@ -1,5 +1,6 @@
 <%- include partials/innerheader %>
 
+
 <style type="text/css">
   .successmsg {
     color: #fff;
@@ -62,6 +63,11 @@ left:30%; */
   .input-groups {
     display: flex;
   }
+  
+.input-group #shortDescriptionService {
+    width: 65%;
+    float: right;
+}
 </style>
 
 <div class="app_main">
@@ -69,6 +75,71 @@ left:30%; */
 
   <div class="app_content">
     <div class="dsbrd_container">
+            <div class="dashboard_wrapper row">
+              <div class="dashboard_wrapper_left col" style="max-width: 60%">
+                <div class="prfl_tb_cntnt_bx">
+                  <h2>Service Detail</h2>
+                  <!-- <p>Thank you for Joining this service</p> -->
+                </div>
+                <div class="post_new_tips_wrapper">
+                  <div class="edit_profile_form">
+                    <div class="input-group">
+                      <label>Type of Service</label>
+                      <span style="color: white" id="typeService"></span>
+                    </div>
+
+                    <div class="input-group">
+                      <label>Name of Service</label>
+                      <span style="color: white" id="nameService"></span>
+                    </div>
+                     <div class="input-group" style="display: inline;">
+                            <label>Descritpion</label>
+                             <span style="color: white;" id="shortDescriptionService"></span>
+                          </div>
+
+                          <div class="input-group">
+                          <!--   <label>Long Description</label>
+                            <span style="color: white;" id="longDescriptionService"></span> -->
+                           
+                          </div>
+                    <div class="input-group">
+                      <label>Mentor Name</label>
+                      <span style="color: white" id="mentorNameService"></span>
+                    </div>
+                    <div class="input-group">
+                            <label>Frequency</label>
+                            <span style="color: white" id="frequncyService"></span>
+                    </div>
+                    <div class="input-group">
+                      <label>Price</label>
+                      <span style="color: white" id="priceService"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="dashboard_wrapper_right col"
+                style="max-width: 40%; padding-top: 55px"
+              >
+                <div class="input-group">
+                  <img
+                    id="serviceImage"
+                    class="img-responsive"
+                    style="height: 300px; width: 450px"
+                  />
+                </div>
+              </div>
+            </div>
+            <br/>
+
+            <div class="edit_profile_form">
+              <p style="color: white; text-align: center">
+                Great ! <br />Thank you, <%= userName %>
+              </p>
+              <h5 class="text-center">Please complete your purchase below</h5>
+            </div>
+
+          <br/>
       
         <div class="dsbrd_container" style="margin-left: 15px">
           <div class="dashboard_wrapper row">
@@ -78,6 +149,44 @@ left:30%; */
                 <div class="edit_profile_form">
                   <div class="input-group">
                     <!-- <label>Card Number</label> -->
+
+                      <input
+                  type="text"
+                  name="userName"
+                  value="<%= userName %>"
+                  style="display: none"
+                />
+                <input
+                  type="text"
+                  name="userId"
+                  value="<%= userid %>"
+                  style="display: none"
+                />
+                <input
+                  type="text"
+                  name="emailData"
+                  value="<%= email %>"
+                  style="display: none"
+                />
+                <input
+                  type="text"
+                  name="tokendata"
+                  value="<%= tokens %>"
+                  style="display: none"
+                />
+                <input
+                  type="text"
+                  name="amount"
+                  id="prices"
+                  style="display: none"
+                />
+                <input
+                  type="text"
+                  name="serviceIds"
+                  value="<%= tipsIds %>"
+                  style="display: none"
+                />
+
                     <input type="text" class="form-control" name="cardName" id="cardName" placeholder=" Full Name"
                       required="required" />
                     <!-- <span id="error" style="color: Red; display: none">* Input digits (0 - 9)</span>   -->
@@ -254,6 +363,55 @@ left:30%; */
       );
   }
 </script>
+ <script type="text/javascript">
+      function handleFormSubmit(form) {
+      checkPurchase(form);
+    }
+
+    function checkPurchase(form){
+      // alert("hii");
+      var tokendata = "<%= tokens %>";
+      var loginIds = "<%= userid %>";
+      var subsids = "<%= tipsIds %>";
+
+      $.ajax({
+                         type: 'POST',
+                         url: 'https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlanWeb/getAllTypeServicesForUser',
+                         data: {
+                           userId: loginIds       
+                         },
+                        success: function(data){
+                           var dataks = JSON.stringify(data); 
+                           var dataResultps = JSON.parse(dataks);
+                            // alert(dataResultps.serviceSubscriptions);
+                            // alert(dataResultps.serviceSubscriptions.length);
+                            if(dataResultps.serviceSubscriptions.length == 0){
+                               // alert("Purchase Allow !!");
+                               form.submit();
+                            }else{
+                                for( var i=0;i<dataResultps.serviceSubscriptions.length; i++){
+                                   if(dataResultps.serviceSubscriptions[i].serviceSubscriptionPlanId == subsids && dataResultps.serviceSubscriptions[i].stripeSubscriptionStatus == "active"){
+                                    // alert("You Already Purchased this Service !!");
+                                    $(".successmsg3").html(
+                                      "You Already Purchased this Service !!"
+                                      );
+                                      setTimeout(function () {
+                                        $(".successmsg3").empty();
+                                      }, 3000);
+                                   } else {
+                                    form.submit();
+                                    // alert("Purchase  Allow !!");
+                                   }
+                                }
+                              
+                            }
+
+                         }
+
+                       });
+      }
+    </script>
+
 
 <script type="text/javascript">
   window.history.forward();
@@ -261,70 +419,7 @@ left:30%; */
     window.history.forward();
   }
 
-  //     function test()
-  //        {
-  //            var selectedValue = document.getElementById("userFull").value;
-  //            // alert(selectedValue);
-  //            document.getElementById("amountSubscription").value = selectedValue;
-
-  //            var e = document.getElementById("userFull");
-  //            var ns = e.options[e.selectedIndex].id;
-
-  //            // alert(textns);
-
-  //            document.getElementById("planId").value = ns;
-
-  //            var dataans = e.options[e.selectedIndex].text;
-
-  //            document.getElementById("planName").value = dataans;
-
-  //            // alert(ns);
-  //        }
-  //        test();
-
-  //  var sData = localStorage.getItem('allTokenData');
-  //   var storageData= JSON.parse(sData);
-
-  //   var tokens = storageData.tokendata;
-  //   //alert(tokens);
-
-  //  var userName = storageData.uname;
-  // // alert(userName);
-  //   document.getElementById("names").value = userName;
-
-  //   var emails = storageData.email;
-  //  //alert(emails);
-  //  document.getElementById("emails").value = emails;
-
-  //  document.getElementById("tokensdata").value = tokens;
-
-  //  var requestOptions = {
-  //    method: 'POST',
-  //    headers: {
-  //          Authorization: 'Bearer '+ tokens,
-  //        },
-  //    redirect: 'follow'
-  //  };
-
-  //  fetch("https://apistest.tradetipsapp.com/api/subscriptionPlan/getAllNewSubscriptionPlan", requestOptions)
-  //  .then(resp => resp.json())
-  //    .then(function(data) {
-  //      // console.log(data);
-  //      for( var i = 0; i< data.length; i++){
-  //          var userid = data[i]['id'];
-  //          var subscriptionType = data[i]['subscriptionType'];
-  //          var subscriptionPrice = data[i]['subscriptionPrice'];
-  //          $("#userFull").append("<option value='"+subscriptionPrice+"' id='"+userid+"'>"+subscriptionType+"</option>");
-  //          $("#newplanprice").append("<th scope='col'>$<span style='font-size: 30px;'>"+subscriptionPrice+"</span></th>");
-  //          $("#newplantype").append("<td>"+subscriptionType+"</td>");
-  //                // $("#newplan").append("<thead><tr><td scope='col'>$<span style='font-size: 30px;''>"+subscriptionPrice+"</span></td></tr></thead><tbody><tr><td scope='row'>"+subscriptionType+"</td></tr></tbody>");
-  //           // var e = document.getElementById("userFull");
-  //           // var ids=e.selectElement.options[e.selectedIndex].id;
-  //           // alert(ids);
-  //          // var text=e.options[e.selectedIndex].text;//get the selected option text
-  //          }
-  //  });
-
+ 
   var count = 0;
 
   function validate(coupon) {
@@ -345,11 +440,11 @@ left:30%; */
 
         // console.log(data.percent_off);
         var finalpvals = data.percent_off;
-        //  alert(finalpvals);
+        // alert(finalpvals);
         var pricess = $("#prices").val();
         //  var pricess = ActualP.val();
 
-        //  alert(pricess);
+        // alert(pricess);
         var fdiscount = (pricess * finalpvals) / 100;
         //  alert(fdiscount);
 
@@ -406,4 +501,55 @@ left:30%; */
     //   }, 3000);
     // }
   }
+</script>
+
+<script type="text/javascript">
+  var subsids = "<%= tipsIds %>";
+
+  var formdata = { serviceSubscriptionPlanId: subsids };
+  $.ajax({
+    type: "POST",
+    url: "https://apis.tradetipsapp.com/api/serviceMentorSubscriptionPlanWeb/getServiceSubscriptionPlanById",
+    data: formdata,
+    success: function (data) {
+      var datak = JSON.stringify(data);
+      // alert(datak);
+      var dataResultp = JSON.parse(datak);
+      // alert(dataResultp.title);
+      
+     
+       let str = dataResultp.stripeProductName;
+          str = str.split("_")[0];
+          document.getElementById("typeService").innerHTML = dataResultp.serviceTypeMaster.description;
+          document.getElementById("nameService").innerHTML = dataResultp.title;
+          document.getElementById("shortDescriptionService").innerHTML = dataResultp.descriptionOne;
+          // document.getElementById("longDescriptionService").innerHTML = dataResultp.descriptionTwo;
+          document.getElementById("mentorNameService").innerHTML = str;
+          if(dataResultp.frequency == "0"){
+               document.getElementById("frequncyService").innerHTML = "One Time";
+          }else if(dataResultp.frequency == "1"){
+                document.getElementById("frequncyService").innerHTML = "Daily";
+          }else if(dataResultp.frequency == "7"){
+              document.getElementById("frequncyService").innerHTML = "Weekly";
+          }else if(dataResultp.frequency == "15"){
+              document.getElementById("frequncyService").innerHTML = "Bi-weekly";
+          }else if(dataResultp.frequency == "30"){
+              document.getElementById("frequncyService").innerHTML = "Monthly";
+          }else {
+              document.getElementById("frequncyService").innerHTML = "Yearly";
+          }
+                document.getElementById("prices").value = dataResultp.price * 100;
+
+          document.getElementById("priceService").innerHTML = "$" + parseFloat(dataResultp.price).toFixed(2);
+          document.getElementById("priceServices").innerHTML ="$" + parseFloat(dataResultp.price).toFixed(2);
+          if(dataResultp.imageDetails == null){
+              document.getElementById("serviceImage").src = dataResultp.thumbnailImageUrl;
+          }else{
+               document.getElementById("serviceImage").src = "https://apis.tradetipsapp.com" + dataResultp.imageDetails;
+          }
+
+
+   
+    },
+  });
 </script>
