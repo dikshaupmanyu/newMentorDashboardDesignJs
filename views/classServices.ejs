@@ -457,6 +457,22 @@ function ImgDelete(){
   document.getElementById('file-image').style.display= "none";
 }
 
+function fileconvert(file){
+
+fetch(file)
+ .then(res => res.blob())
+ .then(blob => {
+   // $('#file-image').attr('src', file);
+   var formdata = new FormData()
+   // fd.append('image', blob, 'filename')
+   formdata.append("imageDetails", blob , 'filename');
+   
+  // alert(formdata);
+   //alert(blob)
+
+ })
+
+}
 $("#formoid").submit(function(event){
 
   var title = $('#title').val();
@@ -490,7 +506,7 @@ $("#formoid").submit(function(event){
     formdata.append("mentorId", userId);
     if(filename == ""){
     // alert("null");
-      formdata.append("imageDetails", "");
+    fileconvert(file);
 
     }else{
     // alert("not null");

@@ -596,10 +596,7 @@ $("#formoid").submit(function(event){
                 var dataResultp = JSON.parse(datak); 
                 // alert(JSON.stringify(dataResultp));
                 // alert("Your newsletter "+dataResultp.title+" was submitted successfully");
-               fetch('/sendEmail?serviceName='+dataResultp.descriptionOne,{
-                  method: 'POST',
-                  redirect: 'follow'
-                }).then(resp => console.log(resp.json()));
+               
                 AmagiLoader.hide();
               $(".successmsg").html('<span>"Your newsletter '+dataResultp.title+' was submitted successfully"</span>');
                setTimeout(function(){$(".successmsg").empty()}, 2000);
