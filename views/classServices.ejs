@@ -140,6 +140,8 @@
                      <div id="carousel-selector-10" class="thumb col-4 col-sm-2 px-1 py-2" data-target="#myCarousel" data-slide-to="10">
                       <img src="/thumbnail/Image_v11.png" class="img-fluid" alt="...">
                     </div>
+                    <div class="col-2 px-1 py-2"></div>
+                    <div class="col-2 px-1 py-2"></div>
                   </div>
                 </div>
                 <div class="carousel-item">
@@ -370,7 +372,8 @@ $('#carousel-thumbs .carousel-item img').on('click', function(e) {
 
   $('#file-image').attr('src', e.target.src);
   // console.log(e.target.src);
-  document.getElementById('file-image').style.display= "block";
+    document.getElementById('file-image').style.display= "block";
+  document.getElementById('file-upload-btn').style.display= "none";
 
   var imgUrl = e.target.src; 
   // alert(imgUrl);
@@ -442,7 +445,8 @@ $('#carousel-thumbs .carousel-item img').on('click', function(e) {
     
     reader.onload = function(e) {
       $('#file-image').attr('src', e.target.result);
-      document.getElementById('file-image').style.display= "block";
+        document.getElementById('file-image').style.display= "block";
+  document.getElementById('file-upload-btn').style.display= "none";
     }
     
     reader.readAsDataURL(input.files[0]); // convert to base64 string
