@@ -206,23 +206,23 @@
                     return price;
                   }
 
-                  function checkservicePurchase() {
-                    var url;
-                    if (dataResultpurchaseService[i].serviceSubscriptionPlan.price == "0") {
-                      url = '<a href="' + dataResultpurchaseService[i].serviceSubscriptionPlan.descriptionTwo + '" target="_blank"><button class="btn cmn_btn btn_primary">View</button></a>';
-                    } else {
-                      url = '<a href="serviceDetails?id=' + dataResultpurchaseService[i].serviceSubscriptionPlan.id + '" target="_blank"><button class="btn cmn_btn btn_primary">Purchase</button></a>';
-                    }
+                  // function checkservicePurchase() {
+                  //   var url;
+                  //   if (dataResultpurchaseService[i].serviceSubscriptionPlan.price == "0") {
+                  //     url = '<a href="' + dataResultpurchaseService[i].serviceSubscriptionPlan.descriptionTwo + '" target="_blank"><button class="btn cmn_btn btn_primary">View</button></a>';
+                  //   } else {
+                  //     url = '<a href="serviceDetails?id=' + dataResultpurchaseService[i].serviceSubscriptionPlan.id + '" target="_blank"><button class="btn cmn_btn btn_primary">Purchase</button></a>';
+                  //   }
 
-                    return url;
-                  }
+                  //   return url;
+                  // }
 
 
 
 
 
                   // if(dataResult[i].isActive == true){
-                  newtippurchaseService += '<div class="mentor_srvc"><h2>' + dataResultpurchaseService[i].serviceSubscriptionPlan.title + '</h2><div class="mentor_srvc_bx">' + checkimagePurchase() + '</div><div class="mentor_srvc_bx_txt"><h3>' + dataResultpurchaseService[i].serviceSubscriptionPlan.title + '<span>' + checkpricePurchase() + '</span></h3><p>' + dataResultpurchaseService[i].serviceSubscriptionPlan.descriptionOne + '</p>' + checkservicePurchase() + '</div></div><br>'
+                  newtippurchaseService += '<div class="mentor_srvc"><h2>' + dataResultpurchaseService[i].serviceSubscriptionPlan.title + '</h2><div class="mentor_srvc_bx">' + checkimagePurchase() + '</div><div class="mentor_srvc_bx_txt"><h3>' + dataResultpurchaseService[i].serviceSubscriptionPlan.title + '<span>' + checkpricePurchase() + '</span></h3><p>' + dataResultpurchaseService[i].serviceSubscriptionPlan.descriptionOne + '</p></div></div><br>'
                   // }
 
 
