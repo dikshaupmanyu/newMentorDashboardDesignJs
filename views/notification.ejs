@@ -1,5 +1,6 @@
   <%- include partials/innerheader %>
-
+  <link href="css/confirm.css" rel="stylesheet" type="text/css">
+  <script src="/js/confirm.js"></script>
   <div class="app_main">
                   
             <%- include partials/innersidebar %>
@@ -137,9 +138,13 @@ $(document).ready(function(){
 
 function deletenotification(e) {
   // alert(e);
-  var s = confirm("Are you sure to delete this Notification ?");
-  if (s == true) {
+  // var s = confirm("Are you sure to delete this Notification ?");
+  // if (s == true) {
 
+    var result =   Confirm.open({
+  title: 'Delete Confirm',
+  message: 'Are you sure to delete this Notification ?',
+    onok: () => {
    var tokens = "<%= tokens %>";
  
   var formdata = {notificationId : e};
@@ -155,17 +160,23 @@ function deletenotification(e) {
         window.location.reload();
         }
       });
-
-} else {
-   alert("Notification not deleted !!!");
-   window.location.reload();
-}
+    },
+      oncancel: ()=>{ 
+       $(".successmsg").html('<span>Notification  not deleted</span>');
+       setTimeout(function(){$(".successmsg").empty()}, 5000); 
+    // setTimeout(()=> { window.location.reload()},500)
+  }
+});
 }
 
 function deleteAllnotification() {
 
-  var r = confirm("Are you sure to delete all Notification ?");
-  if (r == true) {
+  // var r = confirm("Are you sure to delete all Notification ?");
+  // if (r == true) {
+    var result =   Confirm.open({
+  title: 'Delete Confirm',
+  message: 'Are you sure to delete all Notification ?',
+    onok: () => {
   var tokens = "<%= tokens %>";
   $.ajax({
         type: 'POST',
@@ -181,11 +192,13 @@ function deleteAllnotification() {
      }
 
    });
-
-} else {
-   alert("Notification not deleted !!!");
-   window.location.reload();
-}
+  },
+   oncancel: ()=>{ 
+       $(".successmsg").html('<span>Notification  not deleted</span>');
+       setTimeout(function(){$(".successmsg").empty()}, 5000); 
+    // setTimeout(()=> { window.location.reload()},500)
+  }
+});
 }
 
 

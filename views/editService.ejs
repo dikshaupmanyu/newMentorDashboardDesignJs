@@ -1,4 +1,6 @@
   <%- include partials/innerheader %>
+  <link href="css/confirm.css" rel="stylesheet" type="text/css">
+  <script src="/js/confirm.js"></script>
 <!-- Page Content Start -->
 <div class="app_main">
                   
@@ -521,8 +523,12 @@ $("#file-upload").change(function() {
 });
 
 function ImgDelete(){
-  var r = confirm("Are you sure to delete this Image ?");
-  if (r == true) {
+  // var r = confirm("Are you sure to delete this Image ?");
+  // if (r == true) {
+    var result =   Confirm.open({
+  title: 'Delete Confirm',
+  message: 'Are you sure to delete this Image ?',
+    onok: () => {
   var serviceTypeSubscriptionId = $('#serviceTypeSubscriptionId').val();
          $.ajax({
               type: 'POST',
@@ -543,7 +549,13 @@ function ImgDelete(){
             });
 
      document.getElementById('file-image').style.display= "none";
-   }
+   },
+   oncancel: ()=>{ 
+       $(".successmsg").html('<span>Not deleted</span>');
+       setTimeout(function(){$(".successmsg").empty()}, 5000); 
+    // setTimeout(()=> { window.location.reload()},500)
+  }
+});
 }
 
 

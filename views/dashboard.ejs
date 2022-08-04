@@ -1,4 +1,6 @@
 <%- include partials/innerheader %>
+<link href="css/confirm.css" rel="stylesheet" type="text/css">
+<script src="/js/confirm.js"></script>
    <div class="modal" id="myModalMACD">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -750,10 +752,14 @@ $(document).ready(function(){
 
 function delete_stck(ID)
 {
- var r = confirm("Are you sure to delete this company ?");
+//  var r = confirm("Are you sure to delete this company ?");
  //stockname=stockname.toUpperCase();
  ID=ID.split(' ');
- if (r == true) {
+ //  if (r == true) {
+  var result =   Confirm.open({
+  title: 'Delete Confirm',
+  message: 'Are you sure to delete this Company ?',
+    onok: () => {
      $.ajax({
        type: "POST",
         url: "https://apis.tradetipsapp.com/api/stockDetail/deleteStock",
@@ -768,7 +774,13 @@ function delete_stck(ID)
             setTimeout(function(){$(".successmsg").empty()}, 3000);
         }
        });
-   }
+   },
+   oncancel: ()=>{ 
+       $(".successmsg").html('<span>Not deleted</span>');
+       setTimeout(function(){$(".successmsg").empty()}, 5000); 
+    // setTimeout(()=> { window.location.reload()},500)
+  }
+});
   }
 
   /////////////////delete stock end///////////////////////
