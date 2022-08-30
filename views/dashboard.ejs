@@ -447,6 +447,8 @@ margin: 0px 0px 10px;
         </div>
          
            <%- include partials/innerfooter %>
+
+           <script src="/js/amagiloader.js"></script>
  <script type="text/javascript">
     $(document).ready(function(){
     
@@ -1638,6 +1640,7 @@ $(".scroller-dash-left").scroll(function() {
          
         html2canvas(elementPrev, {
           onrendered: function(canvas) {
+            AmagiLoader.show();
             var ctx = canvas.getContext("2d");
             // var grd = ctx.createLinearGradient(0, 0, 170, 0);
             // grd.addColorStop(0, "black");
@@ -1668,7 +1671,8 @@ $(".scroller-dash-left").scroll(function() {
                 data: {dataUrl : imgageData , objecturls : objectURL},
 
               success: function(datas) {
-              window.open("https://twitter.com/intent/tweet?text="+datas.text+"&via=Tradetipsapp" , '_blank')
+                window.open("https://twitter.com/intent/tweet?text="+datas.text+"&via=Tradetipsapp" , '_blank')
+                AmagiLoader.hide();
 
 
               }
