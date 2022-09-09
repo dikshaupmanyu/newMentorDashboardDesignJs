@@ -1,4 +1,6 @@
 <%- include partials/innerheader %>
+<link href="css/confirm.css" rel="stylesheet" type="text/css">
+<script src="/js/confirm.js"></script>
    <div class="modal" id="myModalMACD">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -445,6 +447,8 @@ margin: 0px 0px 10px;
         </div>
          
            <%- include partials/innerfooter %>
+
+           <script src="/js/amagiloader.js"></script>
  <script type="text/javascript">
     $(document).ready(function(){
     
@@ -750,10 +754,14 @@ $(document).ready(function(){
 
 function delete_stck(ID)
 {
- var r = confirm("Are you sure to delete this company ?");
+//  var r = confirm("Are you sure to delete this company ?");
  //stockname=stockname.toUpperCase();
  ID=ID.split(' ');
- if (r == true) {
+ //  if (r == true) {
+  var result =   Confirm.open({
+  title: 'Delete Confirm',
+  message: 'Are you sure to delete this Company ?',
+    onok: () => {
      $.ajax({
        type: "POST",
         url: "https://apis.tradetipsapp.com/api/stockDetail/deleteStock",
@@ -768,7 +776,13 @@ function delete_stck(ID)
             setTimeout(function(){$(".successmsg").empty()}, 3000);
         }
        });
-   }
+   },
+   oncancel: ()=>{ 
+       $(".successmsg").html('<span>Not deleted</span>');
+       setTimeout(function(){$(".successmsg").empty()}, 5000); 
+    // setTimeout(()=> { window.location.reload()},500)
+  }
+});
   }
 
   /////////////////delete stock end///////////////////////
@@ -1626,6 +1640,7 @@ $(".scroller-dash-left").scroll(function() {
          
         html2canvas(elementPrev, {
           onrendered: function(canvas) {
+            AmagiLoader.show();
             var ctx = canvas.getContext("2d");
             // var grd = ctx.createLinearGradient(0, 0, 170, 0);
             // grd.addColorStop(0, "black");
@@ -1656,7 +1671,8 @@ $(".scroller-dash-left").scroll(function() {
                 data: {dataUrl : imgageData , objecturls : objectURL},
 
               success: function(datas) {
-              window.open("https://twitter.com/intent/tweet?text="+datas.text+"&via=Tradetipsapp" , '_blank')
+                window.open("https://twitter.com/intent/tweet?text="+datas.text+"&via=Tradetipsapp" , '_blank')
+                AmagiLoader.hide();
 
 
               }
