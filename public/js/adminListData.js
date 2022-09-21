@@ -437,7 +437,7 @@ return docRef
 
 }else if(file.type == "image/jpeg"|| file.type == "image/png" || file.type == "image/gif" || file.type == "image/jpg" || file.type == "image/webp"){
 
-  firebase.storage().ref('message_storage_test_env/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
+  firebase.storage().ref('message_images/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
     return snapshot.ref.getDownloadURL()
  }).then(url => {
    console.log("Firebase storage image uploaded : ", url);
@@ -471,7 +471,7 @@ return docRef
 } else {
 
 
-  firebase.storage().ref('message_storage_test_env/').child(file.name+"_"+Date.now()).put(file).then(function(snapshot) {
+  firebase.storage().ref('message_images/').child(file.name+"_"+Date.now()).put(file).then(function(snapshot) {
     return snapshot.ref.getDownloadURL()
  }).then(url => {
    console.log("Firebase storage image uploaded : ", url);

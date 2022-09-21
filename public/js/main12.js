@@ -176,7 +176,7 @@ const docRefreply = db.collection("/openGroups/roomOne/messages/"+id+"/replies/"
  
  if(type == "video/mp4" || type == "video/webm" || type == "video/mov" || type == "video/wmv"|| type == "video/mkv"){
 
-  firebase.storage().ref('message_storage_test_env/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
+  firebase.storage().ref('message_videos/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
     return snapshot.ref.getDownloadURL()
  }).then(url => {
    console.log("Firebase storage image uploaded : ", url);
@@ -214,7 +214,7 @@ return docRefreply
 else if (type == "image/jpeg"|| type == "image/png" || type == "image/gif" || type == "image/jpg" || type == "image/webp") {
 
 
-  firebase.storage().ref('message_storage_test_env/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
+  firebase.storage().ref('message_images/').child("photo_message_"+loggedInVal+"_"+"_"+Date.now()).put(file).then(function(snapshot) {
     return snapshot.ref.getDownloadURL()
  }).then(url => {
    console.log("Firebase storage image uploaded : ", url);
@@ -250,7 +250,7 @@ return docRefreply
 else{
 
 
-firebase.storage().ref('message_storage_test_env/').child(file.name+"_"+Date.now()).put(file).then(function(snapshot) {
+firebase.storage().ref('message_images/').child(file.name+"_"+Date.now()).put(file).then(function(snapshot) {
   return snapshot.ref.getDownloadURL()
 }).then(url => {
  console.log("Firebase storage image uploaded : ", url);
