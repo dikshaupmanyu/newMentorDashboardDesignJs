@@ -816,7 +816,7 @@ $(".scroller-dash-left").scroll(function() {
             myoffset= mylimit+1;
             mylimit=xt*50;
               if(checkdval==1 || checkdval==2)
-               loadAi(myoffset,mylimit);
+              //  loadAi(myoffset,mylimit);
                if(checkdval==1 || checkdval==3)  
                loaddemodata(myoffset,mylimit);
             
@@ -850,11 +850,11 @@ $(".scroller-dash-left").scroll(function() {
       success: function(data) {
         var datak = JSON.stringify(data);
        var dataResult = JSON.parse(datak);
-       // console.log(dataResult);
+       console.log(dataResult);
        var text = "" ;
        var textboth = "" ;
        var len = dataResult.length;
-       // console.log(len);
+      // alert(len);
        var stockVal = [];
        var tipId = [];
        var tipPrice = [];
@@ -1855,7 +1855,7 @@ $.ajax({
                           const d = await response.json()
                               // return datas;
 
-                          console.log(d[array[0].stock_name]);
+                          // console.log(d[array[0].stock_name]);
 
                         
                         var date = array[0].sma_generation_date;
