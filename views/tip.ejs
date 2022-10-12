@@ -381,7 +381,6 @@ $(".load-wrapp-list").css('display','block');
 
 
     var formdata = new FormData();
-    AmagiLoader.show();
     if(parseFloat(entryPoint) < parseFloat(exitPoint)) {
 
          // alert("Buy");
@@ -437,18 +436,18 @@ $(".load-wrapp-list").css('display','block');
 
     // alert("neww");
 
-    
+    AmagiLoader.show();
 
     fetch("https://apis.tradetipsapp.com/api/tip/addTip", requestOptions)
     .then(response => response.json())
     .then(result => {
+      
+      var datak = JSON.stringify(result);
+      // alert(datak);
+      var dataResultp = JSON.parse(datak);
+      // alert(dataResultp.stockName);
+      //alert("Your tip for "+dataResultp.stockName+" was submitted successfully");
       AmagiLoader.hide()
-        
-        var datak = JSON.stringify(result);
-        // alert(datak);
-        var dataResultp = JSON.parse(datak);
-                // alert(dataResultp.stockName);
-                //alert("Your tip for "+dataResultp.stockName+" was submitted successfully");
                 $(".successmsg").html('<span>"Your tip for '+dataResultp.stockName+' was submitted successfully."</span>');
             // setTimeout(function(){$(".successmsg").empty()}, 3000);
               setTimeout(function(){
@@ -471,7 +470,7 @@ var timer;
 $(document).ready(function(){
 
 
-    $("#search-box").keyup(function(){
+    $("#search-box").keypress(function(){
         // alert($(this).val());
       // alert("timeset");
 
@@ -541,7 +540,7 @@ $(document).ready(function(){
                      document.getElementById("setEntry").readOnly  = false;
                     document.getElementById("setStop").readOnly  = false;
                      document.getElementById("setExit").readOnly  = false;
-                     document.getElementById("search-box").readOnly  = true;
+                     document.getElementById("search-box").readOnly  = false;
 
                     var url = "https://cloud.iexapis.com/stable/stock/market/batch?token=pk_dd324da3fb5f4428a47b05ab12f23ce2&types=quote&symbols="+dataset;
                           $.ajax({
