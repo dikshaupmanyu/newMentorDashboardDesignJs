@@ -112,12 +112,12 @@ function handleCreate(event) {
 
  event.preventDefault();
  var loggedInVal = document.getElementById('user_id').value;
- var loggedInName = document.getElementById('user_nickname').value;
  var logintoken = document.getElementById("tokenval").value;
-
-// var today = Date.now();
+ 
+ // var today = Date.now();
  //var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
  var editorText = CKEDITOR.instances.editor1.getData();
+ var loggedInName = document.getElementById('user_nickname').value;
  var PNames = document.getElementById("pTag").innerHTML
 
 if(message.value != ""){
@@ -154,11 +154,11 @@ if(message.value != ""){
           var dataks = JSON.stringify(data);
           var dataResults = JSON.parse(dataks);
           // alert(dataResults[0].message);
-          // console.log(dataResults[0].message);
-          $(".successmsg").html(dataResults[0].message);
-          setTimeout(function() {
-            $(".successmsg").empty();
-          }, 3000);
+          console.log(dataResults[0].message);
+          // $(".successmsg").html(dataResults[0].message);
+          // setTimeout(function() {
+          //   $(".successmsg").empty();
+          // }, 3000);
         },
       });
 

@@ -199,7 +199,7 @@
                         </span>
                         <!-- <input id="btn-input" type="text" class="form-control input-lg" placeholder="Type your message here..." autocomplete="off"/> -->
                     <textarea cols="100" class="form-control  input-lg" id="editor1" name="editor1" rows="2"></textarea>
-                        
+                    <p id="pTag" hidden></p>
                         <span class="input-group-btn">
                             <button class="btn btn-primary" type="submit" id="Btn_1">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
@@ -280,7 +280,7 @@
     var formData = { appUserName: "all" };
        $.ajax({
          type: "POST",
-         url: "https://apistest.tradetipsapp.com/api/appUser/getAllUserDetails",
+         url: "https://apis.tradetipsapp.com/api/appUser/getAllUserDetails",
          data: formData,
          success: function (datan) {
            var dataks = JSON.stringify(datan);

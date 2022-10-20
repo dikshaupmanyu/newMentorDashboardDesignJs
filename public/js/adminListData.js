@@ -127,7 +127,9 @@ function handleCreate(event) {
 // var today = Date.now();
  //var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
  var editorText = CKEDITOR.instances.editor1.getData();
-     
+ var logintoken = document.getElementById("tokenval").value;
+
+ var PNames = document.getElementById("pTag").innerHTML; 
 
  if(message.value != ""){
 
@@ -147,6 +149,31 @@ function handleCreate(event) {
 return docRef
   .add(task)
   .then((ref) => {
+
+    $.ajax({
+      type: "POST",
+      url: "https://apis.tradetipsapp.com/api/chatNotificationActivity/sendNotificationForChat",
+      headers: {
+        // Authorization: 'Bearer '+ 'eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Inlhc2gwMUBtYWlsaW5hdG9yLmNvbSIsInN1YiI6IjA5OTYwMDZkLTViNzEtNDVjZi1hNTJmLTI2ZjM0MTc3YjhmYSIsImlhdCI6MTY2NTgxNjEzMiwiZXhwIjoxNjY2NDIwOTMyfQ.nw-G-gdwisObYW60Fi5vLKpT-dfXwN7lDbHzEFCUmbMgOJZ8gybPvgHFo5zTQLrOZ7H5UCqpNlGCAfIPM6z-Ag',
+        Authorization: 'Bearer '+ logintoken  ,
+      },
+      data: {
+        chatRoomName : "futuresChatRoom",
+        userNames : PNames
+      },
+      success: function (data) {
+        // console.log(data[0].message)
+        var dataks = JSON.stringify(data);
+        var dataResults = JSON.parse(dataks);
+        // alert(dataResults[0].message);
+        // console.log(dataResults[0].message);
+        // $(".successmsg").html(dataResults[0].message);
+        // setTimeout(function() {
+        //   $(".successmsg").empty();
+        // }, 3000);
+      },
+    });
+
     task.id = ref.id;
     // fullName.value = '';
     CKEDITOR.instances.editor1.setData('');
@@ -301,6 +328,19 @@ setTimeout(function(){$(".successmsg").empty()}, 8000);
 }
 
 
+function FunctionClick(e){
+
+  // alert(e);
+
+//  var dataID =  document.getElementById("IDData").value
+var dataIDs = document.getElementsByTagName("li")
+// console.log(dataIDs)
+ var mm1 = document.getElementsByClassName("cke_autocomplete_selected")[0].innerText
+ console.log(mm1)
+
+ document.getElementById("pTag").innerHTML = mm1
+}
+
 // popup functions
 function popupCreate(event) {
 // alert("calling " + JSON.stringify(event));
@@ -329,7 +369,9 @@ var loggedInName = fullName.value;
 // alert(loggedInName);
 var uniqueDocId = docId;
 // alert(uniqueDocId);
+var logintoken = document.getElementById("tokenval").value;
 
+var PNames = document.getElementById("pTag").innerHTML; 
 // const docReply = db.collection("/openGroups/demoOpenGroup1/messages/"+uniqueDocId+"/replies/"); 
 const docReply = db.collection("/basilPrivateGroup/Production/messages/"+uniqueDocId+"/replies/"); 
 // alert(docReply);
@@ -351,10 +393,30 @@ if(message != ""){
  return docReply
    .add(taskR)
    .then((ref) => {
-     // console.log(ref);
-  // console.log("div#exampleModalCenter"+uniqueDocId);
 
-  // $("div#exampleModalCenter"+uniqueDocId).css("display", "none");
+    $.ajax({
+      type: "POST",
+      url: "https://apis.tradetipsapp.com/api/chatNotificationActivity/sendNotificationForChat",
+      headers: {
+        // Authorization: 'Bearer '+ 'eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Inlhc2gwMUBtYWlsaW5hdG9yLmNvbSIsInN1YiI6IjA5OTYwMDZkLTViNzEtNDVjZi1hNTJmLTI2ZjM0MTc3YjhmYSIsImlhdCI6MTY2NTgxNjEzMiwiZXhwIjoxNjY2NDIwOTMyfQ.nw-G-gdwisObYW60Fi5vLKpT-dfXwN7lDbHzEFCUmbMgOJZ8gybPvgHFo5zTQLrOZ7H5UCqpNlGCAfIPM6z-Ag',
+        Authorization: 'Bearer '+ logintoken  ,
+      },
+      data: {
+        chatRoomName : "futuresChatRoom",
+        userNames : PNames
+      },
+      success: function (data) {
+        // console.log(data[0].message)
+        var dataks = JSON.stringify(data);
+        var dataResults = JSON.parse(dataks);
+        // alert(dataResults[0].message);
+        // console.log(dataResults[0].message);
+        // $(".successmsg").html(dataResults[0].message);
+        // setTimeout(function() {
+        //   $(".successmsg").empty();
+        // }, 3000);
+      },
+    });
 
      taskR.id = ref.id;
      // fullName.value = '';
@@ -584,7 +646,7 @@ function replypopup(id) {
    var formData = { appUserName: "all" };
      $.ajax({
        type: "POST",
-       url: "https://apistest.tradetipsapp.com/api/appUser/getAllUserDetails",
+       url: "https://apis.tradetipsapp.com/api/appUser/getAllUserDetails",
        data: formData,
        success: function (datan) {
          var dataks = JSON.stringify(datan);
@@ -632,7 +694,7 @@ function replypopup(id) {
        
       function dataFeed(opts, callback) {
         var userNamescs = document.getElementById("user_nickname").value;
-        console.log(userNamescs)
+        // console.log(userNamescs)
         var matchProperty = 'userName';
         var countdata = users.filter(function(s) { return s.userName != userNamescs });
           data = countdata.filter(function (item) {
