@@ -361,7 +361,7 @@ function popupCreate(event) {
  var fullName   = document.getElementById('user_nickname');
 // alert(fullName.value);
  var message    =  document.getElementById("btn-input-replymsg" + event);
- alert(message.value);
+ //alert(message.value);
 //  console.log(message)
 
 // var PName = document.getElementById("pTag").innerHTML
