@@ -194,6 +194,8 @@
                   <input type="hidden" id="user_id">
                   <input type="hidden" id="user_nickname">
                   <input type="hidden" id="user_fcm_token">
+                  <input type="hidden" id="tokenval">
+
                   <!--  <input type="hidden" id="dateval"> -->
                   <span class="input-group-btn">
                     <input type="file" id="imageUploaddata" style="display: none;">
@@ -683,16 +685,18 @@ document.getElementById("pTag").innerHTML = mm1
       // alert(fcmToken);
 
       var userName = "<%= userName %>";
-      // alert(userName);
+     // alert(userName);
 
       var LoggedInId = "<%= userid %>";
       // alert(LoggedInId);
       var replyIdss = "<%= uniquereply %>";
+      var logintoken = "<%= tokens %>";
 
       // alert(replyIdss);
-      document.getElementById("nickdatavalue").setAttribute('value', userName);
+      //document.getElementById("nickdatavalue").setAttribute('value', userNamed);
 
-      // $("#nickdatavalue").val(userName);
+      $("#nickdatavalue").val(userName);
+         $("#tokenval").val(logintoken);
       // var today = new Date();
       // // alert(today);
       // var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + 

@@ -92,6 +92,8 @@ const tasksDOM = document.getElementById("tasks");
 var fullName   = document.getElementById('user_nickname');
 var message    = document.getElementById('btn-input');
 var userId     = document.getElementById('user_id');
+var tokenlogin = document.getElementById('tokenval');
+
 // alert(userId.value);
 
 var hiddenId   = document.getElementById('hiddenId');
@@ -112,15 +114,20 @@ function handleCreate(event) {
 
  event.preventDefault();
  var loggedInVal = document.getElementById('user_id').value;
- var logintoken = document.getElementById("tokenval").value;
- 
+ //alert(loggedInVal)
+ var loggedInName = document.getElementById('user_nickname').value;
+ //alert(loggedInName)
+  var logintoken = document.getElementById("tokenval").value;
+ //alert(logintoken)
  // var today = Date.now();
  //var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
  var editorText = CKEDITOR.instances.editor1.getData();
- var loggedInName = document.getElementById('user_nickname').value;
- var PNames = document.getElementById("pTag").innerHTML
+ 
+ var PNames = document.getElementById("pTag").innerHTML;
+   var text12 = document.getElementById("editor1").value;
 
-if(message.value != ""){
+
+if(editorText != ""){
 
   let task = {
   userName: loggedInName,
@@ -146,7 +153,7 @@ if(message.value != ""){
           Authorization: 'Bearer '+ logintoken  ,
         },
         data: {
-          chatRoomName : "demoGroupRoom",
+          chatRoomName : "StrategyChatRoom",
           userNames : PNames
         },
         success: function (data) {
