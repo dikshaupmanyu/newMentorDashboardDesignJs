@@ -121,18 +121,18 @@ function handleCreate(event) {
  //alert(logintoken)
  // var today = Date.now();
  //var str = today.toDateString().split(' ').slice(1).join(' ') + " at " + today.toLocaleTimeString() + " GMT+5:30";
- var editorText = CKEDITOR.instances.editor1.getData();
+ // var editorText = CKEDITOR.instances.editor1.getData();
  
- var PNames = document.getElementById("pTag").innerHTML;
-   var text12 = document.getElementById("editor1").value;
+ // var PNames = document.getElementById("pTag").innerHTML;
+ //   var text12 = document.getElementById("editor1").value;
 
 
-if(editorText != ""){
+if(message.value != ""){
 
   let task = {
   userName: loggedInName,
   userId : loggedInVal,
-  message: editorText,
+  message: message.value,
   messageId : loggedInVal + "_"+  Date.now(),
   messageType : "text",
   createdDate :  Date.now(),
@@ -145,34 +145,35 @@ if(editorText != ""){
     .add(task)
     .then((ref) => {
 
-      $.ajax({
-        type: "POST",
-        url: "https://apis.tradetipsapp.com/api/chatNotificationActivity/sendNotificationForChat",
-        headers: {
-          // Authorization: 'Bearer '+ 'eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Inlhc2gwMUBtYWlsaW5hdG9yLmNvbSIsInN1YiI6IjA5OTYwMDZkLTViNzEtNDVjZi1hNTJmLTI2ZjM0MTc3YjhmYSIsImlhdCI6MTY2NTgxNjEzMiwiZXhwIjoxNjY2NDIwOTMyfQ.nw-G-gdwisObYW60Fi5vLKpT-dfXwN7lDbHzEFCUmbMgOJZ8gybPvgHFo5zTQLrOZ7H5UCqpNlGCAfIPM6z-Ag',
-          Authorization: 'Bearer '+ logintoken  ,
-        },
-        data: {
-          chatRoomName : "StrategyChatRoom",
-          userNames : PNames
-        },
-        success: function (data) {
-          // console.log(data[0].message)
-          var dataks = JSON.stringify(data);
-          var dataResults = JSON.parse(dataks);
-          // alert(dataResults[0].message);
-          console.log(dataResults[0].message);
-          // $(".successmsg").html(dataResults[0].message);
-          // setTimeout(function() {
-          //   $(".successmsg").empty();
-          // }, 3000);
-        },
-      });
+      // $.ajax({
+      //   type: "POST",
+      //   url: "https://apis.tradetipsapp.com/api/chatNotificationActivity/sendNotificationForChat",
+      //   headers: {
+      //     // Authorization: 'Bearer '+ 'eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Inlhc2gwMUBtYWlsaW5hdG9yLmNvbSIsInN1YiI6IjA5OTYwMDZkLTViNzEtNDVjZi1hNTJmLTI2ZjM0MTc3YjhmYSIsImlhdCI6MTY2NTgxNjEzMiwiZXhwIjoxNjY2NDIwOTMyfQ.nw-G-gdwisObYW60Fi5vLKpT-dfXwN7lDbHzEFCUmbMgOJZ8gybPvgHFo5zTQLrOZ7H5UCqpNlGCAfIPM6z-Ag',
+      //     Authorization: 'Bearer '+ logintoken  ,
+      //   },
+      //   data: {
+      //     chatRoomName : "StrategyChatRoom",
+      //     userNames : PNames
+      //   },
+      //   success: function (data) {
+      //     // console.log(data[0].message)
+      //     var dataks = JSON.stringify(data);
+      //     var dataResults = JSON.parse(dataks);
+      //     // alert(dataResults[0].message);
+      //     console.log(dataResults[0].message);
+      //     // $(".successmsg").html(dataResults[0].message);
+      //     // setTimeout(function() {
+      //     //   $(".successmsg").empty();
+      //     // }, 3000);
+      //   },
+      // });
 
       console.log(ref.id);
       task.id = ref.id;
       // fullName.value = '';
-      CKEDITOR.instances.editor1.setData("");
+      message.value = '';
+     // CKEDITOR.instances.editor1.setData("");
       // date.value = '';
       // return createTask(task);
     });
@@ -359,11 +360,11 @@ function popupCreate(event) {
  //      });
  var fullName   = document.getElementById('user_nickname');
 // alert(fullName.value);
- var message    =  CKEDITOR.instances["btn-input-replymsg" + event].getData();
- // alert(message.value);
+ var message    =  document.getElementById("btn-input-replymsg" + event);
+ alert(message.value);
 //  console.log(message)
 
- var PName = document.getElementById("pTag").innerHTML
+// var PName = document.getElementById("pTag").innerHTML
 //  alert(PName)
  var userId     = document.getElementById('user_id');
  // alert(userId.value);
